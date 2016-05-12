@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<title>开户管理</title>
+<#include 'layout/resources.html'/>
+<script type="text/javascript" src="${resourceUrl}/resources/plat/js/account-search.js?version=${version}"></script>
+</head>
+<body>
+<#include 'layout/hidden_ares.html' />
+   <div class="place">
+	    <span>位置：</span>
+	    <ul>
+		    <li>平台管理</li>
+		    <li>账号管理</li>
+		    <li>账号查询</li>
+	    </ul>
+   </div>
+   <div class="right-info">
+    <!-- 搜索表单 -->
+    	 <form class="search-form">
+        	<ul>
+                <li><label>公司:</label><select id="companyCode"></select></li>
+                <li><label>支行:</label><select id="subbranchCode"></select></li>
+                <li><label>账户性质:</label><select id="kind"></select></li>
+                <li><label>币种:</label><select id="currency"></select></li>
+                <li><label>账号:</label><input type="text" id="cardNo"/></li>
+                <li><label>是否受款:</label><select id="isAccept"></select></li>
+	            <li>
+	                <input id="searchBtn" type="button" class="btn" value="查询" />
+	                <input type="reset" class="btn" value="重置" />
+	            </li>
+        	</ul>
+    	</form>
+    	<!-- 操作按钮 -->
+    	<div class="tools">
+	       <ul class="toolbar">
+	           <li id="longUpdateBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>久悬更新</li>
+	           <li id="recipientBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>受款</li>
+		       <li id="detailBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>详情</li>
+		       <li id="detailALLBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>全详情</li>
+		       <li id="exportBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>导出</li>
+	       </ul>
+	    </div>
+	    <!-- 表格 -->
+	    <table id="tableList"></table>
+   </div>
+  </body>
+  </html>

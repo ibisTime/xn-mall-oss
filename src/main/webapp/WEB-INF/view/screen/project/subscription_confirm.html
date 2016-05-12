@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<title>确认收款</title>
+<#include 'layout/resources.html'/>
+<script type="text/javascript" src="${resourceUrl}/ueditor/ueditor.config.js?version=${version}"></script>
+<script type="text/javascript" src="${resourceUrl}/ueditor/ueditor.all.min.js?version=${version}"> </script>
+<script type="text/javascript" charset="utf-8" src="${resourceUrl}/ueditor/lang/zh-cn/zh-cn.js?version=${version}"></script>
+<script type="text/javascript" src="${resourceUrl}/resources/project/js/subscription-confirm.js?version=${version}"></script>
+</head>
+<body>
+<#include 'layout/hidden_ares.html' />
+	<div class="place">
+    	<span>位置：</span>
+	    <ul>
+	    	<li>项目管理</li>
+	    	<li>认购管理</li>
+	    	<li>确认收款</li>
+   		</ul>
+   </div>
+  <form id="jsForm">
+	    <div class="form-body">
+			<div class="form-title"><span>确认收款</span></div>
+		    <ul class="form-info">
+		    	<li><label>订单号:</label><span id="code"></span></li>
+		    	<li><label>姓名:</label><span id="realName"></span></li>
+		    	<li><label>认购金额:</label><span id="investAmount"></span></li>
+		    	<li><label>认购时间:</label><span id="investDatetime"></span></li>
+		    </ul>
+		    <div class="op form-title"><span>打款记录</span></div>
+		    <div class="op right-info">
+		    	<div class="tools">
+				   <ul class="toolbar_children">
+				       <li id="addBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>新增</li>
+				       <li id="editBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>修改</li>
+				       <li id="dropBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>删除</li>
+			       </ul>
+			    </div>
+			    <br/>
+			    <table id="tableList"></table>
+		    </div>
+		    <div class="form-title"><span>认购结果</span></div>
+		    <ul class="form-info">
+		        <li class="op"><label><b>*</b>打款总额:</label><span id="investAmount2"></span></li>
+		    	<li><label><b>*</b>交易密码:</label><input type="password" id="tradePwd" name="tradePwd" class="control-def"/></li>
+		    	<li><label><b>*</b>备注:</label><input type="text" id="remark" name="remark" class="control-def"/></li>
+		    	<li><input id="passBtn" type="button" class="btn margin-left-100" value="确认认购"/><input id="noPassBtn" type="button" class="btn margin-left-40" value="取消认购"/><input id="backBtn" type="button" class="btn margin-left-40" value="返回"/></li>
+		    </ul>
+	    </div>
+    </form> 
+</body>
+</html>

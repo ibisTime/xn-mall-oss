@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<title>标的查询</title>
+<#include 'layout/resources.html'/>
+<script type="text/javascript" src="${resourceUrl}/ueditor/ueditor.config.js?version=${version}"></script>
+<script type="text/javascript" src="${resourceUrl}/ueditor/ueditor.all.min.js?version=${version}"> </script>
+<script type="text/javascript" charset="utf-8" src="${resourceUrl}/ueditor/lang/zh-cn/zh-cn.js?version=${version}"></script>
+<script type="text/javascript" src="${resourceUrl}/resources/project/js/target-search-detail.js?version=${version}"></script>
+</head>
+<body>
+<#include 'layout/hidden_ares.html' />
+  <div class="place">
+    	<span>位置：</span>
+	    <ul>
+	    	<li>标的管理</li>
+	    	<li>标的查询</li>
+	    	<li>详细信息</li>
+   		</ul>
+  </div>
+  <form id="jsForm">
+	    <div class="form-body">
+			<div class="form-title"><span>标的信息</span></div>
+		    <ul class="form-info">
+		        <li><label>标的编号:</label><span id="code"></span></li>
+		    	<li><label>标的名称:</label><span id="name"></span></li>
+		    	<li><label>服务类型:</label><span id="serve"></span></li>
+		    	<li><label>报价模式:</label><span id="quote"></span></li>
+		    	<li><label>年化值/保底值/分成值(%):</label><span id="quoteValue1" ></span></li>
+                <li id="fc"><label>分成值(%):</label><span id="quoteValue2"></span></li>
+		    	<li><label>受众等级:</label><span id="level"></span></li>
+		    	<li><label>总金额:</label><span id="totalAmount"></span></li>
+		    	<li><label>募集期限(小时):</label><span id="period"></span></li>
+		    	<li><label>类型:</label><span id="type"></span></li>
+		    	<li><label>状态:</label><span id="status"></span></li>
+		    	<li><label>募集金额:</label><span id="amount"></span></li>
+		    	<li><label>操盘手:</label><span id="trader"></span></li>
+		    	<li><label>合同模板:</label><span id="contractTemplate"></span></li>
+		    	<li><label>募集开始时间:</label><span id="mjstartDatetime"></span></li>
+		    	<li><label>募集结束时间:</label><span id="mjendDatetime"></span></li>
+		    	<li><label>概述:</label><script id="summary" name="summary" type="text/plain" style="width:800px;height:250px;float:left"></script></li>
+		    	<li><label>描述:</label><script id="description" name="description" type="text/plain" style="width:800px;height:250px;float:left"></script></li>
+		    	<li><label>最小投资金额（绝对值）:</label><span id="minInvestAmount"></span></li>
+		    	<li><label>递增投资金额（绝对值）:</label><span id="investAmountStep"></span></li>
+		    	<li><label>单笔最大投资金额（绝对值）:</label><span id="maxInvestAmount"></span></li>
+		    	<li><label>预计还款时间:</label><span id="repayDatetime"></span></li>
+		    	<li><label>结束时间:</label><span id="endDatetime"></span></li>
+		    </ul>
+		    <div class="form-title"><span>认购列表</span></div>
+		    <div>
+		    	<table id="investTableList"></table>
+		    </div>
+	    </div>
+    </form> 
+</body>
+</html>

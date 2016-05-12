@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<title>打款记录管理</title>
+<#include 'layout/resources.html'/>
+<script type="text/javascript" src="${resourceUrl}/resources/project/js/subscription-add.js?version=${version}"></script>
+</head>
+<body>
+<#include 'layout/hidden_ares.html' />
+	<div class="place">
+    	<span>位置：</span>
+	    <ul>
+	    	<li>系统管理</li>
+	    	<li>运营数据</li>
+	    	<li id="operContent">新增打款记录</li>
+   		</ul>
+   </div>
+   <form id="jsForm">
+        <input type="hidden" id="investCode" name="investCode"/>
+        <input type="hidden" id="investTableCode" name="investTableCode"/>
+    	<div class="form-body">
+    		<div class="form-title"><span>打款记录</span></div>
+		    <ul class="form-info">
+   <div class="form-body">
+   		<table class="common-table">
+   		<tr>
+   				<th><b>*</b>金额:</th><td><input type="text" id="amount" name="amount" class="control-def"/></td>
+   			</tr>
+   			<tr>
+   				<th><b>*</b>到款时间:</th><td><input id="moneyDatetime" name="moneyDatetime" class="lay-input" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/></td>
+   			</tr>
+   			<tr>
+   				<th><b>*</b>打款方:</th><td><li><select id="fromUser" name="fromUser" class="control-def"></select></li></td>
+   				<th><b>*</b>受款方:</th><td><li><select id="toUser" name="toUser" class="control-def"></select></li></td>
+   			</tr>
+   			<tr>
+   				<th><b></b>户名/个人:</th><td><input readonly type="text" id="fromOwnerName" name="fromOwnerName" class="control-def"/></td>
+   				<th><b></b>户名:</th><td><input readonly type="text" id="toOwnerName" name="toOwnerName" class="control-def"/></td>
+   			</tr>
+   			<tr>
+   				<th><b></b>银行:</th><td><input readonly type="text" id="fromBankName" name="fromBankName" class="control-def"/></td>
+   				<th><b></b>银行:</th><td><input readonly type="text" id="toBankName" name="toBankName" class="control-def"/></td>
+   			</tr>
+   			<tr>
+   				<th><b></b>开户支行:</th><td><input readonly type="text" id="fromSubbranch" name="fromSubbranch" class="control-def"/></td>
+   				<th><b></b>开户支行:</th><td><input readonly type="text" id="toSubbranch" name="toSubbranch" class="control-def"/></td>
+   			</tr>
+   			<tr>
+   				<th><b></b>账号:</th><td><input readonly type="text" id="fromBankcardNo" name="fromBankcardNo" class="control-def"/></td>
+   				<th><b></b>账号:</th><td><input readonly type="text" id="toBankcardNo" name="toBankcardNo" class="control-def"/></td>
+   			</tr>
+   			<tr>
+   				<th></th><td></td>
+   				<th><b></b>币种:</th><td><input readonly type="text" id="currency" name="currency" class="control-def"/></td>
+   			</tr>
+   		</table>
+   		
+   	</div>
+			    <li><input id="subBtn" type="button" class="btn margin-left-100" value="保存"/><input id="backBtn" type="button" class="btn margin-left-20" value="返回"/></li>
+			</ul>
+    	</div>
+   	</form> 
+</body>
+</html>

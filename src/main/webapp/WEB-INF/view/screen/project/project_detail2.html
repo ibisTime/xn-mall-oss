@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<title>项目详情</title>
+<#include 'layout/resources.html'/>
+<script type="text/javascript" src="${resourceUrl}/resources/project/js/project-detail2.js?version=${version}"></script>
+</head>
+<body>
+<#include 'layout/hidden_ares.html' />
+	<div class="place">
+    	<span>位置：</span>
+	    <ul>
+	    	<li>项目管理</li>
+	    	<li>项目运营</li>
+	    	<li>项目详情</li>
+   		</ul>
+   </div>
+  <form id="jsForm">
+	    <div class="form-body">
+			<div class="form-title"><span>项目信息</span></div>
+		    <ul class="form-info">
+		    	<li><label>名称:</label><span id="name"></span></li>
+		    	<li><label>服务类型:</label><span id="serve"></span></li>
+		    	<li><label>报价模式:</label><span id="quote"></span></li>
+		    	<li><label>总金额:</label><span id="totalAmount"></span></li>
+		    	<li><label>总收益:</label><span id="totalProfit"></span></li>
+		    	<li><label>类型:</label><span id="type"></span></li>
+		    	<li><label>操盘手:</label><span id="trader"></span></li>
+		    	<li><label>流标时间:</label><span id="unstartDatetime"></span></li>
+		    	<li><label>备注:</label><span id="remark"></span></li>
+		    </ul>
+		    <div class="form-title"><span>认购列表</span></div>
+		    <div style="width:800px">
+		    	<table id="tableList"></table>
+		    </div>
+		    <ul class="form-info">
+		    	<li><input id="backBtn" type="button" class="btn margin-left-100" value="返回"/></li>
+		    </ul>
+	    </div>
+    </form> 
+</body>
+</html>

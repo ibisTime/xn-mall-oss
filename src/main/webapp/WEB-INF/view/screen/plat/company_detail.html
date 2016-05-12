@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<title>平台公司详情</title>
+<#include 'layout/resources.html'/>
+<script type="text/javascript" src="${resourceUrl}/resources/plat/js/company-detail.js?version=${version}"></script>
+</head>
+<body>
+	<#include 'layout/hidden_ares.html' />
+	<div class="place">
+	    <span>位置：</span>
+	    <ul>
+	    	<li>平台管理</li>
+	    	<li>平台数据</li>
+	    	<li>平台公司</li>
+	    	<li>公司详情</li>
+   		</ul>
+    </div>
+    <form id="jsForm">
+	    <div class="form-body">
+	    <div class="form-title"><span>公司信息</span></div>
+		    <ul class="form-info">
+			    <li style="display: none;"><label>公司编号:</label><span id="code"></span></li>
+			    <li><label>公司名称:</label><span id="name"></span></li>
+			    <li><label>公司英文名:</label><span id="ywName"></span></li>
+			    <li><label>注册地址:</label><span id="zcAddress"></span></li>
+			    <li><label>经营地址:</label><span id="jyAddress"></span></li>
+			    
+			    <li><label>注册资本:</label><span id="capital"></span></li>
+			    <li><label>法人:</label><span id="frPerson"></span></li>
+			    <li><label>股东:</label><span id="gdPerson"></span></li>
+			    <li><label>财务负责人:</label><span id="cwLeader"></span></li>
+			    <li><label>大额变动提醒人:</label><span id="debdtxPerson"></span></li>
+			    
+			    <li><label>网银录入人:</label><span id="wyRecorder"></span></li>
+			    <li><label>网银复核人:</label><span id="wyChecker"></span></li>
+			    <li><label>公司座机:</label><span id="telephone"></span></li>
+			    <li><label>备注:</label><span id="remark"></span></li>
+			    <li><input id="backBtn" type="button" class="btn margin-left-100" value="返回"/></li>
+			</ul>
+	    </div>
+    </form>
+</body>
+</html>
