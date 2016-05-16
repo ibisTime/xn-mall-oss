@@ -23,59 +23,21 @@ public class PageController {
     @Autowired
     protected ISessionProvider sessionProvider;
 
-    @RequestMapping(value = "/security/{view}.htm", method = RequestMethod.GET)
-    public String securityAction(@PathVariable("view") String view) {
-        return "security/" + view;
+    @RequestMapping(value = "/{module}.htm", method = RequestMethod.GET)
+    public String indexAction(@PathVariable String module) {
+        return module;
     }
 
-    @RequestMapping(value = "/general/{view}.htm", method = RequestMethod.GET)
-    public String general(@PathVariable("view") String view) {
-        return "general/" + view;
+    @RequestMapping(value = "/{first}/{page}.htm", method = RequestMethod.GET)
+    public String commonPage1Action(@PathVariable String first,
+            @PathVariable String page) {
+        return first + "/" + page;
     }
 
-    @RequestMapping(value = "/operator/{view}.htm", method = RequestMethod.GET)
-    public String operator(@PathVariable("view") String view) {
-        return "operator/" + view;
-    }
-
-    @RequestMapping(value = "/customer/{view}.htm", method = RequestMethod.GET)
-    public String customer(@PathVariable("view") String view) {
-        return "customer/" + view;
-    }
-
-    @RequestMapping(value = "/account/{view}.htm", method = RequestMethod.GET)
-    public String account(@PathVariable("view") String view) {
-        return "account/" + view;
-    }
-
-    @RequestMapping(value = "/core/{view}.htm", method = RequestMethod.GET)
-    public String coreAction(@PathVariable("view") String view) {
-        return "core/" + view;
-    }
-
-    @RequestMapping(value = "/project/{view}.htm", method = RequestMethod.GET)
-    public String projectAction(@PathVariable("view") String view) {
-        return "project/" + view;
-    }
-
-    @RequestMapping(value = "/plat/{view}.htm", method = RequestMethod.GET)
-    public String platAction(@PathVariable("view") String view) {
-        return "plat/" + view;
-    }
-
-    @RequestMapping(value = "/contract/{view}.htm", method = RequestMethod.GET)
-    public String contractAction(@PathVariable("view") String view) {
-        return "contract/" + view;
-    }
-
-    @RequestMapping(value = "/system/{view}.htm", method = RequestMethod.GET)
-    public String systemAction(@PathVariable("view") String view) {
-        return "system/" + view;
-    }
-
-    @RequestMapping(value = "/bank/{view}.htm", method = RequestMethod.GET)
-    public String bankAction(@PathVariable("view") String view) {
-        return "bank/" + view;
+    @RequestMapping(value = "/{first}/{second}/{page}.htm", method = RequestMethod.GET)
+    public String commonPage2Action(@PathVariable String first,
+            @PathVariable String second, @PathVariable String page) {
+        return first + "/" + second + "/" + page;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
