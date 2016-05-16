@@ -23,7 +23,7 @@ $(function() {
 	
 	//新增
 	$('#addBtn').click(function() {
-		window.location.href = $("#basePath").val()+"/security/role_detail.htm";
+		window.location.href = $("#basePath").val()+"/product/product_addedit.htm";
 	});
 	
 	//修改
