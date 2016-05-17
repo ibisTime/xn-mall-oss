@@ -1,5 +1,5 @@
 /**
- * @Title XN601001Req.java 
+ * @Title XN601000Req.java 
  * @Package com.xnjr.mall.dto.req 
  * @Description 
  * @author haiqingzheng  
@@ -13,10 +13,7 @@ package com.xnjr.app.product.req;
  * @since: 2016年5月17日 上午9:08:54 
  * @history:
  */
-public class XN601001Req {
-
-    // 产品编号
-    private String code;
+public class XN601000Req {
 
     // 产品大类
     private String type;
@@ -50,14 +47,6 @@ public class XN601001Req {
 
     // 更新人
     private String updater;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     public String getType() {
         return type;

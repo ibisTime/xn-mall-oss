@@ -1,14 +1,21 @@
+/**
+ * @Title XN601001Req.java 
+ * @Package com.xnjr.mall.dto.req 
+ * @Description 
+ * @author haiqingzheng  
+ * @date 2016年5月17日 上午9:08:54 
+ * @version V1.0   
+ */
 package com.xnjr.app.product.req;
 
-/**
- * 详情查询产品
- * @author: wu 
- * @since: 2016年5月17日 下午12:03:58 
+/** 
+ * @author: haiqingzheng 
+ * @since: 2016年5月17日 上午9:08:54 
  * @history:
  */
 public class XN601006Req {
 
-    // （选填）
+    // 编号
     private String code;
 
     public String getCode() {

@@ -8,110 +8,122 @@
  */
 package com.xnjr.app.product.ao.imp;
 
-import java.util.List;
-
-import javax.servlet.ServletContext;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.xnjr.app.http.BizConnecter;
 import com.xnjr.app.http.JsonUtils;
-import com.xnjr.app.security.ao.IMenuAO;
-import com.xnjr.app.security.req.XNlh4000Req;
-import com.xnjr.app.security.req.XNlh4001Req;
-import com.xnjr.app.security.req.XNlh4002Req;
-import com.xnjr.app.security.req.XNlh4003Req;
-import com.xnjr.app.security.req.XNlh4004Req;
-import com.xnjr.app.security.res.XNlh4001Res;
+import com.xnjr.app.product.ao.IProductAO;
+import com.xnjr.app.product.req.XN601000Req;
+import com.xnjr.app.product.req.XN601001Req;
+import com.xnjr.app.product.req.XN601002Req;
+import com.xnjr.app.product.req.XN601003Req;
+import com.xnjr.app.product.req.XN601004Req;
+import com.xnjr.app.product.req.XN601005Req;
+import com.xnjr.app.product.req.XN601006Req;
 
 @Service
-public class ProductAOImpl implements IMenuAO {
-
-    @Autowired
-    ServletContext servletContext;
+public class ProductAOImpl implements IProductAO {
 
     @Override
-    public Object addMenu(String kind, String name, String url,
-            String parentCode, String type, String orderNo, String updater,
-            String remark) {
-        XNlh4002Req req = new XNlh4002Req();
-        req.setKind(kind);
-        req.setName(name);
-        req.setUrl(url);
-        req.setParentCode(parentCode);
+    public Object addProduct(String type, String name, String advTitle,
+            String advPic, String majorPic, String majorText, String familyPic,
+            String familyText, String highlightPic, String highlightText,
+            String updater) {
+        XN601000Req req = new XN601000Req();
         req.setType(type);
-        req.setOrderNo(orderNo);
+        req.setName(name);
+        req.setAdvTitle(advTitle);
+        req.setAdvPic(advPic);
+        req.setMajorPic(majorPic);
+        req.setMajorText(majorText);
+        req.setFamilyPic(familyPic);
+        req.setFamilyText(familyText);
+        req.setHighlightPic(highlightPic);
+        req.setHighlightText(highlightText);
         req.setUpdater(updater);
-        req.setRemark(remark);
-        return BizConnecter.getBizData("lh4002", JsonUtils.object2Json(req),
+        return BizConnecter.getBizData("601000", JsonUtils.object2Json(req),
             Object.class);
     }
 
     @Override
-    public Object dropMenu(String code) {
-        XNlh4003Req Req = new XNlh4003Req();
-        Req.setCode(code);
-        return BizConnecter.getBizData("lh4003", JsonUtils.object2Json(Req),
-            Object.class);
-    }
-
-    @Override
-    public Object editMenu(String code, String kind, String name, String url,
-            String parentCode, String type, String orderNo, String updater,
-            String remark) {
-        XNlh4004Req req = new XNlh4004Req();
-        req.setCode(code);
-        req.setKind(kind);
-        req.setName(name);
-        req.setUrl(url);
-        req.setParentCode(parentCode);
+    public Object editProduct(String type, String name, String advTitle,
+            String advPic, String majorPic, String majorText, String familyPic,
+            String familyText, String highlightPic, String highlightText,
+            String updater) {
+        XN601001Req req = new XN601001Req();
         req.setType(type);
-        req.setOrderNo(orderNo);
+        req.setName(name);
+        req.setAdvTitle(advTitle);
+        req.setAdvPic(advPic);
+        req.setMajorPic(majorPic);
+        req.setMajorText(majorText);
+        req.setFamilyPic(familyPic);
+        req.setFamilyText(familyText);
+        req.setHighlightPic(highlightPic);
+        req.setHighlightText(highlightText);
         req.setUpdater(updater);
-        req.setRemark(remark);
-        return BizConnecter.getBizData("lh4004", JsonUtils.object2Json(req),
+        return BizConnecter.getBizData("601001", JsonUtils.object2Json(req),
             Object.class);
     }
 
     @Override
-    public Object queryMenuPage(String kind, String name, String parentCode,
-            String type, String updater, String start, String limit) {
-        XNlh4000Req req = new XNlh4000Req();
-        req.setKind(kind);
-        req.setName(name);
-        req.setParentCode(parentCode);
+    public Object queryProductPage(String type, String name, String status,
+            String updater, String start, String limit, String orderColumn,
+            String orderDir) {
+        XN601004Req req = new XN601004Req();
         req.setType(type);
+        req.setName(name);
+        req.setStatus(status);
         req.setUpdater(updater);
         req.setStart(start);
         req.setLimit(limit);
-        return BizConnecter.getBizData("lh4000", JsonUtils.object2Json(req),
+        req.setOrderColumn(orderColumn);
+        req.setOrderDir(orderDir);
+        return BizConnecter.getBizData("601004", JsonUtils.object2Json(req),
             Object.class);
     }
 
     @Override
-    public List<XNlh4001Res> queryMenuList(String kind, String name,
-            String url, String parentCode, String type, String updater) {
-        XNlh4001Req req = new XNlh4001Req();
-        req.setKind(kind);
-        req.setName(name);
-        req.setUrl(url);
-        req.setParentCode(parentCode);
+    public Object queryProductList(String type, String name, String updater,
+            String status) {
+        XN601005Req req = new XN601005Req();
         req.setType(type);
-        String jsonStr = BizConnecter.getBizData("lh4001",
-            JsonUtils.object2Json(req));
-        Gson gson = new Gson();
-        List<XNlh4001Res> list = gson.fromJson(jsonStr,
-            new TypeToken<List<XNlh4001Res>>() {
-            }.getType());
-        return list;
+        req.setName(name);
+        req.setStatus(status);
+        req.setUpdater(updater);
+        return BizConnecter.getBizData("601005", JsonUtils.object2Json(req),
+            Object.class);
     }
 
     @Override
-    public Object queryMenu(String code) {
-        return BizConnecter.getBizData("lh4005",
-            JsonUtils.string2Json("code", code), Object.class);
+    public Object detailProduct(String code) {
+        XN601006Req req = new XN601006Req();
+        req.setCode(code);
+        return BizConnecter.getBizData("601006", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object checkProduct(String code, String checkUser,
+            String checkResult, String checkNote) {
+        XN601002Req req = new XN601002Req();
+        req.setCode(code);
+        req.setCheckUser(checkUser);
+        req.setCheckResult(checkResult);
+        req.setCheckNote(checkNote);
+        return BizConnecter.getBizData("601002", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object upProduct(String code, String checkUser, String checkResult,
+            String checkNote) {
+        XN601003Req req = new XN601003Req();
+        req.setCode(code);
+        req.setCheckUser(checkUser);
+        req.setCheckResult(checkResult);
+        req.setCheckNote(checkNote);
+        return BizConnecter.getBizData("601003", JsonUtils.object2Json(req),
+            Object.class);
     }
 }

@@ -1,7 +1,5 @@
 package com.xnjr.app.product.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,87 +8,105 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xnjr.app.controller.BaseController;
-import com.xnjr.app.security.ao.IMenuAO;
-import com.xnjr.app.security.res.XNlh4001Res;
+import com.xnjr.app.product.ao.IProductAO;
 
 /**
- * 菜单管理
+ * 产品
  * @author: XIANDONG 
- * @since: 2016年4月17日 下午4:46:21 
+ * @since: 2016年5月17日 下午12:01:40 
  * @history:
  */
 @Controller
-@RequestMapping(value = "/menu")
+@RequestMapping(value = "/product")
 public class ProductController extends BaseController {
 
     @Autowired
-    protected IMenuAO menuAO;
+    protected IProductAO productAO;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object addmenu(
-            @RequestParam("kind") String kind,
+    public Object addproduct(@RequestParam("type") String type,
             @RequestParam("name") String name,
-            @RequestParam("url") String url,
-            @RequestParam(value = "parentCode", required = false) String parentCode,
-            @RequestParam("type") String type,
-            @RequestParam("orderNo") String orderNo,
-            @RequestParam(value = "remark", required = false) String remark) {
-        return menuAO.addMenu(kind, name, url, parentCode, type, orderNo, this
-            .getSessionUser().getUserName(), remark);
-    }
-
-    @RequestMapping(value = "/drop", method = RequestMethod.POST)
-    @ResponseBody
-    public Object dropMenu(@RequestParam("code") String code) {
-        return menuAO.dropMenu(code);
+            @RequestParam("advTitle") String advTitle,
+            @RequestParam("advPic") String advPic,
+            @RequestParam("majorPic") String majorPic,
+            @RequestParam("majorText") String majorText,
+            @RequestParam("familyPic") String familyPic,
+            @RequestParam("familyText") String familyText,
+            @RequestParam("highlightPic") String highlightPic,
+            @RequestParam("highlighText") String highlightText,
+            @RequestParam("updater") String updater) {
+        return productAO.addProduct(type, name, advTitle, advPic, majorPic,
+            majorText, familyPic, familyText, highlightPic, highlightText,
+            updater);
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
-    public Object editMenu(
-            @RequestParam("code") String code,
-            @RequestParam("kind") String kind,
-            @RequestParam("name") String name,
-            @RequestParam("url") String url,
-            @RequestParam(value = "parentCode", required = false) String parentCode,
+    public Object editMenu(@RequestParam("code") String code,
             @RequestParam("type") String type,
-            @RequestParam("orderNo") String orderNo,
-            @RequestParam(value = "remark", required = false) String remark) {
-        return menuAO.editMenu(code, kind, name, url, parentCode, type,
-            orderNo, this.getSessionUser().getUserName(), remark);
+            @RequestParam("name") String name,
+            @RequestParam("advTitle") String advTitle,
+            @RequestParam("advPic") String advPic,
+            @RequestParam("majorPic") String majorPic,
+            @RequestParam("majorText") String majorText,
+            @RequestParam("familyPic") String familyPic,
+            @RequestParam("highlightPic") String highlightPic,
+            @RequestParam("highlightText") String highlightText,
+            @RequestParam("familyText") String familyText,
+            @RequestParam("updater") String updater) {
+        return productAO.editProduct(type, name, advTitle, advPic, majorPic,
+            majorText, familyPic, familyText, highlightPic, highlightText,
+            updater);
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
-    public Object queryMenuPage(
-            @RequestParam(value = "kind", required = false) String kind,
-            @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "parentCode", required = false) String parentCode,
+    public Object queryProductPage(
             @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "updater", required = false) String updater,
             @RequestParam("start") String start,
-            @RequestParam("limit") String limit) {
-        return menuAO.queryMenuPage(kind, name, parentCode, type, updater,
-            start, limit);
+            @RequestParam("limit") String limit,
+            @RequestParam(value = "orderColumn", required = false) String orderColumn,
+            @RequestParam(value = "orderDir", required = false) String orderDir) {
+        return productAO.queryProductPage(type, name, status, updater, start,
+            limit, orderColumn, orderDir);
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public List<XNlh4001Res> queryMenuList(
-            @RequestParam(value = "kind", required = false) String kind,
-            @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "url", required = false) String url,
-            @RequestParam(value = "parentCode", required = false) String parentCode,
+    public Object queryProductList(
             @RequestParam(value = "type", required = false) String type,
-            @RequestParam(value = "updater", required = false) String updater) {
-        return menuAO.queryMenuList(kind, name, url, parentCode, type, updater);
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "updater", required = false) String updater,
+            @RequestParam(value = "status", required = false) String status) {
+        return productAO.queryProductList(type, name, updater, status);
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @ResponseBody
-    public Object queryMenu(@RequestParam(value = "code") String code) {
-        return menuAO.queryMenu(code);
+    public Object detailProduct(@RequestParam(value = "code") String code) {
+        return productAO.detailProduct(code);
+    }
+
+    @RequestMapping(value = "/check", method = RequestMethod.GET)
+    @ResponseBody
+    public Object checkProduct(@RequestParam(value = "code") String code,
+            @RequestParam(value = "checkUser") String checkUser,
+            @RequestParam(value = "checkResult") String checkResult,
+            @RequestParam(value = "checkNote") String checkNote) {
+        return productAO.checkProduct(code, checkUser, checkResult, checkNote);
+    }
+
+    @RequestMapping(value = "/up", method = RequestMethod.GET)
+    @ResponseBody
+    public Object upProduct(@RequestParam(value = "code") String code,
+            @RequestParam(value = "checkUser") String checkUser,
+            @RequestParam(value = "checkResult") String checkResult,
+            @RequestParam(value = "checkNote") String checkNote) {
+        return productAO.upProduct(code, checkUser, checkResult, checkNote);
     }
 
 }

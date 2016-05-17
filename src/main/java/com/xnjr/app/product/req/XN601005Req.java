@@ -1,35 +1,31 @@
+/**
+ * @Title XN601001Req.java 
+ * @Package com.xnjr.mall.dto.req 
+ * @Description 
+ * @author haiqingzheng  
+ * @date 2016年5月17日 上午9:08:54 
+ * @version V1.0   
+ */
 package com.xnjr.app.product.req;
 
-/**
- * 列表查询产品
- * @author: wu 
- * @since: 2016年5月17日 下午12:02:20 
+/** 
+ * @author: haiqingzheng 
+ * @since: 2016年5月17日 上午9:08:54 
  * @history:
  */
 public class XN601005Req {
 
-    // 用户编号（必填）
-    private String code;
-
-    // 原密码（必填）
+    // 产品大类
     private String type;
 
-    // 新密码（必填）
+    // 产品名称
     private String name;
 
-    // 新密码强度（必填）
-    private String updater;
-
-    // 更新人（必填）
+    // 状态
     private String status;
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
+    // 更新人
+    private String updater;
 
     public String getType() {
         return type;
@@ -47,20 +43,20 @@ public class XN601005Req {
         this.name = name;
     }
 
-    public String getUpdater() {
-        return updater;
-    }
-
-    public void setUpdater(String updater) {
-        this.updater = updater;
-    }
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getUpdater() {
+        return updater;
+    }
+
+    public void setUpdater(String updater) {
+        this.updater = updater;
     }
 
 }

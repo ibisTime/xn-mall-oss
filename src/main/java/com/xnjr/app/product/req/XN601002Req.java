@@ -1,23 +1,30 @@
+/**
+ * @Title XN601001Req.java 
+ * @Package com.xnjr.mall.dto.req 
+ * @Description 
+ * @author haiqingzheng  
+ * @date 2016年5月17日 上午9:08:54 
+ * @version V1.0   
+ */
 package com.xnjr.app.product.req;
 
-/**
- * 产品审核
- * @author: wu 
- * @since: 2016年5月17日 上午11:55:45 
+/** 
+ * @author: haiqingzheng 
+ * @since: 2016年5月17日 上午9:08:54 
  * @history:
  */
 public class XN601002Req {
 
-    // 登录名（必填）
+    // 产品编号
     private String code;
 
-    // 推荐人（选填）
+    // 审核人
     private String checkUser;
 
-    // 证件类型（选填）
+    // 审核结果
     private String checkResult;
 
-    // 证件号码（选填）
+    // 审核说明
     private String checkNote;
 
     public String getCode() {
@@ -51,4 +58,5 @@ public class XN601002Req {
     public void setCheckNote(String checkNote) {
         this.checkNote = checkNote;
     }
+
 }
