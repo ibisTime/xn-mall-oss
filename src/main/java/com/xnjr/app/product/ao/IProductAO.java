@@ -17,7 +17,7 @@ import com.xnjr.app.security.res.XNlh4001Res;
  * @since: 2016年4月20日 上午11:40:19 
  * @history:
  */
-public interface IMenuAO {
+public interface IProductAO {
 
     /**
      * 添加菜单

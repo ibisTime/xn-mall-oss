@@ -21,7 +21,7 @@ import com.xnjr.app.security.res.XNlh4001Res;
  */
 @Controller
 @RequestMapping(value = "/menu")
-public class MenuController extends BaseController {
+public class ProductController extends BaseController {
 
     @Autowired
     protected IMenuAO menuAO;

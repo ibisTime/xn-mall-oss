@@ -28,7 +28,7 @@ import com.xnjr.app.security.req.XNlh4004Req;
 import com.xnjr.app.security.res.XNlh4001Res;
 
 @Service
-public class MenuAOImpl implements IMenuAO {
+public class ProductAOImpl implements IMenuAO {
 
     @Autowired
     ServletContext servletContext;
