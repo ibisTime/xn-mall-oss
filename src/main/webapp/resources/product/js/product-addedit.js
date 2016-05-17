@@ -70,11 +70,7 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-<<<<<<< HEAD
-		location.href = $("#basePath").val()+"/security/role.htm";
-=======
 		location.href = $("#basePath").val()+"/product/product.htm";
->>>>>>> refs/remotes/origin/master
 	});
 });
 
