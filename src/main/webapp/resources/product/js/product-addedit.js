@@ -1,6 +1,6 @@
 $(function() {
-	$('#kind').renderDropdown(Dict.getRoleKindName());
-	$('#level').renderDropdown(Dict.getRoleLevelName());
+	
+	$('#type').renderDropdown(Dict.getName('product_type'));
 	
 //	//系统方则显示哪一方查询条件
 //	if(getCurrentKind() != "1"){

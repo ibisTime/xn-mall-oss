@@ -3,7 +3,9 @@ var dictLevel = null;
 $(function() {
 	//按钮权限判断
 	showPermissionControl();
-	$('#kind').renderDropdown(Dict.getKindName());
+	
+	$('#type').renderDropdown(Dict.getName('product_type'));
+	$('#status').renderDropdown(Dict.getName('product_status'));
 	
 //	//系统方则显示哪一方查询条件
 //	if(getCurrentKind() != "1"){
@@ -126,6 +128,7 @@ function queryTableData(){
 		title : '产品类型',
 		align : 'left',
 		valign : 'middle',
+		formatter:Dict.getNameForList('product_type'),
 		sortable : false
 	}, {
 		field : 'name',
@@ -138,6 +141,7 @@ function queryTableData(){
 		title : '状态',
 		align : 'left',
 		valign : 'middle',
+		formatter:Dict.getNameForList('product_status'),
 		sortable : false
 	}, {
 		field : 'updater',
