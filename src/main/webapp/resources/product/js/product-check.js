@@ -1,11 +1,5 @@
 $(function() {
-//	$('#kind').renderDropdown(Dict.getRoleKindName());
-//	$('#level').renderDropdown(Dict.getRoleLevelName());
 	
-//	//系统方则显示哪一方查询条件
-//	if(getCurrentKind() != "1"){
-//		$("#liKind").hide();
-//	}
 	
 	//获取菜单URL入参
 	var code = getQueryString("code");
@@ -18,8 +12,37 @@ $(function() {
 		var url = $("#basePath").val()+"/product/detail";
 		doGetAjax(url, data, doSucBackGetDetail);
 	}
-
-	
+	$('#passBtn').click(function() {
+		if(!$("#jsForm").valid()){
+			return false;
+		}
+		doAprove(1);
+	});
+	$('#noPassBtn').click(function() {
+		if(!$("#jsForm").valid()){
+			return false;
+		}
+		doAprove(0);
+	});
+	$("#jsForm").validate({
+		rules: {
+			checkNote:  {
+				required: true,
+				maxlength: 32
+			}
+		},
+		messages: {
+			checkNote:  {
+				required: "请输入审核说明",
+				maxlength: jQuery.format("审核说明不能大于{0}个字符")
+			}
+		}
+	});
+	function doAprove(checkResult){
+		var data = {"checkNote":$("#checkNote").val(),"checkResult":checkResult,"code":code};
+		var url = $("#basePath").val()+"/product/check";
+		doPostAjax(url, data, doSuccessBack);
+	}
 	//返回
 	$('#backBtn').click(function() {
 		location.href = $("#basePath").val()+"/product/product.htm";
@@ -27,6 +50,22 @@ $(function() {
 });
 
 
+
+function doAprove(checkResult){
+	var data = {"checkNote":$("#checkNote").val(),"checkResult":checkResult};
+	var url = $("#basePath").val()+"/product/product/check";
+	doPostAjax(url, data, doSuccessBack);
+}
+
+
+function doSuccessBack(res) {
+	if (res.success == true) {
+		alert("操作成功");
+		window.location.href = $("#basePath").val()+"/product/product.htm";
+	}else{
+		alert(res.msg);
+	}
+}
 //获取详情回调方法
 function doSucBackGetDetail(res){
 	if (res.success) {
