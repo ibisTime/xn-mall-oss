@@ -20,6 +20,7 @@ import com.xnjr.app.product.req.XN601003Req;
 import com.xnjr.app.product.req.XN601004Req;
 import com.xnjr.app.product.req.XN601005Req;
 import com.xnjr.app.product.req.XN601006Req;
+import com.xnjr.app.util.UploadUtil;
 
 @Service
 public class ProductAOImpl implements IProductAO {
@@ -33,12 +34,12 @@ public class ProductAOImpl implements IProductAO {
         req.setType(type);
         req.setName(name);
         req.setAdvTitle(advTitle);
-        req.setAdvPic(advPic);
-        req.setMajorPic(majorPic);
+        req.setAdvPic(UploadUtil.uploadPicture(advPic));
+        req.setMajorPic(UploadUtil.uploadPicture(majorPic));
         req.setMajorText(majorText);
-        req.setFamilyPic(familyPic);
+        req.setFamilyPic(UploadUtil.uploadPicture(familyPic));
         req.setFamilyText(familyText);
-        req.setHighlightPic(highlightPic);
+        req.setHighlightPic(UploadUtil.uploadPicture(highlightPic));
         req.setHighlightText(highlightText);
         req.setUpdater(updater);
         return BizConnecter.getBizData("601000", JsonUtils.object2Json(req),

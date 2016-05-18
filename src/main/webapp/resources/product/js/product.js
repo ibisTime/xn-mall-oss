@@ -3,12 +3,12 @@ var dictLevel = null;
 $(function() {
 	//按钮权限判断
 	showPermissionControl();
-	$('#kind').renderDropdown(Dict.getRoleKindName());
+	$('#kind').renderDropdown(Dict.getKindName());
 	
-	//系统方则显示哪一方查询条件
-	if(getCurrentKind() != "1"){
-		$("#liKind").hide();
-	}
+//	//系统方则显示哪一方查询条件
+//	if(getCurrentKind() != "1"){
+//		$("#liKind").hide();
+//	}
 	
 	//数据字典初始化
 	initData();
@@ -18,7 +18,7 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/role/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
 	});
 	
 	//新增
@@ -33,33 +33,61 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/security/role_detail.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/product/product_addedit.htm?code="+selRecords[0].code;
 	});
-	
-	//删除
-	$('#dropBtn').click(function() {
+	//详情
+	$('#detailBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		if(!confirm("确认删除角色["+selRecords[0].name+"]?")){
+		window.location.href = $("#basePath").val()+"/product/product_detail.htm?code="+selRecords[0].code;
+	});
+	
+	//审核
+	$('#checkPassBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections');
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+//		if(selRecords[0].status != '1'){
+//			alert("该业务状态不是待审核");
+//			return;
+//		}
+//		window.location.href = $("#basePath").val()+"/product/business_approve.htm?businessCode="+selRecords[0].code+"&subjectCode="+selRecords[0].subjectCode;
+		if(!confirm("审核通过["+selRecords[0].name+"]?")){
     		return false;
     	}
-    	var url = $("#basePath").val()+"/role/drop";
-    	var data = {code:selRecords[0].code};
-    	doPostAjax(url, data, doSucBackDrop);
+    	var url = $("#basePath").val()+"/product/check";
+    	var data = {code:selRecords[0].code,checkResult:1,checkNote:'审核通过'};
+    	doPostAjax(url, data, doSucBackCheck);
+	});
+	
+	$('#checknoPassBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections');
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		if(!confirm("审核不通过["+selRecords[0].name+"]?")){
+    		return false;
+    	}
+    	var url = $("#basePath").val()+"/product/check";
+    	var data = {code:selRecords[0].code,checkResult:0,checkNote:'审核不通过'};
+    	doPostAjax(url, data, doSucBackCheckno);
 	});
 	
 	// 分配菜单
-	$('#changeBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-      	window.location.href = $("#basePath").val()+"/security/role_menu.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name))+"&kind="+selRecords[0].kind;
-	});
+//	$('#changeBtn').click(function() {
+//		var selRecords = $('#tableList').bootstrapTable('getSelections')
+//		if(selRecords.length <= 0){
+//			alert("请选择记录");
+//			return;
+//		}
+//      	window.location.href = $("#basePath").val()+"/security/role_menu.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name))+"&kind="+selRecords[0].kind;
+//	});
 });
 
 //数据字典初始化
@@ -94,49 +122,32 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
-		field : 'name',
-		title : '角色名称',
+		field : 'type',
+		title : '产品类型',
 		align : 'left',
 		valign : 'middle',
 		sortable : false
 	}, {
-		field : 'level',
-		title : '角色等级',
+		field : 'name',
+		title : '产品名称',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
-		formatter : roleLevelFormatter
+	}, {
+		field : 'status',
+		title : '状态',
+		align : 'left',
+		valign : 'middle',
+		sortable : false
 	}, {
 		field : 'updater',
 		title : '更新人',
 		align : 'left',
 		valign : 'middle',
 		sortable : false
-	}, {
-		field : 'updateDatetime',
-		title : '更新时间',
-		align : 'left',
-		valign : 'middle',
-		sortable : false,
-		formatter : dateFormatter
-	}, {
-		field : 'remark',
-		title : '备注',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
-	}];
+		}];
 	
-	if(getCurrentKind() == 1){
-		columns.push({
-			field : 'kind',
-			title : '哪一方',
-			align : 'left',
-			valign : 'middle',
-			formatter: Dict.getRoleKindName,
-			sortable : false,
-		});
-	}
+	
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
@@ -147,9 +158,9 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				kind : $("#kind").val(),
+				kind : $("#type").val(),
 				name : $("#name").val(),
-				level : $("#level").val(),
+				level : $("#status").val(),
 				updater : $("#updater").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
@@ -188,9 +199,16 @@ function dateFormatter(value, row){
 }
 
 //操作回调方法
-function doSucBackDrop(res) {
+function doSucBackCheck(res) {
 	if (res.success == true) {
-		alert("删除成功");
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/role/page"});
+		alert("审核成功");
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/check"});
+	}
+}
+
+function doSucBackCheckno(res) {
+	if (res.success == true) {
+		alert("审核失败");
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/check"});
 	}
 }

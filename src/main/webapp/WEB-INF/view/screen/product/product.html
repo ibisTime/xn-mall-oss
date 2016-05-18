@@ -23,8 +23,9 @@
     	 <form class="search-form">
         	<ul>
 	            <li><label>产品名称</label><input type="text" id="name"/></li>
-	            <li><label>产品类型</label><select id="kind"></select></li>
-	            <li><label>产品状态</label><input type="text" id="status"/></li>
+	            <li><label>产品类型</label><select id="type"></select></li>
+	            <li><label>状态</label><select id="status"></select></li>
+	            <li><label>更新人</label><input type="text" id="updater"/></li>
 	            <li>
 	                <input id="searchBtn" type="button" class="btn" value="查询" />
 	                <input type="reset" class="btn" value="重置" />
@@ -36,7 +37,8 @@
 		   <ul class="toolbar">
 		       <li id="addBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>新增</li>
 		       <li id="editBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>修改</li>
-		       <li id="checkBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>审核</li>
+		       <li id="checkPassBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>审核通过</li>
+		       <li id="checknoPassBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>审核不通过</li>
 		       <li id="detailBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>详情</li>
 	       </ul>
 	    </div>
