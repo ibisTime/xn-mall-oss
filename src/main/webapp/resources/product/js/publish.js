@@ -3,6 +3,8 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
+	$('#type').renderDropdown(Dict.getName('product_type'));
+	$('#status').renderDropdown(Dict.getName('product_status'));
 	
 	//表格初始化
 	queryTableData();
@@ -66,6 +68,7 @@ function queryTableData(){
 	}, {
 		field : 'type',
 		title : '产品类型',
+		formatter:Dict.getNameForList('product_type'),
 		align : 'left',
 		valign : 'middle',
 		sortable : false
@@ -80,6 +83,7 @@ function queryTableData(){
 		title : '状态',
 		align : 'left',
 		valign : 'middle',
+		formatter:Dict.getNameForList('product_status'),
 		sortable : false
 	}, {
 		field : 'updater',
