@@ -35,7 +35,6 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-//		window.location.href = $("#basePath").val()+"/security/role_detail.htm?code="+selRecords[0].code;
 	});
 	
 	//删除
