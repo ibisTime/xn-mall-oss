@@ -105,9 +105,9 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				kind : $("#type").val(),
+				type : $("#type").val(),
 				name : $("#name").val(),
-				level : $("#status").val(),
+				status : $("#status").val(),
 				updater : $("#updater").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
