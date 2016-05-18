@@ -6,10 +6,7 @@ $(function() {
 	
 	$('#type').renderDropdown(Dict.getName('product_type'));
 	$('#status').renderDropdown(Dict.getName('product_status'));
-	
-	//数据字典初始化
-	initData();
-	
+		
 	//表格初始化
 	queryTableData();
 
@@ -57,27 +54,9 @@ $(function() {
 });
 
 //数据字典初始化
-function initData(){
-	//获取数据字典
-	$('#level').renderDropdown(Dict.getRoleLevelName());
-}
 
-// 下拉框初始化数据
-function doSucBackLevel(res){
-	var data = res.data;
-	dictLevel = data;
-	var html = "<option value=''>请选择</option>";
-	if(typeof(data) != "undefined"){//判断undifined
-		for(var i = 0;i < data.length;i++){
-			if(data[i].key == $("#level").val()){
-				html += "<option selected='selected' value='"+data[i].value+"'>"+data[i].remark+"</option>";
-			}else{
-				html += "<option value='"+data[i].value+"'>"+data[i].remark+"</option>";
-			}
-		}
-	}
-	$("#level").html(html);
-}
+
+
 
 //表格初始化
 function queryTableData(){
@@ -151,15 +130,7 @@ function queryTableData(){
 	});
 }
 
-//表格数据字典转化
-function roleLevelFormatter(value, row) {
-	var dictLevel=["","管理员级别","运营级别","财务级别"]
-	for(var i = 1;i < dictLevel.length;i++){
-		if(i == value){
-			return dictLevel[i];
-		}
-	}
-}
+
 
 //表格时间格式转化
 function dateFormatter(value, row){

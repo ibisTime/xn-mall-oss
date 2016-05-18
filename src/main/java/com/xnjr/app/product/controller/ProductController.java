@@ -104,10 +104,10 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "/up", method = RequestMethod.POST)
     @ResponseBody
     public Object upProduct(@RequestParam(value = "code") String code,
-            @RequestParam(value = "checkUser") String checkUser,
             @RequestParam(value = "checkResult") String checkResult,
             @RequestParam(value = "checkNote") String checkNote) {
-        return productAO.upProduct(code, checkUser, checkResult, checkNote);
+        return productAO.upProduct(code, this.getSessionUser().getUserName(),
+            checkResult, checkNote);
     }
 
 }

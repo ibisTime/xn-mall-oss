@@ -12,13 +12,13 @@ $(function() {
 		var url = $("#basePath").val()+"/product/detail";
 		doGetAjax(url, data, doSucBackGetDetail);
 	}
-	$('#passBtn').click(function() {
+	$('#upBtn').click(function() {
 		if(!$("#jsForm").valid()){
 			return false;
 		}
 		doAprove(1);
 	});
-	$('#noPassBtn').click(function() {
+	$('#downBtn').click(function() {
 		if(!$("#jsForm").valid()){
 			return false;
 		}
@@ -40,11 +40,11 @@ $(function() {
 	});
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/product/product.htm";
+		location.href = $("#basePath").val()+"/product/publish.htm";
 	});
 	function doAprove(checkResult){
 		var data = {"checkNote":$("#checkNote").val(),"checkResult":checkResult,"code":code};
-		var url = $("#basePath").val()+"/product/check";
+		var url = $("#basePath").val()+"/product/up";
 		doPostAjax(url, data, doSuccessBack);
 	}
 
@@ -52,7 +52,7 @@ $(function() {
 	function doSuccessBack(res) {
 		if (res.success == true) {
 			alert("操作成功");
-			window.location.href = $("#basePath").val()+"/product/product.htm";
+			window.location.href = $("#basePath").val()+"/product/publish.htm";
 		}else{
 			alert(res.msg);
 		}
@@ -76,11 +76,6 @@ $(function() {
 		}
 	}
 });
-
-
-
-
-
 
 
 
