@@ -24,7 +24,9 @@
     <form id="jsForm">
 	    <div class="form-body">
 	    <div class="form-title"><span>产品信息</span></div>
-	    	<li><input type="hidden" name="code" id="code"/></li>
+	    	<li>
+	    	<input type="hidden" name="code" id="code"/>
+	    	</li>
 		    <ul class="form-info">
  				<li><label>产品类型:</label><span id="type"></span></li>
  		    	<li><label>产品名称:</label><span  id="name" ></span></li>
@@ -38,11 +40,14 @@
 			    <li><label>亮点文本:</label><span id="highlightText" ></span></li>
 			    <li><label>更新人:</label><span id="updater" ></span></li>
 			   
- 		    	<li><label><b>*</b>审核说明:</label><input type="text" id="checkNote" name="checkNote" class="control-def"/></li>
-			    
-			    <li>
-			    <li><input id="passBtn" type="button" class="btn margin-left-100" value="通过"/><input id="noPassBtn" type="button" class="btn margin-left-40" value="不通过"/><input id="backBtn" type="button" class="btn margin-left-40" value="返回"/></li>
-			    </li>
+ 		    	   <li>
+ 		    	        <label><b>*</b>审核说明:</label><input type="text" id="checkNote" name="checkNote" class="control-def"/>
+ 		    	   </li>
+			       <li>
+			           <input id="passBtn" type="button" class="btn margin-left-100" value="通过"/>
+			           <input id="noPassBtn" type="button" class="btn margin-left-40" value="不通过"/>
+			           <input id="backBtn" type="button" class="btn margin-left-40" value="返回"/>
+			      </li>
 			</ul>
 	    </div>
     </form>

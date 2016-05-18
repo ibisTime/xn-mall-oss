@@ -2,11 +2,6 @@ $(function() {
 	
 	$('#type').renderDropdown(Dict.getName('product_type'));
 	
-//	//系统方则显示哪一方查询条件
-//	if(getCurrentKind() != "1"){
-//		$("#liKind").hide();
-//	}
-	
 	//获取菜单URL入参
 	var code = getQueryString("code");
 	//新增修改判断
@@ -71,10 +66,6 @@ $(function() {
 				maxlength: 32
 			},
 			type: "required",
-//			img1: "required",
-//			img2: "required",
-//			img3: "required",
-//			img4: "required",
 			advTitle: {
 				required: true,
 				maxlength: 100
@@ -102,10 +93,6 @@ $(function() {
 				maxlength: jQuery.format("全家福文本不能大于{0}个字符")
 			},
 			type: "请选择类型",
-//			img1: "请选择类型",
-//			img2: "请选择类型",
-//			img3: "请选择类型",
-//			img4: "请选择类型",
 			advTitle: {
 				required: "请输入广告语",
 				maxlength: jQuery.format("广告语不能大于{0}个字符")

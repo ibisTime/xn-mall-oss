@@ -11,7 +11,7 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
+	$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
 	});
 	
 

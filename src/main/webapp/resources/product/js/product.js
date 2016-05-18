@@ -7,11 +7,6 @@ $(function() {
 	$('#type').renderDropdown(Dict.getName('product_type'));
 	$('#status').renderDropdown(Dict.getName('product_status'));
 	
-//	//系统方则显示哪一方查询条件
-//	if(getCurrentKind() != "1"){
-//		$("#liKind").hide();
-//	}
-	
 	//数据字典初始化
 	initData();
 	
@@ -54,42 +49,11 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-//		if(selRecords[0].status != '2'){
-//			alert("该业务状态不是待审核");
-//			return;
-//		}
+		
 		window.location.href = $("#basePath").val()+"/product/product_check.htm?code="+selRecords[0].code;
-//		if(!confirm("审核通过["+selRecords[0].name+"]?")){
-//    		return false;
-//    	}
-//    	var url = $("#basePath").val()+"/product/check";
-//    	var data = {code:selRecords[0].code,checkResult:1,checkNote:'审核通过'};
-//    	doPostAjax(url, data, doSucBackCheck);
+
 	});
 	
-//	$('#checknoPassBtn').click(function() {
-//		var selRecords = $('#tableList').bootstrapTable('getSelections');
-//		if(selRecords.length <= 0){
-//			alert("请选择记录");
-//			return;
-//		}
-//		if(!confirm("审核不通过["+selRecords[0].name+"]?")){
-//    		return false;
-//    	}
-//    	var url = $("#basePath").val()+"/product/check";
-//    	var data = {code:selRecords[0].code,checkResult:0,checkNote:'审核不通过'};
-//    	doPostAjax(url, data, doSucBackCheckno);
-//	});
-//	
-	// 分配菜单
-//	$('#changeBtn').click(function() {
-//		var selRecords = $('#tableList').bootstrapTable('getSelections')
-//		if(selRecords.length <= 0){
-//			alert("请选择记录");
-//			return;
-//		}
-//      	window.location.href = $("#basePath").val()+"/security/role_menu.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name))+"&kind="+selRecords[0].kind;
-//	});
 });
 
 //数据字典初始化
@@ -201,18 +165,3 @@ function roleLevelFormatter(value, row) {
 function dateFormatter(value, row){
 	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
 }
-
-//操作回调方法
-//function doSucBackCheck(res) {
-//	if (res.success == true) {
-//		alert("审核成功");
-//		$('#tableList').bootstrapTable('refresh');
-//	}
-//}
-//
-//function doSucBackCheckno(res) {
-//	if (res.success == true) {
-//		alert("审核失败");
-//		$('#tableList').bootstrapTable('refresh');
-//	}
-//}
