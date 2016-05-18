@@ -12,7 +12,24 @@ $(function() {
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
 	});
 	
+<<<<<<< HEAD
 
+=======
+	//上架
+	$('#upBtn').click(function() {
+		window.location.href = $("#basePath").val()+"/product/product_addedit.htm";
+	});
+	
+	//下架
+	$('#downBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+	});
+	
+>>>>>>> refs/remotes/origin/master
 	//删除
 	$('#upBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
