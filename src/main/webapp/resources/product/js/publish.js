@@ -1,19 +1,8 @@
 //数据字典
-var dictLevel = null;
 $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
-	$('#type').renderDropdown(Dict.getName('product_type'));
-	$('#status').renderDropdown(Dict.getName('product_status'));
-	
-	//系统方则显示哪一方查询条件
-	if(getCurrentKind() != "1"){
-		$("#liKind").hide();
-	}
-	
-	//数据字典初始化
-	initData();
 	
 	//表格初始化
 	queryTableData();
@@ -23,34 +12,20 @@ $(function() {
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
 	});
 	
-	//上架
-	$('#upBtn').click(function() {
-		window.location.href = $("#basePath").val()+"/product/product_addedit.htm";
-	});
-	
-	//下架
-	$('#downBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-//		window.location.href = $("#basePath").val()+"/security/role_detail.htm?code="+selRecords[0].code;
-	});
-	
+
 	//删除
-	$('#dropBtn').click(function() {
+	$('#upBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		if(!confirm("确认删除角色["+selRecords[0].name+"]?")){
+		if(!confirm("确认上架产品["+selRecords[0].name+"]?")){
     		return false;
     	}
-    	var url = $("#basePath").val()+"/role/drop";
+    	var url = $("#basePath").val()+"/product/up";
     	var data = {code:selRecords[0].code};
-    	doPostAjax(url, data, doSucBackDrop);
+    	doPostAjax(url, data, doSucBackPublish);
 	});
 	
 	// 分配菜单
@@ -64,28 +39,7 @@ $(function() {
 	});
 });
 
-//数据字典初始化
-function initData(){
-	//获取数据字典
-	$('#level').renderDropdown(Dict.getRoleLevelName());
-}
 
-// 下拉框初始化数据
-function doSucBackLevel(res){
-	var data = res.data;
-	dictLevel = data;
-	var html = "<option value=''>请选择</option>";
-	if(typeof(data) != "undefined"){//判断undifined
-		for(var i = 0;i < data.length;i++){
-			if(data[i].key == $("#level").val()){
-				html += "<option selected='selected' value='"+data[i].value+"'>"+data[i].remark+"</option>";
-			}else{
-				html += "<option value='"+data[i].value+"'>"+data[i].remark+"</option>";
-			}
-		}
-	}
-	$("#level").html(html);
-}
 
 //表格初始化
 function queryTableData(){
@@ -100,7 +54,6 @@ function queryTableData(){
 		title : '产品类型',
 		align : 'left',
 		valign : 'middle',
-		formatter:Dict.getNameForList('product_type'),
 		sortable : false
 	}, {
 		field : 'name',
@@ -113,7 +66,6 @@ function queryTableData(){
 		title : '状态',
 		align : 'left',
 		valign : 'middle',
-		formatter:Dict.getNameForList('product_status'),
 		sortable : false
 	}, {
 		field : 'updater',
@@ -160,15 +112,7 @@ function queryTableData(){
 	});
 }
 
-//表格数据字典转化
-function roleLevelFormatter(value, row) {
-	var dictLevel=["","管理员级别","运营级别","财务级别"]
-	for(var i = 1;i < dictLevel.length;i++){
-		if(i == value){
-			return dictLevel[i];
-		}
-	}
-}
+
 
 //表格时间格式转化
 function dateFormatter(value, row){
@@ -176,9 +120,9 @@ function dateFormatter(value, row){
 }
 
 //操作回调方法
-function doSucBackDrop(res) {
+function doSucBackPublish(res) {
 	if (res.success == true) {
 		alert("删除成功");
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/role/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
 	}
 }

@@ -101,7 +101,7 @@ public class ProductController extends BaseController {
             checkResult, checkNote);
     }
 
-    @RequestMapping(value = "/up", method = RequestMethod.GET)
+    @RequestMapping(value = "/up", method = RequestMethod.POST)
     @ResponseBody
     public Object upProduct(@RequestParam(value = "code") String code,
             @RequestParam(value = "checkUser") String checkUser,
