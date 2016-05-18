@@ -8,8 +8,6 @@ $(function() {
 	$('#status').renderDropdown(Dict.getName('product_status'));
 	
 	
-	//数据字典初始化
-	initData();
 	
 	//表格初始化
 	queryTableData();

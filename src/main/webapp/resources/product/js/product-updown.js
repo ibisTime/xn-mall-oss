@@ -12,13 +12,13 @@ $(function() {
 		var url = $("#basePath").val()+"/product/detail";
 		doGetAjax(url, data, doSucBackGetDetail);
 	}
-	$('#passBtn').click(function() {
+	$('#upBtn').click(function() {
 		if(!$("#jsForm").valid()){
 			return false;
 		}
 		doAprove(1);
 	});
-	$('#noPassBtn').click(function() {
+	$('#downBtn').click(function() {
 		if(!$("#jsForm").valid()){
 			return false;
 		}
@@ -38,53 +38,44 @@ $(function() {
 			}
 		}
 	});
-	function doAprove(checkResult){
-		var data = {"checkNote":$("#checkNote").val(),"checkResult":checkResult,"code":code};
-		var url = $("#basePath").val()+"/product/check";
-		doPostAjax(url, data, doSuccessBack);
-	}
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/product/product.htm";
+		location.href = $("#basePath").val()+"/product/publish.htm";
 	});
+	function doAprove(checkResult){
+		var data = {"checkNote":$("#checkNote").val(),"checkResult":checkResult,"code":code};
+		var url = $("#basePath").val()+"/product/up";
+		doPostAjax(url, data, doSuccessBack);
+	}
+
+
+	function doSuccessBack(res) {
+		if (res.success == true) {
+			alert("操作成功");
+			window.location.href = $("#basePath").val()+"/product/publish.htm";
+		}else{
+			alert(res.msg);
+		}
+	}
+	//获取详情回调方法
+	function doSucBackGetDetail(res){
+		if (res.success) {
+			$("#type").html(res.data.type);
+			$("#name").html(res.data.name);
+			$("#advTitle").html(res.data.advTitle);
+			$("#majorText").html(res.data.majorText);
+			$("#familyText").html(res.data.familyText);
+			$("#highlightText").html(res.data.highlightText);
+			$("#updater").html(res.data.updater);
+			$("#img1").attr('src',res.data.advPic);
+			$("#img2").attr('src',res.data.majorPic);
+			$("#img3").attr('src',res.data.familyPic);
+			$("#img4").attr('src',res.data.highlightPic);
+		}else{
+			alert(res.msg);
+		}
+	}
 });
-
-
-
-function doAprove(checkResult){
-	var data = {"checkNote":$("#checkNote").val(),"checkResult":checkResult};
-	var url = $("#basePath").val()+"/product/product/check";
-	doPostAjax(url, data, doSuccessBack);
-}
-
-
-function doSuccessBack(res) {
-	if (res.success == true) {
-		alert("操作成功");
-		window.location.href = $("#basePath").val()+"/product/product.htm";
-	}else{
-		alert(res.msg);
-	}
-}
-//获取详情回调方法
-function doSucBackGetDetail(res){
-	if (res.success) {
-		$("#type").html(res.data.type);
-		$("#name").html(res.data.name);
-		$("#advTitle").html(res.data.advTitle);
-		$("#majorText").html(res.data.majorText);
-		$("#familyText").html(res.data.familyText);
-		$("#highlightText").html(res.data.highlightText);
-		$("#updater").html(res.data.updater);
-		$("#img1").attr('src',res.data.advPic);
-		$("#img2").attr('src',res.data.majorPic);
-		$("#img3").attr('src',res.data.familyPic);
-		$("#img4").attr('src',res.data.highlightPic);
-	}else{
-		alert(res.msg);
-	}
-}
-
 
 
 
