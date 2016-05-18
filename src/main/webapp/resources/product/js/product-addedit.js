@@ -23,6 +23,22 @@ $(function() {
 	
 	//提交
 	$('#subBtn').click(function() {
+		if(isBlank($('#majorPic').next().attr("src"))){
+			alert("请上传主推图");
+			return;
+		}
+		if(isBlank($('#advPic').next().attr("src"))){
+			alert("请上传广告图");
+			return;
+		}
+		if(isBlank($('#familyPic').next().attr("src"))){
+			alert("请上传全家福图");
+			return;
+		}
+		if(isBlank($('#highlightPic').next().attr("src"))){
+			alert("请上传亮点图");
+			return;
+		}
 	    if(!$("#jsForm").valid()){
 			return false;
 		}
@@ -45,34 +61,68 @@ $(function() {
 	
 	//入参合法性校验
 	$("#jsForm").validate({
-//		rules: {
-//			kind: {
-//				required: true,
-//				maxlength: 32
-//			},
-//			name: {
-//				required: true,
-//				maxlength: 32
-//			},
-//			level: "required",
-//			remark: {
-//				maxlength: 100
-//			}
-//		},
-//		messages: {
-//			kind: {
-//				required: "请输入哪一方",
-//				maxlength: jQuery.format("哪一方不能大于{0}个字符")
-//			},
-//			name: {
-//				required: "请输入角色名称",
-//				maxlength: jQuery.format("角色名称不能大于{0}个字符")
-//			},
-//			level: "请选择角色等级",
-//			remark: {
-//				maxlength: jQuery.format("备注不能大于{0}个字符")
-//			}
-//		}
+		rules: {
+			name: {
+				required: true,
+				maxlength: 32
+			},
+			familyText: {
+				required: true,
+				maxlength: 32
+			},
+			type: "required",
+//			img1: "required",
+//			img2: "required",
+//			img3: "required",
+//			img4: "required",
+			advTitle: {
+				required: true,
+				maxlength: 100
+			},
+			majorText: {
+				required: true,
+				maxlength: 100
+			},
+			highlightText: {
+				required: true,
+				maxlength: 100
+			},
+			updater: {
+				required: true,
+				maxlength: 100
+			}
+		},
+		messages: {
+			name: {
+				required: "请输入产品名称",
+				maxlength: jQuery.format("产品名称不能大于{0}个字符")
+			},
+			familyText: {
+				required: "请输入全家福文本",
+				maxlength: jQuery.format("全家福文本不能大于{0}个字符")
+			},
+			type: "请选择类型",
+//			img1: "请选择类型",
+//			img2: "请选择类型",
+//			img3: "请选择类型",
+//			img4: "请选择类型",
+			advTitle: {
+				required: "请输入广告语",
+				maxlength: jQuery.format("广告语不能大于{0}个字符")
+			},
+			majorText: {
+				required: "请输入主推文本",
+				maxlength: jQuery.format("主推文本不能大于{0}个字符")
+			},
+			highlightText: {
+				required: "请输入亮点文本",
+				maxlength: jQuery.format("亮点文本不能大于{0}个字符")
+			},
+			updater: {
+				required: "请输入更新人",
+				maxlength: jQuery.format("更新人不能大于{0}个字符")
+			}
+		}
 	});
 	
 	//返回

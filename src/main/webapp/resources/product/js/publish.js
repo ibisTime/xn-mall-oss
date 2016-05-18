@@ -18,7 +18,7 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/role/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
 	});
 	
 	//新增
@@ -94,63 +94,47 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
-		field : 'name',
-		title : '角色名称',
+		field : 'type',
+		title : '产品类型',
 		align : 'left',
 		valign : 'middle',
 		sortable : false
 	}, {
-		field : 'level',
-		title : '角色等级',
+		field : 'name',
+		title : '产品名称',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
-		formatter : roleLevelFormatter
+	}, {
+		field : 'status',
+		title : '状态',
+		align : 'left',
+		valign : 'middle',
+		sortable : false
 	}, {
 		field : 'updater',
 		title : '更新人',
 		align : 'left',
 		valign : 'middle',
 		sortable : false
-	}, {
-		field : 'updateDatetime',
-		title : '更新时间',
-		align : 'left',
-		valign : 'middle',
-		sortable : false,
-		formatter : dateFormatter
-	}, {
-		field : 'remark',
-		title : '备注',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
-	}];
+		}];
 	
-	if(getCurrentKind() == 1){
-		columns.push({
-			field : 'kind',
-			title : '哪一方',
-			align : 'left',
-			valign : 'middle',
-			formatter: Dict.getRoleKindName,
-			sortable : false,
-		});
-	}
+	
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/role/page",
+		url : $("#basePath").val()+"/product/page",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				kind : $("#kind").val(),
+				kind : $("#type").val(),
 				name : $("#name").val(),
-				level : $("#level").val(),
+				level : $("#status").val(),
 				updater : $("#updater").val(),
+				status:12,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
