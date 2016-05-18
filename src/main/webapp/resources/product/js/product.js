@@ -7,10 +7,6 @@ $(function() {
 	$('#type').renderDropdown(Dict.getName('product_type'));
 	$('#status').renderDropdown(Dict.getName('product_status'));
 	
-//	//系统方则显示哪一方查询条件
-//	if(getCurrentKind() != "1"){
-//		$("#liKind").hide();
-//	}
 	
 	//数据字典初始化
 	initData();
@@ -59,61 +55,14 @@ $(function() {
 //			return;
 //		}
 		window.location.href = $("#basePath").val()+"/product/product_check.htm?code="+selRecords[0].code;
-//		if(!confirm("审核通过["+selRecords[0].name+"]?")){
-//    		return false;
-//    	}
-//    	var url = $("#basePath").val()+"/product/check";
-//    	var data = {code:selRecords[0].code,checkResult:1,checkNote:'审核通过'};
-//    	doPostAjax(url, data, doSucBackCheck);
 	});
 	
-//	$('#checknoPassBtn').click(function() {
-//		var selRecords = $('#tableList').bootstrapTable('getSelections');
-//		if(selRecords.length <= 0){
-//			alert("请选择记录");
-//			return;
-//		}
-//		if(!confirm("审核不通过["+selRecords[0].name+"]?")){
-//    		return false;
-//    	}
-//    	var url = $("#basePath").val()+"/product/check";
-//    	var data = {code:selRecords[0].code,checkResult:0,checkNote:'审核不通过'};
-//    	doPostAjax(url, data, doSucBackCheckno);
-//	});
-//	
-	// 分配菜单
-//	$('#changeBtn').click(function() {
-//		var selRecords = $('#tableList').bootstrapTable('getSelections')
-//		if(selRecords.length <= 0){
-//			alert("请选择记录");
-//			return;
-//		}
-//      	window.location.href = $("#basePath").val()+"/security/role_menu.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name))+"&kind="+selRecords[0].kind;
-//	});
 });
 
 //数据字典初始化
-function initData(){
-	//获取数据字典
-	$('#level').renderDropdown(Dict.getRoleLevelName());
-}
 
-// 下拉框初始化数据
-function doSucBackLevel(res){
-	var data = res.data;
-	dictLevel = data;
-	var html = "<option value=''>请选择</option>";
-	if(typeof(data) != "undefined"){//判断undifined
-		for(var i = 0;i < data.length;i++){
-			if(data[i].key == $("#level").val()){
-				html += "<option selected='selected' value='"+data[i].value+"'>"+data[i].remark+"</option>";
-			}else{
-				html += "<option value='"+data[i].value+"'>"+data[i].remark+"</option>";
-			}
-		}
-	}
-	$("#level").html(html);
-}
+
+
 
 //表格初始化
 function queryTableData(){
@@ -187,32 +136,10 @@ function queryTableData(){
 	});
 }
 
-//表格数据字典转化
-function roleLevelFormatter(value, row) {
-	var dictLevel=["","管理员级别","运营级别","财务级别"]
-	for(var i = 1;i < dictLevel.length;i++){
-		if(i == value){
-			return dictLevel[i];
-		}
-	}
-}
+
 
 //表格时间格式转化
 function dateFormatter(value, row){
 	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
 }
 
-//操作回调方法
-//function doSucBackCheck(res) {
-//	if (res.success == true) {
-//		alert("审核成功");
-//		$('#tableList').bootstrapTable('refresh');
-//	}
-//}
-//
-//function doSucBackCheckno(res) {
-//	if (res.success == true) {
-//		alert("审核失败");
-//		$('#tableList').bootstrapTable('refresh');
-//	}
-//}

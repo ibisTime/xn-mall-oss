@@ -1,8 +1,12 @@
 //数据字典
+var dictLevel = null;
 $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
+	
+	//数据字典初始化
+	initData();
 	
 	//表格初始化
 	queryTableData();
@@ -12,45 +16,32 @@ $(function() {
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
 	});
 	
-
-	//上架
 	$('#upBtn').click(function() {
-		window.location.href = $("#basePath").val()+"/product/product_addedit.htm";
+		var selRecords = $('#tableList').bootstrapTable('getSelections');
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+//		if(selRecords[0].status != '2'){
+//			alert("该业务状态不是待审核");
+//			return;
+//		}
+		window.location.href = $("#basePath").val()+"/product/product_publish.htm?code="+selRecords[0].code;
 	});
 	
-	//下架
 	$('#downBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		var selRecords = $('#tableList').bootstrapTable('getSelections');
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
+//		if(selRecords[0].status != '2'){
+//			alert("该业务状态不是待审核");
+//			return;
+//		}
+		window.location.href = $("#basePath").val()+"/product/product_publish.htm?code="+selRecords[0].code;
 	});
-	
-	//删除
-	$('#upBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		if(!confirm("确认上架产品["+selRecords[0].name+"]?")){
-    		return false;
-    	}
-    	var url = $("#basePath").val()+"/product/up";
-    	var data = {code:selRecords[0].code};
-    	doPostAjax(url, data, doSucBackPublish);
-	});
-	
-	// 分配菜单
-	$('#changeBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-      	window.location.href = $("#basePath").val()+"/security/role_menu.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name))+"&kind="+selRecords[0].kind;
-	});
+
 });
 
 
@@ -127,16 +118,15 @@ function queryTableData(){
 }
 
 
-
 //表格时间格式转化
 function dateFormatter(value, row){
 	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
 }
 
 //操作回调方法
-function doSucBackPublish(res) {
-	if (res.success == true) {
-		alert("删除成功");
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
-	}
-}
+//function doSucBackDrop(res) {
+//	if (res.success == true) {
+//		alert("删除成功");
+//		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/role/page"});
+//	}
+//}

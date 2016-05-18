@@ -16,21 +16,13 @@ $(function() {
 		if(!$("#jsForm").valid()){
 			return false;
 		}
-		function doAprove(checkResult){
-			var data = {"checkNote":$("#checkNote").val(),"checkResult":1,"code":code};
-			var url = $("#basePath").val()+"/product/check";
-			doPostAjax(url, data, doSuccessBack);
-		}
+		doAprove(1);
 	});
 	$('#noPassBtn').click(function() {
 		if(!$("#jsForm").valid()){
 			return false;
 		}
-		function doAprove(checkResult){
-			var data = {"checkNote":$("#checkNote").val(),"checkResult":0,"code":code};
-			var url = $("#basePath").val()+"/product/check";
-			doPostAjax(url, data, doSuccessBack);
-		}
+		doAprove(0);
 	});
 	$("#jsForm").validate({
 		rules: {
@@ -46,6 +38,11 @@ $(function() {
 			}
 		}
 	});
+	function doAprove(checkResult){
+		var data = {"checkNote":$("#checkNote").val(),"checkResult":checkResult,"code":code};
+		var url = $("#basePath").val()+"/product/check";
+		doPostAjax(url, data, doSuccessBack);
+	}
 	//返回
 	$('#backBtn').click(function() {
 		location.href = $("#basePath").val()+"/product/product.htm";
