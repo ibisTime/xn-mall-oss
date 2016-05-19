@@ -10,7 +10,7 @@ $(function() {
 	}else{
 		$("#code").attr("readonly","readonly");
 		$("#operate").val("edit");
-		$("#operContent").text("修改角色");
+		$("#operContent").text("修改产品");
 		var data = {"code":code};
 		var url = $("#basePath").val()+"/product/detail";
 		doGetAjax(url, data, doSucBackGetDetail);
@@ -37,7 +37,7 @@ $(function() {
 	    if(!$("#jsForm").valid()){
 			return false;
 		}
-		var data = {};
+	    var data = {};
 		var t = $('form').serializeArray();
 		$.each(t, function() {
 			data[this.name] = this.value;
@@ -122,6 +122,7 @@ $(function() {
 //获取详情回调方法
 function doSucBackGetDetail(res){
 	if (res.success) {
+		$("#code").val(res.data.code);
 		$("#type").val(res.data.type);
 		$("#name").val(res.data.name);
 		$("#advTitle").val(res.data.advTitle);

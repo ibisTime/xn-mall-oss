@@ -47,11 +47,12 @@ public class ProductAOImpl implements IProductAO {
     }
 
     @Override
-    public Object editProduct(String type, String name, String advTitle,
-            String advPic, String majorPic, String majorText, String familyPic,
-            String familyText, String highlightPic, String highlightText,
-            String updater) {
+    public Object editProduct(String code, String type, String name,
+            String advTitle, String advPic, String majorPic, String majorText,
+            String familyPic, String familyText, String highlightPic,
+            String highlightText, String updater) {
         XN601001Req req = new XN601001Req();
+        req.setCode(code);
         req.setType(type);
         req.setName(name);
         req.setAdvTitle(advTitle);

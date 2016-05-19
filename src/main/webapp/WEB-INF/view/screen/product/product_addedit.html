@@ -24,9 +24,10 @@
     <form id="jsForm">
 	    <div class="form-body">
 	    <div class="form-title"><span>产品信息</span></div>
-	    	<li><input type="hidden" name="code" id="code"/></li>
+	    	<!-- <li><input type="hidden" name="code" id="code"/></li> -->
 		    <ul class="form-info">
-		        <li><label><b>*</b>产品类型</label><select id="type" name="type" class="control-def"/></select></li>
+		    	<li style="display:none;"><label></label><input id="code" name="code" class="control-def"/></li>
+		        <li><label><b>*</b>产品类型</label><select id="type" name="type" class="control-def"></select></li>
  		    	<li><label><b>*</b>产品名称:</label><input type="text" id="name" name="name" class="control-def"/></li>
  		    	<li><label><b>*</b>广告语:</label><input type="text" id="advTitle" name="advTitle" class="control-def"/></li>
  		    	<li><label><b>*</b>广告图:</label><input type="file" id="advPic" name="advPic" onchange="selectImage(this,'advPic');" /><img src="" id="img1" width="180" height="180"></img><b>请上传广告图</b></li>

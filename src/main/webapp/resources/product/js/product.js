@@ -46,6 +46,10 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
+		if(selRecords[0].status!=0){
+			alert("请选择待审核状态");
+			return;
+		}
 		
 		window.location.href = $("#basePath").val()+"/product/product_check.htm?code="+selRecords[0].code;
 

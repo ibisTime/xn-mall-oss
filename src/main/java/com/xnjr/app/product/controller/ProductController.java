@@ -55,9 +55,9 @@ public class ProductController extends BaseController {
             @RequestParam("highlightText") String highlightText,
             @RequestParam("familyText") String familyText,
             @RequestParam("updater") String updater) {
-        return productAO.editProduct(type, name, advTitle, advPic, majorPic,
-            majorText, familyPic, familyText, highlightPic, highlightText,
-            updater);
+        return productAO.editProduct(code, type, name, advTitle, advPic,
+            majorPic, majorText, familyPic, familyText, highlightPic,
+            highlightText, updater);
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)

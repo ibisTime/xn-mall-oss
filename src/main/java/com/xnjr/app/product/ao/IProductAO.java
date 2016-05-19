@@ -54,10 +54,10 @@ public interface IProductAO {
      * @create: 2016年5月17日 下午1:41:40 XIANDONG
      * @history:
      */
-    public Object editProduct(String type, String name, String advTitle,
-            String advPic, String majorPic, String majorText, String familyPic,
-            String familyText, String highlightPic, String highlightText,
-            String updater);
+    public Object editProduct(String code, String type, String name,
+            String advTitle, String advPic, String majorPic, String majorText,
+            String familyPic, String familyText, String highlightPic,
+            String highlightText, String updater);
 
     /**
      * 分页查询产品
