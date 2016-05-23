@@ -120,7 +120,7 @@ function queryTableData(){
 			return {
 				type : $("#type").val(),
 				name : $("#name").val(),
-				status: $("#status").val() || 12,
+				status: $("#status").val() || 13,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
