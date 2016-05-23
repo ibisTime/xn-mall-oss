@@ -96,4 +96,9 @@ public class XN601020Req {
     public void setUpdater(String updater) {
         this.updater = updater;
     }
+
+    // public void setModelSpecsList(List<ModelSpecs> modelSpecsList2) {
+    // // TODO Auto-generated method stub
+    //
+    // }
 }

@@ -36,8 +36,8 @@ public class ProductController extends BaseController {
             @RequestParam("highlightPic") String highlightPic,
             @RequestParam("highlightText") String highlightText) {
         return productAO.addProduct(type, name, advTitle, advPic, majorPic,
-            majorText, familyPic, familyText, highlightPic, highlightText,
-            this.getSessionUser().getUserName());
+            majorText, familyPic, familyText, highlightPic, highlightText, this
+                .getSessionUser().getUserName());
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -95,8 +95,8 @@ public class ProductController extends BaseController {
             // @RequestParam(value = "checkUser") String checkUser,
             @RequestParam(value = "checkResult") String checkResult,
             @RequestParam(value = "checkNote") String checkNote) {
-        return productAO.checkProduct(code, this.getSessionUser().getUserName(),
-            checkResult, checkNote);
+        return productAO.checkProduct(code,
+            this.getSessionUser().getUserName(), checkResult, checkNote);
     }
 
     @RequestMapping(value = "/up", method = RequestMethod.POST)
