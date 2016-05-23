@@ -56,12 +56,12 @@ public class ProductAOImpl implements IProductAO {
         req.setType(type);
         req.setName(name);
         req.setAdvTitle(advTitle);
-        req.setAdvPic(advPic);
-        req.setMajorPic(majorPic);
+        req.setAdvPic(UploadUtil.uploadPicture(advPic));
+        req.setMajorPic(UploadUtil.uploadPicture(majorPic));
         req.setMajorText(majorText);
-        req.setFamilyPic(familyPic);
+        req.setFamilyPic(UploadUtil.uploadPicture(familyPic));
         req.setFamilyText(familyText);
-        req.setHighlightPic(highlightPic);
+        req.setHighlightPic(UploadUtil.uploadPicture(highlightPic));
         req.setHighlightText(highlightText);
         req.setUpdater(updater);
         return BizConnecter.getBizData("601001", JsonUtils.object2Json(req),

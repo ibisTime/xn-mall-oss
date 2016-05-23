@@ -60,7 +60,7 @@ $(function() {
 	//获取详情回调方法
 	function doSucBackGetDetail(res){
 		if (res.success) {
-			$("#type").html(res.data.type);
+			$("#type").html(Dict.getName('product_type', res.data.type));
 			$("#name").html(res.data.name);
 			$("#advTitle").html(res.data.advTitle);
 			$("#majorText").html(res.data.majorText);

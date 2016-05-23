@@ -34,11 +34,10 @@ public class ProductController extends BaseController {
             @RequestParam("familyPic") String familyPic,
             @RequestParam("familyText") String familyText,
             @RequestParam("highlightPic") String highlightPic,
-            @RequestParam("highlightText") String highlightText,
-            @RequestParam("updater") String updater) {
+            @RequestParam("highlightText") String highlightText) {
         return productAO.addProduct(type, name, advTitle, advPic, majorPic,
             majorText, familyPic, familyText, highlightPic, highlightText,
-            updater);
+            this.getSessionUser().getUserName());
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -53,11 +52,10 @@ public class ProductController extends BaseController {
             @RequestParam("familyPic") String familyPic,
             @RequestParam("highlightPic") String highlightPic,
             @RequestParam("highlightText") String highlightText,
-            @RequestParam("familyText") String familyText,
-            @RequestParam("updater") String updater) {
+            @RequestParam("familyText") String familyText) {
         return productAO.editProduct(code, type, name, advTitle, advPic,
             majorPic, majorText, familyPic, familyText, highlightPic,
-            highlightText, updater);
+            highlightText, this.getSessionUser().getUserName());
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)

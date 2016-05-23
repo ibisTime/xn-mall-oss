@@ -71,18 +71,18 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
+		field : 'name',
+		title : '产品名称',
+		align : 'left',
+		valign : 'middle',
+		sortable : false,
+	}, {
 		field : 'type',
 		title : '产品类型',
 		align : 'left',
 		valign : 'middle',
 		formatter:Dict.getNameForList('product_type'),
 		sortable : false
-	}, {
-		field : 'name',
-		title : '产品名称',
-		align : 'left',
-		valign : 'middle',
-		sortable : false,
 	}, {
 		field : 'status',
 		title : '状态',

@@ -1,12 +1,4 @@
 $(function() {
-//	$('#kind').renderDropdown(Dict.getRoleKindName());
-//	$('#level').renderDropdown(Dict.getRoleLevelName());
-	
-//	//系统方则显示哪一方查询条件
-//	if(getCurrentKind() != "1"){
-//		$("#liKind").hide();
-//	}
-	
 	//获取菜单URL入参
 	var code = getQueryString("code");
 	//新增修改判断
@@ -30,7 +22,7 @@ $(function() {
 //获取详情回调方法
 function doSucBackGetDetail(res){
 	if (res.success) {
-		$("#type").html(res.data.type);
+		$("#type").html(Dict.getName('product_type', res.data.type));
 		$("#name").html(res.data.name);
 		$("#advTitle").html(res.data.advTitle);
 		$("#majorText").html(res.data.majorText);
