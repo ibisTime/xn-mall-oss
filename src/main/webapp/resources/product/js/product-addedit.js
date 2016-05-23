@@ -63,20 +63,20 @@ $(function() {
 			},
 			familyText: {
 				required: true,
-				maxlength: 255
+				maxlength: 1024
 			},
 			type: "required",
 			advTitle: {
 				required: true,
-				maxlength: 64
+				maxlength: 1024
 			},
 			majorText: {
 				required: true,
-				maxlength: 255
+				maxlength: 1024
 			},
 			highlightText: {
 				required: true,
-				maxlength: 255
+				maxlength: 1024
 			}
 		},
 		messages: {
