@@ -33,6 +33,9 @@ public class XN601021Req {
     // 模型参数列表（必填）
     private List<ModelSpecs> modelSpecsList;
 
+    // 更新人
+    private String updater;
+
     public String getCode() {
         return code;
     }
@@ -95,5 +98,13 @@ public class XN601021Req {
 
     public void setModelSpecsList(List<ModelSpecs> modelSpecsList) {
         this.modelSpecsList = modelSpecsList;
+    }
+
+    public String getUpdater() {
+        return updater;
+    }
+
+    public void setUpdater(String updater) {
+        this.updater = updater;
     }
 }
