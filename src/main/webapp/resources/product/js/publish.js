@@ -4,8 +4,24 @@ $(function() {
 	showPermissionControl();
 	
 	$('#type').renderDropdown(Dict.getName('product_type'));
-	$('#status').renderDropdown(Dict.getName('product_status'));
 	
+	doGetAjaxIsAsync($("#dictUrl").val(), {"parentKey": 'product_status'}, false, function(res) {
+		var data = res.data || [], filterData = [];
+		for (var i = 0, len = data.length; i < len; i++) {
+			if(data[i].dkey == 1 || data[i].dkey == 2) {
+				filterData.push(data[i]);
+			}
+		}
+		$('#status').renderDropdown(filterData);
+	});
+	
+	
+//	if(getName('status') !=12 ){
+//		$("#status").hide();
+//	}
+//	if(status!=12){
+//		$('#product-status').hide();
+//	}
 	//表格初始化
 	queryTableData();
 
@@ -46,23 +62,11 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		if(!confirm("确认上架产品["+selRecords[0].name+"]?")){
-    		return false;
-    	}
     	var url = $("#basePath").val()+"/product/up";
     	var data = {code:selRecords[0].code};
     	doPostAjax(url, data, doSucBackPublish);
 	});
 	
-	// 分配菜单
-	$('#changeBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-      	window.location.href = $("#basePath").val()+"/security/role_menu.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name))+"&kind="+selRecords[0].kind;
-	});
 });
 
 
@@ -76,18 +80,18 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
+		field : 'name',
+		title : '产品名称',
+		align : 'left',
+		valign : 'middle',
+		sortable : false,
+	}, {
 		field : 'type',
 		title : '产品类型',
 		formatter:Dict.getNameForList('product_type'),
 		align : 'left',
 		valign : 'middle',
 		sortable : false
-	}, {
-		field : 'name',
-		title : '产品名称',
-		align : 'left',
-		valign : 'middle',
-		sortable : false,
 	}, {
 		field : 'status',
 		title : '状态',
@@ -114,11 +118,9 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				kind : $("#type").val(),
+				type : $("#type").val(),
 				name : $("#name").val(),
-				level : $("#status").val(),
-				updater : $("#updater").val(),
-				status:12,
+				status: $("#status").val() || 12,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};

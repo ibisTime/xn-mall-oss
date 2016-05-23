@@ -131,8 +131,8 @@ public class UploadUtil {
         Pattern pattern = Pattern.compile("data:image/(.+?);base64");
         Matcher matcher = pattern.matcher(base64String);
         if (!matcher.find()) {
-            System.out.println("请传入正确的base64编码格式的图片");
-            return null;
+            // System.out.println("请传入正确的base64编码格式的图片");
+            return base64String;
         }
         // 取得图片后缀名
         String suffix = matcher.group(1);
@@ -174,10 +174,8 @@ public class UploadUtil {
             SimpleDateFormat dateformat = new SimpleDateFormat("yyyyMMddHH");
             String date = dateformat.format(new Date());
             String dir = preDir + date;
-            String picName = generate()
-                    + "."
-                    + ("jpeg".equalsIgnoreCase(suffix) ? "jpg" : suffix
-                        .toLowerCase());
+            String picName = generate() + "." + ("jpeg".equalsIgnoreCase(suffix)
+                    ? "jpg" : suffix.toLowerCase());
             String dstString = dir + "/" + picName;
 
             // 判断目录是否存在，不存在则创建新目录

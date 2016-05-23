@@ -63,24 +63,20 @@ $(function() {
 			},
 			familyText: {
 				required: true,
-				maxlength: 32
+				maxlength: 255
 			},
 			type: "required",
 			advTitle: {
 				required: true,
-				maxlength: 100
+				maxlength: 64
 			},
 			majorText: {
 				required: true,
-				maxlength: 100
+				maxlength: 255
 			},
 			highlightText: {
 				required: true,
-				maxlength: 100
-			},
-			updater: {
-				required: true,
-				maxlength: 100
+				maxlength: 255
 			}
 		},
 		messages: {
@@ -104,10 +100,6 @@ $(function() {
 			highlightText: {
 				required: "请输入亮点文本",
 				maxlength: jQuery.format("亮点文本不能大于{0}个字符")
-			},
-			updater: {
-				required: "请输入更新人",
-				maxlength: jQuery.format("更新人不能大于{0}个字符")
 			}
 		}
 	});
@@ -129,7 +121,7 @@ function doSucBackGetDetail(res){
 		$("#majorText").val(res.data.majorText);
 		$("#familyText").val(res.data.familyText);
 		$("#highlightText").val(res.data.highlightText);
-		$("#updater").val(res.data.updater);
+		$("#remark").val(res.data.remark);
 		$("#img1").attr('src',res.data.advPic);
 		$("#img2").attr('src',res.data.majorPic);
 		$("#img3").attr('src',res.data.familyPic);
