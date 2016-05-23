@@ -33,7 +33,7 @@ public class XN601021Req {
     // 模型参数列表（必填）
     private List<ModelSpecs> modelSpecsList;
 
-    // 更新人
+    // 更新人（必填）
     private String updater;
 
     public String getCode() {
