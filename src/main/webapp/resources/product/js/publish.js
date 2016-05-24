@@ -8,7 +8,7 @@ $(function() {
 	doGetAjaxIsAsync($("#dictUrl").val(), {"parentKey": 'product_status'}, false, function(res) {
 		var data = res.data || [], filterData = [];
 		for (var i = 0, len = data.length; i < len; i++) {
-			if(data[i].dkey == 1 || data[i].dkey == 2) {
+			if(data[i].dkey == 1 || data[i].dkey == 3) {
 				filterData.push(data[i]);
 			}
 		}
@@ -120,7 +120,7 @@ function queryTableData(){
 			return {
 				type : $("#type").val(),
 				name : $("#name").val(),
-				status: $("#status").val() || 12,
+				status: $("#status").val() || 13,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
