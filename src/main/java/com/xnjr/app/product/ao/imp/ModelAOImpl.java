@@ -22,6 +22,7 @@ import com.xnjr.app.product.req.XN601022Req;
 import com.xnjr.app.product.req.XN601023Req;
 import com.xnjr.app.product.req.XN601024Req;
 import com.xnjr.app.product.req.XN601025Req;
+import com.xnjr.app.product.req.XN601026Req;
 
 @Service
 public class ModelAOImpl implements IModelAO {
@@ -116,11 +117,10 @@ public class ModelAOImpl implements IModelAO {
 
     @Override
     public Object detailModel(String code) {
-        // XN601026Req req = new XN601026Req();
-        // req.setCode(code);
-        // return BizConnecter.getBizData("601026", JsonUtils.object2Json(req),
-        // Object.class);
-        return null;
+        XN601026Req req = new XN601026Req();
+        req.setCode(code);
+        return BizConnecter.getBizData("601026", JsonUtils.object2Json(req),
+            Object.class);
     }
 
     @Override

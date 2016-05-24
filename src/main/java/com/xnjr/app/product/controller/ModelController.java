@@ -102,4 +102,10 @@ public class ModelController extends BaseController {
         return modelAO.queryMOdelList(code, name, status, productCode);
     }
 
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    @ResponseBody
+    public Object detailModel(@RequestParam(value = "code") String code) {
+        return modelAO.detailModel(code);
+    }
+
 }

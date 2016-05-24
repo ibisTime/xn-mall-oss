@@ -89,7 +89,7 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				kind : $("#type").val(),
+				type : $("#type").val(),
 				name : $("#name").val(),
 				updater : $("#updater").val(),
 				status:12,

@@ -11,7 +11,7 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-	$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
+	$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/page"});
 	});
 	
 
@@ -39,7 +39,6 @@ $(function() {
 
 	});
 	
-	//删除
 	$('#upBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
@@ -49,12 +48,11 @@ $(function() {
 		if(!confirm("确认上架产品["+selRecords[0].name+"]?")){
     		return false;
     	}
-    	var url = $("#basePath").val()+"/product/up";
+    	var url = $("#basePath").val()+"/model/up";
     	var data = {code:selRecords[0].code};
     	doPostAjax(url, data, doSucBackPublish);
 	});
 	
-	// 分配菜单
 	$('#changeBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
@@ -107,14 +105,14 @@ function queryTableData(){
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/product/page",
+		url : $("#basePath").val()+"/model/page",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				kind : $("#type").val(),
+				type : $("#type").val(),
 				name : $("#name").val(),
 				level : $("#status").val(),
 				updater : $("#updater").val(),
@@ -151,6 +149,6 @@ function dateFormatter(value, row){
 function doSucBackPublish(res) {
 	if (res.success == true) {
 		alert("删除成功");
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/page"});
 	}
 }

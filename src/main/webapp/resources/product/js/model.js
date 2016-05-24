@@ -12,7 +12,7 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/page"});
 	});
 	
 	//新增
@@ -29,15 +29,6 @@ $(function() {
 		}
 		window.location.href = $("#basePath").val()+"/product/product_addedit.htm?code="+selRecords[0].code;
 	});
-	//详情
-	$('#detailBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/product/product_detail.htm?code="+selRecords[0].code;
-	});
 	
 	//审核
 	$('#checkBtn').click(function() {
@@ -51,8 +42,18 @@ $(function() {
 			return;
 		}
 		
-		window.location.href = $("#basePath").val()+"/product/product_check.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/product/model_check.htm?code="+selRecords[0].code;
 
+	});
+	
+	//详情
+	$('#detailBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/product/model_detail.htm?code="+selRecords[0].code;
 	});
 	
 });
