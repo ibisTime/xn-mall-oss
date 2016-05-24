@@ -2,6 +2,7 @@ $(function() {
 	
 	$('#productCode').renderDropdown(Dict.getName('product_type'));
 	
+	initBusinessTable();
 	//获取菜单URL入参
 	var code = getQueryString("code");
 	//新增修改判断
@@ -77,10 +78,50 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/product/product.htm";
+		location.href = $("#basePath").val()+"/product/model.htm";
 	});
 });
 
+
+
+function initBusinessTable(){
+    mytable = $('#edittable').editTable({
+	    field_templates: {
+	    	'select_one' : {
+	            html:"参数名",
+	            getValue: function (input) {
+	                return $(input).val();
+	            },
+	            setValue: function (input, value) {
+	                var select = $(input);
+	                select.find('option').filter(function() {
+	                    return $(this).val() == value; 
+	                }).attr('selected', true);
+	                return select;
+	            }
+	        },
+	        'select_two' : {
+	            html:"参数值",
+	            getValue: function (input) {
+	                return $(input).val();
+	            },
+	            setValue: function (input, value) {
+	                var select = $(input);
+	                select.find('option').filter(function() {
+	                    return $(this).val() == value; 
+	                }).attr('selected', true);
+	                return select;
+	            }
+	        }
+	    },
+	    row_template: ['select_one', 'select_two', 'text', 'text'],
+	    headerCols: ['类型','项目'],
+	    first_row: false,
+	    data: [
+	        ["",""]
+	    ]
+	});
+}
 
 //获取详情回调方法
 function doSucBackGetDetail(res){
