@@ -30,31 +30,31 @@ $(function() {
 		window.location.href = $("#basePath").val()+"/product/model_addedit.htm?code="+selRecords[0].code;
 	});
 	
-//	//审核
-//	$('#checkBtn').click(function() {
-//		var selRecords = $('#tableList').bootstrapTable('getSelections');
-//		if(selRecords.length <= 0){
-//			alert("请选择记录");
-//			return;
-//		}
-//		if(selRecords[0].status!=0){
-//			alert("请选择待审核状态");
-//			return;
-//		}
-//		
-//		window.location.href = $("#basePath").val()+"/product/model_check.htm?code="+selRecords[0].code;
-//
-//	});
-//		
-//	//详情
-//	$('#detailBtn').click(function() {
-//		var selRecords = $('#tableList').bootstrapTable('getSelections')
-//		if(selRecords.length <= 0){
-//			alert("请选择记录");
-//			return;
-//		}
-//		window.location.href = $("#basePath").val()+"/product/model_detail.htm?code="+selRecords[0].code;
-//	});
+	//审核
+	$('#checkBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections');
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		if(selRecords[0].status!=0){
+			alert("请选择待审核状态");
+			return;
+		}
+		
+		window.location.href = $("#basePath").val()+"/product/model_check.htm?code="+selRecords[0].code;
+
+	});
+		
+	//详情
+	$('#detailBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/product/model_detail.htm?code="+selRecords[0].code;
+	});
 	
 });
 
