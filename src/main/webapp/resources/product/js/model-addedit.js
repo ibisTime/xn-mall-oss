@@ -134,6 +134,7 @@ function initSpecsTable(){
 //获取详情回调方法
 function doSucBackGetDetail(res){
 	if (res.success) {
+		$("#code").val(res.data.code);
 		$("#productCode").val(res.data.productCode);
 		$("#name").val(res.data.name);
 		$("#majorText").val(res.data.advTitle);

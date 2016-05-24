@@ -54,9 +54,11 @@ public class ModelController extends BaseController {
             @RequestParam("pic2") String pic2,
             @RequestParam("pic3") String pic3,
             @RequestParam("description") String description,
-            @RequestParam("modelSpecsList") List<ModelSpecs> modelSpecsList
-    // @RequestParam("updater") String updater
-    ) {
+            @RequestParam(value = "specsTableJson", required = true) String specsTableJson) {
+        Gson gson = new Gson();
+        List<ModelSpecs> modelSpecsList = gson.fromJson(specsTableJson,
+            new TypeToken<List<ModelSpecs>>() {
+            }.getType());
         return modelAO.editModel(code, productCode, name, pic1, pic2, pic3,
             description, modelSpecsList, this.getSessionUser().getUserName());
     }
