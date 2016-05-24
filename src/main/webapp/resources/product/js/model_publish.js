@@ -3,9 +3,18 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
+	var code = getQueryString('code');
+	doGetAjaxIsAsync($("#basePath").val()+"/model/list", {}, false, function(res) {
+		var data = res.data || [], html = "<option value=''>请选择</option>";
+		for (var i = 0, len = data.length; i < len; i++) {
+			html += "<option value='"+data[i].code+"'>"+data[i].code+""+data[i].name+"</option>";
+			$("#productCode").html(html);
+		}
+	});
+	
 	$('#type').renderDropdown(Dict.getName('product_type'));
 	$('#status').renderDropdown(Dict.getName('product_status'));
-	
+
 	//表格初始化
 	queryTableData();
 
@@ -14,29 +23,14 @@ $(function() {
 	$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/page"});
 	});
 	
-
-	//上架
-	$('#upBtn').click(function() {
+	//上架/下架
+	$('#updownBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		
-		window.location.href = $("#basePath").val()+"/product/product_updown.htm?code="+selRecords[0].code;
-
-	});
-	
-	//下架
-	$('#downBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections');
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		
-		window.location.href = $("#basePath").val()+"/product/product_updown.htm?code="+selRecords[0].code;
-
+		window.location.href = $("#basePath").val()+"/product/model_updown.htm?code="+selRecords[0].code;
 	});
 	
 	$('#upBtn').click(function() {
@@ -52,15 +46,6 @@ $(function() {
     	var data = {code:selRecords[0].code};
     	doPostAjax(url, data, doSucBackPublish);
 	});
-	
-	$('#changeBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-      	window.location.href = $("#basePath").val()+"/security/role_menu.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name))+"&kind="+selRecords[0].kind;
-	});
 });
 
 
@@ -74,18 +59,17 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
-		field : 'type',
-		title : '产品类型',
-		formatter:Dict.getNameForList('product_type'),
-		align : 'left',
-		valign : 'middle',
-		sortable : false
-	}, {
 		field : 'name',
-		title : '产品名称',
+		title : '型号名称',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
+	}, {
+		field : 'productCode',
+		title : '所属产品',
+		align : 'left',
+		valign : 'middle',
+		sortable : false
 	}, {
 		field : 'status',
 		title : '状态',
@@ -93,13 +77,7 @@ function queryTableData(){
 		valign : 'middle',
 		formatter:Dict.getNameForList('product_status'),
 		sortable : false
-	}, {
-		field : 'updater',
-		title : '更新人',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
-		}];
+	}];
 	
 	
 	
@@ -112,11 +90,9 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				type : $("#type").val(),
 				name : $("#name").val(),
-				level : $("#status").val(),
-				updater : $("#updater").val(),
-				status:12,
+				productCode : $("#productCode").val(),
+				status : $("#status").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
@@ -138,17 +114,7 @@ function queryTableData(){
 	});
 }
 
-
-
 //表格时间格式转化
 function dateFormatter(value, row){
 	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
-}
-
-//操作回调方法
-function doSucBackPublish(res) {
-	if (res.success == true) {
-		alert("删除成功");
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/page"});
-	}
 }
