@@ -7,14 +7,14 @@ $(function() {
 	}else{
 		$("#code").attr("readonly","readonly");
 		var data = {"code":code};
-		var url = $("#basePath").val()+"/product/detail";
+		var url = $("#basePath").val()+"/model/detail";
 		doGetAjax(url, data, doSucBackGetDetail);
 	}
 
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/product/product.htm";
+		location.href = $("#basePath").val()+"/product/model.htm";
 	});
 });
 
@@ -22,17 +22,14 @@ $(function() {
 //获取详情回调方法
 function doSucBackGetDetail(res){
 	if (res.success) {
-		$("#type").html(Dict.getName('product_type', res.data.type));
-		$("#name").html(res.data.name);
-		$("#advTitle").html(res.data.advTitle);
-		$("#majorText").html(res.data.majorText);
-		$("#familyText").html(res.data.familyText);
-		$("#highlightText").html(res.data.highlightText);
-		$("#updater").html(res.data.updater);
-		$("#img1").attr('src',res.data.advPic);
-		$("#img2").attr('src',res.data.majorPic);
-		$("#img3").attr('src',res.data.familyPic);
-		$("#img4").attr('src',res.data.highlightPic);
+		$("#code").val(res.data.code);
+		$("#productCode").val(res.data.productCode);
+		$("#name").val(res.data.name);
+		$("#majorText").val(res.data.advTitle);
+		$("#img1").attr('src',res.data.pic1);
+		$("#img2").attr('src',res.data.pic2);
+		$("#img3").attr('src',res.data.pic3);
+		$("#description").val(res.data.description);
 	}else{
 		alert(res.msg);
 	}
