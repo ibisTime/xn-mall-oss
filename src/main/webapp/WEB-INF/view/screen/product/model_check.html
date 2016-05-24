@@ -7,6 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=8"/>
 <title>型号管理</title>
 <#include 'layout/resources.html'/>
+<link rel="stylesheet" href="${resourceUrl}/resources/common/css/jquery.edittable.min.css" />
+<script type="text/javascript" src="${resourceUrl}/resources/common/js/jquery.edittable.js"></script>
 <script type="text/javascript" src="${resourceUrl}/resources/product/js/model-check.js?version=${version}"></script>
 </head>
 <body>
@@ -28,15 +30,14 @@
 	    	<input type="hidden" name="code" id="code"/>
 	    	</li>
 		    <ul class="form-info">
- 				<li><label>所属产品:</label><span id="type"></span></li>
+ 				<li><label>所属产品:</label><span id="productCode"></span></li>
  		    	<li><label>型号名称:</label><span  id="name" ></span></li>
- 		    	<li><label>图片:</label><span id="advPic"></span><img src="" id="img1" width="180" height="180"></img></li>
- 		    	<li><label>文本:</label><span id="majorText"></span></li>
- 		    	<ul class="form-info">
-		              <li> <table id="tableList"></table></li>
-		        </ul>
- 		    	
-			    <li><label>备注:</label><span id="highlightText" ></span></li>
+ 		    	<li><label>图片1:</label><span id="pic1"></span><img src="" id="img1" width="180" height="180"></img></li>
+ 		    	<li><label>图片2:</label><span id="pic2"></span><img src="" id="img2" width="180" height="180"></img></li>
+ 		    	<li><label>图片3:</label><span id="pic3"></span><img src="" id="img3" width="180" height="180"></img></li>
+ 		    	<li><label>文本:</label><span id="description"></span></li>
+ 		    	<div id="edittable"></div>
+			    <li><label>备注:</label><input id="checkNote" name="checkNote" class="control-def"/></li>
 			       <li>
 			           <input id="passBtn" type="button" class="btn margin-left-100" value="通过"/>
 			           <input id="noPassBtn" type="button" class="btn margin-left-40" value="不通过"/>
