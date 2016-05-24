@@ -23,6 +23,7 @@ import com.xnjr.app.product.req.XN601023Req;
 import com.xnjr.app.product.req.XN601024Req;
 import com.xnjr.app.product.req.XN601025Req;
 import com.xnjr.app.product.req.XN601026Req;
+import com.xnjr.app.util.UploadUtil;
 
 @Service
 public class ModelAOImpl implements IModelAO {
@@ -34,9 +35,9 @@ public class ModelAOImpl implements IModelAO {
         XN601020Req req = new XN601020Req();
         req.setProductCode(productCode);
         req.setName(name);
-        req.setPic1(pic1);
-        req.setPic2(pic2);
-        req.setPic3(pic3);
+        req.setPic1(UploadUtil.uploadPicture(pic1));
+        req.setPic2(UploadUtil.uploadPicture(pic2));
+        req.setPic3(UploadUtil.uploadPicture(pic3));
         req.setDescription(description);
         req.setModelSpecsList(modelSpecsList);
         req.setUpdater(updater);
@@ -52,9 +53,9 @@ public class ModelAOImpl implements IModelAO {
         req.setCode(productCode);
         req.setProductCode(productCode);
         req.setName(name);
-        req.setPic1(pic1);
-        req.setPic1(pic2);
-        req.setPic3(pic3);
+        req.setPic1(UploadUtil.editUploadPicture(pic1));
+        req.setPic1(UploadUtil.editUploadPicture(pic2));
+        req.setPic3(UploadUtil.editUploadPicture(pic3));
         req.setDescription(description);
         req.setModelSpecsList(modelSpecsList);
         req.setUpdater(updater);
@@ -75,8 +76,8 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object updownModel(String code, String checkUser,
-            String checkResult, String checkNote) {
+    public Object updownModel(String code, String checkUser, String checkResult,
+            String checkNote) {
         XN601023Req req = new XN601023Req();
         req.setCode(code);
         req.setCheckUser(checkUser);
@@ -125,7 +126,8 @@ public class ModelAOImpl implements IModelAO {
 
     @Override
     public Object shopLeadadd(String modelCode, String originalPrice,
-            String discountPrice, String toLevel, String updater, String remark) {
+            String discountPrice, String toLevel, String updater,
+            String remark) {
         // XN601040Req req = new XN601040Req();
         // req.setModelCode(modelCode);
         // req.setOriginalPrice(originalPrice);

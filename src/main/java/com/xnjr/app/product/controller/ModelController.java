@@ -30,8 +30,7 @@ public class ModelController extends BaseController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object addModel(
-            @RequestParam("productCode") String productCode,
+    public Object addModel(@RequestParam("productCode") String productCode,
             @RequestParam("name") String name,
             @RequestParam("pic1") String pic1,
             @RequestParam("pic2") String pic2,
