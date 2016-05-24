@@ -92,7 +92,6 @@ function queryTableData(){
 				type : $("#type").val(),
 				name : $("#name").val(),
 				updater : $("#updater").val(),
-				status:12,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
