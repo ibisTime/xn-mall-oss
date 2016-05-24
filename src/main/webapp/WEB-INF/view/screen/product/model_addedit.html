@@ -7,6 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=8"/>
 <title>角色设置</title>
 <#include 'layout/resources.html'/>
+<link rel="stylesheet" href="${resourceUrl}/resources/common/css/jquery.edittable.min.css" />
+<script type="text/javascript" src="${resourceUrl}/resources/common/js/jquery.edittable.js"></script>
 <script type="text/javascript" src="${resourceUrl}/resources/product/js/model-addedit.js?version=${version}"></script>
 </head>
 <body>
@@ -33,7 +35,7 @@
  		    	<li><label><b>*</b>图片3:</label><input type="file" id="pic3" name="pic3" onchange="selectImage(this,'pic3');" /><img src="" id="img3" width="180" height="180"></img><b>请上传图片3建议大小500*500</b></li>
  		    	<li><label><b>*</b>文本:</label><input type="text" id="description" name="description" class="control-def"/></li>
 		        <div>
-		    	<div id="edittable" style="margin-left:11%"></div>
+		    	<div id="edittable"></div>
 		    </div>
 		    </ul>
 			<li>

@@ -2,7 +2,7 @@ $(function() {
 	
 	$('#productCode').renderDropdown(Dict.getName('product_type'));
 	
-	initBusinessTable();
+	initSpecsTable();
 	//获取菜单URL入参
 	var code = getQueryString("code");
 	//新增修改判断
@@ -34,6 +34,14 @@ $(function() {
 	    if(!$("#jsForm").valid()){
 			return false;
 		}
+	    tableLists = mytable.getData();
+		var specsTableList = new Array();
+		for(var i = 0;i < tableLists.length;i++){
+			var specsTable =new Object();
+			specsTable.type=tableLists[i][0];
+			specsTable.key=tableLists[i][1];
+		    specsTableList.push(specsTable);
+		}
 	    var data = {};
 		var t = $('form').serializeArray();
 		$.each(t, function() {
@@ -41,6 +49,7 @@ $(function() {
 		});
 		var operator = $("#operate").val() != "edit"?"add":"edit";
 		
+		data['specsTableJson']=JSON.stringify(specsTableList);
 		data["pic1"]=$('#pic1').next().attr("src");
 		data["pic2"]=$('#pic2').next().attr("src");
 		data["pic3"]=$('#pic3').next().attr("src");
@@ -84,37 +93,9 @@ $(function() {
 
 
 
-function initBusinessTable(){
+function initSpecsTable(){
     mytable = $('#edittable').editTable({
-	    field_templates: {
-	    	'select_one' : {
-	            html:"参数名",
-	            getValue: function (input) {
-	                return $(input).val();
-	            },
-	            setValue: function (input, value) {
-	                var select = $(input);
-	                select.find('option').filter(function() {
-	                    return $(this).val() == value; 
-	                }).attr('selected', true);
-	                return select;
-	            }
-	        },
-	        'select_two' : {
-	            html:"参数值",
-	            getValue: function (input) {
-	                return $(input).val();
-	            },
-	            setValue: function (input, value) {
-	                var select = $(input);
-	                select.find('option').filter(function() {
-	                    return $(this).val() == value; 
-	                }).attr('selected', true);
-	                return select;
-	            }
-	        }
-	    },
-	    row_template: ['select_one', 'select_two', 'text', 'text'],
+	    row_template: ['text', 'text'],
 	    headerCols: ['类型','项目'],
 	    first_row: false,
 	    data: [

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.xnjr.app.controller.BaseController;
 import com.xnjr.app.product.ao.IModelAO;
 import com.xnjr.app.product.req.ModelSpecs;
@@ -28,15 +30,18 @@ public class ModelController extends BaseController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object addModel(@RequestParam("productCode") String productCode,
+    public Object addModel(
+            @RequestParam("productCode") String productCode,
             @RequestParam("name") String name,
             @RequestParam("pic1") String pic1,
             @RequestParam("pic2") String pic2,
             @RequestParam("pic3") String pic3,
             @RequestParam("description") String description,
-            @RequestParam("modelSpecsList") List<ModelSpecs> modelSpecsList
-    // @RequestParam("updater") String updater
-    ) {
+            @RequestParam(value = "specsTableJson", required = true) String specsTableJson) {
+        Gson gson = new Gson();
+        List<ModelSpecs> modelSpecsList = gson.fromJson(specsTableJson,
+            new TypeToken<List<ModelSpecs>>() {
+            }.getType());
         return modelAO.addModel(productCode, name, pic1, pic2, pic3,
             description, modelSpecsList, this.getSessionUser().getUserName());
     }
