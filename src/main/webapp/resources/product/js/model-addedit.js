@@ -1,7 +1,7 @@
 $(function() {
 	
 	var code = getQueryString('code');
-	doGetAjaxIsAsync($("#basePath").val()+"/product/list", {}, false, function(res) {
+	doGetAjaxIsAsync($("#basePath").val()+"/model/list", {}, false, function(res) {
 		var data = res.data || [], html = "<option value=''>请选择</option>";
 		for (var i = 0, len = data.length; i < len; i++) {
 			html += "<option value='"+data[i].code+"'>"+data[i].code+""+data[i].name+"</option>";
