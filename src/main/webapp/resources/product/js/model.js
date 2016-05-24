@@ -17,43 +17,43 @@ $(function() {
 	
 	//新增
 	$('#addBtn').click(function() {
-		window.location.href = $("#basePath").val()+"/product/product_addedit.htm";
+		window.location.href = $("#basePath").val()+"/product/model_addedit.htm";
 	});
 	
-	//修改
-	$('#editBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/product/product_addedit.htm?code="+selRecords[0].code;
-	});
-	//详情
-	$('#detailBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/product/product_detail.htm?code="+selRecords[0].code;
-	});
-	
-	//审核
-	$('#checkBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections');
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		if(selRecords[0].status!=0){
-			alert("请选择待审核状态");
-			return;
-		}
-		
-		window.location.href = $("#basePath").val()+"/product/product_check.htm?code="+selRecords[0].code;
-
-	});
+//	//修改
+//	$('#editBtn').click(function() {
+//		var selRecords = $('#tableList').bootstrapTable('getSelections')
+//		if(selRecords.length <= 0){
+//			alert("请选择记录");
+//			return;
+//		}
+//		window.location.href = $("#basePath").val()+"/product/product_addedit.htm?code="+selRecords[0].code;
+//	});
+//	//详情
+//	$('#detailBtn').click(function() {
+//		var selRecords = $('#tableList').bootstrapTable('getSelections')
+//		if(selRecords.length <= 0){
+//			alert("请选择记录");
+//			return;
+//		}
+//		window.location.href = $("#basePath").val()+"/product/product_detail.htm?code="+selRecords[0].code;
+//	});
+//	
+//	//审核
+//	$('#checkBtn').click(function() {
+//		var selRecords = $('#tableList').bootstrapTable('getSelections');
+//		if(selRecords.length <= 0){
+//			alert("请选择记录");
+//			return;
+//		}
+//		if(selRecords[0].status!=0){
+//			alert("请选择待审核状态");
+//			return;
+//		}
+//		
+//		window.location.href = $("#basePath").val()+"/product/product_check.htm?code="+selRecords[0].code;
+//
+//	});
 	
 });
 
@@ -71,18 +71,17 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
-		field : 'type',
-		title : '产品类型',
-		align : 'left',
-		valign : 'middle',
-		formatter:Dict.getNameForList('product_type'),
-		sortable : false
-	}, {
 		field : 'name',
-		title : '产品名称',
+		title : '型号名称',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
+	}, {
+		field : 'productCode',
+		title : '所属产品',
+		align : 'left',
+		valign : 'middle',
+		sortable : false
 	}, {
 		field : 'status',
 		title : '状态',
@@ -90,29 +89,22 @@ function queryTableData(){
 		valign : 'middle',
 		formatter:Dict.getNameForList('product_status'),
 		sortable : false
-	}, {
-		field : 'updater',
-		title : '更新人',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
-		}];
+	}];
 	
 	
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/product/page",
+		url : $("#basePath").val()+"/model/page",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				type : $("#type").val(),
 				name : $("#name").val(),
+				productCode : $("#productCode").val(),
 				status : $("#status").val(),
-				updater : $("#updater").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
