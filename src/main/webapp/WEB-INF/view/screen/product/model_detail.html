@@ -7,6 +7,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=8"/>
 <title>型号管理</title>
 <#include 'layout/resources.html'/>
+<link rel="stylesheet" href="${resourceUrl}/resources/common/css/jquery.edittable.min.css" />
+<script type="text/javascript" src="${resourceUrl}/resources/common/js/jquery.edittable.js"></script>
 <script type="text/javascript" src="${resourceUrl}/resources/product/js/model-detail.js?version=${version}"></script>
 </head>
 <body>
@@ -26,7 +28,7 @@
 	    <div class="form-title"><span>型号详情</span></div>
 	    	<li><input type="hidden" name="code" id="code"/></li>
 		    <ul class="form-info">
- 				<li><label>所属产品:</label><span id=productCode></span></li>
+ 				<li><label>所属产品:</label><span id="type"></span></li>
  		    	<li><label>型号名称:</label><span  id="name" ></span></li>
  		    	<li><label>图片1:</label><span id="pic1"></span><img src="" id="img1" width="180" height="180"></img></li>
  		    	<li><label>图片2:</label><span id="pic2"></span><img src="" id="img1" width="180" height="180"></img></li>
