@@ -4,7 +4,14 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
-	$('#type').renderDropdown(Dict.getName('product_type'));
+	var code = getQueryString('code');
+	doGetAjaxIsAsync($("#basePath").val()+"/model/list", {}, false, function(res) {
+		var data = res.data || [], html = "<option value=''>请选择</option>";
+		for (var i = 0, len = data.length; i < len; i++) {
+			html += "<option value='"+data[i].code+"'>"+data[i].code+""+data[i].name+"</option>";
+			$("#productCode").html(html);
+		}
+	});
 	$('#status').renderDropdown(Dict.getName('product_status'));
 		
 	//表格初始化
