@@ -11,7 +11,15 @@ $(function() {
 			$("#productCode").html(html);
 		}
 	});
-	$('#status').renderDropdown(Dict.getName('product_status'));
+	doGetAjaxIsAsync($("#dictUrl").val(), {"parentKey": 'product_status'}, false, function(res) {
+		var data = res.data || [], filterData = [];
+		for (var i = 0, len = data.length; i < len; i++) {
+			if(data[i].dkey == 1 || data[i].dkey == 3) {
+				filterData.push(data[i]);
+			}
+		}
+		$('#status').renderDropdown(filterData);
+	});
 	
 	//表格初始化
 	queryTableData();
@@ -111,7 +119,7 @@ function queryTableData(){
 			return {
 				name : $("#name").val(),
 				productCode : $("#productCode").val(),
-				status : $("#status").val(),
+				status : $("#status").val()||13,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
