@@ -1,8 +1,15 @@
 $(function() {
 	
-	$('#productCode').renderDropdown(Dict.getName('product_type'));
+	var code = getQueryString('code');
+	doGetAjaxIsAsync($("#basePath").val()+"/product/list", {}, false, function(res) {
+		var data = res.data || [], html = "<option value=''>请选择</option>";
+		for (var i = 0, len = data.length; i < len; i++) {
+			html += "<option value='"+data[i].code+"'>"+data[i].code+""+data[i].name+"</option>";
+			$("#productCode").html(html);
+		}
+	});
 	
-	initSpecsTable();
+	
 	//获取菜单URL入参
 	var code = getQueryString("code");
 	//新增修改判断
@@ -38,8 +45,8 @@ $(function() {
 		var specsTableList = new Array();
 		for(var i = 0;i < tableLists.length;i++){
 			var specsTable =new Object();
-			specsTable.type=tableLists[i][0];
-			specsTable.key=tableLists[i][1];
+			specsTable.dkey=tableLists[i][0];
+			specsTable.dvalue=tableLists[i][1];
 		    specsTableList.push(specsTable);
 		}
 	    var data = {};
@@ -57,7 +64,27 @@ $(function() {
 		
 		doPostAjax(url, data, doSucBackSave);
 	});
+	initSpecsTable();
+	var code = getQueryString("code");
+	if(!isBlank(code)){
+		var data = {"code":code};
+		var url = $("#basePath").val()+"/model/detail";
+		doGetAjax(url, data, doGetDetailSpecsBack);	
+	}
 	
+	function doGetDetailSpecsBack(res){
+		if (res.success == true) {
+			if(res.data != null){
+				result=res.data.business;
+			    
+				$("#tableList").bootstrapTable("load", res.data.specsTableList);
+			}else{
+				alert("根据编号获取详情为空");
+			}
+		}else{
+			alert(res.msg);
+		}
+	}
 	
 	//入参合法性校验
 	$("#jsForm").validate({
@@ -96,7 +123,7 @@ $(function() {
 function initSpecsTable(){
     mytable = $('#edittable').editTable({
 	    row_template: ['text', 'text'],
-	    headerCols: ['类型','项目'],
+	    headerCols: ['参数名','参数值'],
 	    first_row: false,
 	    data: [
 	        ["",""]
@@ -113,6 +140,13 @@ function doSucBackGetDetail(res){
 		$("#img1").attr('src',res.data.pic1);
 		$("#img2").attr('src',res.data.pic2);
 		$("#img3").attr('src',res.data.pic3);
+		$("#description").val(res.data.description);
+		specsTable=res.data.modelSpecsList;
+	    var specsTableList = new Array();
+	    for(var i = 0;i < specsTable.length;i++){
+	    	specsTableList[i]=[specsTable[i].dkey,specsTable[i].dvalue];
+		}
+	    mytable.loadData(specsTableList);
 	}else{
 		alert(res.msg);
 	}

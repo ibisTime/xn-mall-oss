@@ -152,6 +152,10 @@
 		    <mvc:mapping path="/product/**"/>
 		    <!-- 客户相关end -->
 		    
+		    <!-- 型号相关start -->
+		    <mvc:mapping path="/model/**"/>
+		    <!-- 客户相关end -->
+		    
 		    <!-- 取现相关start -->
 		    <mvc:mapping path="/withdraw/**"/>
 		    <!-- 取现相关end -->
