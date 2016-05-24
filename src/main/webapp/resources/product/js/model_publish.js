@@ -23,14 +23,14 @@ $(function() {
 	
 
 	//上架
-	$('#upBtn').click(function() {
+	$('#updownBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
 		
-		window.location.href = $("#basePath").val()+"/product/product_updown.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/product/model_updown.htm?code="+selRecords[0].code;
 
 	});
 	
@@ -46,15 +46,12 @@ $(function() {
 
 	});
 	
-	$('#upBtn').click(function() {
+	$('#updownBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		if(!confirm("确认上架产品["+selRecords[0].name+"]?")){
-    		return false;
-    	}
     	var url = $("#basePath").val()+"/model/up";
     	var data = {code:selRecords[0].code};
     	doPostAjax(url, data, doSucBackPublish);
@@ -81,18 +78,17 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
-		field : 'type',
-		title : '产品类型',
-		formatter:Dict.getNameForList('product_type'),
-		align : 'left',
-		valign : 'middle',
-		sortable : false
-	}, {
 		field : 'name',
-		title : '产品名称',
+		title : '型号名称',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
+	}, {
+		field : 'productCode',
+		title : '所属产品',
+		align : 'left',
+		valign : 'middle',
+		sortable : false
 	}, {
 		field : 'status',
 		title : '状态',
@@ -100,13 +96,7 @@ function queryTableData(){
 		valign : 'middle',
 		formatter:Dict.getNameForList('product_status'),
 		sortable : false
-	}, {
-		field : 'updater',
-		title : '更新人',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
-		}];
+	}];
 	
 	
 	
@@ -119,10 +109,9 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				type : $("#type").val(),
 				name : $("#name").val(),
+				productCode : $("#productCode").val(),
 				status : $("#status").val(),
-				status:12,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
