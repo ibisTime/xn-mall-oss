@@ -78,8 +78,8 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object updownModel(String code, String checkUser, String checkResult,
-            String checkNote) {
+    public Object updownModel(String code, String checkUser,
+            String checkResult, String checkNote) {
         XN601023Req req = new XN601023Req();
         req.setCode(code);
         req.setCheckUser(checkUser);
@@ -128,8 +128,7 @@ public class ModelAOImpl implements IModelAO {
 
     @Override
     public Object shopLeadadd(String modelCode, String originalPrice,
-            String discountPrice, String toLevel, String updater,
-            String remark) {
+            String discountPrice, String toLevel, String updater, String remark) {
         XN601040Req req = new XN601040Req();
         req.setModelCode(modelCode);
         req.setOriginalPrice(originalPrice);
@@ -159,7 +158,7 @@ public class ModelAOImpl implements IModelAO {
     @Override
     public Object shopCarPage(String userId, String start, String limit,
             String orderColumn, String orderDir) {
-        // XN602003Req req = new XN602003Req();
+        // XN602042Req req = new XN602042Req();
         // req.setUserId(userId);
         // req.setStart(start);
         // req.setLimit(limit);
@@ -171,19 +170,28 @@ public class ModelAOImpl implements IModelAO {
     @Override
     public Object queryOrderPage(String applyUser, String status, String start,
             String limit, String orderColumn, String orderDir) {
-        // TODO Auto-generated method stub
+        // XN602043Req req = new XN602043Req();
+        // req.setApplyUser(applyUser);
+        // req.setStatus(status);
+        // req.setStart(start);
+        // req.setLimit(limit);
+        // req.setOrderColumn(orderColumn);
+        // req.setOrderDir(orderDir);
         return null;
     }
 
     @Override
     public Object queryOrderList(String applyUser, String status) {
-        // TODO Auto-generated method stub
+        // XN602044Req req = new XN602044Req();
+        // req.setApplyUser(applyUser);
+        // req.setStatus(status);
         return null;
     }
 
     @Override
     public Object detailOrder(String invoiceCode) {
-        // TODO Auto-generated method stub
+        // XN602045Req req = new XN602045Req();
+        // req.setInvoiceCode(invoiceCode);
         return null;
     }
 

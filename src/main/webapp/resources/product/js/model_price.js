@@ -19,7 +19,7 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-	$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
+	$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/page"});
 	});
 	
 
@@ -31,19 +31,7 @@ $(function() {
 			return;
 		}
 		
-		window.location.href = $("#basePath").val()+"/product/product_updown.htm?code="+selRecords[0].code;
-
-	});
-	
-	//下架
-	$('#downBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections');
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		
-		window.location.href = $("#basePath").val()+"/product/product_updown.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/product/model_priced.htm?code="+selRecords[0].code;
 
 	});
 	
@@ -60,18 +48,17 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
-		field : 'type',
-		title : '产品类型',
-		formatter:Dict.getNameForList('product_type'),
-		align : 'left',
-		valign : 'middle',
-		sortable : false
-	}, {
 		field : 'name',
-		title : '产品名称',
+		title : '型号名称',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
+	}, {
+		field : 'productCode',
+		title : '所属产品',
+		align : 'left',
+		valign : 'middle',
+		sortable : false
 	}, {
 		field : 'status',
 		title : '状态',
@@ -80,18 +67,18 @@ function queryTableData(){
 		formatter:Dict.getNameForList('product_status'),
 		sortable : false
 	}, {
-		field : 'updater',
-		title : '更新人',
+		field : 'price',
+		title : '价格',
 		align : 'left',
 		valign : 'middle',
 		sortable : false
-		}];
+	}];
 	
 	
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/product/page",
+		url : $("#basePath").val()+"/model/page",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,

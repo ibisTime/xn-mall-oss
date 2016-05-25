@@ -116,4 +116,70 @@ public class ModelController extends BaseController {
         return modelAO.detailModel(code);
     }
 
+    @RequestMapping(value = "/price/add", method = RequestMethod.POST)
+    @ResponseBody
+    public Object shopLeadadd(@RequestParam("modelCode") String modelCode,
+            @RequestParam("originalPrice") String originalPrice,
+            @RequestParam("discountPrice") String discountPrice,
+            @RequestParam("toLevel") String toLevel,
+            @RequestParam("updater") String updater,
+            @RequestParam("remark") String remark) {
+
+        return modelAO.shopLeadadd(modelCode, originalPrice, discountPrice,
+            toLevel, this.getSessionUser().getUserName(), remark);
+    }
+
+    @RequestMapping(value = "/price/edit", method = RequestMethod.POST)
+    @ResponseBody
+    public Object shopLeadedit(@RequestParam("code") String code,
+            @RequestParam("modelCode") String modelCode,
+            @RequestParam("originalPrice") String originalPrice,
+            @RequestParam("discountPrice") String discountPrice,
+            @RequestParam("toLevel") String toLevel,
+            @RequestParam("updater") String updater,
+            @RequestParam("remark") String remark) {
+
+        return modelAO
+            .shopLeadedit(code, modelCode, originalPrice, discountPrice,
+                toLevel, this.getSessionUser().getUserName(), remark);
+    }
+
+    @RequestMapping(value = "/price/page", method = RequestMethod.GET)
+    @ResponseBody
+    public Object shopCarPage(
+            @RequestParam(value = "userId", required = false) String userId,
+            @RequestParam("start") String start,
+            @RequestParam("limit") String limit,
+            @RequestParam(value = "orderColumn", required = false) String orderColumn,
+            @RequestParam(value = "orderDir", required = false) String orderDir) {
+        return modelAO.shopCarPage(userId, start, limit, orderColumn, orderDir);
+    }
+
+    @RequestMapping(value = "/price/ordePage", method = RequestMethod.GET)
+    @ResponseBody
+    public Object queryOrderPage(
+            @RequestParam(value = "applyUser") String applyUser,
+            @RequestParam(value = "status", required = false) String status,
+            @RequestParam("start") String start,
+            @RequestParam("limit") String limit,
+            @RequestParam(value = "orderColumn", required = false) String orderColumn,
+            @RequestParam(value = "orderDir", required = false) String orderDir) {
+        return modelAO.queryOrderPage(applyUser, status, start, limit,
+            orderColumn, orderDir);
+    }
+
+    @RequestMapping(value = "/price/ordeList", method = RequestMethod.GET)
+    @ResponseBody
+    public Object queryOrderList(
+            @RequestParam(value = "applyUser") String applyUser,
+            @RequestParam(value = "status", required = false) String status) {
+        return modelAO.queryOrderList(applyUser, status);
+    }
+
+    @RequestMapping(value = "/price/ordeDetail", method = RequestMethod.GET)
+    @ResponseBody
+    public Object detailOrder(@RequestParam("invoiceCode") String invoiceCode) {
+        return modelAO.detailOrder(invoiceCode);
+    }
+
 }
