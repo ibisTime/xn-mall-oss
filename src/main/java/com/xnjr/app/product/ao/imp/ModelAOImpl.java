@@ -23,6 +23,8 @@ import com.xnjr.app.product.req.XN601023Req;
 import com.xnjr.app.product.req.XN601024Req;
 import com.xnjr.app.product.req.XN601025Req;
 import com.xnjr.app.product.req.XN601026Req;
+import com.xnjr.app.product.req.XN601040Req;
+import com.xnjr.app.product.req.XN601041Req;
 import com.xnjr.app.util.UploadUtil;
 
 @Service
@@ -128,34 +130,36 @@ public class ModelAOImpl implements IModelAO {
     public Object shopLeadadd(String modelCode, String originalPrice,
             String discountPrice, String toLevel, String updater,
             String remark) {
-        // XN601040Req req = new XN601040Req();
-        // req.setModelCode(modelCode);
-        // req.setOriginalPrice(originalPrice);
-        // req.setDiscountPrice(discountPrice);
-        // req.setToLevel(toLevel);
-        // req.setUpdater(updater);
-        // req.setRemark(remark);
-        return null;
+        XN601040Req req = new XN601040Req();
+        req.setModelCode(modelCode);
+        req.setOriginalPrice(originalPrice);
+        req.setDiscountPrice(discountPrice);
+        req.setToLevel(toLevel);
+        req.setUpdater(updater);
+        req.setRemark(remark);
+        return BizConnecter.getBizData("601040", JsonUtils.object2Json(req),
+            Object.class);
     }
 
     @Override
     public Object shopLeadedit(String code, String modelCode,
             String originalPrice, String discountPrice, String toLevel,
             String updater, String remark) {
-        // XN601041Req req = new XN601041Req();
-        // req.setCode(code);
-        // req.setOriginalPrice(originalPrice);
-        // req.setDiscountPrice(discountPrice);
-        // req.setToLevel(toLevel);
-        // req.setUpdater(updater);
-        // req.setRemark(remark);
-        return null;
+        XN601041Req req = new XN601041Req();
+        req.setCode(code);
+        req.setOriginalPrice(originalPrice);
+        req.setDiscountPrice(discountPrice);
+        req.setToLevel(toLevel);
+        req.setUpdater(updater);
+        req.setRemark(remark);
+        return BizConnecter.getBizData("601041", JsonUtils.object2Json(req),
+            Object.class);
     }
 
     @Override
     public Object shopCarPage(String userId, String start, String limit,
             String orderColumn, String orderDir) {
-        // XN601042Req req = new XN601042Req();
+        // XN602003Req req = new XN602003Req();
         // req.setUserId(userId);
         // req.setStart(start);
         // req.setLimit(limit);
