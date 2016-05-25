@@ -1,11 +1,3 @@
-/**
- * @Title IMenuAO.java 
- * @Package com.ibis.pz.ao 
- * @Description 
- * @author miyb  
- * @date 2015-5-14 上午9:16:37 
- * @version V1.0   
- */
 package com.xnjr.app.product.ao;
 
 import java.util.List;
@@ -79,8 +71,8 @@ public interface IModelAO {
      * @create: 2016年5月23日 上午11:21:54 XIANDONG
      * @history:
      */
-    public Object updownModel(String code, String checkUser,
-            String checkResult, String checkNote);
+    public Object updownModel(String code, String checkUser, String checkResult,
+            String checkNote);
 
     /**
      * 分页查询型号
@@ -134,7 +126,8 @@ public interface IModelAO {
      * @history:
      */
     public Object shopLeadadd(String modelCode, String originalPrice,
-            String discountPrice, String toLevel, String updater, String remark);
+            String discountPrice, String toLevel, String updater,
+            String remark);
 
     /**
      * 购买引导修改

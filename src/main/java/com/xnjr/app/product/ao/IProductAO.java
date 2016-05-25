@@ -1,11 +1,3 @@
-/**
- * @Title IMenuAO.java 
- * @Package com.ibis.pz.ao 
- * @Description 
- * @author miyb  
- * @date 2015-5-14 上午9:16:37 
- * @version V1.0   
- */
 package com.xnjr.app.product.ao;
 
 /**
