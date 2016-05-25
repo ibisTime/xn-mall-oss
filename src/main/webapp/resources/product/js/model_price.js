@@ -24,16 +24,16 @@ $(function() {
 	
 
 	//标价
-	$('#priceBtn').click(function() {
+	$('#priceaddBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		
-		window.location.href = $("#basePath").val()+"/product/model_priced.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/product/price-add.htm?code="+selRecords[0].code;
 
 	});
+	
 	
 });
 
