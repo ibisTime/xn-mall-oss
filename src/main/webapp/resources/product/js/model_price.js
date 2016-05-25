@@ -24,28 +24,17 @@ $(function() {
 	
 
 	//标价
-	$('#priceBtn').click(function() {
+	$('#priceaddBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
 		
-		window.location.href = $("#basePath").val()+"/product/product_updown.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/product/price-add.htm?code="+selRecords[0].code;
 
 	});
 	
-	//下架
-	$('#downBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections');
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		
-		window.location.href = $("#basePath").val()+"/product/product_updown.htm?code="+selRecords[0].code;
-
-	});
 	
 });
 
