@@ -146,6 +146,42 @@ public interface IModelAO {
             String updater, String remark);
 
     /**
+     * 购物车引导分页查询
+     * @param code
+     * @param modelCode
+     * @param toLevel
+     * @param start
+     * @param limit
+     * @param orderColumn
+     * @param orderDir
+     * @return 
+     * @create: 2016年5月25日 上午11:40:46 wu
+     * @history:
+     */
+    public Object shopCarPage(String code, String modelCode, String toLevel,
+            String start, String limit, String orderColumn, String orderDir);
+
+    /**
+     * 购物车引导列表查询     
+     * @param code
+     * @param modelCode
+     * @param toLevel
+     * @return 
+     * @create: 2016年5月25日 上午11:42:55 wu
+     * @history:
+     */
+    public Object shopCarList(String code, String modelCode, String toLevel);
+
+    /**
+     * 购物车引导详情查询 
+     * @param code
+     * @return 
+     * @create: 2016年5月25日 上午11:43:52 wu
+     * @history:
+     */
+    public Object shopCarDetail(String code);
+
+    /**
      * 购物车型号分页查询
      * @param userId
      * @param start
@@ -156,8 +192,19 @@ public interface IModelAO {
      * @create: 2016年5月23日 上午11:36:02 XIANDONG
      * @history:
      */
-    public Object shopCarPage(String userId, String start, String limit,
-            String orderColumn, String orderDir);
+    // public Object shopModelPage(String userId, String start, String limit,
+    // String orderColumn, String orderDir);
+
+    /**
+     * 发货确认
+     * @param code
+     * @param approveUser
+     * @param approveNote
+     * @return 
+     * @create: 2016年5月25日 上午11:47:56 wu
+     * @history:
+     */
+    public Object shipping(String code, String approveUser, String approveNote);
 
     /**
      * 订单分页查询

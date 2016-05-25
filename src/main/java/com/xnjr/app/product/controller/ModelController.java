@@ -147,12 +147,37 @@ public class ModelController extends BaseController {
     @RequestMapping(value = "/price/page", method = RequestMethod.GET)
     @ResponseBody
     public Object shopCarPage(
-            @RequestParam(value = "userId", required = false) String userId,
+            @RequestParam("code") String code,
+            @RequestParam("modelCode") String modelCode,
+            @RequestParam("toLevel") String toLevel,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return modelAO.shopCarPage(userId, start, limit, orderColumn, orderDir);
+        return modelAO.shopCarPage(code, modelCode, toLevel, start, limit,
+            orderColumn, orderDir);
+    }
+
+    @RequestMapping(value = "/price/list", method = RequestMethod.GET)
+    @ResponseBody
+    public Object shopCarList(@RequestParam("code") String code,
+            @RequestParam("modelCode") String modelCode,
+            @RequestParam("toLevel") String toLevel) {
+        return modelAO.shopCarList(code, modelCode, toLevel);
+    }
+
+    @RequestMapping(value = "/price/detail", method = RequestMethod.GET)
+    @ResponseBody
+    public Object shopCarDetail(@RequestParam("code") String code) {
+        return modelAO.shopCarDetail(code);
+    }
+
+    @RequestMapping(value = "/shipping", method = RequestMethod.GET)
+    @ResponseBody
+    public Object shipping(@RequestParam("code") String code,
+            @RequestParam("approveUser") String approveUser,
+            @RequestParam("approveNote") String approveNote) {
+        return modelAO.shipping(code, approveUser, approveNote);
     }
 
     @RequestMapping(value = "/price/ordePage", method = RequestMethod.GET)

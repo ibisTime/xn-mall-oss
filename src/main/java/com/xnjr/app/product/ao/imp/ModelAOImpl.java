@@ -25,6 +25,13 @@ import com.xnjr.app.product.req.XN601025Req;
 import com.xnjr.app.product.req.XN601026Req;
 import com.xnjr.app.product.req.XN601040Req;
 import com.xnjr.app.product.req.XN601041Req;
+import com.xnjr.app.product.req.XN601042Req;
+import com.xnjr.app.product.req.XN601043Req;
+import com.xnjr.app.product.req.XN601044Req;
+import com.xnjr.app.product.req.XN602024Req;
+import com.xnjr.app.product.req.XN602025Req;
+import com.xnjr.app.product.req.XN602026Req;
+import com.xnjr.app.product.req.XN602027Req;
 import com.xnjr.app.util.UploadUtil;
 
 @Service
@@ -156,43 +163,89 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object shopCarPage(String userId, String start, String limit,
-            String orderColumn, String orderDir) {
-        // XN602042Req req = new XN602042Req();
-        // req.setUserId(userId);
-        // req.setStart(start);
-        // req.setLimit(limit);
-        // req.setOrderColumn(orderColumn);
-        // req.setOrderDir(orderDir);
-        return null;
+    public Object shopCarPage(String code, String modelCode, String toLevel,
+            String start, String limit, String orderColumn, String orderDir) {
+        XN601042Req req = new XN601042Req();
+        req.setCode(code);
+        req.setCode(modelCode);
+        req.setStart(start);
+        req.setLimit(limit);
+        req.setOrderColumn(orderColumn);
+        req.setOrderDir(orderDir);
+        return BizConnecter.getBizData("601042", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object shopCarList(String code, String modelCode, String toLevel) {
+        XN601043Req req = new XN601043Req();
+        req.setCode(code);
+        req.setCode(modelCode);
+        req.setToLevel(toLevel);
+        return BizConnecter.getBizData("601043", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object shopCarDetail(String code) {
+        XN601044Req req = new XN601044Req();
+        req.setCode(code);
+        return BizConnecter.getBizData("601044", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    // @Override
+    // public Object shopModelPage(String userId, String start, String limit,
+    // String orderColumn, String orderDir) {
+    // XN602003Req req = new XN602003Req();
+    // req.setUserId(userId);
+    // req.setStart(start);
+    // req.setLimit(limit);
+    // req.setOrderColumn(orderColumn);
+    // req.setOrderDir(orderDir);
+    // return BizConnecter.getBizData("602003", JsonUtils.object2Json(req),
+    // Object.class);
+    // }
+
+    @Override
+    public Object shipping(String code, String approveUser, String approveNote) {
+        XN602024Req req = new XN602024Req();
+        req.setCode(code);
+        req.setApproveUser(approveUser);
+        req.setApproveNote(approveNote);
+        return BizConnecter.getBizData("602024", JsonUtils.object2Json(req),
+            Object.class);
     }
 
     @Override
     public Object queryOrderPage(String applyUser, String status, String start,
             String limit, String orderColumn, String orderDir) {
-        // XN602043Req req = new XN602043Req();
-        // req.setApplyUser(applyUser);
-        // req.setStatus(status);
-        // req.setStart(start);
-        // req.setLimit(limit);
-        // req.setOrderColumn(orderColumn);
-        // req.setOrderDir(orderDir);
-        return null;
+        XN602025Req req = new XN602025Req();
+        req.setApplyUser(applyUser);
+        req.setStatus(status);
+        req.setStart(start);
+        req.setLimit(limit);
+        req.setOrderColumn(orderColumn);
+        req.setOrderDir(orderDir);
+        return BizConnecter.getBizData("602025", JsonUtils.object2Json(req),
+            Object.class);
     }
 
     @Override
     public Object queryOrderList(String applyUser, String status) {
-        // XN602044Req req = new XN602044Req();
-        // req.setApplyUser(applyUser);
-        // req.setStatus(status);
-        return null;
+        XN602026Req req = new XN602026Req();
+        req.setApplyUser(applyUser);
+        req.setStatus(status);
+        return BizConnecter.getBizData("602026", JsonUtils.object2Json(req),
+            Object.class);
     }
 
     @Override
     public Object detailOrder(String invoiceCode) {
-        // XN602045Req req = new XN602045Req();
-        // req.setInvoiceCode(invoiceCode);
-        return null;
+        XN602027Req req = new XN602027Req();
+        req.setInvoiceCode(invoiceCode);
+        return BizConnecter.getBizData("602027", JsonUtils.object2Json(req),
+            Object.class);
     }
 
 }
