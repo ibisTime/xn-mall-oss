@@ -30,8 +30,7 @@ public class ModelController extends BaseController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object addModel(
-            @RequestParam("productCode") String productCode,
+    public Object addModel(@RequestParam("productCode") String productCode,
             @RequestParam("name") String name,
             @RequestParam("pic1") String pic1,
             @RequestParam("pic2") String pic2,
@@ -48,8 +47,7 @@ public class ModelController extends BaseController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
-    public Object editModel(
-            @RequestParam("code") String code,
+    public Object editModel(@RequestParam("code") String code,
             @RequestParam("productCode") String productCode,
             @RequestParam("name") String name,
             @RequestParam("pic1") String pic1,
@@ -122,7 +120,7 @@ public class ModelController extends BaseController {
             @RequestParam("originalPrice") String originalPrice,
             @RequestParam("discountPrice") String discountPrice,
             @RequestParam("toLevel") String toLevel,
-            @RequestParam("updater") String updater,
+            // @RequestParam("updater") String updater,
             @RequestParam("remark") String remark) {
 
         return modelAO.shopLeadadd(modelCode, originalPrice, discountPrice,
@@ -139,15 +137,14 @@ public class ModelController extends BaseController {
             @RequestParam("updater") String updater,
             @RequestParam("remark") String remark) {
 
-        return modelAO
-            .shopLeadedit(code, modelCode, originalPrice, discountPrice,
-                toLevel, this.getSessionUser().getUserName(), remark);
+        return modelAO.shopLeadedit(code, modelCode, originalPrice,
+            discountPrice, toLevel, this.getSessionUser().getUserName(),
+            remark);
     }
 
     @RequestMapping(value = "/price/page", method = RequestMethod.GET)
     @ResponseBody
-    public Object shopCarPage(
-            @RequestParam("code") String code,
+    public Object shopCarPage(@RequestParam("code") String code,
             @RequestParam("modelCode") String modelCode,
             @RequestParam("toLevel") String toLevel,
             @RequestParam("start") String start,
@@ -180,7 +177,7 @@ public class ModelController extends BaseController {
         return modelAO.shipping(code, approveUser, approveNote);
     }
 
-    @RequestMapping(value = "/price/ordePage", method = RequestMethod.GET)
+    @RequestMapping(value = "/price/orderPage", method = RequestMethod.GET)
     @ResponseBody
     public Object queryOrderPage(
             @RequestParam(value = "applyUser") String applyUser,
@@ -193,7 +190,7 @@ public class ModelController extends BaseController {
             orderColumn, orderDir);
     }
 
-    @RequestMapping(value = "/price/ordeList", method = RequestMethod.GET)
+    @RequestMapping(value = "/price/orderList", method = RequestMethod.GET)
     @ResponseBody
     public Object queryOrderList(
             @RequestParam(value = "applyUser") String applyUser,
@@ -201,7 +198,7 @@ public class ModelController extends BaseController {
         return modelAO.queryOrderList(applyUser, status);
     }
 
-    @RequestMapping(value = "/price/ordeDetail", method = RequestMethod.GET)
+    @RequestMapping(value = "/price/orderDetail", method = RequestMethod.GET)
     @ResponseBody
     public Object detailOrder(@RequestParam("invoiceCode") String invoiceCode) {
         return modelAO.detailOrder(invoiceCode);

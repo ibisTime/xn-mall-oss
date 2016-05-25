@@ -24,13 +24,13 @@ $(function() {
 	
 
 	//标价
-	$('#priceaddBtn').click(function() {
+	$('#priceBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/product/price-add.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/product/price-addedit.htm?modelCode="+selRecords[0].code;
 
 	});
 	
@@ -67,10 +67,17 @@ function queryTableData(){
 		formatter:Dict.getNameForList('product_status'),
 		sortable : false
 	}, {
-		field : 'price',
-		title : '价格',
+		field : 'updater',
+		title : '更新人',
 		align : 'left',
 		valign : 'middle',
+		sortable : false
+	}, {
+		field : 'updateDatetime',
+		title : '更新时间',
+		align : 'left',
+		valign : 'middle',
+		formatter:dateFormatter,
 		sortable : false
 	}];
 	
@@ -85,9 +92,9 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				type : $("#type").val(),
 				name : $("#name").val(),
-				updater : $("#updater").val(),
+				productCode : $("#productCode").val(),
+				status:3,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
