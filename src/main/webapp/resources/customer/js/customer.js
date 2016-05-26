@@ -1,5 +1,3 @@
-var dictIdKind=null;
-var dictStatus=null;
 var dictLevel=null;
 //页面初始化
 
@@ -34,58 +32,11 @@ $(function(){
 		window.location.href = $("#basePath").val()+"/customer/customer_edit.htm?code="+selRecords[0].code;
 	});
 	
-	var code = getQueryString('code');
-	doGetAjaxIsAsync($("#basePath").val()+"/account/querylist", {}, false, function(res) {
-		var data = res.data || [], html = "<option value=''>请选择</option>";
-		for (var i = 0, len = data.length; i < len; i++) {
-			html += "<option value='"+data[i].code+"'>"+data[i].name+"</option>";
-			$("#productCode").html(html);
-		}
-	});
 	
-//	doGetAjaxIsAsync($("#basePath").val() + '/customer/sole/list', {}, false, function(res) {
-//		soleData = res.data;
-//	});
-//
-//	var formatSole = function(value) {
-//		for (var i = 0, len = soleData.length; i < len; i++) {
-//			if (soleData[i].code == value) {
-//				return soleData[i].name;
-//			}
-//		}
-//		return '-';
-//	} 
 	
-	$('#tableList').bootstrapTable({
-		method : "get",
-		url : $("#basePath").val()+"/account/queryPage",
-		
-		striped : true,
-		singleSelect : true,
-		clickToSelect : true,
-		queryParams : function(params) {
-			return {
-			    mobile:$("#mobile").val(),
-			    realName:$("#realName").val(),
-			    idNo:$("#idNo").val(),
-				start : params.offset / params.limit + 1,
-				limit : params.limit
-			};
-		},
-		queryParamsType : 'limit',
-		responseHandler : function(res) {
-			return {
-				rows : res.data.list,
-				total : res.data.totalCount
-			};
-		},
-		pagination : true,
-		sidePagination : 'server', // 服务端请求
-		totalRows : 0,
-		pageNumber : 1,
-		pageSize : 10,
-		pageList : [ 10, 20, 30, 40, 50 ],
-		columns : [{
+	//表格初始化
+	function queryTableData(){
+		var columns = [{
 			field : '',
 			title : '',
 			align : 'left',
@@ -139,20 +90,51 @@ $(function(){
 			align : 'left',
 			valign : 'middle',
 			sortable : false
-		}]
+		}];
 		
-	});
-})
-
-function initData(){
-}
-
-//删除事件回执方法
-function doSuccessDelBack(res) {
-	if (res.isSuccess == true) {
-		alert("删除成功");
-		$('#tableList').bootstrapTable('refresh');
-	}else{
-		alert("删除失败");
+		
+		
+		$('#tableList').bootstrapTable({
+			method : "get",
+			url : $("#basePath").val()+"/account/queryPage",
+			height : $(window).height() - 180,
+			striped : true,
+			clickToSelect : true,
+			singleSelect : true,
+			queryParams : function(params) {
+				return {
+					loginName : $("#loginName").val(),
+					mobile : $("#mobile").val(),
+					userKind : $("#userKind").val(),
+					userReferee : $("#userReferee").val(),
+					idKind : $("#idKind").val(),
+					idNo : $("#idNo").val(),
+					realName : $("#realName").val(),
+					status : $("#status").val(),
+					level : $("#level").val(),
+					start : params.offset / params.limit + 1,
+					limit : params.limit
+				};
+			},
+			queryParamsType : 'limit',
+			responseHandler : function(res) {
+				return {
+					rows : res.data.list,
+					total : res.data.totalCount
+				};
+			},
+			pagination : true,
+			sidePagination : 'server', // 服务端请求
+			totalRows : 0,
+			pageNumber : 1,
+			pageSize : 10,
+			pageList : [ 10, 20, 30, 40, 50 ],
+			columns : columns
+		});
 	}
-}
+})
+	//表格时间格式转化
+	function dateFormatter(value, row){
+		return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
+	}
+

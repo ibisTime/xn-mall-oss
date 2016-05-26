@@ -110,8 +110,6 @@ function queryTableData(){
 	});
 }
 
-
-
 //表格时间格式转化
 function dateFormatter(value, row){
 	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
