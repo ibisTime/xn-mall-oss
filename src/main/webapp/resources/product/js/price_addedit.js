@@ -65,7 +65,7 @@ $(function() {
 	function doSucBackGetDetail(res){
 		if (res.success) {
 			$("#modelCode").html(res.data.code);
-//			$("#originalPrice").val(res.data.originalPrice);
+			$("#originalPrice").val(res.data.originalPrice);
 //			$("#discountPrice").val(res.data.discountPrice);
 //			$("#toLevel").val(res.data.toLevel);
 //			$("#remark").val(res.data.remark);
