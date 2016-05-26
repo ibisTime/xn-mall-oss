@@ -6,25 +6,59 @@ var dictLevel=null;
 $(function(){
 	//按钮权限判断
 	showPermissionControl();
-    //页面数据字典初始化
-	initData();
-	var soleData = [];
-	doGetAjaxIsAsync($("#basePath").val() + '/customer/sole/list', {}, false, function(res) {
-		soleData = res.data;
-	});
-
-	var formatSole = function(value) {
-		for (var i = 0, len = soleData.length; i < len; i++) {
-			if (soleData[i].code == value) {
-				return soleData[i].name;
-			}
+	//表格初始化
+	queryTableData();
+	
+	//详情绑定事件
+	$('#detailBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
 		}
-		return '-';
-	} 
+		window.location.href = $("#basePath").val()+"/customer/customer_detail.htm?userId="+selRecords[0].userId;
+	});
+	
+	// 查询事件绑定
+	$('#searchBtn').click(function() {
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/queryPage"});
+	});
+	
+	//修改
+	$('#editBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/customer/customer_edit.htm?code="+selRecords[0].code;
+	});
+	
+	var code = getQueryString('code');
+	doGetAjaxIsAsync($("#basePath").val()+"/account/querylist", {}, false, function(res) {
+		var data = res.data || [], html = "<option value=''>请选择</option>";
+		for (var i = 0, len = data.length; i < len; i++) {
+			html += "<option value='"+data[i].code+"'>"+data[i].name+"</option>";
+			$("#productCode").html(html);
+		}
+	});
+	
+//	doGetAjaxIsAsync($("#basePath").val() + '/customer/sole/list', {}, false, function(res) {
+//		soleData = res.data;
+//	});
+//
+//	var formatSole = function(value) {
+//		for (var i = 0, len = soleData.length; i < len; i++) {
+//			if (soleData[i].code == value) {
+//				return soleData[i].name;
+//			}
+//		}
+//		return '-';
+//	} 
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/customer/page",
+		url : $("#basePath").val()+"/account/queryPage",
 		
 		striped : true,
 		singleSelect : true,
@@ -107,31 +141,6 @@ $(function(){
 			sortable : false
 		}]
 		
-	});
-
-	// 
-    //详情绑定事件
-	$('#detailBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/customer/customer_detail.htm?userId="+selRecords[0].userId;
-	});
-	
-	$('#applyBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/customer/customer_apply.htm?userId="+selRecords[0].userId;
-	});
-	
-	// 查询事件绑定
-	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/page"});
 	});
 })
 
