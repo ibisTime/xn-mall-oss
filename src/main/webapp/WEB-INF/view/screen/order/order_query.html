@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=8"/>
 <title>订单管理</title>
 <#include 'layout/resources.html'/>
-<script type="text/javascript" src="${resourceUrl}/resources/product/js/order-query.js?version=${version}"></script>
+<script type="text/javascript" src="${resourceUrl}/resources/order/js/order-query.js?version=${version}"></script>
 </head>
 <body>
 	<#include 'layout/hidden_ares.html'/>
@@ -22,8 +22,8 @@
          <!-- 搜索表单 -->
     	 <form class="search-form">
         	<ul>
-	            <li><label>订单编号</label><input type="text" id="name"/></li>
-	            <li><label>下单用户</label><select id="type"></select></li>
+	            <li><label>订单编号</label><input type="text" id="code"/></li>
+	            <li><label>下单用户</label><input type="text" id="user"></input></li>
 	            <li><label>订单状态</label><select id="status"></select></li>
 	            <li>
 	                <input id="searchBtn" type="button" class="btn" value="查询" />
@@ -35,7 +35,7 @@
     	<div class="tools">
 		   <ul class="toolbar">
 		       <li id="detailBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>详情</li>
-		       <li id="editBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>导出</li>
+		       <li id="outBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>导出</li>
 	       </ul>
 	    </div>
 	    <!-- 表格 -->

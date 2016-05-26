@@ -4,15 +4,14 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
-	$('#type').renderDropdown(Dict.getName('product_type'));
-	$('#status').renderDropdown(Dict.getName('product_status'));
+	$('#status').renderDropdown(Dict.getName('order_status'));
 		
 	//表格初始化
 	queryTableData();
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/product/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/orderPage"});
 	});
 	
 	//详情
@@ -22,7 +21,7 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/product/product_detail.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/order/order_detail.htm?code="+selRecords[0].code;
 	});
 	
 	//导出
@@ -32,7 +31,7 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/product/product_addedit.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/order/order_query.htm?code="+selRecords[0].code;
 	});
 	
 });
@@ -47,26 +46,25 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
-		field : 'name',
+		field : 'code',
 		title : '订单编号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
 	}, {
-		field : 'type',
+		field : 'applyUser',
 		title : '下单用户',
 		align : 'left',
 		valign : 'middle',
-		formatter:Dict.getNameForList('product_type'),
 		sortable : false
-	}, {
-		field : 'updater',
-		title : '下单总金额',
+	},{
+		field : 'totalAmount',
+		title : '订单总金额',
 		align : 'left',
 		valign : 'middle',
 		sortable : false
-	}, {
-		field : 'updater',
+	},{
+		field : 'applyDatetime',
 		title : '下单时间',
 		align : 'left',
 		valign : 'middle',
@@ -76,7 +74,7 @@ function queryTableData(){
 		title : '状态',
 		align : 'left',
 		valign : 'middle',
-		formatter:Dict.getNameForList('product_status'),
+		formatter:Dict.getNameForList('order_status'),
 		sortable : false
 	}];
 	
@@ -84,17 +82,17 @@ function queryTableData(){
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/product/page",
+		url : $("#basePath").val()+"/model/price/orderPage",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				type : $("#type").val(),
-				name : $("#name").val(),
+				code : $("#code").val(),
+				applyUser : $("#applyUser").val(),
+				time : $("#time").val(),
 				status : $("#status").val(),
-				updater : $("#updater").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
