@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<title>个体户详情</title>
+<#include 'layout/resources.html'/>
+<script type="text/javascript" src="${resourceUrl}/resources/customer/js/individual-detail.js?version=${version}"></script>
+</head>
+<body>
+<#include 'layout/hidden_ares.html' />
+   <div class="place">
+	    <span>位置：</span>
+	    <ul>
+		    <li>客户管理</li>
+		    <li>客户管理</li>
+		    <li>个体户详情</li>
+	    </ul>
+   </div>
+   <div class="form-body">
+	    <ul class="form-info">
+	   	    <li style="display: none;"><span id="code"></span></li>
+		    <li><label>个体户名称:</label><span id="name"></span></li>
+		    <li class="serveCtn"><label>拥有的服务:</label><input readonly onclick="return false;" name="A" type="checkbox" value="" />现金管理 
+				<input readonly onclick="return false;" name="B" type="checkbox" value="" />贸易重构
+				<input readonly onclick="return false;" name="C" type="checkbox" value="" />财报优化
+				<input readonly onclick="return false;" name="D" type="checkbox" value="" />市值管理
+				<input readonly onclick="return false;" name="E" type="checkbox" value="" />企业降本
+				<input readonly onclick="return false;" name="1" type="checkbox" value="" />等分模式
+				<input readonly onclick="return false;" name="2" type="checkbox" value="" />优先劣后模式 </li>
+			<li class="quoteCtn"><label>拥有的报价:</label><input readonly onclick="return false;" name="A" type="checkbox" value="" />年化自然日
+				<input readonly onclick="return false;" name="B" type="checkbox" value="" />年化工作日
+				<input readonly onclick="return false;" name="C" type="checkbox" value="" />分成
+				<input readonly onclick="return false;" name="D" type="checkbox" value="" />保底加分成</li>
+			<li class="levelCtn"><label>等级:</label><span id="level"></span></li>
+			<li><label>状态:</label><span id="status"></span></li>
+	    </ul>
+	</div>
+	<br/>
+	<li class="btn-groups"><input id="activeBtn" type="button" class="btn margin-left-20" value="启用"/><input id="backBtn" type="button" class="btn margin-left-40" value="返回"/></li>
+  </body>
+  </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<title>客户信息</title>
+<#include 'layout/resources.html'/>
+<script type="text/javascript" src="${resourceUrl}/resources/customer/js/customer-applyer-check.js?version=${version}"></script>
+<style type="text/css">
+.form-body .tabson{display:none}
+.form-body #accountJour{display:block}
+</style>
+</head>
+<body>
+    <#include 'layout/hidden_ares.html'/>
+	<div class="place">
+    	<span>位置：</span>
+	    <ul>
+	    	<li>客户管理</li>
+	    	<li>客户管理</li>
+	    	<li>审核隶属人</li>
+   		</ul>
+    </div>
+    <form class="form-body" id="jsForm">
+		<div class="form-title"><span>审核隶属人</span></div>
+	   		<ul class="form-info">
+	   			<li><input type="hidden" id=userId name="userId" class="control-def" /></li>
+	   			<li><label>申请客户:</label><span id="userName"></span></li>
+			    <li><label>隶属个体户/企业:</label><span id="companyName"></span></li>
+			    <li><label>申请公函:</label><span id="sqghPicture"></span></li>
+			    <li><label><b>*</b>备注:</label><input id="kycNote" name="kycNote" class="control-def"></input></li>
+		    </ul>
+	</form>
+	<br/>
+	<li><input id="passBtn" type="button" class="btn margin-left-100" value="通过"/><input id="noPassBtn" type="button" class="btn margin-left-40" value="不通过"/><input id="backBtn" type="button" class="btn margin-left-40" value="返回"/></li>
+</body>
+</html>
