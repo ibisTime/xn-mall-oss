@@ -13,8 +13,36 @@ $(function() {
 		doGetAjax(url, data, doSucBackGetDetail);
 	}
 	
-
 	
+	$('#cancelBtn').click(function() {
+		if(!$("#jsForm").valid()){
+			return false;
+		}
+	    var data = {};
+		var t = $('form').serializeArray();
+		$.each(t, function() {
+			data[this.name] = this.value;
+		});
+		data["code"] = $("#code").html();
+		var url = $("#basePath").val()+"/model/order/cancel";
+		
+		doPostAjax(url, data, doSucBackSave);
+	});
+
+	$("#jsForm").validate({
+		rules: {
+			approveNote: {
+				required: true,
+				maxlength: 32
+			}
+		},
+		messages: {
+			approveNote: {
+				required: "请输入取消说明",
+				maxlength: jQuery.format("取消说明不能大于{0}个字符")
+			}
+		}
+	});
 	//返回
 	$('#backBtn').click(function() {
 		location.href = $("#basePath").val()+"/order/order_query.htm";
@@ -53,7 +81,14 @@ $(function() {
 	}
 });
 
-
+function doSucBackSave(res) {
+	if (res.success == true) {
+		alert("操作成功");
+		window.location.href = $("#basePath").val()+"/order/order_undo.htm";
+	}else{
+		alert(res.msg);
+	}
+}
 
 function initBusinessTable(){
 	//绑定列表

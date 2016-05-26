@@ -9,7 +9,7 @@
 <#include 'layout/resources.html'/>
 <link rel="stylesheet" href="${resourceUrl}/resources/common/css/jquery.edittable.min.css" />
 <script type="text/javascript" src="${resourceUrl}/resources/common/js/jquery.edittable.js"></script>
-<script type="text/javascript" src="${resourceUrl}/resources/order/js/order-detail.js?version=${version}"></script>
+<script type="text/javascript" src="${resourceUrl}/resources/order/js/order_cancel.js?version=${version}"></script>
 </head>
 <body>
     <#include 'layout/hidden_ares.html'/>
@@ -43,8 +43,9 @@
  		    	<li><label>收货地址:</label><span id="address"></span></li>
  		    	<div class="form-title"><span>商品信息</span></div>
  		    	<div id="tableList"></div>
-			    <li><label>备注:</label><span id="remark"></span></li>
+			    <li><label><b>*</b>取消说明:</label><input id="approveNote" name="approveNote" class="control-def"/></li>
 			    <li>
+			    	<input id="cancelBtn" type="button" class="btn margin-left-60" value="取消"/>
 			        <input id="backBtn" type="button" class="btn margin-left-60" value="返回"/>
 			    </li>
 			</ul>

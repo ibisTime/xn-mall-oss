@@ -1,17 +1,15 @@
 $(function() {
-	
 	//获取菜单URL入参
-	var code = getQueryString("modelCode");
+	var modelCode = getQueryString("modelCode");
 	//新增修改判断
-	if(isBlank(code)){
+	if(isBlank(modelCode)){
 		$("#product").val("add");
 	}else{
 		$("#code").attr("readonly","readonly");
-		var data = {"code":code};
-		var url = $("#basePath").val()+"/model/price/detail";
+		var data = {"code":modelCode};
+		var url = $("#basePath").val()+"/model/detail";
 		doGetAjax(url, data, doSucBackGetDetail);
 	}
-	
 	
 	//提交
 	$('#subBtn').click(function() {
@@ -36,39 +34,12 @@ $(function() {
 			originalPrice: {
 				required: true,
 				maxlength: 32,
-				number:true
-			},
-			discountPrice: {
-				required: true,
-				maxlength: 32,
-				number:true
-			},
-			toLevel: {
-				required: true,
-				maxlength: 32,
-				number:true
-			},
-			remark: {
-				required: true,
-				maxlength: 100
 			}
 		},
 		messages: {
 			originalPrice: {
 				required: "请输入原价",
 				maxlength: jQuery.format("原价不能大于{0}个字符")
-			},
-			discountPrice: {
-				required: "请输入折扣价",
-				maxlength: jQuery.format("折扣价不能大于{0}个字符")
-			},
-			toLevel: {
-				required: "请输入等级",
-				maxlength: jQuery.format("等级不能大于{0}个字符")
-			},
-			remark: {
-				required: "请输入备注",
-				maxlength: jQuery.format("备注不能大于{0}个字符")
 			}
 		}
 	});

@@ -67,6 +67,12 @@ function queryTableData(){
 		formatter:Dict.getNameForList('product_status'),
 		sortable : false
 	}, {
+		field : 'originalPrice',
+		title : '价格',
+		align : 'left',
+		valign : 'middle',
+		sortable : false
+	}, {
 		field : 'updater',
 		title : '更新人',
 		align : 'left',
