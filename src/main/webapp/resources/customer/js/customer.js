@@ -64,8 +64,14 @@ $(function(){
 			valign : 'middle',
 			sortable : false
 			},{
-			field : 'realName',
-			title : '真实姓名',
+			field : 'userKind',
+			title : '用户类别',
+			align : 'left',
+			valign : 'middle',
+			sortable : false
+			},{
+			field : 'userReferee',
+			title : '推荐人',
 			align : 'left',
 			valign : 'middle',
 			sortable : false
@@ -80,26 +86,20 @@ $(function(){
 			valign : 'middle',
 			sortable : false
 			},{
-			field : 'individualCode',
-			title : '个体户',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			formatter: formatSole
-			},{
-			field : 'serveList',
-			title : '服务',
-			align : 'left',
-			valign : 'middle',
-			formatter : Dict.getServeName
-			},{
-			field : 'quoteList',
-			title : '报价',
+			field : 'realName',
+			title : '真实姓名',
 			align : 'left',
 			valign : 'middle',
 			formatter : Dict.getQuoteName,
 			sortable : false
-		},{
+		    },{
+			field : '状态',
+			title : 'status',
+			align : 'left',
+			valign : 'middle',
+			formatter : Dict.getQuoteName,
+			sortable : false
+		    },{
 			field : 'level',
 			title : '等级',
 			align : 'left',
@@ -109,7 +109,8 @@ $(function(){
 		
 	});
 
-	// 增加菜单绑定事件
+	// 
+    //详情绑定事件
 	$('#detailBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
@@ -128,19 +129,6 @@ $(function(){
 		window.location.href = $("#basePath").val()+"/customer/customer_apply.htm?userId="+selRecords[0].userId;
 	});
 	
-	$('#soleBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		if (selRecords[0].individualCode) {
-			alert("该客户已是个体户，无需再分配");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/customer/customer_sole.htm?userId="+selRecords[0].userId;
-	});
-
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/page"});
