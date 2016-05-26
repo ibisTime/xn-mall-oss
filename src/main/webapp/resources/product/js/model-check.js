@@ -4,6 +4,7 @@ $(function() {
 	//获取菜单URL入参
 	var code = getQueryString("code");
 	//新增修改判断
+	initBusinessTable();
 	if(isBlank(code)){
 		$("#product").val("add");
 	}else{
@@ -62,48 +63,28 @@ $(function() {
 		doPostAjax(url, data, doSuccessBack);
 	}
 
-
-	function doSuccessBack(res) {
-		if (res.success == true) {
-			alert("操作成功");
-			window.location.href = $("#basePath").val()+"/product/model.htm";
-		}else{
-			alert(res.msg);
-		}
-	}
-	
-	function initSpecsTable(){
-	    mytable = $('#edittable').editTable({
-		    row_template: ['text', 'text'],
-		    headerCols: ['参数名','参数值'],
-		    first_row: false,
-		    data: [
-		        ["",""]
-		    ]
+	function initBusinessTable(){
+		//绑定列表
+		$('#tableList').bootstrapTable({
+			striped : true,
+			singleSelect : true,
+			clickToSelect : true,
+			columns : [{
+						field : 'dkey',
+						title : '参数名',
+						align : 'left',
+						valign : 'middle',
+						sortable : false,
+					},{
+						field : 'dvalue',
+						title : '参数值',
+						align : 'left',
+						valign : 'middle',
+						sortable : false,
+					}]
 		});
 	}
-	
-	initSpecsTable();
-	var code = getQueryString("code");
-	if(!isBlank(code)){
-		var data = {"code":code};
-		var url = $("#basePath").val()+"/model/detail";
-		doGetAjax(url, data, doGetDetailSpecsBack);	
-	}
-	
-	function doGetDetailSpecsBack(res){
-		if (res.success == true) {
-			if(res.data != null){
-				result=res.data.business;
-			    
-				$("#tableList").bootstrapTable("load", res.data.specsTableList);
-			}else{
-				alert("根据编号获取详情为空");
-			}
-		}else{
-			alert(res.msg);
-		}
-	}
+
 	//获取详情回调方法
 	function doSucBackGetDetail(res){
 		if (res.success) {
@@ -115,12 +96,7 @@ $(function() {
 			$("#img2").attr('src',res.data.pic2);
 			$("#img3").attr('src',res.data.pic3);
 			$("#description").html(res.data.description);
-			specsTable=res.data.modelSpecsList;
-		    var specsTableList = new Array();
-		    for(var i = 0;i < specsTable.length;i++){
-		    	specsTableList[i]=[specsTable[i].dkey,specsTable[i].dvalue];
-			}
-		    mytable.loadData(specsTableList);
+			$("#tableList").bootstrapTable("load", res.data.modelSpecsList);
 		}else{
 			alert(res.msg);
 		}

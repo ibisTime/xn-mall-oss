@@ -14,14 +14,14 @@ $(function() {
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/orderPage"});
 	});
 	
-	//详情
+	//取消
 	$('#undoBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/product/product_detail.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/order/order_cancel.htm?invoiceCode="+selRecords[0].code;
 	});
 	
 });
@@ -58,6 +58,7 @@ function queryTableData(){
 		title : '下单时间',
 		align : 'left',
 		valign : 'middle',
+		formatter:dateFormatter,
 		sortable : false
 	} ,{
 		field : 'status',
@@ -72,7 +73,7 @@ function queryTableData(){
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/model/price/orderPage",
+		url : $("#basePath").val()+"/model/order/Page",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,

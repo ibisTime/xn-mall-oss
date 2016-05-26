@@ -3,6 +3,7 @@ package com.xnjr.app.product.ao;
 import java.util.List;
 
 import com.xnjr.app.product.req.ModelSpecs;
+import com.xnjr.app.res.XN602026Res;
 
 /**
  * @author: XIANDONG 
@@ -71,8 +72,8 @@ public interface IModelAO {
      * @create: 2016年5月23日 上午11:21:54 XIANDONG
      * @history:
      */
-    public Object updownModel(String code, String checkUser,
-            String checkResult, String checkNote);
+    public Object updownModel(String code, String checkUser, String checkResult,
+            String checkNote);
 
     /**
      * 分页查询型号
@@ -126,7 +127,8 @@ public interface IModelAO {
      * @history:
      */
     public Object shopLeadadd(String modelCode, String originalPrice,
-            String discountPrice, String toLevel, String updater, String remark);
+            String discountPrice, String toLevel, String updater,
+            String remark);
 
     /**
      * 购买引导修改
@@ -239,4 +241,26 @@ public interface IModelAO {
      * @history:
      */
     public Object detailOrder(String invoiceCode);
+
+    /**
+     * 导出列表
+     * @param applyUser
+     * @param status
+     * @return 
+     * @create: 2016年5月26日 下午4:50:05 XIANDONG
+     * @history:
+     */
+    List<XN602026Res> exportList(String applyUser, String status);
+
+    /**
+     * 取消订单
+     * @param code
+     * @param approveUser
+     * @param approveNote
+     * @return 
+     * @create: 2016年5月26日 下午5:04:38 XIANDONG
+     * @history:
+     */
+    public Object cancelOrder(String code, String approveUser,
+            String approveNote);
 }

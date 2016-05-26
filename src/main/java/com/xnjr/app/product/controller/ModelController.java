@@ -1,6 +1,9 @@
 package com.xnjr.app.product.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,8 @@ import com.google.gson.reflect.TypeToken;
 import com.xnjr.app.controller.BaseController;
 import com.xnjr.app.product.ao.IModelAO;
 import com.xnjr.app.product.req.ModelSpecs;
+import com.xnjr.app.res.XN602026Res;
+import com.xnjr.app.util.ExcelUtil;
 
 /**
  * 产品
@@ -118,10 +123,10 @@ public class ModelController extends BaseController {
     @ResponseBody
     public Object shopLeadadd(@RequestParam("modelCode") String modelCode,
             @RequestParam("originalPrice") String originalPrice,
-            @RequestParam("discountPrice") String discountPrice,
-            @RequestParam("toLevel") String toLevel,
+            @RequestParam(value = "discountPrice", required = false) String discountPrice,
+            @RequestParam(value = "toLevel", required = false) String toLevel,
             // @RequestParam("updater") String updater,
-            @RequestParam("remark") String remark) {
+            @RequestParam(value = "remark", required = false) String remark) {
 
         return modelAO.shopLeadadd(modelCode, originalPrice, discountPrice,
             toLevel, this.getSessionUser().getUserName(), remark);
@@ -177,10 +182,10 @@ public class ModelController extends BaseController {
         return modelAO.shipping(code, approveUser, approveNote);
     }
 
-    @RequestMapping(value = "/price/orderPage", method = RequestMethod.GET)
+    @RequestMapping(value = "/order/Page", method = RequestMethod.GET)
     @ResponseBody
     public Object queryOrderPage(
-            @RequestParam(value = "applyUser") String applyUser,
+            @RequestParam(value = "applyUser", required = false) String applyUser,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit,
@@ -190,7 +195,7 @@ public class ModelController extends BaseController {
             orderColumn, orderDir);
     }
 
-    @RequestMapping(value = "/price/orderList", method = RequestMethod.GET)
+    @RequestMapping(value = "/order/List", method = RequestMethod.GET)
     @ResponseBody
     public Object queryOrderList(
             @RequestParam(value = "applyUser") String applyUser,
@@ -198,10 +203,38 @@ public class ModelController extends BaseController {
         return modelAO.queryOrderList(applyUser, status);
     }
 
-    @RequestMapping(value = "/price/orderDetail", method = RequestMethod.GET)
+    @RequestMapping(value = "/order/detail", method = RequestMethod.GET)
     @ResponseBody
     public Object detailOrder(@RequestParam("invoiceCode") String invoiceCode) {
         return modelAO.detailOrder(invoiceCode);
+    }
+
+    // 导出
+    @RequestMapping(value = "/export", method = RequestMethod.GET)
+    @ResponseBody
+    public void exportRecWithList(
+            @RequestParam(value = "applyUser", required = false) String applyUser,
+            @RequestParam(value = "status", required = false) String status,
+            HttpServletResponse response) throws IOException {
+        // 表格命名
+        String sheetName = "sheet1";
+        // 列名
+        String columnNames[] = { "订单编号", "下单用户", "订单总金额", "下单时间", "状态" };
+
+        // 列表数据
+        List<XN602026Res> list = modelAO.exportList(applyUser, status);
+        // 导出数据
+        ExcelUtil<XN602026Res> excelUtil = new ExcelUtil<XN602026Res>();
+        excelUtil.generateExcel("订单列表", sheetName, columnNames, list, response);
+    }
+
+    @RequestMapping(value = "/order/cancel", method = RequestMethod.POST)
+    @ResponseBody
+    public Object cancelOrder(@RequestParam("code") String code,
+            // @RequestParam("approveUser") String approveUser,
+            @RequestParam(value = "approveNote", required = false) String approveNote) {
+        return modelAO.cancelOrder(code, this.getSessionUser().getUserName(),
+            approveNote);
     }
 
 }

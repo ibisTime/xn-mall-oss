@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.xnjr.app.http.BizConnecter;
 import com.xnjr.app.http.JsonUtils;
 import com.xnjr.app.product.ao.IModelAO;
@@ -32,6 +34,8 @@ import com.xnjr.app.product.req.XN602024Req;
 import com.xnjr.app.product.req.XN602025Req;
 import com.xnjr.app.product.req.XN602026Req;
 import com.xnjr.app.product.req.XN602027Req;
+import com.xnjr.app.product.req.XN602028Req;
+import com.xnjr.app.res.XN602026Res;
 import com.xnjr.app.util.UploadUtil;
 
 @Service
@@ -247,6 +251,33 @@ public class ModelAOImpl implements IModelAO {
         XN602027Req req = new XN602027Req();
         req.setInvoiceCode(invoiceCode);
         return BizConnecter.getBizData("602027", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public List<XN602026Res> exportList(String applyUser, String status) {
+        XN602026Req req = new XN602026Req();
+        req.setApplyUser(applyUser);
+        req.setStatus(status);
+        String jsonStr = BizConnecter.getBizData("602026",
+            JsonUtils.object2Json(req));
+
+        Gson gson = new Gson();
+        List<XN602026Res> list = gson.fromJson(jsonStr,
+            new TypeToken<List<XN602026Res>>() {
+            }.getType());
+
+        return list;
+    }
+
+    @Override
+    public Object cancelOrder(String code, String approveUser,
+            String approveNote) {
+        XN602028Req req = new XN602028Req();
+        req.setCode(code);
+        req.setApproveUser(approveUser);
+        req.setApproveNote(approveNote);
+        return BizConnecter.getBizData("602028", JsonUtils.object2Json(req),
             Object.class);
     }
 

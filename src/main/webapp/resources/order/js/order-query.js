@@ -11,7 +11,7 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/orderPage"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/order/Page"});
 	});
 	
 	//详情
@@ -21,17 +21,14 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/order/order_detail.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/order/order_detail.htm?invoiceCode="+selRecords[0].code;
 	});
 	
 	//导出
-	$('#editBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/order/order_query.htm?code="+selRecords[0].code;
+	$('#exportBtn').click(function() {
+		var url=$('#basePath').val()+'/model/export?applyUser=' + $('#applyUser').val() + 
+		'&status=' + $('#status').val();
+		window.open(url);
 	});
 	
 });
@@ -68,6 +65,7 @@ function queryTableData(){
 		title : '下单时间',
 		align : 'left',
 		valign : 'middle',
+		formatter:dateFormatter,
 		sortable : false
 	} ,{
 		field : 'status',
@@ -82,16 +80,14 @@ function queryTableData(){
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/model/price/orderPage",
+		url : $("#basePath").val()+"/model/order/Page",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				code : $("#code").val(),
 				applyUser : $("#applyUser").val(),
-				time : $("#time").val(),
 				status : $("#status").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
