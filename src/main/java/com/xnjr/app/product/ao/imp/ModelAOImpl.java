@@ -10,10 +10,12 @@ package com.xnjr.app.product.ao.imp;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.xnjr.app.general.ao.IDictAO;
 import com.xnjr.app.http.BizConnecter;
 import com.xnjr.app.http.JsonUtils;
 import com.xnjr.app.product.ao.IModelAO;
@@ -36,10 +38,14 @@ import com.xnjr.app.product.req.XN602026Req;
 import com.xnjr.app.product.req.XN602027Req;
 import com.xnjr.app.product.req.XN602028Req;
 import com.xnjr.app.res.XN602026Res;
+import com.xnjr.app.res.XNlh5014Res;
 import com.xnjr.app.util.UploadUtil;
 
 @Service
 public class ModelAOImpl implements IModelAO {
+
+    @Autowired
+    protected IDictAO dataDicAO;
 
     @Override
     public Object addModel(String productCode, String name, String pic1,
@@ -266,7 +272,19 @@ public class ModelAOImpl implements IModelAO {
         List<XN602026Res> list = gson.fromJson(jsonStr,
             new TypeToken<List<XN602026Res>>() {
             }.getType());
+        // 获取数据字典
+        List<XNlh5014Res> orderStatusList = dataDicAO.queryDictList(null,
+            "order_status", null);
 
+        for (int i = 0; i < list.size(); i++) {
+            XN602026Res xn602026Res = list.get(i);
+            for (XNlh5014Res orderStatusDic : orderStatusList) {
+                if (orderStatusDic.getDkey().equals(xn602026Res.getStatus())) {
+                    xn602026Res.setStatus(orderStatusDic.getDvalue());
+                    break;
+                }
+            }
+        }
         return list;
     }
 

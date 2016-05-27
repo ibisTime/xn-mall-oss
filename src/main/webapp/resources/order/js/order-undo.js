@@ -52,6 +52,7 @@ function queryTableData(){
 		title : '订单总金额',
 		align : 'left',
 		valign : 'middle',
+		formatter:moneyFormatter,
 		sortable : false
 	},{
 		field : 'applyDatetime',
@@ -110,4 +111,8 @@ function queryTableData(){
 //表格时间格式转化
 function dateFormatter(value, row){
 	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
+}
+//格式化金额
+function moneyFormatter(value, row){
+	return moneyFormat(value, 2);
 }

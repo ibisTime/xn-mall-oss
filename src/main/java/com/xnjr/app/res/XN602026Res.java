@@ -1,14 +1,16 @@
 package com.xnjr.app.res;
 
+import java.util.Date;
+
 public class XN602026Res {
 
     private String code;
 
     private String applyUser;
 
-    private String totalAmount;
+    private Long totalAmount;
 
-    private String applyDatetime;
+    private Date applyDatetime;
 
     private String status;
 
@@ -28,19 +30,19 @@ public class XN602026Res {
         this.applyUser = applyUser;
     }
 
-    public String getTotalAmount() {
+    public Long getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(String totalAmount) {
+    public void setTotalAmount(Long totalAmount) {
         this.totalAmount = totalAmount;
     }
 
-    public String getApplyDatetime() {
+    public Date getApplyDatetime() {
         return applyDatetime;
     }
 
-    public void setApplyDatetime(String applyDatetime) {
+    public void setApplyDatetime(Date applyDatetime) {
         this.applyDatetime = applyDatetime;
     }
 
