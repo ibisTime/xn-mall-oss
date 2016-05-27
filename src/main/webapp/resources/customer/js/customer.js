@@ -78,11 +78,11 @@ $(function(){
 			formatter : Dict.getQuoteName,
 			sortable : false
 		    },{
-			field : '状态',
-			title : 'status',
+			field : 'status',
+			title : '状态',
 			align : 'left',
 			valign : 'middle',
-			formatter : Dict.getQuoteName,
+			formatter:Dict.getNameForList('order_status'),
 			sortable : false
 		    },{
 			field : 'level',
