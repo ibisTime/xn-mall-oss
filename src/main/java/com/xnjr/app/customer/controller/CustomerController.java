@@ -11,7 +11,7 @@ import com.xnjr.app.controller.BaseController;
 import com.xnjr.app.customer.ao.ICustomerAO;
 
 @Controller
-@RequestMapping(value = "/account")
+@RequestMapping(value = "/customer")
 public class CustomerController extends BaseController {
     @Autowired
     ICustomerAO accountAO;
