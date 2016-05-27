@@ -1,4 +1,4 @@
-package com.xnjr.app.account.req;
+package com.xnjr.app.customer.req;
 
 public class XN805053Req {
 

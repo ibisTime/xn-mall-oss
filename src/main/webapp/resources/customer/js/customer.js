@@ -96,7 +96,7 @@ $(function(){
 		
 		$('#tableList').bootstrapTable({
 			method : "get",
-			url : $("#basePath").val()+"/model/queryPage",
+			url : $("#basePath").val()+"/customer/queryPage",
 			height : $(window).height() - 180,
 			striped : true,
 			clickToSelect : true,

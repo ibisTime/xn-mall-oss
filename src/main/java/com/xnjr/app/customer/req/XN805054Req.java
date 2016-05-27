@@ -1,7 +1,6 @@
-package com.xnjr.app.account.req;
+package com.xnjr.app.customer.req;
 
-public class XN805055Req {
-
+public class XN805054Req {
     // 用户编号
     private String loginName;
 

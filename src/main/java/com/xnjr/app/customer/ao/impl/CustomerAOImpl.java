@@ -1,20 +1,20 @@
-package com.xnjr.app.account.ao.impl;
+package com.xnjr.app.customer.ao.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.xnjr.app.account.ao.IAccountAO;
-import com.xnjr.app.account.req.XN805053Req;
-import com.xnjr.app.account.req.XN805054Req;
-import com.xnjr.app.account.req.XN805055Req;
-import com.xnjr.app.account.req.XN805056Req;
+import com.xnjr.app.customer.ao.ICustomerAO;
+import com.xnjr.app.customer.req.XN805053Req;
+import com.xnjr.app.customer.req.XN805054Req;
+import com.xnjr.app.customer.req.XN805055Req;
+import com.xnjr.app.customer.req.XN805056Req;
 import com.xnjr.app.http.BizConnecter;
 import com.xnjr.app.http.JsonUtils;
 
 @Service
-public class AccountAOImpl implements IAccountAO {
+public class CustomerAOImpl implements ICustomerAO {
 
     @Override
-    public Object editAccount(String userId, String roleCode, String updater,
+    public Object editCustomer(String userId, String roleCode, String updater,
             String remark) {
         XN805053Req req = new XN805053Req();
         req.setUserId(userId);
@@ -26,7 +26,7 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object queryAccountPage(String loginName, String mobile,
+    public Object queryCustomerPage(String loginName, String mobile,
             String userKind, String userReferee, String idKind, String idNo,
             String realName, String status, String level, String start,
             String limit) {
@@ -46,7 +46,7 @@ public class AccountAOImpl implements IAccountAO {
             Object.class);
     }
 
-    public Object queryAccountList(String loginName, String mobile,
+    public Object queryCustomerList(String loginName, String mobile,
             String userKind, String userReferee, String idKind, String idNo,
             String realName, String status, String level) {
         XN805055Req req = new XN805055Req();
@@ -64,7 +64,7 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object accountDetail(String userId) {
+    public Object customerDetail(String userId) {
         XN805056Req req = new XN805056Req();
         req.setUserId(userId);
         return BizConnecter.getBizData("805056", JsonUtils.object2Json(req),
