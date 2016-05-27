@@ -14,7 +14,7 @@ import com.xnjr.app.customer.ao.ICustomerAO;
 @RequestMapping(value = "/customer")
 public class CustomerController extends BaseController {
     @Autowired
-    ICustomerAO accountAO;
+    ICustomerAO customerAO;
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     @ResponseBody
@@ -22,7 +22,7 @@ public class CustomerController extends BaseController {
             @RequestParam("roleCode") String roleCode,
             // @RequestParam("updater") String updater,
             @RequestParam(value = "remark", required = false) String remark) {
-        return accountAO.editCustomer(userId, roleCode, this.getSessionUser()
+        return customerAO.editCustomer(userId, roleCode, this.getSessionUser()
             .getUserName(), remark);
     }
 
@@ -40,7 +40,7 @@ public class CustomerController extends BaseController {
             @RequestParam(value = "level", required = false) String level,
             @RequestParam(value = "start", required = false) String start,
             @RequestParam(value = "limit", required = false) String limit) {
-        return accountAO.queryCustomerPage(loginName, mobile, userKind,
+        return customerAO.queryCustomerPage(loginName, mobile, userKind,
             userReferee, idKind, idNo, realName, status, level, start, limit);
     }
 
@@ -56,14 +56,14 @@ public class CustomerController extends BaseController {
             @RequestParam(value = "realName", required = false) String realName,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "level", required = false) String level) {
-        return accountAO.queryCustomerList(loginName, mobile, userKind,
+        return customerAO.queryCustomerList(loginName, mobile, userKind,
             userReferee, idKind, idNo, realName, status, level);
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @ResponseBody
     public Object customerDetail(@RequestParam("userId") String userId) {
-        return accountAO.customerDetail(userId);
+        return customerAO.customerDetail(userId);
     }
 
 }
