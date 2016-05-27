@@ -16,7 +16,7 @@ public class AccountController extends BaseController {
     @Autowired
     IAccountAO accountAO;
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
     @ResponseBody
     public Object editAccount(@RequestParam("userId") String userId,
             @RequestParam("roleCode") String roleCode,
@@ -26,7 +26,7 @@ public class AccountController extends BaseController {
             .getUserName(), remark);
     }
 
-    @RequestMapping(value = "/queryPage", method = RequestMethod.POST)
+    @RequestMapping(value = "/queryPage", method = RequestMethod.GET)
     @ResponseBody
     public Object queryAccountPage(
             @RequestParam(value = "loginName", required = false) String loginName,
@@ -44,7 +44,7 @@ public class AccountController extends BaseController {
             userReferee, idKind, idNo, realName, status, level, start, limit);
     }
 
-    @RequestMapping(value = "/queryList", method = RequestMethod.POST)
+    @RequestMapping(value = "/queryList", method = RequestMethod.GET)
     @ResponseBody
     public Object queryAccountList(
             @RequestParam(value = "loginName", required = false) String loginName,
@@ -60,7 +60,7 @@ public class AccountController extends BaseController {
             userReferee, idKind, idNo, realName, status, level);
     }
 
-    @RequestMapping(value = "/detail", method = RequestMethod.POST)
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @ResponseBody
     public Object accountDetail(@RequestParam("userId") String userId) {
         return accountAO.accountDetail(userId);
