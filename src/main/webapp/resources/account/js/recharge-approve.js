@@ -6,10 +6,10 @@ $(function() {
 	//页面数据字典初始化
 	initData();
 	
-	var cqNo = getQueryString("cqNo");
+	var code = getQueryString("code");
 	var accountNumber = getQueryString("accountNumber");
-	var data = {"cqNo":cqNo,"accountNumber":accountNumber,"start":"1","limit":"10"};
-	var url = $("#basePath").val()+"/account/recWithHis/page";
+	var data = {"code":code,"start":"1","limit":"10"};
+	var url = $("#basePath").val()+"/account/rechargeOrderPage";
 	doGetAjax(url, data, doGetDetailBack);
 	
 	//区分线上线下
@@ -51,9 +51,7 @@ function doGetDetailBack(res){
 	if (res.success == true) {
 		if(res.data.list.length > 0){
 			var result = res.data.list[0];
-			$("#cqNo").html(result.cqNo);
-			//$("#mobile").html(result.mobile);
-			//$("#realName").html(result.realName);
+			$("#chargeNo").html(result.code);
 			$("#accountNumber").html(result.accountNumber);
 			$("#status").html(statusFormatter(result.status));
 			$("#channel").html(channelFormatter(result.channel));
@@ -73,8 +71,8 @@ function doApprove(approveResult){
 	if(!$("#jsForm").valid()){
 		return false;
 	}
-	var data = {"chargeNo":$("#cqNo").html(),"approveResult":approveResult,"approveNote":$("#remark").val()};
-	var url = $("#basePath").val()+"/account/recharge/approve";
+	var data = {"chargeNo":$("#code").html(),"approveResult":approveResult,"approveNote":$("#remark").val()};
+	var url = $("#basePath").val()+"/account/approveRecharge";
 	doPostAjax(url, data, doSuccessBack);
 }
 	
@@ -89,7 +87,7 @@ function doSuccessBack(res) {
 //初始化数据字典
 function initData(){
 	//启用状态
-	var data= {"key":"order_status"};
+	var data= {"key":"withdraw_status"};
 	doGetAjaxIsAsync($("#dictUrl").val(), data, false, doSucBackStatus);
 	//渠道
 	var data= {"key":"channel"};

@@ -1,7 +1,7 @@
 $(function() {
 	var hlNo = getQueryString("hlNo");
 	var data = {"hlNo":hlNo,"start":"1","limit":"10"};
-	var url = $("#basePath").val()+"/account/redBlue/page";
+	var url = $("#basePath").val()+"/account/artificialApproveCheck";
 	doGetAjax(url, data, doGetDetailBack);
 	
 	//提交
@@ -42,12 +42,13 @@ function doGetDetailBack(res){
 			var result = res.data.list[0];
 			$("#hlNo").html(result.hlNo);
 			$("#accountNumber").html(result.accountNumber);
+			$("#type").html(Dict.getName('biz_type',result.type));
+			$("#status").html(Dict.getName('order_status',result.status));
 			$("#direction").html(Dict.getName('account_direction',result.direction));
 			$("#amount").html(moneyFormat(result.amount,2));
-			$("#status").html(Dict.getName('order_status',result.status));
-
-			$("#updater").html(result.updater);
-			$("#updateDatetime").html(dateFormat(result.updateDatetime));
+			$("#applyUser").html(result.applyUser);
+			$("#applyNote").html(result.applyNote);
+			$("#createDatetime").html(dateFormat(result.updateDatetime));
 			$("#remark").val(result.remark);
 		}else{
 			alert("根据订单编号获取详情为空");
@@ -62,8 +63,8 @@ function doApprove(approveResult){
 	if(!$("#jsForm").valid()){
 		return false;
 	}
-	var data = {"hlNo":$("#hlNo").html(),"approveResult":approveResult,"remark":$("#remark").val()};
-	var url = $("#basePath").val()+"/account/redBlue/approve";
+	var data = {"hlNo":$("#chargeNo").html(),"approveResult":approveResult,"approveNote":$("#approveNote").val()};
+	var url = $("#basePath").val()+"/account/artificialApproveCheck";
 	doPostAjax(url, data, doSuccessBack);
 }
 	

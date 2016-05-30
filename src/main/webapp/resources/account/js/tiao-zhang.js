@@ -14,7 +14,7 @@ $(function() {
 	// 绑定列表
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val() + "/account/redBlue/page",
+		url : $("#basePath").val() + "/account/redBlueOrderPage",
 		
 		striped : true,
 		clickToSelect : true,
@@ -89,14 +89,14 @@ $(function() {
 			sortable : true,
 			formatter : moneyFormat
 		}, {
-			field : 'updater',
-			title : '更新人',
+			field : 'applyUser',
+			title : '申请人',
 			align : 'left',
 			valign : 'middle',
 			sortable : false
 		}, {
-			field : 'updateDatetime',
-			title : '更新时间',
+			field : 'createDatetime',
+			title : '申请时间',
 			align : 'left',
 			valign : 'middle',
 			sortable : false,
@@ -113,7 +113,7 @@ $(function() {
 
 	// 查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val() + "/account/redBlue/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val() + "/account/redBlueOrderPage"});
 	});
 	
 	// 审核

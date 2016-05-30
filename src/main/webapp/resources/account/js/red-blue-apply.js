@@ -6,8 +6,8 @@ $(function(){
 			return false;
 		}
 		var sign = $("#direction").val() == "1"?"":"-";
-		var data = {"accountNumber":$("#accountNumber").val(),"amount":sign+$("#amount").val(),"remark":$("#remark").val()};
-		var url = $("#basePath").val()+"/account/redBlue/apply";
+		var data = {"accountNumber":$("#accountNumber").val(),"sign":$("#sign").val(),"amount":sign+$("#amount").val(),"applyNote":$("#applyNote").val()};
+		var url = $("#basePath").val()+"/account/artificialAccountApply";
 		doPostAjax(url, data, doSuccessBack);
 	});
 	
@@ -19,6 +19,7 @@ $(function(){
 	//入参合法性校验
 	$("#jsForm").validate({
 		rules: {
+			
 			accountNumber: {
 				required: true,
 				maxlength: 32
@@ -33,7 +34,13 @@ $(function(){
 				maxlength: 19,
 				min:0
 			},
-			remark: {
+			applyUser: {
+				required: true,
+				number:true,
+				maxlength: 19,
+				min:0
+			},
+			applyNote: {
 				required: true,
 				maxlength: 255
 			}
@@ -53,8 +60,12 @@ $(function(){
 				maxlength: jQuery.format("金额不能大于{0}个字符"),
 				min: jQuery.format("金额不能小于{0}")
 			},
-			remark: {
-				required: "请输入备注",
+			applyUser: {
+				required: "请输入申请人",
+				maxlength: jQuery.format("申请人不能大于{0}个字符"),
+			},
+			applyNote: {
+				required: "请输入申请说明",
 				maxlength: jQuery.format("备注不能大于{0}个字符")
 			}
 		}

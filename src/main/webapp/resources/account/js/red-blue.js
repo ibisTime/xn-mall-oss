@@ -10,7 +10,7 @@ $(function() {
 	// 绑定列表
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val() + "/account/redBlue/page",
+		url : $("#basePath").val() + "/account/redBlueOrderPage",
 		
 		striped : true,
 		clickToSelect : true,
@@ -27,8 +27,8 @@ $(function() {
 				type:2,
 				start : params.offset / params.limit + 1,
 				limit : params.limit,
-				orderColumn : this.sortName,
-				orderDir : this.sortOrder
+//				orderColumn : this.sortName,
+//				orderDir : this.sortOrder
 			};
 		},
 		queryParamsType : 'limit',
@@ -84,18 +84,18 @@ $(function() {
 			sortable : true,
 			formatter : moneyFormatter
 		}, {
-			field : 'updater',
-			title : '更新人',
+			field : 'applyUser',
+			title : '申请人',
 			align : 'left',
 			valign : 'middle',
 			sortable : false
 		}, {
-			field : 'updaterDatetime',
-			title : '更新时间',
+			field : 'applyNote',
+			title : '申请说明',
 			align : 'left',
 			valign : 'middle',
 			sortable : false,
-			formatter : dateTimeFormat
+//			formatter : dateTimeFormat
 		}, {
 			field : 'remark',
 			title : '备注',
@@ -108,7 +108,7 @@ $(function() {
 
 	// 查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val() + "/account/redBlue/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val() + "/account/redBlueOrderPage"});
 	});
 	
 	// 申请

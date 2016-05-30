@@ -5,14 +5,14 @@ $(function() {
 	showPermissionControl();
 	
 	//页面数据字典初始化
-	initData();
+	$("#status").renderDropdown(Dict.getName('withdraw_status'));
 	
 	// 表格初始化
 	queryTableData();
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/recharge/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/rechargeOrderPage"});
 	});
 	
 	//申请事件绑定
@@ -56,7 +56,7 @@ function queryTableData(){
 	// 绑定列表
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/account/recharge/page",
+		url : $("#basePath").val()+"/account/rechargeOrderPage",
 		
 		striped : true,
 		clickToSelect : true,
@@ -99,25 +99,11 @@ function queryTableData(){
 			valign : 'middle',
 			checkbox : true
 		},{
-			field : 'cqNo',
+			field : 'code',
 			title : '订单编号',
 			align : 'left',
 			valign : 'middle',
 			sortable : false
-		},{
-			field : 'mobile',
-			title : '手机号',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
-		},{
-			field : 'realName',
-			title : '真实姓名',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
 		},{
 			field : 'accountNumber',
 			title : '账户编号',
@@ -137,7 +123,7 @@ function queryTableData(){
 			align : 'left',
 			valign : 'middle',
 			sortable : false,
-			formatter : statusFormatter
+			formatter : Dict.getNameForList('withdraw_status')
 		},{
 			field : 'createDatetime',
 			title : '申请时间',
@@ -145,72 +131,10 @@ function queryTableData(){
 			valign : 'middle',
 			sortable : true,
 			formatter : dateFormatter
-		},{
-			field : 'approveUser',
-			title : '审批人',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
-		},{
-			field : 'approveDatetime',
-			title : '审批时间',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false,
-			formatter : dateFormatter
-		},{
-			field : 'payUser',
-			title : '支付人',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
-		},{
-			field : 'payDatetime',
-			title : '支付时间',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false,
-			formatter : dateFormatter
-		},{
-			field : 'payNo',
-			title : '支付编号',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
-		},{
-			field : 'payFee',
-			title : '支付手续费',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
-		},{
-			field : 'workDate',
-			title : '对账日期',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
-		},{
-			field : 'remark',
-			title : '备注',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
 		}]
 	});
 }
-function initData(){
-	//订单状态
-	var data= {"key":"order_status"};
-	doGetAjaxIsAsync($("#dictUrl").val(), data,false, doSucBackStatus);
-}
+
 //数据字典（对方系统）关联的回执方法
 function doSucBackStatus(res){
 	orderStatus = res.data;
