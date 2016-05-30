@@ -4,35 +4,28 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
-	$('#status').renderDropdown(Dict.getName('order_status'));
 		
 	//表格初始化
 	queryTableData();
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/order/Page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/orderPage"});
 	});
 	
-	//详情
-	$('#detailBtn').click(function() {
+	//录入
+	$('#inputBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/order/order_detail.htm?invoiceCode="+selRecords[0].code;
-	});
-	
-	//导出
-	$('#exportBtn').click(function() {
-		var url=$('#basePath').val()+'/model/export?applyUser=' + $('#applyUser').val() + 
-		'&status=' + $('#status').val();
-		window.open(url);
+		window.location.href = $("#basePath").val()+"/order/order_cancel.htm?invoiceCode="+selRecords[0].code;
 	});
 	
 });
 
+//数据字典初始化
 //表格初始化
 function queryTableData(){
 	var columns = [{
@@ -87,8 +80,9 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
+				code : $("#code").val(),
 				applyUser : $("#applyUser").val(),
-				status : $("#status").val(),
+				status : 2,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
@@ -110,11 +104,12 @@ function queryTableData(){
 	});
 }
 
+
+
 //表格时间格式转化
 function dateFormatter(value, row){
 	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
 }
-
 //格式化金额
 function moneyFormatter(value, row){
 	return moneyFormat(value, 2);

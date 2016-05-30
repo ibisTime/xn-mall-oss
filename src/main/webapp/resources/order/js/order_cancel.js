@@ -45,13 +45,13 @@ $(function() {
 	});
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/order/order_query.htm";
+		location.href = $("#basePath").val()+"/order/order_undo.htm";
 	});
 
 	function doSuccessBack(res) {
 		if (res.success == true) {
 			alert("操作成功");
-			window.location.href = $("#basePath").val()+"/order/order_query.htm";
+			window.location.href = $("#basePath").val()+"/order/order_undo.htm";
 		}else{
 			alert(res.msg);
 		}

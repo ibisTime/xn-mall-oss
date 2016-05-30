@@ -62,7 +62,15 @@ $(function() {
 		var url = $("#basePath").val()+"/model/check";
 		doPostAjax(url, data, doSuccessBack);
 	}
-
+	
+	function doSuccessBack(res) {
+		if (res.success == true) {
+			alert("操作成功");
+			window.location.href = $("#basePath").val()+"/product/model.htm";
+		}else{
+			alert(res.msg);
+		}
+	}
 	function initBusinessTable(){
 		//绑定列表
 		$('#tableList').bootstrapTable({
