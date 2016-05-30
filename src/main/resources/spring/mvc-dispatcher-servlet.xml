@@ -156,6 +156,10 @@
 		    <mvc:mapping path="/model/**"/>
 		    <!-- 客户相关end -->
 		    
+		    <!-- 物流相关start -->
+		    <mvc:mapping path="/logistics/**"/>
+		    <!-- 物流相关end -->
+		    
 		    <!-- 取现相关start -->
 		    <mvc:mapping path="/withdraw/**"/>
 		    <!-- 取现相关end -->
