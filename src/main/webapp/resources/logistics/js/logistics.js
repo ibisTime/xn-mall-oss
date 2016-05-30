@@ -20,7 +20,7 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/order/order_cancel.htm?invoiceCode="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/logistics/product_input.htm?invoiceCode="+selRecords[0].code;
 	});
 	
 });
@@ -82,7 +82,7 @@ function queryTableData(){
 			return {
 				code : $("#code").val(),
 				applyUser : $("#applyUser").val(),
-				status : 2,
+				status : 3,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};

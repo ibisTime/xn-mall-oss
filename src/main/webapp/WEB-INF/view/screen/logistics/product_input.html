@@ -9,7 +9,7 @@
 <#include 'layout/resources.html'/>
 <link rel="stylesheet" href="${resourceUrl}/resources/common/css/jquery.edittable.min.css" />
 <script type="text/javascript" src="${resourceUrl}/resources/common/js/jquery.edittable.js"></script>
-<script type="text/javascript" src="${resourceUrl}/resources/order/js/order-detail.js?version=${version}"></script>
+<script type="text/javascript" src="${resourceUrl}/resources/logistics/js/product-input.js?version=${version}"></script>
 </head>
 <body>
     <#include 'layout/hidden_ares.html'/>
@@ -27,15 +27,16 @@
 	    <div class="form-body">
 	    	<div class="form-title"><span>订单基本详情</span></div>
 		    <ul class="form-info">
- 				<li><label>关联发货单:</label><span id="invoiceCode"></span></li>
- 		    	<li><label>物流公司:</label><select id="company" name="company" class="control-def"></select></li>
- 		    	<li><label>物流单号:</label><input id="code" name="code" class="control-def"/></li>
- 		    	<li><label>发货时间:</label><input id="deliveryDatetimeStart" class="lay-input" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/></li>
- 		    	<li><label>发货人:</label><input id="deliverer" name="deliverer" class="control-def"/></li>
+ 				<li><label>关联发货单号:</label><span id="invoiceCode"></span></li>
+ 		    	<li><label><b>*</b>物流公司:</label><select id="company" name="company" class="control-def"></select></li>
+ 		    	<li><label><b>*</b>物流单号:</label><input id="code" name="code" class="control-def"/></li>
+ 		    	<li><label><b>*</b>发货时间:</label><input id="deliveryDatetime" class="lay-input" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/></li>
+ 		    	<li><label><b>*</b>发货人:</label><input id="deliverer" name="deliverer" class="control-def"/></li>
  		    	
  		    	<div class="form-title"><span></span></div>
-				<div id="tableList"></div>	
+				<div id="edittable"></div>
 			    <li>
+			   		 <input id="subBtn" type="button" class="btn margin-left-60" value="提交"/>
 			        <input id="backBtn" type="button" class="btn margin-left-60" value="返回"/>
 			    </li>
 			</ul>

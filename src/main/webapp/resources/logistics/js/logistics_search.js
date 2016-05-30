@@ -10,17 +10,17 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/orderPage"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/logistics/page"});
 	});
 	
-	//取消
+	//详情
 	$('#detailBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/order/order_cancel.htm?invoiceCode="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/logistics/logistics_detail.htm?code="+selRecords[0].code;
 	});
 	
 });
@@ -51,12 +51,14 @@ function queryTableData(){
 		title : '物流公司',
 		align : 'left',
 		valign : 'middle',
+		formatter:Dict.getNameForList('kd_company'),
 		sortable : false
 	},{
 		field : 'deliveryDatetime',
 		title : '发货时间',
 		align : 'left',
 		valign : 'middle',
+		formatter:dateFormatter,
 		sortable : false
 	},{
 		field : 'deliverer',
@@ -70,7 +72,7 @@ function queryTableData(){
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/model/order/Page",
+		url : $("#basePath").val()+"/logistics/page",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,
