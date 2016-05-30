@@ -144,7 +144,7 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午4:55:02 wu
      * @history:
      */
-    public Object queryAgentWithdrawPage(String accountNumber, String amount,
+    public Object agentWithdrawCash(String accountNumber, String amount,
             String toType, String toCode);
 
     /**
@@ -188,7 +188,7 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午4:59:19 wu
      * @history:
      */
-    public Object queryUpDownPage(String code, String direction,
+    public Object queryTurnOutListPage(String code, String direction,
             String accountNumber, String dateStart, String dateEnd,
             String start, String limit);
 

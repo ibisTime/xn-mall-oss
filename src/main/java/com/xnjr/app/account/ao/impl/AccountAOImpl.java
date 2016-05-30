@@ -156,7 +156,7 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object queryAgentWithdrawPage(String accountNumber, String amount,
+    public Object agentWithdrawCash(String accountNumber, String amount,
             String toType, String toCode) {
         XN802210Req req = new XN802210Req();
         req.setAccountNumber(accountNumber);
@@ -194,7 +194,7 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object queryUpDownPage(String code, String direction,
+    public Object queryTurnOutListPage(String code, String direction,
             String accountNumber, String dateStart, String dateEnd,
             String start, String limit) {
         XN802300Req req = new XN802300Req();

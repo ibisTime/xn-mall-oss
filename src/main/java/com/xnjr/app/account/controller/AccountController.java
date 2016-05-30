@@ -85,7 +85,7 @@ public class AccountController extends BaseController {
             start, limit);
     }
 
-    @RequestMapping(value = "/recharge", method = RequestMethod.GET)
+    @RequestMapping(value = "/recharge", method = RequestMethod.POST)
     @ResponseBody
     public Object recharge(
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
@@ -95,7 +95,7 @@ public class AccountController extends BaseController {
         return accountAO.recharge(accountNumber, amount, fromType, fromCode);
     }
 
-    @RequestMapping(value = "/approveRecharge", method = RequestMethod.GET)
+    @RequestMapping(value = "/approveRecharge", method = RequestMethod.POST)
     @ResponseBody
     public Object approveRecharge(
             @RequestParam(value = "chargeNo", required = false) String chargeNo,
@@ -127,18 +127,18 @@ public class AccountController extends BaseController {
             dateEnd, start, limit);
     }
 
-    @RequestMapping(value = "/agentWithdrawPage", method = RequestMethod.GET)
+    @RequestMapping(value = "/agentWithdraw", method = RequestMethod.POST)
     @ResponseBody
     public Object queryAgentWithdrawPage(
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
             @RequestParam(value = "amount", required = false) String amount,
             @RequestParam(value = "toType", required = false) String toType,
             @RequestParam(value = "toCode", required = false) String toCode) {
-        return accountAO.queryAgentWithdrawPage(accountNumber, amount, toType,
+        return accountAO.agentWithdrawCash(accountNumber, amount, toType,
             toCode);
     }
 
-    @RequestMapping(value = "/approveWithdrawOrder", method = RequestMethod.GET)
+    @RequestMapping(value = "/approveWithdrawOrder", method = RequestMethod.POST)
     @ResponseBody
     public Object approveWithdrawOrder(
             @RequestParam(value = "withdrawNo", required = false) String withdrawNo,
@@ -149,7 +149,7 @@ public class AccountController extends BaseController {
             approveResult, approveNote);
     }
 
-    @RequestMapping(value = "/payWithdrawOrder", method = RequestMethod.GET)
+    @RequestMapping(value = "/payWithdrawOrder", method = RequestMethod.POST)
     @ResponseBody
     public Object payWithdrawOrder(
             @RequestParam(value = "withdrawNo", required = false) String withdrawNo,
@@ -162,9 +162,9 @@ public class AccountController extends BaseController {
             payNote, refNo, fee);
     }
 
-    @RequestMapping(value = "/upDownPage", method = RequestMethod.GET)
+    @RequestMapping(value = "/turnOutListPage", method = RequestMethod.GET)
     @ResponseBody
-    public Object queryUpDownPage(
+    public Object queryTurnOutListPage(
             @RequestParam(value = "toCode", required = false) String toCode,
             @RequestParam(value = "direction", required = false) String direction,
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
@@ -172,11 +172,11 @@ public class AccountController extends BaseController {
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
-        return accountAO.queryUpDownPage(toCode, direction, accountNumber,
+        return accountAO.queryTurnOutListPage(toCode, direction, accountNumber,
             dateStart, dateEnd, start, limit);
     }
 
-    @RequestMapping(value = "/transfer", method = RequestMethod.GET)
+    @RequestMapping(value = "/transfer", method = RequestMethod.POST)
     @ResponseBody
     public Object transfer(
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
@@ -206,7 +206,7 @@ public class AccountController extends BaseController {
             limit);
     }
 
-    @RequestMapping(value = "/artificialAccountApply", method = RequestMethod.GET)
+    @RequestMapping(value = "/artificialAccountApply", method = RequestMethod.POST)
     @ResponseBody
     public Object artificialAccountApply(
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
@@ -218,7 +218,7 @@ public class AccountController extends BaseController {
             amount, applyUser, applyNote);
     }
 
-    @RequestMapping(value = "/artificialApproveCheck", method = RequestMethod.GET)
+    @RequestMapping(value = "/artificialApproveCheck", method = RequestMethod.POST)
     @ResponseBody
     public Object artificialApproveCheck(
             @RequestParam(value = "code", required = false) String code,
@@ -229,7 +229,7 @@ public class AccountController extends BaseController {
             approveResult, approveNote);
     }
 
-    @RequestMapping(value = "/checkInput", method = RequestMethod.GET)
+    @RequestMapping(value = "/checkInput", method = RequestMethod.POST)
     @ResponseBody
     public Object checkInput(
             @RequestParam(value = "ajNo", required = false) String ajNo,
@@ -238,7 +238,7 @@ public class AccountController extends BaseController {
         return accountAO.checkInput(ajNo, checkUser, amount);
     }
 
-    @RequestMapping(value = "/checkApprove", method = RequestMethod.GET)
+    @RequestMapping(value = "/checkApprove", method = RequestMethod.POST)
     @ResponseBody
     public Object checkApprove(
             @RequestParam(value = "code", required = false) String code,
