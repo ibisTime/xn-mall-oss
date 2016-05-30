@@ -6,7 +6,7 @@ $(function() {
 	
 	//页面数据字典初始化
 	initData();
-	$("#statusSearch").renderDropdown(Dict.getName('order_status'));
+	$("#statusSearch").renderDropdown(Dict.getName('withdraw_status'));
 	//默认值设置
 	//$("#statusSearch").val("1");
 	
@@ -15,7 +15,7 @@ $(function() {
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/withdraw/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/withdrawOrderPage"});
 	});
 	//申请事件绑定
 	$('#applyBtn').click(function(){
@@ -32,7 +32,7 @@ $(function() {
 			alert("该订单状态不是待审批状态");
 			return;
 		}
-		location.href = $("#basePath").val()+"/account/withdraw_approve.htm?qxNo="+selRecords[0].qxNo+"&accountNumber="+selRecords[0].accountNumber;
+		location.href = $("#basePath").val()+"/account/withdraw_approve.htm?cqNo="+selRecords[0].cqNo+"&accountNumber="+selRecords[0].accountNumber;
 	});
 	
 	// 支付事件绑定
@@ -46,24 +46,24 @@ $(function() {
 			alert("该订单状态不是审批通过-待支付状态");
 			return;
 		}
-		location.href = $("#basePath").val()+"/account/withdraw_pay.htm?qxNo="+selRecords[0].qxNo+"&accountNumber="+selRecords[0].accountNumber;
+		location.href = $("#basePath").val()+"/account/withdraw_pay.htm?cqNo="+selRecords[0].cqNo+"&accountNumber="+selRecords[0].accountNumber;
 	});
 	
-	// 查看详情事件绑定
-	$('#detailBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		location.href = $("#basePath").val()+"/account/withdraw_detail.htm?cqNo="+selRecords[0].cqNo+"&accountNumber="+selRecords[0].accountNumber+"&withdrawStatus=normal";
-	});
-	
-	//导出
-	$('#exportBtn').click(function() {
-		var url=$("#basePath").val()+"/account/recWith/list/export?qxNo="+$("#cqNoSearch").val()+"&mobile="+$("#mobileSearch").val()+"&realName="+$("#realNameSearch").val()+"&direction=0"+"&status="+$("#statusSearch").val()+"&channel=01"+"&dateStart="+$("#dateStartSearch").val()+"&dateEnd="+$("#dateEndSearch").val()+"&fileName=线下取现列表";
-		window.open(url);
-	});
+//	// 查看详情事件绑定
+//	$('#detailBtn').click(function() {
+//		var selRecords = $('#tableList').bootstrapTable('getSelections')
+//		if(selRecords.length <= 0){
+//			alert("请选择记录");
+//			return;
+//		}
+//		location.href = $("#basePath").val()+"/account/withdraw_detail.htm?cqNo="+selRecords[0].cqNo+"&accountNumber="+selRecords[0].accountNumber+"&withdrawStatus=normal";
+//	});
+//	
+//	//导出
+//	$('#exportBtn').click(function() {
+//		var url=$("#basePath").val()+"/account/recWith/list/export?qxNo="+$("#cqNoSearch").val()+"&mobile="+$("#mobileSearch").val()+"&realName="+$("#realNameSearch").val()+"&direction=0"+"&status="+$("#statusSearch").val()+"&channel=01"+"&dateStart="+$("#dateStartSearch").val()+"&dateEnd="+$("#dateEndSearch").val()+"&fileName=线下取现列表";
+//		window.open(url);
+//	});
 });
 
 //表格初始化
@@ -71,7 +71,7 @@ function queryTableData(){
 	// 绑定列表
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/withdraw/page",
+		url : $("#basePath").val()+"/acccount/withdrawOrderPage",
 		
 		striped : true,
 		clickToSelect : true,
@@ -80,13 +80,11 @@ function queryTableData(){
 		sortOrder : 'desc',
 		queryParams : function(params) {
 			return {
-				qxNo : $("#cqNoSearch").val(),
-				//mobile : $("#mobileSearch").val(),
-				//realName : $("#realNameSearch").val(),
-				accountNumber : $("#accountNumberSearch").val(),
-				status : $("#statusSearch").val(),
-				dateStart : $("#dateStartSearch").val(),
-				dateEnd : $("#dateEndSearch").val(),
+				code : $("#code").val(),
+				accountNumber : $("#accountNumber").val(),
+				status : $("#status").val(),
+				dateStart : $("#dateStart").val(),
+				dateEnd : $("#dateEnd").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit,
 				orderColumn : this.sortName,
@@ -113,25 +111,11 @@ function queryTableData(){
 			valign : 'middle',
 			checkbox : true
 		},{
-			field : 'qxNo',
+			field : 'cpNo',
 			title : '订单编号',
 			align : 'left',
 			valign : 'middle',
 			sortable : false
-		},{
-			field : 'mobile',
-			title : '手机号',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
-		},{
-			field : 'realName',
-			title : '真实姓名',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
 		},{
 			field : 'accountNumber',
 			title : '账户编号',
@@ -151,7 +135,7 @@ function queryTableData(){
 			align : 'left',
 			valign : 'middle',
 			sortable : false,
-			formatter : Dict.getNameForList('order_status')
+			formatter : Dict.getNameForList('withdraw_status')
 		},{
 			field : 'createDatetime',
 			title : '申请时间',
@@ -172,50 +156,6 @@ function queryTableData(){
 			valign : 'middle',
 			sortable : false,
 			formatter : dateFormatter
-		},{
-			field : 'payUser',
-			title : '支付人',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
-		},{
-			field : 'payDatetime',
-			title : '支付时间',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false,
-			formatter : dateFormatter
-		},{
-			field : 'payNo',
-			title : '支付编号',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
-		},{
-			field : 'payFee',
-			title : '支付手续费',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false,
-			formatter : moneyFormatter
-		},{
-			field : 'workDate',
-			title : '对账日期',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
-		},{
-			field : 'remark',
-			title : '备注',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			visible : false
 		}]
 	});
 }
