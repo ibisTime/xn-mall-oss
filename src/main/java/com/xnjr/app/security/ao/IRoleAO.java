@@ -81,6 +81,6 @@ public interface IRoleAO {
     public Object queryRoleList(String kind, String name, String level,
             String updater);
 
-    public Object queryRole(String code);
+    public Object getRole(String code);
 
 }

@@ -9,7 +9,7 @@
 <#include 'layout/resources.html'/>
 <link rel="stylesheet" href="${resourceUrl}/resources/common/css/jquery.edittable.min.css" />
 <script type="text/javascript" src="${resourceUrl}/resources/common/js/jquery.edittable.js"></script>
-<script type="text/javascript" src="${resourceUrl}/resources/order/js/order-detail.js?version=${version}"></script>
+<script type="text/javascript" src="${resourceUrl}/resources/logistics/js/logistics-detail.js?version=${version}"></script>
 </head>
 <body>
     <#include 'layout/hidden_ares.html'/>
@@ -27,13 +27,15 @@
 	    <div class="form-body">
 	    	<div class="form-title"><span>订单基本详情</span></div>
 		    <ul class="form-info">
- 				<li><label>所属物流单号:</label><span id="invoiceCode"></span></li>
- 		    	<li><label>成本价:</label><select id="company" name="company" class="control-def"></select></li>
- 		    	<li><label>零售价:</label><input id="code" name="code" class="control-def"/></li>
- 		    	<li><label>所属型号:</label><span id="invoiceCode"></span></li>
- 		    	<li><label>起始编号:</label><select id="company" name="company" class="control-def"></select></li>
- 		    	<li><label>数量:</label><input id="code" name="code" class="control-def"/></li>
- 		    	<li><label>终止编号:</label><input id="code" name="code" class="control-def"/></li>
+ 				<li><label>关联发货单:</label><span id="invoiceCode"></span></li>
+ 		    	<li><label>物流公司:</label><span id="company"></span></li>
+ 		    	<li><label>物流单号:</label><span id="code"></span></li>
+ 		    	<li><label>发货时间:</label><span id="deliveryDatetime"></span></li>
+ 		    	<li><label>发货人:</label><span id="deliverer"></span></li>
+ 		    	
+ 		    	<div class="form-title"><span></span></div>
+				<div id="tableList"></div>	
+			    <li>
 			        <input id="backBtn" type="button" class="btn margin-left-60" value="返回"/>
 			    </li>
 			</ul>

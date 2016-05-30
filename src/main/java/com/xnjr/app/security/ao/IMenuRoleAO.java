@@ -10,7 +10,7 @@ package com.xnjr.app.security.ao;
 
 import java.util.List;
 
-import com.xnjr.app.security.res.XNlh4020Res;
+import com.xnjr.app.security.res.XN805026Res;
 
 /** 
  * @author: miyb 
@@ -28,7 +28,7 @@ public interface IMenuRoleAO {
      * @create: 2016年4月22日 下午1:12:20 xieyj
      * @history:
      */
-    public List<XNlh4020Res> queryMenuList(String roleCode, String parentCode,
+    public List<XN805026Res> queryMenuList(String roleCode, String parentCode,
             String type, String kind);
 
     /**

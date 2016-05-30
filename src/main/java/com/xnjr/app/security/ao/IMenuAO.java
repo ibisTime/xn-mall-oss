@@ -10,7 +10,7 @@ package com.xnjr.app.security.ao;
 
 import java.util.List;
 
-import com.xnjr.app.security.res.XNlh4001Res;
+import com.xnjr.app.security.res.XN805001Res;
 
 /**
  * @author: XIANDONG 
@@ -82,16 +82,17 @@ public interface IMenuAO {
      * 查询菜单列表
      * @param kind
      * @param name
+     * @param url
      * @param parentCode
      * @param type
      * @param updater
      * @return 
-     * @create: 2016年4月17日 下午4:42:51 XIANDONG
+     * @create: 2016年5月30日 下午7:27:24 xieyj
      * @history:
      */
-    public List<XNlh4001Res> queryMenuList(String kind, String name,
+    public List<XN805001Res> queryMenuList(String kind, String name,
             String url, String parentCode, String type, String updater);
 
-    public Object queryMenu(String code);
+    public Object getMenu(String code);
 
 }

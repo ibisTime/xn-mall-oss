@@ -20,9 +20,9 @@ import com.xnjr.app.exception.BizException;
 import com.xnjr.app.http.BizConnecter;
 import com.xnjr.app.http.JsonUtils;
 import com.xnjr.app.security.ao.IMenuRoleAO;
-import com.xnjr.app.security.req.XNlh4020Req;
-import com.xnjr.app.security.req.XNlh4021Req;
-import com.xnjr.app.security.res.XNlh4020Res;
+import com.xnjr.app.security.req.XN805026Req;
+import com.xnjr.app.security.req.XN805027Req;
+import com.xnjr.app.security.res.XN805026Res;
 
 /** 
  * @author: miyb 
@@ -33,18 +33,17 @@ import com.xnjr.app.security.res.XNlh4020Res;
 public class MenuRoleAOImpl implements IMenuRoleAO {
 
     @Override
-    public List<XNlh4020Res> queryMenuList(String roleCode, String parentCode,
+    public List<XN805026Res> queryMenuList(String roleCode, String parentCode,
             String type, String kind) {
-        XNlh4020Req req = new XNlh4020Req();
+        XN805026Req req = new XN805026Req();
         req.setRoleCode(roleCode);
         req.setParentCode(parentCode);
         req.setType(type);
-        req.setKind(kind);
-        String jsonStr = BizConnecter.getBizData("lh4020",
+        String jsonStr = BizConnecter.getBizData("805026",
             JsonUtils.object2Json(req));
         Gson gson = new Gson();
-        List<XNlh4020Res> list = gson.fromJson(jsonStr,
-            new TypeToken<List<XNlh4020Res>>() {
+        List<XN805026Res> list = gson.fromJson(jsonStr,
+            new TypeToken<List<XN805026Res>>() {
             }.getType());
         return list;
     }
@@ -52,7 +51,7 @@ public class MenuRoleAOImpl implements IMenuRoleAO {
     @Override
     public Object changeMenuRole(String roleCode, String[] menuCodeList,
             String updater) {
-        XNlh4021Req req = new XNlh4021Req();
+        XN805027Req req = new XN805027Req();
         req.setRoleCode(roleCode);
         List<String> list = new ArrayList<String>();
         for (int i = 0; i < menuCodeList.length; i++) {
@@ -60,7 +59,7 @@ public class MenuRoleAOImpl implements IMenuRoleAO {
         }
         req.setMenuCodeList(list);
         req.setUpdater(updater);
-        return BizConnecter.getBizData("lh4021", JsonUtils.object2Json(req),
+        return BizConnecter.getBizData("805027", JsonUtils.object2Json(req),
             Object.class);
     }
 
@@ -79,22 +78,22 @@ public class MenuRoleAOImpl implements IMenuRoleAO {
         if (StringUtils.isBlank(type)) {
             throw new BizException("XN700001", "类型不能为空");
         }
-        List<XNlh4020Res> list = null;
+        List<XN805026Res> list = null;
         if (false == isGetChild) {
             return this.queryMenuList(roleCode, parentCode, type, "");
         } else {
             list = this.queryMenuList(roleCode, null, type, "");
-            List<XNlh4020Res> cList = new ArrayList<XNlh4020Res>();
-            List<XNlh4020Res> resList = new ArrayList<XNlh4020Res>();
-            for (XNlh4020Res res : list) {
+            List<XN805026Res> cList = new ArrayList<XN805026Res>();
+            List<XN805026Res> resList = new ArrayList<XN805026Res>();
+            for (XN805026Res res : list) {
                 if (res.getParentCode().equals(parentCode)
                         && res.getType().equals(type)) {
                     cList.add(res);
                     resList.add(res);
                 }
             }
-            for (XNlh4020Res res : cList) {
-                for (XNlh4020Res result : list) {
+            for (XN805026Res res : cList) {
+                for (XN805026Res result : list) {
                     if (res.getCode().equals(result.getParentCode())) {
                         resList.add(result);
                     }
@@ -102,6 +101,5 @@ public class MenuRoleAOImpl implements IMenuRoleAO {
             }
             return resList;
         }
-
     }
 }

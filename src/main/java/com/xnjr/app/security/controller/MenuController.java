@@ -1,7 +1,5 @@
 package com.xnjr.app.security.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xnjr.app.controller.BaseController;
 import com.xnjr.app.security.ao.IMenuAO;
-import com.xnjr.app.security.res.XNlh4001Res;
 
 /**
  * 菜单管理
@@ -77,7 +74,7 @@ public class MenuController extends BaseController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public List<XNlh4001Res> queryMenuList(
+    public Object queryMenuList(
             @RequestParam(value = "kind", required = false) String kind,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "url", required = false) String url,
@@ -89,8 +86,8 @@ public class MenuController extends BaseController {
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @ResponseBody
-    public Object queryMenu(@RequestParam(value = "code") String code) {
-        return menuAO.queryMenu(code);
+    public Object getMenu(@RequestParam(value = "code") String code) {
+        return menuAO.getMenu(code);
     }
 
 }
