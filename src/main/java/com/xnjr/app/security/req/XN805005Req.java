@@ -1,26 +1,32 @@
-package com.xnjr.app.security.res;
+package com.xnjr.app.security.req;
 
-public class XNlh4001Res {
-
+public class XN805005Req {
+    // 编号(必填)
     private String code;
 
+    // 六方(必填)
+    private String kind;
+
+    // 菜单名称(必填)
     private String name;
 
+    // 请求url(必填)
     private String url;
 
+    // 父菜单编号(必填)
     private String parentCode;
 
+    // 类型(必填)
     private String type;
 
+    // 菜单顺序号（必填）
     private String orderNo;
 
+    // 更新人(必填)
     private String updater;
 
-    private String updateDatetime;
-
+    // 备注(选填)
     private String remark;
-
-    private String kind;
 
     public String getCode() {
         return code;
@@ -28,6 +34,14 @@ public class XNlh4001Res {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
     }
 
     public String getName() {
@@ -78,28 +92,12 @@ public class XNlh4001Res {
         this.updater = updater;
     }
 
-    public String getUpdateDatetime() {
-        return updateDatetime;
-    }
-
-    public void setUpdateDatetime(String updateDatetime) {
-        this.updateDatetime = updateDatetime;
-    }
-
     public String getRemark() {
         return remark;
     }
 
     public void setRemark(String remark) {
         this.remark = remark;
-    }
-
-    public String getKind() {
-        return kind;
-    }
-
-    public void setKind(String kind) {
-        this.kind = kind;
     }
 
 }

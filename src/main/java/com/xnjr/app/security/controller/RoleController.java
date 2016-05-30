@@ -28,9 +28,9 @@ import com.xnjr.app.security.ao.IMenuAO;
 import com.xnjr.app.security.ao.IMenuRoleAO;
 import com.xnjr.app.security.ao.IRoleAO;
 import com.xnjr.app.security.ao.IUserAO;
-import com.xnjr.app.security.res.XNlh0012Res;
-import com.xnjr.app.security.res.XNlh4001Res;
-import com.xnjr.app.security.res.XNlh4020Res;
+import com.xnjr.app.security.res.XN805001Res;
+import com.xnjr.app.security.res.XN805026Res;
+import com.xnjr.app.security.res.XN805056Res;
 
 /**
  * @author: XIANDONG
@@ -58,7 +58,7 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Object queryMenuList(@RequestParam("parentCode") String parentCode,
             @RequestParam("type") String type) {
-        XNlh0012Res user = userAO.getUser(this.getSessionUser().getUserCode());
+        XN805056Res user = userAO.getUser(this.getSessionUser().getUserCode());
         String roleCode = user.getRoleCode();
         if (StringUtils.isBlank(roleCode)) {
             throw new BizException("XN700001", "该用户角色为空");
@@ -77,15 +77,15 @@ public class RoleController extends BaseController {
         List<CheckedMenu> resultList = new ArrayList<CheckedMenu>();
         // if (EKind.SYSTEM.getCode().equals(user.getKind())
         // && !kind.equals(user.getKind())) {
-        List<XNlh4001Res> allMenulist = menuAO.queryMenuList(kind, null, null,
+        List<XN805001Res> allMenulist = menuAO.queryMenuList(kind, null, null,
             null, null, null);
-        List<XNlh4020Res> roleMenuList = roleMenuAO.queryMenuList(roleCode,
+        List<XN805026Res> roleMenuList = roleMenuAO.queryMenuList(roleCode,
             null, null, "");
         Map<String, String> roleMenuMap = new HashMap<String, String>();
-        for (XNlh4020Res res : roleMenuList) {
+        for (XN805026Res res : roleMenuList) {
             roleMenuMap.put(res.getCode(), res.getName());
         }
-        for (XNlh4001Res result : allMenulist) {
+        for (XN805001Res result : allMenulist) {
             CheckedMenu lTreeRes = new CheckedMenu();
             lTreeRes.setId(result.getCode());
             lTreeRes.setPid(result.getParentCode());
@@ -95,26 +95,6 @@ public class RoleController extends BaseController {
             }
             resultList.add(lTreeRes);
         }
-        // } else {
-        // List<XNlh4020Res> allMenulist = roleMenuAO.queryMenuList(
-        // user.getRoleCode(), null, null, kind);
-        // List<XNlh4020Res> roleMenuList = roleMenuAO.queryMenuList(roleCode,
-        // null, null, "");
-        // Map<String, String> roleMenuMap = new HashMap<String, String>();
-        // for (XNlh4020Res res : roleMenuList) {
-        // roleMenuMap.put(res.getCode(), res.getName());
-        // }
-        // for (XNlh4020Res result : allMenulist) {
-        // CheckedMenu lTreeRes = new CheckedMenu();
-        // lTreeRes.setId(result.getCode());
-        // lTreeRes.setPid(result.getParentCode());
-        // lTreeRes.setText(result.getName());
-        // if (roleMenuMap.containsKey(result.getCode())) {
-        // lTreeRes.setIschecked(true);
-        // }
-        // resultList.add(lTreeRes);
-        // }
-        // }
         return resultList;
     }
 
@@ -138,10 +118,6 @@ public class RoleController extends BaseController {
             @RequestParam("name") String name,
             @RequestParam("level") String level,
             @RequestParam(value = "remark", required = false) String remark) {
-        XNlh0012Res user = userAO.getUser(this.getSessionUser().getUserCode());
-        if (StringUtils.isBlank(kind)) {
-            kind = user.getKind();
-        }
         return roleAO.addRole(kind, name, level, this.getSessionUser()
             .getUserName(), remark);
     }
@@ -159,10 +135,6 @@ public class RoleController extends BaseController {
             @RequestParam("name") String name,
             @RequestParam("level") String level,
             @RequestParam(value = "remark", required = false) String remark) {
-        XNlh0012Res user = userAO.getUser(this.getSessionUser().getUserCode());
-        if (StringUtils.isBlank(kind)) {
-            kind = user.getKind();
-        }
         return roleAO.editRole(code, kind, name, level, this.getSessionUser()
             .getUserName(), remark);
     }
@@ -186,14 +158,12 @@ public class RoleController extends BaseController {
             @RequestParam(value = "updater", required = false) String updater,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
-        XNlh0012Res user = userAO.getUser(this.getSessionUser().getUserCode());
-        kind = getKind(user, kind);
         return roleAO.queryRolePage(kind, name, level, updater, start, limit);
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @ResponseBody
-    public Object queryRole(@RequestParam(value = "code") String code) {
-        return roleAO.queryRole(code);
+    public Object getRole(@RequestParam(value = "code") String code) {
+        return roleAO.getRole(code);
     }
 }

@@ -1,6 +1,6 @@
 package com.xnjr.app.security.res;
 
-public class XNlh4020Res {
+public class XN805026Res {
 
     private String code;
 

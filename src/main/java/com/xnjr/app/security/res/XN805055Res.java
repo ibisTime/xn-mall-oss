@@ -6,15 +6,12 @@ package com.xnjr.app.security.res;
  * @since: 2016年4月16日 下午5:40:46 
  * @history:
  */
-public class XNlh0001Res {
+public class XN805055Res {
     // 用户ID
     private String userId;
 
     // 登录名
     private String loginName;
-
-    // 登陆密码
-    private String loginPwd;
 
     // 登陆密码强度
     private String loginPwdStrength;
@@ -34,14 +31,8 @@ public class XNlh0001Res {
     // 真实姓名
     private String realName;
 
-    // 安全密码
-    private String tradePwd;
-
     // 安全密码强度
     private String tradePwdStrength;
-
-    // 联系方式
-    private String contact;
 
     // 更新人
     private String updater;
@@ -55,23 +46,12 @@ public class XNlh0001Res {
     // 角色编号
     private String roleCode;
 
-    // 六方
-    private String kind;
-
     public String getUserId() {
         return userId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getKind() {
-        return kind;
-    }
-
-    public void setKind(String kind) {
-        this.kind = kind;
     }
 
     public String getRoleCode() {
@@ -114,28 +94,12 @@ public class XNlh0001Res {
         this.status = status;
     }
 
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
     public String getUpdater() {
         return updater;
     }
 
     public void setUpdater(String updater) {
         this.updater = updater;
-    }
-
-    public String getLoginPwd() {
-        return loginPwd;
-    }
-
-    public void setLoginPwd(String loginPwd) {
-        this.loginPwd = loginPwd;
     }
 
     public String getLoginPwdStrength() {
@@ -160,14 +124,6 @@ public class XNlh0001Res {
 
     public void setIdNo(String idNo) {
         this.idNo = idNo;
-    }
-
-    public String getTradePwd() {
-        return tradePwd;
-    }
-
-    public void setTradePwd(String tradePwd) {
-        this.tradePwd = tradePwd;
     }
 
     public String getTradePwdStrength() {

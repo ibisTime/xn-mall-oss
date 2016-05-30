@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.xnjr.app.base.ControllerContext;
-import com.xnjr.app.enums.EKind;
 import com.xnjr.app.security.res.XNlh0012Res;
 import com.xnjr.app.session.ISessionProvider;
 import com.xnjr.app.session.SessionUser;
@@ -64,11 +63,7 @@ public class BaseController {
      */
     public String getKind(XNlh0012Res user, String kind) {
         if (StringUtils.isBlank(kind)) {
-            if (EKind.SYSTEM.getCode().equals(user.getKind())) {
-                kind = "";
-            } else {
-                kind = user.getKind();
-            }
+            kind = user.getKind();
         }
         return kind;
     }
