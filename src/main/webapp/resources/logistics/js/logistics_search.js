@@ -4,35 +4,28 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
-	$('#status').renderDropdown(Dict.getName('order_status'));
 		
 	//表格初始化
 	queryTableData();
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/order/Page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/orderPage"});
 	});
 	
-	//详情
+	//取消
 	$('#detailBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/order/order_detail.htm?invoiceCode="+selRecords[0].code;
-	});
-	
-	//导出
-	$('#exportBtn').click(function() {
-		var url=$('#basePath').val()+'/model/export?applyUser=' + $('#applyUser').val() + 
-		'&status=' + $('#status').val();
-		window.open(url);
+		window.location.href = $("#basePath").val()+"/order/order_cancel.htm?invoiceCode="+selRecords[0].code;
 	});
 	
 });
 
+//数据字典初始化
 //表格初始化
 function queryTableData(){
 	var columns = [{
@@ -42,39 +35,36 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
-		field : 'code',
-		title : '订单编号',
+		field : 'invoiceCode',
+		title : '发货单编号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
 	}, {
-		field : 'applyUser',
-		title : '下单用户',
+		field : 'code',
+		title : '物流单号',
+		align : 'left',
+		valign : 'middle',
+		sortable : false,
+	}, {
+		field : 'company',
+		title : '物流公司',
 		align : 'left',
 		valign : 'middle',
 		sortable : false
 	},{
-		field : 'totalAmount',
-		title : '订单总金额',
+		field : 'deliveryDatetime',
+		title : '发货时间',
 		align : 'left',
 		valign : 'middle',
-		formatter:moneyFormatter,
 		sortable : false
 	},{
-		field : 'applyDatetime',
-		title : '下单时间',
+		field : 'deliverer',
+		title : '发货人',
 		align : 'left',
 		valign : 'middle',
-		formatter:dateFormatter,
 		sortable : false
-	} ,{
-		field : 'status',
-		title : '状态',
-		align : 'left',
-		valign : 'middle',
-		formatter:Dict.getNameForList('order_status'),
-		sortable : false
-	}];
+	} ];
 	
 	
 	
@@ -87,8 +77,11 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				applyUser : $("#applyUser").val(),
-				status : $("#status").val(),
+				code : $("#code").val(),
+				invoiceCode : $("#invoiceCode").val(),
+				userId : $("#userId").val(),
+				deliveryDatetimeStart : $("#deliveryDatetimeStart").val(),
+				deliveryDatetimeEnd : $("#deliveryDatetimeEnd").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
@@ -110,11 +103,12 @@ function queryTableData(){
 	});
 }
 
+
+
 //表格时间格式转化
 function dateFormatter(value, row){
 	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
 }
-
 //格式化金额
 function moneyFormatter(value, row){
 	return moneyFormat(value, 2);

@@ -4,35 +4,20 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
-	$('#status').renderDropdown(Dict.getName('order_status'));
 		
 	//表格初始化
 	queryTableData();
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/order/Page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/orderPage"});
 	});
 	
-	//详情
-	$('#detailBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/order/order_detail.htm?invoiceCode="+selRecords[0].code;
-	});
 	
-	//导出
-	$('#exportBtn').click(function() {
-		var url=$('#basePath').val()+'/model/export?applyUser=' + $('#applyUser').val() + 
-		'&status=' + $('#status').val();
-		window.open(url);
-	});
 	
 });
 
+//数据字典初始化
 //表格初始化
 function queryTableData(){
 	var columns = [{
@@ -43,36 +28,33 @@ function queryTableData(){
 		checkbox : true
 	}, {
 		field : 'code',
-		title : '订单编号',
+		title : '货品编号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
-	}, {
-		field : 'applyUser',
-		title : '下单用户',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
 	},{
-		field : 'totalAmount',
-		title : '订单总金额',
+		field : 'modelCode',
+		title : 'LLJ-343242',
 		align : 'left',
 		valign : 'middle',
-		formatter:moneyFormatter,
-		sortable : false
-	},{
-		field : 'applyDatetime',
-		title : '下单时间',
-		align : 'left',
-		valign : 'middle',
-		formatter:dateFormatter,
 		sortable : false
 	} ,{
-		field : 'status',
-		title : '状态',
+		field : 'logisticsCode',
+		title : '所属物流单',
 		align : 'left',
 		valign : 'middle',
-		formatter:Dict.getNameForList('order_status'),
+		sortable : false
+	}, {
+		field : 'costPrice',
+		title : '成本价',
+		align : 'left',
+		valign : 'middle',
+		sortable : false
+	},{
+		field : 'salePrice',
+		title : '零售价',
+		align : 'left',
+		valign : 'middle',
 		sortable : false
 	}];
 	
@@ -87,8 +69,8 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				applyUser : $("#applyUser").val(),
-				status : $("#status").val(),
+				code : $("#code").val(),
+				logisticsCode : $("#logisticsCode").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
@@ -110,11 +92,12 @@ function queryTableData(){
 	});
 }
 
+
+
 //表格时间格式转化
 function dateFormatter(value, row){
 	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
 }
-
 //格式化金额
 function moneyFormatter(value, row){
 	return moneyFormat(value, 2);
