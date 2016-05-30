@@ -24,6 +24,10 @@ public class BizConnecter {
 
     public static final String MALL_URL = PropertiesUtil.getProperty("mallUrl");
 
+    public static final String USER_URL = PropertiesUtil.getProperty("userUrl");
+    
+    public static final String ACCOUNT_URL = PropertiesUtil.getProperty("acconutUrl");
+
     public static final String SMS_URL = PropertiesUtil.getProperty("smsUrl");
 
     public static <T> T getBizData(String code, String json, Class<T> clazz) {
@@ -59,8 +63,12 @@ public class BizConnecter {
     public static String getPostUrl(String code) {
         String postUrl = null;
         if (code.startsWith("lh") || code.startsWith("601")
-                || code.startsWith("602") || code.startsWith("80")) {
+                || code.startsWith("602")) {
             postUrl = MALL_URL;
+        } else if (code.startsWith("805")) {
+            postUrl = USER_URL;
+        } else if (code.startsWith("802")) {
+            postUrl = ACCOUNT_URL;
         }
         return postUrl;
     }

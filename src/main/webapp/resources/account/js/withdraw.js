@@ -6,7 +6,7 @@ $(function() {
 	
 	//页面数据字典初始化
 	initData();
-	$("#statusSearch").renderDropdown(Dict.getName('withdraw_status'));
+	$("#status").renderDropdown(Dict.getName('withdraw_status'));
 	//默认值设置
 	//$("#statusSearch").val("1");
 	
@@ -16,10 +16,6 @@ $(function() {
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/withdrawOrderPage"});
-	});
-	//申请事件绑定
-	$('#applyBtn').click(function(){
-		location.href = $("#basePath").val()+"/account/withdraw_apply.htm";
 	});
 	// 审核事件绑定
 	$('#approveBtn').click(function() {
@@ -112,7 +108,7 @@ function queryTableData(){
 			checkbox : true
 		},{
 			field : 'cpNo',
-			title : '订单编号',
+			title : '取现订单号',
 			align : 'left',
 			valign : 'middle',
 			sortable : false
@@ -142,19 +138,6 @@ function queryTableData(){
 			align : 'left',
 			valign : 'middle',
 			sortable : true,
-			formatter : dateFormatter
-		},{
-			field : 'approveUser',
-			title : '审批人',
-			align : 'left',
-			valign : 'middle',
-			sortable : false
-		},{
-			field : 'approveDatetime',
-			title : '审批时间',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
 			formatter : dateFormatter
 		}]
 	});

@@ -68,8 +68,8 @@ function queryTableData(){
 				valign : 'middle',
 				sortable : false
 			},{
-				field : 'realName',
-				title : '真实姓名',
+				field : 'userId',
+				title : '用户编号',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
@@ -110,5 +110,5 @@ function moneyFormatter(value, row){
 	return moneyFormat(value, 2);
 }
 function initData(){
-	$('#status').renderDropdown(Dict.getName('account_status'));
+	$('#status').renderDropdown(Dict.getName('withdraw_status'));
 }
