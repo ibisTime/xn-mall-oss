@@ -20,12 +20,12 @@ import com.google.gson.reflect.TypeToken;
 import com.xnjr.app.http.BizConnecter;
 import com.xnjr.app.http.JsonUtils;
 import com.xnjr.app.security.ao.IMenuAO;
-import com.xnjr.app.security.req.XNlh4000Req;
-import com.xnjr.app.security.req.XNlh4001Req;
-import com.xnjr.app.security.req.XNlh4002Req;
-import com.xnjr.app.security.req.XNlh4003Req;
-import com.xnjr.app.security.req.XNlh4004Req;
-import com.xnjr.app.security.res.XNlh4001Res;
+import com.xnjr.app.security.req.XN805000Req;
+import com.xnjr.app.security.req.XN805001Req;
+import com.xnjr.app.security.req.XN805003Req;
+import com.xnjr.app.security.req.XN805004Req;
+import com.xnjr.app.security.req.XN805005Req;
+import com.xnjr.app.security.res.XN805001Res;
 
 @Service
 public class MenuAOImpl implements IMenuAO {
@@ -37,7 +37,7 @@ public class MenuAOImpl implements IMenuAO {
     public Object addMenu(String kind, String name, String url,
             String parentCode, String type, String orderNo, String updater,
             String remark) {
-        XNlh4002Req req = new XNlh4002Req();
+        XN805003Req req = new XN805003Req();
         req.setKind(kind);
         req.setName(name);
         req.setUrl(url);
@@ -46,15 +46,15 @@ public class MenuAOImpl implements IMenuAO {
         req.setOrderNo(orderNo);
         req.setUpdater(updater);
         req.setRemark(remark);
-        return BizConnecter.getBizData("lh4002", JsonUtils.object2Json(req),
+        return BizConnecter.getBizData("805003", JsonUtils.object2Json(req),
             Object.class);
     }
 
     @Override
     public Object dropMenu(String code) {
-        XNlh4003Req Req = new XNlh4003Req();
+        XN805004Req Req = new XN805004Req();
         Req.setCode(code);
-        return BizConnecter.getBizData("lh4003", JsonUtils.object2Json(Req),
+        return BizConnecter.getBizData("805004", JsonUtils.object2Json(Req),
             Object.class);
     }
 
@@ -62,7 +62,7 @@ public class MenuAOImpl implements IMenuAO {
     public Object editMenu(String code, String kind, String name, String url,
             String parentCode, String type, String orderNo, String updater,
             String remark) {
-        XNlh4004Req req = new XNlh4004Req();
+        XN805005Req req = new XN805005Req();
         req.setCode(code);
         req.setKind(kind);
         req.setName(name);
@@ -72,14 +72,14 @@ public class MenuAOImpl implements IMenuAO {
         req.setOrderNo(orderNo);
         req.setUpdater(updater);
         req.setRemark(remark);
-        return BizConnecter.getBizData("lh4004", JsonUtils.object2Json(req),
+        return BizConnecter.getBizData("805005", JsonUtils.object2Json(req),
             Object.class);
     }
 
     @Override
     public Object queryMenuPage(String kind, String name, String parentCode,
             String type, String updater, String start, String limit) {
-        XNlh4000Req req = new XNlh4000Req();
+        XN805000Req req = new XN805000Req();
         req.setKind(kind);
         req.setName(name);
         req.setParentCode(parentCode);
@@ -87,31 +87,30 @@ public class MenuAOImpl implements IMenuAO {
         req.setUpdater(updater);
         req.setStart(start);
         req.setLimit(limit);
-        return BizConnecter.getBizData("lh4000", JsonUtils.object2Json(req),
+        return BizConnecter.getBizData("805000", JsonUtils.object2Json(req),
             Object.class);
     }
 
     @Override
-    public List<XNlh4001Res> queryMenuList(String kind, String name,
+    public List<XN805001Res> queryMenuList(String kind, String name,
             String url, String parentCode, String type, String updater) {
-        XNlh4001Req req = new XNlh4001Req();
+        XN805001Req req = new XN805001Req();
         req.setKind(kind);
         req.setName(name);
-        req.setUrl(url);
         req.setParentCode(parentCode);
         req.setType(type);
-        String jsonStr = BizConnecter.getBizData("lh4001",
+        String jsonStr = BizConnecter.getBizData("805001",
             JsonUtils.object2Json(req));
         Gson gson = new Gson();
-        List<XNlh4001Res> list = gson.fromJson(jsonStr,
-            new TypeToken<List<XNlh4001Res>>() {
+        List<XN805001Res> list = gson.fromJson(jsonStr,
+            new TypeToken<List<XN805001Res>>() {
             }.getType());
         return list;
     }
 
     @Override
-    public Object queryMenu(String code) {
-        return BizConnecter.getBizData("lh4005",
+    public Object getMenu(String code) {
+        return BizConnecter.getBizData("805002",
             JsonUtils.string2Json("code", code), Object.class);
     }
 }
