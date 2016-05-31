@@ -41,9 +41,9 @@ function doGetDetailBack(res){
 		if(res.data.list.length > 0){
 			var result = res.data.list[0];
 			
-			$("#ajNo").html(result.ajNo);
+			$("#code").html(result.code);
 			$("#accountNumber").html(result.accountNumber);
-			$("#status").html(Dict.getName('order_status',result.status));
+			$("#status").html(Dict.getName('rb_order_status',result.status));
 			$("#bizType").html(Dict.getName('biz_type',result.direction));
 			$("#refNo").html(result.refNo);
 			$("#transAmount").html(moneyFormat(result.transAmount,2));

@@ -37,9 +37,7 @@ $(function(){
 			},
 			applyUser: {
 				required: true,
-				number:true,
-				maxlength: 19,
-				min:0
+				maxlength: 255,
 			},
 			applyNote: {
 				required: true,

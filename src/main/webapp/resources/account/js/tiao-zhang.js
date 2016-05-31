@@ -9,7 +9,7 @@ $(function() {
 	$('#statusSearch').renderDropdown(Dict.getName('rb_order_status'));
 	$('#directionSearch').renderDropdown(Dict.getName('account_direction'));
 	// 状态选择
-	$("#statusSearch").val("1");
+//	$("#statusSearch").val("1");
 	
 	// 绑定列表
 	$('#tableList').bootstrapTable({
@@ -19,11 +19,11 @@ $(function() {
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
-		sortName : 'updateDatetime',
-		sortOrder : 'desc',
+//		sortName : 'updateDatetime',
+//		sortOrder : 'desc',
 		queryParams : function(params) {
 			return {
-				hlNo : $("#hlNoSearch").val(),
+				code : $("#hlNoSearch").val(),
 				status : $("#statusSearch").val(),
 				direction : $("#directionSearch").val(),
 				type:1,
@@ -31,8 +31,9 @@ $(function() {
 				dateEnd : $("#dateEndSearch").val(),
 				accountNumber : $("#accountNumberSearch").val(),
 				start : params.offset / params.limit + 1,
-//				orderColumn : this.sortName,
-//				orderDir : this.sortOrder
+				limit : params.limit,
+				orderColumn : this.sortName,
+				orderDir : this.sortOrder
 			};
 		},
 		queryParamsType : 'limit',
@@ -55,7 +56,7 @@ $(function() {
 			valign : 'middle',
 			checkbox : true
 		},{
-			field : 'hlNo',
+			field : 'code',
 			title : '申请编号',
 			align : 'left',
 			valign : 'middle',
@@ -94,7 +95,7 @@ $(function() {
 			valign : 'middle',
 			sortable : false
 		}, {
-			field : 'createDatetime',
+			field : 'applyDatetime',
 			title : '申请时间',
 			align : 'left',
 			valign : 'middle',
@@ -126,6 +127,6 @@ $(function() {
 			alert("该订单状态不是待审批状态");
 			return;
 		}
-		location.href = $("#basePath").val()+"/account/check_approve.htm?hlNo="+selRecords[0].hlNo;
+		location.href = $("#basePath").val()+"/account/red_blue_approve.htm?code="+selRecords[0].code;
 	});
 });
