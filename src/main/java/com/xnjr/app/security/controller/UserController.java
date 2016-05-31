@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xnjr.app.controller.BaseController;
+import com.xnjr.app.enums.EUserKind;
 import com.xnjr.app.exception.BizException;
 import com.xnjr.app.security.ao.IMenuRoleAO;
 import com.xnjr.app.security.ao.IRoleAO;
@@ -122,10 +123,10 @@ public class UserController extends BaseController {
             @RequestParam(value = "idNo", required = false) String idNo,
             @RequestParam("realName") String realName,
             @RequestParam(value = "userReferee", required = false) String userReferee,
-            @RequestParam(value = "remark", required = false) String remark,
-            @RequestParam("kind") String kind) {
+            @RequestParam(value = "remark", required = false) String remark) {
         return userAO.addUser(mobile, idKind, idNo, realName, userReferee, this
-            .getSessionUser().getUserName(), remark, kind);
+            .getSessionUser().getUserName(), remark, EUserKind.Operator
+            .getCode());
     }
 
     @RequestMapping(value = "/drop", method = RequestMethod.POST)
@@ -157,8 +158,9 @@ public class UserController extends BaseController {
             @RequestParam(value = "roleCode", required = false) String roleCode,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "updater", required = false) String updater) {
-        return userAO.queryUserList(loginName, level, userReferee, mobile,
-            idKind, idNo, realName, roleCode, status, updater);
+        return userAO.queryUserList(loginName, EUserKind.Operator.getCode(),
+            level, userReferee, mobile, idKind, idNo, realName, roleCode,
+            status, updater);
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
@@ -178,8 +180,9 @@ public class UserController extends BaseController {
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return userAO.queryUserPage(loginName, level, userReferee, mobile,
-            idKind, idNo, realName, roleCode, status, updater, start, limit);
+        return userAO.queryUserPage(loginName, EUserKind.Operator.getCode(),
+            level, userReferee, mobile, idKind, idNo, realName, roleCode,
+            status, updater, start, limit);
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)

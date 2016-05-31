@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xnjr.app.controller.BaseController;
 import com.xnjr.app.customer.ao.ICustomerAO;
+import com.xnjr.app.enums.EUserKind;
+import com.xnjr.app.security.ao.IUserAO;
 
 @Controller
 @RequestMapping(value = "/customer")
@@ -16,14 +18,20 @@ public class CustomerController extends BaseController {
     @Autowired
     ICustomerAO customerAO;
 
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    @Autowired
+    IUserAO userAO;
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object editAccount(@RequestParam("userId") String userId,
-            @RequestParam("roleCode") String roleCode,
-            // @RequestParam("updater") String updater,
+    public Object addUser(
+            @RequestParam("mobile") String mobile,
+            @RequestParam(value = "idKind", required = false) String idKind,
+            @RequestParam(value = "idNo", required = false) String idNo,
+            @RequestParam("realName") String realName,
+            @RequestParam(value = "userReferee", required = false) String userReferee,
             @RequestParam(value = "remark", required = false) String remark) {
-        return customerAO.editCustomer(userId, roleCode, this.getSessionUser()
-            .getUserName(), remark);
+        return userAO.addUser(mobile, idKind, idNo, realName, userReferee, this
+            .getSessionUser().getUserName(), remark, EUserKind.F1.getCode());
     }
 
     @RequestMapping(value = "/queryPage", method = RequestMethod.GET)
@@ -31,7 +39,6 @@ public class CustomerController extends BaseController {
     public Object queryCustomerPage(
             @RequestParam(value = "loginName", required = false) String loginName,
             @RequestParam(value = "mobile", required = false) String mobile,
-            @RequestParam(value = "userKind", required = false) String userKind,
             @RequestParam(value = "userReferee", required = false) String userReferee,
             @RequestParam(value = "idKind", required = false) String idKind,
             @RequestParam(value = "idNo", required = false) String idNo,
@@ -40,8 +47,9 @@ public class CustomerController extends BaseController {
             @RequestParam(value = "level", required = false) String level,
             @RequestParam(value = "start", required = false) String start,
             @RequestParam(value = "limit", required = false) String limit) {
-        return customerAO.queryCustomerPage(loginName, mobile, userKind,
-            userReferee, idKind, idNo, realName, status, level, start, limit);
+        return userAO.queryUserPage(loginName, EUserKind.F1.getCode(), level,
+            userReferee, mobile, idKind, idNo, realName, null, status, null,
+            start, limit);
     }
 
     @RequestMapping(value = "/queryList", method = RequestMethod.GET)
@@ -49,21 +57,20 @@ public class CustomerController extends BaseController {
     public Object queryCustomerList(
             @RequestParam(value = "loginName", required = false) String loginName,
             @RequestParam(value = "mobile", required = false) String mobile,
-            @RequestParam(value = "userKind", required = false) String userKind,
             @RequestParam(value = "userReferee", required = false) String userReferee,
             @RequestParam(value = "idKind", required = false) String idKind,
             @RequestParam(value = "idNo", required = false) String idNo,
             @RequestParam(value = "realName", required = false) String realName,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "level", required = false) String level) {
-        return customerAO.queryCustomerList(loginName, mobile, userKind,
-            userReferee, idKind, idNo, realName, status, level);
+        return userAO.queryUserList(loginName, EUserKind.F1.getCode(), level,
+            userReferee, mobile, idKind, idNo, realName, null, status, null);
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @ResponseBody
     public Object customerDetail(@RequestParam("userId") String userId) {
-        return customerAO.customerDetail(userId);
+        return userAO.getUser(userId);
     }
 
 }

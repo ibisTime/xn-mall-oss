@@ -1,17 +1,16 @@
-package com.xnjr.app.customer.req;
+package com.xnjr.app.security.req;
 
 public class XN805053Req {
-
     // 用户编号
     private String userId;
 
     // 角色编号
     private String roleCode;
 
-    // 修改人
+    // 更新人(必填)
     private String updater;
 
-    // 备注
+    // 备注(选填)
     private String remark;
 
     public String getUserId() {
