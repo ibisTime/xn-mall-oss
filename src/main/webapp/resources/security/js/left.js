@@ -19,7 +19,7 @@ function doSuccessMenuBack(res) {
 	        	// 二级菜单
 				$.each(res.data, function(j, nextItem) {
 					if(item.code == nextItem.parentCode){
-		            	$("#"+item.code).append("<li><cite></cite><a id=\"child_menu_"+i+"\" href=\""+$("#basePath").val()+nextItem.url + "\" target=\"rightFrame\">"+nextItem.name+"</a><i></i></li>");
+		            	$("#"+item.code).append("<li id=\""+nextItem.code+"\"><cite></cite><a id=\"child_menu_"+i+"\" href=\""+$("#basePath").val()+nextItem.url + "\" target=\"rightFrame\">"+nextItem.name+"</a><i></i></li>");
 		            }
 		        });
 			}

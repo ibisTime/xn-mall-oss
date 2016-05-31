@@ -308,15 +308,18 @@ function showPermissionControl(){
 	var webUrl = window.location.pathname;
 	var menuUrl = webUrl.substring($("#basePath").val().length);
 	var data = {"url":menuUrl};
-	doGetAjaxIsAsync(url, data, false, doGetMenuCode);
+	//var data = {"url":menuUrl,"kind":getCurrentKind()};
+	//doGetAjaxIsAsync(url, data, false, doGetMenuCode);
 	
 	//直接从url获取menuCode，二级页面返回，权限控制不了
     var pUrl = $("#basePath").val() + "/role/menuList";
-	var pData = {"parentCode":$("#permissionCode").val(),"type":"2"};
-	doGetAjaxIsAsync(pUrl, pData, false, doSuccessBackPermission);
+    if (window.parent.frames[1]) {
+    	var pData = {"parentCode":$('.left-menu .active', window.parent.frames[1].document).attr('id'),"type":"2"};
+    	doGetAjaxIsAsync(pUrl, pData, false, doSuccessBackPermission);
+    }
 }
 
-// 获取菜单编号回执方法
+//获取菜单编号回执方法
 function doGetMenuCode(res){
 	if(res.success == true && !isBlank(res.data)){
 		$("#permissionCode").val(res.data[0].code);
@@ -325,7 +328,7 @@ function doGetMenuCode(res){
 	}
 }
 
-// 控制按钮呈现方式回执方法
+//控制按钮呈现方式回执方法
 function doSuccessBackPermission(res){
 	var data = res.data;
 	if(typeof(data) != "undefined"){//判断undifined
