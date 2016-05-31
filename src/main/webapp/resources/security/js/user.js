@@ -62,7 +62,7 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		if(selRecords[0].status == 0){
+		if(selRecords[0].status != 0){
 			alert("请选择正常记录");
 			return;
 		}
@@ -81,7 +81,7 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		if(selRecords[0].status == 1 || selRecords[0].status == 2){
+		if(selRecords[0].status != 1 && selRecords[0].status != 2){
 			alert("请选择锁定记录");
 			return;
 		}
@@ -222,9 +222,9 @@ function queryTableData(){
 
 function doSuccessDelBack(res) {
 	if (res.success == true) {
-		alert("注销成功");
+		alert("操作成功");
 		$('#tableList').bootstrapTable('refresh');
 	}else{
-		alert("注销失败");
+		alert(res.msg);
 	}
 }

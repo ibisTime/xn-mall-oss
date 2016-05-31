@@ -1,7 +1,7 @@
 package com.xnjr.app.account.ao.impl;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.xnjr.app.account.ao.IUserAO;
 import com.xnjr.app.account.req.XN805901Req;
@@ -15,7 +15,7 @@ import com.xnjr.app.http.JsonUtils;
  * @since: 2016年5月30日 上午9:28:30 
  * @history:
  */
-@Component
+@Service("fUserAO")
 public class UserAOImpl implements IUserAO {
 
     /** 

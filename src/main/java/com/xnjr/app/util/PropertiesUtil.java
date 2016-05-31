@@ -35,6 +35,8 @@ public class PropertiesUtil {
 
         public static String ACCOUNT_URL = props.getProperty("ACCOUNT_URL");
 
+        public static String SMS_URL = props.getProperty("SMS_URL");
+
         public static String URL_PREFIX = props.getProperty("URL_PREFIX");
 
         public static String HOST = props.getProperty("HOST");
