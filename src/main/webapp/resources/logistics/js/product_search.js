@@ -10,7 +10,7 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/orderPage"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/logistics/goods/page"});
 	});
 	
 	
@@ -34,7 +34,7 @@ function queryTableData(){
 		sortable : false,
 	},{
 		field : 'modelCode',
-		title : 'LLJ-343242',
+		title : '所属型号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false
@@ -49,12 +49,14 @@ function queryTableData(){
 		title : '成本价',
 		align : 'left',
 		valign : 'middle',
+		formatter:moneyFormatter,
 		sortable : false
 	},{
 		field : 'salePrice',
 		title : '零售价',
 		align : 'left',
 		valign : 'middle',
+		formatter:moneyFormatter,
 		sortable : false
 	}];
 	
@@ -62,7 +64,7 @@ function queryTableData(){
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/model/order/Page",
+		url : $("#basePath").val()+"/logistics/goods/page",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,

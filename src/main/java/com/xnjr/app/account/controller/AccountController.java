@@ -99,11 +99,12 @@ public class AccountController extends BaseController {
     @ResponseBody
     public Object approveRecharge(
             @RequestParam(value = "chargeNo", required = false) String chargeNo,
-            @RequestParam(value = "approveUser", required = false) String approveUser,
+            // @RequestParam(value = "approveUser", required = false) String
+            // approveUser,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
-        return accountAO.approveRecharge(chargeNo, approveUser, approveResult,
-            approveNote);
+        return accountAO.approveRecharge(chargeNo, this.getSessionUser()
+            .getUserName(), approveResult, approveNote);
     }
 
     @RequestMapping(value = "/withdrawOrderPage", method = RequestMethod.GET)
@@ -142,24 +143,26 @@ public class AccountController extends BaseController {
     @ResponseBody
     public Object approveWithdrawOrder(
             @RequestParam(value = "withdrawNo", required = false) String withdrawNo,
-            @RequestParam(value = "approveUser", required = false) String approveUser,
+            // @RequestParam(value = "approveUser", required = false) String
+            // approveUser,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
-        return accountAO.approveWithdrawOrder(withdrawNo, approveUser,
-            approveResult, approveNote);
+        return accountAO.approveWithdrawOrder(withdrawNo, this.getSessionUser()
+            .getUserName(), approveResult, approveNote);
     }
 
     @RequestMapping(value = "/payWithdrawOrder", method = RequestMethod.POST)
     @ResponseBody
     public Object payWithdrawOrder(
             @RequestParam(value = "withdrawNo", required = false) String withdrawNo,
-            @RequestParam(value = "payUser", required = false) String payUser,
+            // @RequestParam(value = "payUser", required = false) String
+            // payUser,
             @RequestParam(value = "payResult", required = false) String payResult,
             @RequestParam(value = "payNote", required = false) String payNote,
             @RequestParam(value = "refNo", required = false) String refNo,
             @RequestParam(value = "fee", required = false) String fee) {
-        return accountAO.payWithdrawOrder(withdrawNo, payUser, payResult,
-            payNote, refNo, fee);
+        return accountAO.payWithdrawOrder(withdrawNo, this.getSessionUser()
+            .getUserName(), payResult, payNote, refNo, fee);
     }
 
     @RequestMapping(value = "/turnOutListPage", method = RequestMethod.GET)
@@ -194,16 +197,18 @@ public class AccountController extends BaseController {
             @RequestParam(value = "toCode", required = false) String toCode,
             @RequestParam(value = "direction", required = false) String direction,
             @RequestParam(value = "status", required = false) String status,
-            @RequestParam(value = "applyUser", required = false) String applyUser,
-            @RequestParam(value = "approveUser", required = false) String approveUser,
+            // @RequestParam(value = "applyUser", required = false) String
+            // applyUser,
+            // @RequestParam(value = "approveUser", required = false) String
+            // approveUser,
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
             @RequestParam(value = "dateStart", required = false) String dateStart,
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
-        return accountAO.queryRedBlueOrderPage(toCode, direction, status,
-            applyUser, approveUser, accountNumber, dateStart, dateEnd, start,
-            limit);
+        return accountAO.queryRedBlueOrderPage(toCode, direction, status, this
+            .getSessionUser().getUserName(), this.getSessionUser()
+            .getUserName(), accountNumber, dateStart, dateEnd, start, limit);
     }
 
     @RequestMapping(value = "/artificialAccountApply", method = RequestMethod.POST)
@@ -212,21 +217,23 @@ public class AccountController extends BaseController {
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
             @RequestParam(value = "direction", required = false) String direction,
             @RequestParam(value = "amount", required = false) String amount,
-            @RequestParam(value = "applyUser", required = false) String applyUser,
-            @RequestParam(value = "approveapplyNoteUser", required = false) String applyNote) {
+            // @RequestParam(value = "applyUser", required = false) String
+            // applyUser,
+            @RequestParam(value = "applyNote", required = false) String applyNote) {
         return accountAO.artificialAccountApply(accountNumber, direction,
-            amount, applyUser, applyNote);
+            amount, this.getSessionUser().getUserName(), applyNote);
     }
 
     @RequestMapping(value = "/artificialApproveCheck", method = RequestMethod.POST)
     @ResponseBody
     public Object artificialApproveCheck(
             @RequestParam(value = "code", required = false) String code,
-            @RequestParam(value = "approveUser", required = false) String approveUser,
+            // @RequestParam(value = "approveUser", required = false) String
+            // approveUser,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
-        return accountAO.artificialApproveCheck(code, approveUser,
-            approveResult, approveNote);
+        return accountAO.artificialApproveCheck(code, this.getSessionUser()
+            .getUserName(), approveResult, approveNote);
     }
 
     @RequestMapping(value = "/checkInput", method = RequestMethod.POST)

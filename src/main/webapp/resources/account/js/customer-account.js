@@ -3,24 +3,25 @@ var dictstatus=null;
 $(function(){
 	//按钮权限判断
 	showPermissionControl();
-    //页面数据字典初始化
-	initData();
+	//页面数据字典初始化
+	$('#status').renderDropdown(Dict.getName('account_status'));
+    
 	//分页查询
 	queryTableData();
 
-	// 编辑菜单绑定事件
+	//详情菜单绑定事件
 	$('#jourBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/account/customer_account_jour.htm?accountNumber="+selRecords[0].accountNumber;
+		window.location.href = $("#basePath").val()+"/account/account_jour.htm?accountNumber="+selRecords[0].accountNumber;
 	});
 
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/customer/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/queryPage"});
 	});
 })
 //表格初始化
@@ -28,7 +29,7 @@ function queryTableData(){
 	//绑定列表
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/account/customer/page",
+		url : $("#basePath").val()+"/account/queryPage",
 		
 		striped : true,
 		singleSelect : true,
@@ -36,8 +37,8 @@ function queryTableData(){
 		queryParams : function(params) {
 			return {
 			    accountNumber:$("#accountNumber").val(),
-			    status:$("#status").val(),
 			    realName:$("#realName").val(),
+			    status:$("#status").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
@@ -108,7 +109,4 @@ function queryTableData(){
 }
 function moneyFormatter(value, row){
 	return moneyFormat(value, 2);
-}
-function initData(){
-	$('#status').renderDropdown(Dict.getName('withdraw_status'));
 }

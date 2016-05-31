@@ -254,10 +254,14 @@
             }
 
             rownumber += 1;
+            
+            var row = buildRow(0, colnumber);
 
-            $(this).closest('tr').after(buildRow(0, colnumber));
+            $(this).closest('tr').after(row);
 
             $table.find('.delrow').removeClass('disabled');
+            
+            s.afterAdd && s.afterAdd(row);
 
             checkButtons();
 

@@ -3,20 +3,20 @@ var orderStatus = null;
 //渠道
 var channel = null;
 $(function() {
-	//页面数据字典初始化
-	initData();
-	var qxNo = getQueryString("qxNo");
-	var accountNumber = getQueryString("accountNumber");
-	var data = {"qxNo":qxNo,"accountNumber":accountNumber,"start":"1","limit":"10"};
-	var url = $("#basePath").val()+"/withdraw/page";
+
+	var code = getQueryString("code");
+	var data = {"code":code,"start":"1","limit":"10"};
+	var url = $("#basePath").val()+"/account/withdrawOrderPage";
+	
+	// 表格初始化
 	doGetAjax(url, data, doGetDetailBack);
 	
-	//提交
+	// 通过
 	$('#passBtn').click(function() {
 		doApprove("1");
 	});
 	
-	//提交
+	//不通过
 	$('#noPassBtn').click(function() {
 		doApprove("0");
 	});
@@ -47,11 +47,11 @@ function doGetDetailBack(res){
 	if (res.success == true) {
 		if(res.data.list.length > 0){
 			var result = res.data.list[0];
-			$("#qxNo").html(result.qxNo);
+			$("#withdrawNo").html(result.code);
 			$("#mobile").html(result.mobile);
 			$("#realName").html(result.realName);
 			$("#accountNumber").html(result.accountNumber);
-			$("#status").html(Dict.getName('order_status', result.status));
+			$("#status").html(Dict.getName('withdraw_status', result.status));
 			$("#amount").html(moneyFormat(result.amount,2));
 			$("#createDatetime").html(dateFormat(result.createDatetime,'yyyy-MM-dd HH:mm:ss'));
 		}else{
@@ -66,8 +66,9 @@ function doApprove(approveResult){
 	if(!$("#jsForm").valid()){
 		return false;
 	}
-	var data = {"qxNo":$("#qxNo").html(),"approveResult":approveResult,"approveNote":$("#remark").val()};
-	var url = $("#basePath").val()+"/withdraw/approve";
+	var data = {"approveResult":approveResult,"approveNote":$("#remark").val()};
+	data['withdrawNo']=$("#withdrawNo").html();
+	var url = $("#basePath").val()+"/account/approveWithdrawOrder";
 	doPostAjax(url, data, doSuccessBack);
 }
 	
@@ -78,7 +79,4 @@ function doSuccessBack(res) {
 	}else{
 		alert(res.msg);
 	}
-}
-//初始化数据字典
-function initData(){
 }

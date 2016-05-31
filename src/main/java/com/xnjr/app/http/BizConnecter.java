@@ -22,11 +22,11 @@ import com.xnjr.app.util.RegexUtils;
 public class BizConnecter {
     public static final String YES = "0";
 
-    public static final String MALL_URL = PropertiesUtil.getProperty("mallUrl");
+    public static final String MALL_URL = PropertiesUtil.Config.MALL_URL;
 
-    public static final String USER_URL = PropertiesUtil.getProperty("userUrl");
-    
-    public static final String ACCOUNT_URL = PropertiesUtil.getProperty("acconutUrl");
+    public static final String USER_URL = PropertiesUtil.Config.USER_URL;
+
+    public static final String ACCOUNT_URL = PropertiesUtil.Config.ACCOUNT_URL;
 
     public static final String SMS_URL = PropertiesUtil.getProperty("smsUrl");
 

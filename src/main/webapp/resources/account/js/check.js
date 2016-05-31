@@ -11,7 +11,7 @@ $(function() {
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		$('#jourTableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/jour/page"});
+		$('#jourTableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/redBlueOrderPage"});
 	});
 	
 	// 审核事件绑定
@@ -39,7 +39,7 @@ function queryJourTableData(){
 	// 绑定列表
 	$('#jourTableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/account/jour/page",
+		url : $("#basePath").val()+"/account/redBlueOrderPage",
 		
 		striped : true,
 		clickToSelect : true,

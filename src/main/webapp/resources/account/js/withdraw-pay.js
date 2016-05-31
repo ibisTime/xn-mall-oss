@@ -5,10 +5,10 @@ var channel = null;
 $(function() {
 	//页面数据字典初始化
 	initData();
-	var qxNo = getQueryString("qxNo");
+	var code = getQueryString("code");
 	var accountNumber = getQueryString("accountNumber");
-	var data = {"qxNo":qxNo,"accountNumber":accountNumber,"start":"1","limit":"10"};
-	var url = $("#basePath").val()+"/withdraw/page";
+	var data = {"code":code,"start":"1","limit":"10"};
+	var url = $("#basePath").val()+"/account/withdrawOrderPage";
 	doGetAjax(url, data, doGetDetailBack);
 	
 	//提交
@@ -64,11 +64,11 @@ function doGetDetailBack(res){
 	if (res.success == true) {
 		if(res.data.list.length > 0){
 			var result = res.data.list[0];
-			$("#qxNo").html(result.qxNo);
+			$("#withdrawNo").html(result.code);
 			$("#mobile").html(result.mobile);
 			$("#realName").html(result.realName);
 			$("#accountNumber").html(result.accountNumber);
-			$("#status").html(Dict.getName('order_status', result.status));
+			$("#status").html(Dict.getName('withdraw_status', result.status));
 			$("#amount").html(moneyFormat(result.amount,2));
 			$("#createDatetime").html(dateFormat(result.createDatetime,'yyyy-MM-dd HH:mm:ss'));
 			$("#approveUser").html(result.approveUser);
@@ -82,8 +82,8 @@ function doGetDetailBack(res){
 }
 
 function doPay(payResult){
-	var data = {"qxNo":$("#qxNo").html(),"payResult":payResult,"payNo":$("#payNo").val(),"payFee":moneyFormatByEnLarge($("#payFee").val()),"workDate":$("#workDate").val(),"payNote":$("#remark").val()};
-	var url = $("#basePath").val()+"/withdraw/payment";
+	var data = {"withdrawNo":$("#withdrawNo").html(),"payResult":payResult,"payNo":$("#payNo").val(),"fee":moneyFormatByEnLarge($("#fee").val()),"payNote":$("#remark").val()};
+	var url = $("#basePath").val()+"/account/payWithdrawOrder";
 	doPostAjax(url, data, doSuccessBack);
 }
 	

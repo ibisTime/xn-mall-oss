@@ -5,7 +5,6 @@ $(function() {
 	showPermissionControl();
 	
 	//页面数据字典初始化
-	initData();
 	$("#status").renderDropdown(Dict.getName('withdraw_status'));
 	//默认值设置
 	//$("#statusSearch").val("1");
@@ -67,13 +66,13 @@ function queryTableData(){
 	// 绑定列表
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/acccount/withdrawOrderPage",
+		url : $("#basePath").val()+"/account/withdrawOrderPage",
 		
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
-		sortName : 'createDatetime',
-		sortOrder : 'desc',
+//		sortName : 'createDatetime',
+//		sortOrder : 'desc',
 		queryParams : function(params) {
 			return {
 				code : $("#code").val(),
@@ -82,9 +81,7 @@ function queryTableData(){
 				dateStart : $("#dateStart").val(),
 				dateEnd : $("#dateEnd").val(),
 				start : params.offset / params.limit + 1,
-				limit : params.limit,
-				orderColumn : this.sortName,
-				orderDir : this.sortOrder
+				limit : params.limit
 			};
 		},
 		queryParamsType : 'limit',
@@ -107,7 +104,7 @@ function queryTableData(){
 			valign : 'middle',
 			checkbox : true
 		},{
-			field : 'cpNo',
+			field : 'code',
 			title : '取现订单号',
 			align : 'left',
 			valign : 'middle',
@@ -141,8 +138,6 @@ function queryTableData(){
 			formatter : dateFormatter
 		}]
 	});
-}
-function initData(){
 }
 
 //格式化金额
