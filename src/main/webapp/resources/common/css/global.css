@@ -129,3 +129,64 @@ td{ word-wrap:break-word}
 .imgtd{text-indent:0;}
 .imgtable tbody tr.odd{background:#f5f8fa;}
 .imgtable tbody tr:hover{background:#e5ebee;}
+
+/*布局*/
+.flex {
+    display: -webkit-box;
+    display: flex;
+}
+
+.flex1 {
+    -webkit-box-flex: 1;
+    flex: 1
+}
+
+.flex2 {
+    -webkit-box-flex: 2;
+    flex: 2
+}
+
+.flex3 {
+    -webkit-box-flex: 3;
+    flex: 3
+}
+
+.flex4 {
+    -webkit-box-flex: 4;
+    flex: 4
+}
+
+.flex5 {
+    -webkit-box-flex: 5;
+    flex: 5
+}
+
+.flex6 {
+    -webkit-box-flex: 6;
+    flex: 6
+}
+
+.flex-dv {
+    -webkit-box-orient: vertical;
+    flex-direction: column;
+}
+
+.flex-c {
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-jb {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.flex > a {
+    display: block;
+}
+
+.flex-fw {
+    flex-wrap: wrap;
+}

@@ -25,7 +25,32 @@ body{background-color:#1c77ac; background-image:url(../images/light.png); backgr
 .login-box ul li label input{margin-right:5px;}
 .login-user{width:299px; height:48px; background:url(../images/loginuser.png) no-repeat; border:none; line-height:48px; padding-left:44px; font-size:14px; font-weight:bold;}
 .login-pwd{width:299px; height:48px; background:url(../images/loginpassword.png) no-repeat; border:none;line-height:48px; padding-left:44px; font-size:14px; color:#90a2bc;}
+.login-input{width:324px; height:48px; background:url(../images/logininput.png) no-repeat; border:none;line-height:48px; padding-left:20px; font-size:14px; color:#90a2bc;}
+.login-input-s{width:180px; height:48px; background:url(../images/logininput-s.png) no-repeat; border:none;line-height:48px; padding-left:20px; font-size:14px; color:#90a2bc;}
 .login-btn{width:111px;height:35px; background:url(../images/buttonbg.png) repeat-x; font-size:14px; font-weight:bold; color:#fff;cursor:pointer; line-height:35px;}
 .login-bm{height:50px; line-height:50px; text-align:center; background:url(../images/loginbg2.png) repeat-x;position:absolute; bottom:0; width:100%; color:#0b3a58;}
 .login-bm a{font-weight:bold;color:#0b3a58;}
 .login-bm a:hover{color:#fff;}
+.login-btn[disabled] {
+    background: #D4D4D4;
+}
+.login-tabs {
+    position: absolute;
+    width: 100%;
+    top: 650px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-tabs a {
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.login-tabs a.active {
+	color: #FFCF15;
+}
+
+.login-tabs a:hover {
+	color: #FFCF15;
+}
