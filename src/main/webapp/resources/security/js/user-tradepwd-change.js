@@ -10,7 +10,7 @@ $(function() {
 		$.each(t, function() {
 			data[this.name] = this.value;
 		});
-		var url = $("#basePath").val()+"/user/pwd/change";
+		var url = $("#basePath").val()+"/user/tradePwd/change";
 		doPostAjax(url, data, doSuccessBack);
 	});
 	
@@ -31,18 +31,25 @@ $(function() {
 				required: true,
 				maxlength: 12,
 				minlength: 6
+			},
+			remark: {
+				required: false,
+				maxlength: 32,
 			}
 		},
 		messages: {
 			oldLoginPwd: {
-				required: "请输入旧密码",
-				maxlength: jQuery.format("旧密码不能大于{0}个字符"),
-				minlength: jQuery.format("旧密码不能小于{0}个字符")
+				required: "请输入旧交易密码",
+				maxlength: jQuery.format("旧交易密码不能大于{0}个字符"),
+				minlength: jQuery.format("旧交易密码不能小于{0}个字符")
 			},
 			newLoginPwd: {
-				required: "请输入新密码",
-				maxlength: jQuery.format("新密码不能大于{0}个字符"),
-				minlength: jQuery.format("新密码不能小于{0}个字符")
+				required: "请输入新交易密码",
+				maxlength: jQuery.format("新交易密码不能大于{0}个字符"),
+				minlength: jQuery.format("新交易密码不能小于{0}个字符")
+			},
+			remark: {
+				maxlength: jQuery.format("备注不能大于{0}个字符"),
 			}
 		}
 	});

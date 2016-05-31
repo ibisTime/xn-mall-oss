@@ -205,6 +205,7 @@
 		 	<mvc:exclude-mapping path="/user/find_psd*.htm" />
 		 	<mvc:exclude-mapping path="/gene/findloginpwd/send" />
 		 	<mvc:exclude-mapping path="/user/loginpwd/find"/>
+		 	<mvc:exclude-mapping path="/user/pwd/reset" />
 		 	<!--找回登录密码相关 end  -->
 		 	<mvc:exclude-mapping path="/index*" />
 		 	<mvc:exclude-mapping path="/system/version.htm" />

@@ -41,5 +41,5 @@
 
         offsetbg += 0.9;
         $body.css("background-position", -offsetbg + "px 0")
-    }, 90 );
+    }, 900 );
 	
