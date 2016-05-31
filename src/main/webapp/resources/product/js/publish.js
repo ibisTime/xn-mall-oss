@@ -31,8 +31,8 @@ $(function() {
 	});
 	
 
-	//上架
-	$('#upBtn').click(function() {
+	//上架下架
+	$('#updownBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
 		if(selRecords.length <= 0){
 			alert("请选择记录");
@@ -43,17 +43,7 @@ $(function() {
 
 	});
 	
-	//下架
-	$('#downBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections');
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		
-		window.location.href = $("#basePath").val()+"/product/product_updown.htm?code="+selRecords[0].code;
-
-	});
+	
 	
 	//删除
 	$('#upBtn').click(function() {
