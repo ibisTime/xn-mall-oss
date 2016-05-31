@@ -4,7 +4,7 @@ var orderStatus = null;
 var channel = null;
 $(function() {
 	//页面数据字典初始化
-	initData();
+//	initData();
 	
 	var code = getQueryString("code");
 	var accountNumber = getQueryString("accountNumber");
@@ -71,7 +71,8 @@ function doApprove(approveResult){
 	if(!$("#jsForm").valid()){
 		return false;
 	}
-	var data = {"chargeNo":$("#code").html(),"approveResult":approveResult,"approveNote":$("#remark").val()};
+	var data = {"approveResult":approveResult,"approveNote":$("#remark").val()};
+	data['chargeNo']=$("#chargeNo").html();
 	var url = $("#basePath").val()+"/account/approveRecharge";
 	doPostAjax(url, data, doSuccessBack);
 }

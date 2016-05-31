@@ -6,7 +6,7 @@ $(function(){
 			return false;
 		}
 //		var sign = $("#direction").val() == "1"?"":"-";
-		var data = {"accountNumber":$("#accountNumber").val(),"amount":$("#amount").val(),"applyNote":$("#applyNote").val()};
+		var data = {"accountNumber":$("#accountNumber").val(),"amount":moneyParse($("#amount").val()),"applyNote":$("#applyNote").val()};
 		data["direction"]=$("#direction").val();
 		var url = $("#basePath").val()+"/account/artificialAccountApply";
 		doPostAjax(url, data, doSuccessBack);
