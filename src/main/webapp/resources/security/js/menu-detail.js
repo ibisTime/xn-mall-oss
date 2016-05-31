@@ -28,6 +28,7 @@ $(function() {
 		$.each(t, function() {
 			data[this.name] = this.value;
 		});
+		data['kind'] = '1';
 		var url = $("#basePath").val()+"/menu/" + $("#operate").val();
 		doPostAjax(url, data, doSuccessBack);
 	});
@@ -40,10 +41,6 @@ $(function() {
 	//入参合法性校验
 	$("#jsForm").validate({
 		rules: {
-			kind: {
-				required: true,
-				maxlength: 32
-			},
 			code: {
 				required: true,
 				number:true,
@@ -75,10 +72,6 @@ $(function() {
 			}
 		},
 		messages: {
-			kind: {
-				required: "请输入哪一方",
-				maxlength: jQuery.format("哪一方不能大于{0}个字符")
-			},
 			code: {
 				required: "请输入菜单编号",
 				number: "菜单编号请输入数字",
@@ -114,16 +107,13 @@ $(function() {
 
 function doGetDetailBack(res){
 	if (res.success) {
-			$("#kind").val(res.data.kind);
-			$("#code").val(res.data.code);
-			$("#name").val(res.data.name);
-			$("#url").val(res.data.url);
-			$("#parentCode").val(res.data.parentCode);
-			$("#type").val(res.data.type);
-			$("#orderNo").val(res.data.orderNo);
-			$("#remark").val(res.data.remark);
-		
-		
+		$("#code").val(res.data.code);
+		$("#name").val(res.data.name);
+		$("#url").val(res.data.url);
+		$("#parentCode").val(res.data.parentCode);
+		$("#type").val(res.data.type);
+		$("#orderNo").val(res.data.orderNo);
+		$("#remark").val(res.data.remark);
 	}else{
 		alert(res.msg);
 	}

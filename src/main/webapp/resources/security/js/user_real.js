@@ -2,6 +2,7 @@ $(function() {
 	$("#userId").html(getQueryString("userId"));
 	$("#loginName").html(decodeURI(getQueryString("loginName")));
 	$('#idKind').renderDropdown(Dict.getIDKindName());
+	
 	//提交
 	$('#subBtn').click(function() {
 	    if(!$("#jsForm").valid()){

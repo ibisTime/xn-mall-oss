@@ -82,12 +82,14 @@ public interface IUserAO {
      * @param userReferee
      * @param updater
      * @param remark
+     * @param kind
      * @return 
-     * @create: 2016年5月30日 下午5:01:54 xieyj
+     * @create: 2016年5月31日 上午8:19:47 xieyj
      * @history:
      */
     public Object addUser(String mobile, String idKind, String idNo,
-            String realName, String userReferee, String updater, String remark);
+            String realName, String userReferee, String updater, String remark,
+            String kind);
 
     /**
      * 修改手机号

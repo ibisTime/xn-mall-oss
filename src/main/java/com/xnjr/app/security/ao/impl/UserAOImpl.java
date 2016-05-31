@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.xnjr.app.customer.req.XN805053Req;
-import com.xnjr.app.enums.EBoolean;
 import com.xnjr.app.enums.EUserKind;
+import com.xnjr.app.enums.EUserStatus;
 import com.xnjr.app.http.BizConnecter;
 import com.xnjr.app.http.JsonUtils;
 import com.xnjr.app.security.ao.IUserAO;
@@ -25,7 +25,6 @@ import com.xnjr.app.security.req.XN805055Req;
 import com.xnjr.app.security.res.XN805043Res;
 import com.xnjr.app.security.res.XN805055Res;
 import com.xnjr.app.security.res.XN805056Res;
-import com.xnjr.app.util.MD5Util;
 import com.xnjr.app.util.PwdUtil;
 
 /**
@@ -83,7 +82,8 @@ public class UserAOImpl implements IUserAO {
 
     @Override
     public Object addUser(String mobile, String idKind, String idNo,
-            String realName, String userReferee, String updater, String remark) {
+            String realName, String userReferee, String updater, String remark,
+            String kind) {
         XN805042Req req = new XN805042Req();
         req.setMobile(mobile);
         req.setIdKind(idKind);
@@ -92,6 +92,7 @@ public class UserAOImpl implements IUserAO {
         req.setUserReferee(userReferee);
         req.setUpdater(updater);
         req.setRemark(remark);
+        req.setKind(kind);
         return BizConnecter.getBizData("805042", JsonUtils.object2Json(req),
             Object.class);
     }
@@ -100,7 +101,7 @@ public class UserAOImpl implements IUserAO {
     public Object cancelUser(String userId, String updater, String remark) {
         XN805052Req req = new XN805052Req();
         req.setUserId(userId);
-        req.setToStatus(EBoolean.NO.getCode());
+        req.setToStatus(EUserStatus.Ren_Locked.getCode());
         req.setUpdater(updater);
         req.setRemark(remark);
         return BizConnecter.getBizData("805052", JsonUtils.object2Json(req),
@@ -114,7 +115,7 @@ public class UserAOImpl implements IUserAO {
     public Object activeUser(String userId, String updater, String remark) {
         XN805052Req req = new XN805052Req();
         req.setUserId(userId);
-        req.setToStatus(EBoolean.YES.getCode());
+        req.setToStatus(EUserStatus.NORMAL.getCode());
         req.setUpdater(updater);
         req.setRemark(remark);
         return BizConnecter.getBizData("805052", JsonUtils.object2Json(req),
@@ -187,7 +188,7 @@ public class UserAOImpl implements IUserAO {
     public XN805043Res login(String loginName, String loginPwd) {
         XN805043Req req = new XN805043Req();
         req.setLoginName(loginName);
-        req.setLoginPwd(MD5Util.md5(loginPwd));
+        req.setLoginPwd(loginPwd);
         return BizConnecter.getBizData("805043", JsonUtils.object2Json(req),
             XN805043Res.class);
     }

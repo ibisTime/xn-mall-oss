@@ -14,7 +14,7 @@ package com.xnjr.app.enums;
  * @history:
  */
 public enum EUserKind {
-    Admin("9", "管理员"), Operator("1", "操作员");
+    F1("f1", "前端个人用户"), Operator("01", "管理端系统方");
 
     EUserKind(String code, String value) {
         this.code = code;

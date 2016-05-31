@@ -1,6 +1,6 @@
 $(function() {
 	// 角色下拉框初始化,同步调用
-	doGetAjaxIsAsync($("#basePath").val() + "/role/list", {"kind":getQueryString("kind")}, false, doSuccessRoleBack);
+	doGetAjaxIsAsync($("#basePath").val() + "/role/list", null, false, doSuccessRoleBack);
 	
 	$("#userId").html(getQueryString("userId"));
 	$("#loginName").html(decodeURI(getQueryString("loginName")));

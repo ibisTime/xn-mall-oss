@@ -58,7 +58,7 @@ public class UserController extends BaseController {
     @ResponseBody
     public Object changePwd(@RequestParam("oldLoginPwd") String oldLoginPwd,
             @RequestParam("newLoginPwd") String newLoginPwd) {
-        return userAO.changeLoginPwd(this.getSessionUser().getUserCode(),
+        return userAO.changeLoginPwd(this.getSessionUser().getUserId(),
             oldLoginPwd, newLoginPwd);
     }
 
@@ -75,7 +75,7 @@ public class UserController extends BaseController {
     public Object changeTradePwd(
             @RequestParam("oldTradePwd") String oldTradePwd,
             @RequestParam("newTradePwd") String newTradePwd) {
-        return userAO.changeTradePwd(this.getSessionUser().getUserCode(),
+        return userAO.changeTradePwd(this.getSessionUser().getUserId(),
             oldTradePwd, newTradePwd);
     }
 
@@ -86,7 +86,7 @@ public class UserController extends BaseController {
             @RequestParam("smsCaptcha") String smsCaptcha,
             @RequestParam("idKind") String idKind,
             @RequestParam("idNo") String idNo) {
-        return userAO.resetTradePwd(this.getSessionUser().getUserCode(),
+        return userAO.resetTradePwd(this.getSessionUser().getUserId(),
             newTradePwd, smsCaptcha, idKind, idNo);
     }
 
@@ -106,7 +106,7 @@ public class UserController extends BaseController {
             @RequestParam(value = "parentCode", required = true) String parentCode,
             @RequestParam(value = "type", required = true) String type,
             @RequestParam(value = "isGetChild", required = true) boolean isGetChild) {
-        XN805056Res user = userAO.getUser(this.getSessionUser().getUserCode());
+        XN805056Res user = userAO.getUser(this.getSessionUser().getUserId());
         String roleCode = user.getRoleCode();
         if (StringUtils.isBlank(roleCode)) {
             throw new BizException("XN700001", "该用户角色为空");
@@ -122,9 +122,10 @@ public class UserController extends BaseController {
             @RequestParam(value = "idNo", required = false) String idNo,
             @RequestParam("realName") String realName,
             @RequestParam(value = "userReferee", required = false) String userReferee,
-            @RequestParam(value = "remark", required = false) String remark) {
+            @RequestParam(value = "remark", required = false) String remark,
+            @RequestParam("kind") String kind) {
         return userAO.addUser(mobile, idKind, idNo, realName, userReferee, this
-            .getSessionUser().getUserName(), remark);
+            .getSessionUser().getUserName(), remark, kind);
     }
 
     @RequestMapping(value = "/drop", method = RequestMethod.POST)
@@ -190,7 +191,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     public Object getUser() {
-        return userAO.getUser(this.getSessionUser().getUserCode());
+        return userAO.getUser(this.getSessionUser().getUserId());
     }
 
     @RequestMapping(value = "/editMobile", method = RequestMethod.POST)
@@ -199,7 +200,7 @@ public class UserController extends BaseController {
             @RequestParam(value = "newMobile") String newMobile,
             @RequestParam(value = "smsCaptcha") String smsCaptcha,
             @RequestParam(value = "tradePwd") String tradePwd) {
-        return userAO.editMobile(this.getSessionUser().getUserCode(),
-            newMobile, smsCaptcha, tradePwd);
+        return userAO.editMobile(this.getSessionUser().getUserId(), newMobile,
+            smsCaptcha, tradePwd);
     }
 }

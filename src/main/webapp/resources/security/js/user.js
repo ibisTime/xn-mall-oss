@@ -2,13 +2,7 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
-	$('#kind').renderDropdown(Dict.getRoleKindName());
 	$('#status').renderDropdown(Dict.getUserStatusName());
-	
-	//系统方则显示哪一方查询条件
-	if(getCurrentKind() != "1"){
-		$("#liKind").hide();
-	}
 	
 	doGetAjax($("#basePath").val()+"/role/list", {}, function(res) {
 		$('#roleCode').renderDropdown(res.data, 'code', 'name');
@@ -38,7 +32,7 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/security/user_detail.htm?userId="+selRecords[0].userId;
+		window.location.href = $("#basePath").val()+"/security/change_mobile.htm?userId="+selRecords[0].userId;
 	});
 	
 	//重置密码
@@ -51,20 +45,6 @@ $(function() {
 		window.location.href = $("#basePath").val()+"/security/user_pwd_reset.htm?userId="+selRecords[0].userId+"&loginName="+encodeURI(encodeURI(selRecords[0].loginName));
 	});
 	
-	//补充实名
-	$('#realBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		if(selRecords[0].idNo){
-			alert("实名认证信息已填写完成");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/security/user_real.htm?userId="+selRecords[0].userId+"&loginName="+encodeURI(encodeURI(selRecords[0].loginName));
-	});
-	
 	//重置管理员交易密码
 	$('#reTradePwdBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
@@ -75,18 +55,41 @@ $(function() {
 		window.location.href = $("#basePath").val()+"/security/user_resetpsd.htm?userId="+selRecords[0].userId+"&loginName="+encodeURI(encodeURI(selRecords[0].loginName));
 	});
 	
-	//删除
+	//锁定
 	$('#dropBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		if(!confirm("确认注销用户["+selRecords[0].loginName+"]?")){
+		if(selRecords[0].status == 0){
+			alert("请选择正常记录");
+			return;
+		}
+		if(!confirm("确认锁定用户["+selRecords[0].loginName+"]?")){
     		return false;
     	}
 		var data = {"userId":selRecords[0].userId};
 		var url = $("#basePath").val()+"/user/drop";
+		doPostAjax(url, data, doSuccessDelBack);
+	});
+	
+	//解锁
+	$('#activeBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		if(selRecords[0].status == 1 || selRecords[0].status == 2){
+			alert("请选择锁定记录");
+			return;
+		}
+		if(!confirm("确认解锁用户["+selRecords[0].loginName+"]?")){
+    		return false;
+    	}
+		var data = {"userId":selRecords[0].userId};
+		var url = $("#basePath").val()+"/user/active";
 		doPostAjax(url, data, doSuccessDelBack);
 	});
 	
@@ -117,7 +120,7 @@ function queryTableData(){
 		sortable : false
 	}, {
 		field : 'roleCode',
-		title : '角色',
+		title : '角色编号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false
@@ -154,8 +157,8 @@ function queryTableData(){
 		valign : 'middle',
 		sortable : false,
 	},{
-		field : 'contact',
-		title : '联系方式',
+		field : 'mobile',
+		title : '手机号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
@@ -180,17 +183,6 @@ function queryTableData(){
 		sortable : false
 	}];
 	
-	if(getCurrentKind() == 1){
-		columns.push({
-			field : 'kind',
-			title : '哪一方',
-			align : 'left',
-			valign : 'middle',
-			formatter: Dict.getRoleKindName,
-			sortable : false,
-		});
-	}
-	
 	// 绑定列表
 	$('#tableList').bootstrapTable({
 		method : "get",
@@ -201,12 +193,10 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				kind : $("#kind").val(),
 				roleCode : $("#roleCode").val(),
 				loginName : $("#loginName").val(),
 				userReferee : $("#userReferee").val(),
 				status : $("#status").val(),
-				contact : $("#contact").val(),
 				updater : $("#updater").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit

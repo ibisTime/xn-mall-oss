@@ -6,7 +6,7 @@ $(function(){
 		window.ossKind = res.data ? res.data.kind : '';
 	});
 	
-	doGetAjaxIsAsync($("#basePath").val() + '/menu/list', {"parentCode":"SM201600000000000000","kind":window.ossKind}, false, function(res) {
+	doGetAjaxIsAsync($("#basePath").val() + '/menu/list', {"parentCode":"SM201600000000000000"}, false, function(res) {
 		window.parentCode = res.data[0] ? res.data[0].code : '';
 	});
 	

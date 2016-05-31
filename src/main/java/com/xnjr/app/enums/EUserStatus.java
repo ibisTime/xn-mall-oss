@@ -1,7 +1,7 @@
 package com.xnjr.app.enums;
 
 public enum EUserStatus {
-    OK("1", "正常"), BLOCK("0", "注销");
+    NORMAL("0", "正常"), Li_Locked("1", "程序锁定"), Ren_Locked("2", "人工锁定");
 
     EUserStatus(String code, String value) {
         this.code = code;

@@ -1,11 +1,5 @@
 $(function() {
-	$('#kind').renderDropdown(Dict.getRoleKindName());
 	$('#level').renderDropdown(Dict.getRoleLevelName());
-	
-	//系统方则显示哪一方查询条件
-	if(getCurrentKind() != "1"){
-		$("#liKind").hide();
-	}
 	
 	//获取菜单URL入参
 	var code = getQueryString("code");
@@ -31,6 +25,7 @@ $(function() {
 		$.each(t, function() {
 			data[this.name] = this.value;
 		});
+		data['kind'] = '1';
 		var operator = $("#operate").val() != "edit"?"add":"edit";
 		var url = $("#basePath").val()+"/role/" + operator;
 		doPostAjax(url, data, doSucBackSave);
@@ -39,10 +34,6 @@ $(function() {
 	//入参合法性校验
 	$("#jsForm").validate({
 		rules: {
-			kind: {
-				required: true,
-				maxlength: 32
-			},
 			name: {
 				required: true,
 				maxlength: 32
@@ -53,10 +44,6 @@ $(function() {
 			}
 		},
 		messages: {
-			kind: {
-				required: "请输入哪一方",
-				maxlength: jQuery.format("哪一方不能大于{0}个字符")
-			},
 			name: {
 				required: "请输入角色名称",
 				maxlength: jQuery.format("角色名称不能大于{0}个字符")
@@ -79,7 +66,6 @@ $(function() {
 function doSucBackGetDetail(res){
 	if (res.success) {
 		$("#code").val(res.data.code);
-		$("#kind").val(res.data.kind);
 		$("#name").val(res.data.name);
 		$("#level").val(res.data.level);
 		$("#remark").val(res.data.remark);

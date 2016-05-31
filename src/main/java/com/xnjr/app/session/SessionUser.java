@@ -14,19 +14,19 @@ package com.xnjr.app.session;
  * @history:
  */
 public class SessionUser extends AUserDetail {
-    private String userCode;
+    private String userId;
 
     private String userName;
 
     public SessionUser() {
     }
 
-    public String getUserCode() {
-        return userCode;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserCode(String userCode) {
-        this.userCode = userCode;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -37,8 +37,8 @@ public class SessionUser extends AUserDetail {
         this.userName = userName;
     }
 
-    public SessionUser(String userCode, String userName) {
-        this.userCode = userCode;
+    public SessionUser(String userId, String userName) {
+        this.userId = userId;
         this.userName = userName;
     }
 }

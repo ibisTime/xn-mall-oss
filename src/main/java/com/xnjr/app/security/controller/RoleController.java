@@ -58,7 +58,7 @@ public class RoleController extends BaseController {
     @ResponseBody
     public Object queryMenuList(@RequestParam("parentCode") String parentCode,
             @RequestParam("type") String type) {
-        XN805056Res user = userAO.getUser(this.getSessionUser().getUserCode());
+        XN805056Res user = userAO.getUser(this.getSessionUser().getUserId());
         String roleCode = user.getRoleCode();
         if (StringUtils.isBlank(roleCode)) {
             throw new BizException("XN700001", "该用户角色为空");
@@ -67,16 +67,12 @@ public class RoleController extends BaseController {
             user.getKind());
     }
 
-    @RequestMapping(value = "/checkedlist", method = RequestMethod.GET)
+    @RequestMapping(value = "/checkedList", method = RequestMethod.GET)
     @ResponseBody
     public List<CheckedMenu> queryCheckedMenuList(
             @RequestParam("roleCode") String roleCode,
             @RequestParam(value = "kind", required = false) String kind) {
-        // XNlh0012Res user =
-        // userAO.getUser(this.getSessionUser().getUserCode());
         List<CheckedMenu> resultList = new ArrayList<CheckedMenu>();
-        // if (EKind.SYSTEM.getCode().equals(user.getKind())
-        // && !kind.equals(user.getKind())) {
         List<XN805001Res> allMenulist = menuAO.queryMenuList(kind, null, null,
             null, null, null);
         List<XN805026Res> roleMenuList = roleMenuAO.queryMenuList(roleCode,

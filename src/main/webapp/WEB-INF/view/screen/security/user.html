@@ -22,11 +22,9 @@
          <!-- 搜索表单 -->
     	 <form class="search-form">
         	<ul>
-	            <li id="liKind"><label>哪一方</label><select id="kind"></select></li>
-	           <!-- <li><label>角色</label><input type="text" id="roleCode"/></li>-->
+	            <li><label>角色编号</label><input type="text" id="roleCode"/></li>
 	            <li><label>用户名</label><input type="text" id="loginName"/></li>
 	            <li><label>推荐人</label><input type="text" id="userReferee"/></li>
-	            <li><label>联系方式</label><input type="text" id="contact"/></li>
 	            <li><label>更新人</label><input type="text" id="updater"/></li>
 	            <li>
 	                <input id="searchBtn" type="button" class="btn" value="查询" />
@@ -39,17 +37,16 @@
 	       <ul class="toolbar">
 		       <li id="addBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>新增</li>
 		       <li id="replaceAddBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>代注册</li>
-		       <li id="editBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>修改联系方式</li>
-		       <li id="dropBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>注销</li>
+		       <li id="editBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>修改手机号</li>
+		       <li id="dropBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>锁定</li>
+		       <li id="activeBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>解锁</li>
 		       <li id="changeRoleBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>设置角色</li>
 		       <li id="rePwdBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>重置登录密码</li>
 		       <li id="reTradePwdBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>重置交易密码</li>
-		       <li id="realBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>补充实名信息</li>
 	       </ul>
 	    </div>
 	    <!-- 表格 -->
 	    <table id="tableList"></table>
     </div>
 </body>
-
 </html>

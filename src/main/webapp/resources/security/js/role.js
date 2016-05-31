@@ -3,12 +3,6 @@ var dictLevel = null;
 $(function() {
 	//按钮权限判断
 	showPermissionControl();
-	$('#kind').renderDropdown(Dict.getRoleKindName());
-	
-	//系统方则显示哪一方查询条件
-	if(getCurrentKind() != "1"){
-		$("#liKind").hide();
-	}
 	
 	//数据字典初始化
 	initData();
@@ -58,7 +52,7 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-      	window.location.href = $("#basePath").val()+"/security/role_menu.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name))+"&kind="+selRecords[0].kind;
+      	window.location.href = $("#basePath").val()+"/security/role_menu.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name));
 	});
 });
 
@@ -127,17 +121,6 @@ function queryTableData(){
 		sortable : false
 	}];
 	
-	if(getCurrentKind() == 1){
-		columns.push({
-			field : 'kind',
-			title : '哪一方',
-			align : 'left',
-			valign : 'middle',
-			formatter: Dict.getRoleKindName,
-			sortable : false,
-		});
-	}
-	
 	$('#tableList').bootstrapTable({
 		method : "get",
 		url : $("#basePath").val()+"/role/page",
@@ -147,7 +130,6 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				kind : $("#kind").val(),
 				name : $("#name").val(),
 				level : $("#level").val(),
 				updater : $("#updater").val(),

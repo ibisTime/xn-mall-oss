@@ -42,7 +42,7 @@ public class StructureController extends BaseController {
             @RequestParam("description") String description,
             @RequestParam("remark") String remark) {
         return structureAO.editStructure(code, name, summary, description, this
-            .getSessionUser().getUserCode(), remark, status);
+            .getSessionUser().getUserId(), remark, status);
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)

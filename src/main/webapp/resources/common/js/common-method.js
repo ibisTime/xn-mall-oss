@@ -303,7 +303,7 @@ function showPermissionControl(){
 	var url = $("#basePath").val() + "/menu/list";
 	var webUrl = window.location.pathname;
 	var menuUrl = webUrl.substring($("#basePath").val().length);
-	var data = {"url":menuUrl,"kind":getCurrentKind()};
+	var data = {"url":menuUrl};
 	doGetAjaxIsAsync(url, data, false, doGetMenuCode);
 	
 	//直接从url获取menuCode，二级页面返回，权限控制不了
@@ -393,10 +393,6 @@ $.fn.renderDropdown = function(data, keyName, valueName, defaultOption) {
 	}
 	this.html(html);
 };
-
-function getCurrentKind(){
-	return window.parent.frames[0] ? window.parent.frames[0].ossKind : '';
-}
 
 function renderLink(link, name) {
 	return '<a href="'+link+'" target="_blank">'+name+'</a>';

@@ -3,8 +3,8 @@ $(function() {
 	$("#name").val(decodeURI(getQueryString("name")));
 	
 	//下拉菜单
-	var data = {roleCode:$("#code").val(),"kind":getQueryString("kind")};
-	doGetAjaxIsAsync($("#basePath").val()+"/role/checkedlist", data, false, doMenuNode);
+	var data = {roleCode:$("#code").val(),kind:"1"};
+	doGetAjaxIsAsync($("#basePath").val()+"/role/checkedList", data, false, doMenuNode);
 	
 	$("#subBtn").click(function() {
 		var menuList = new Array();
