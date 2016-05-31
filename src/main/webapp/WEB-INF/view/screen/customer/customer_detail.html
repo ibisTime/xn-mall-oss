@@ -7,10 +7,6 @@
 <title>客户信息</title>
 <#include 'layout/resources.html'/>
 <script type="text/javascript" src="${resourceUrl}/resources/customer/js/customer-detail.js?version=${version}"></script>
-<style type="text/css">
-.form-body .tabson{display:none}
-.form-body #accountJour{display:block}
-</style>
 </head>
 <body>
     <#include 'layout/hidden_ares.html'/>
@@ -27,11 +23,7 @@
 		    <div class="itab">
 			  	<ul> 
 				    <li><a href="javascript:void(0)" class="selected">基本信息</a></li> 
-				    <li><a href="javascript:void(0)">个人银行卡</a></li> 
-				    <li><a href="javascript:void(0)">拥有企业</a></li>
-				    <li><a href="javascript:void(0)">登录日志</a></li> 
-				    <li style="display: none;"><a href="javascript:void(0)">锁定日志</a></li> 
-				    <li><a href="javascript:void(0)">实名认证</a></li>
+				    <!-- <li><a href="javascript:void(0)">个人银行卡</a></li>  -->
 			  	</ul>
 		    </div>
 		</div>
@@ -43,58 +35,14 @@
 			    <li><label>真实姓名:</label><span id="realName"></span></li>
 			    <li><label>证件类型:</label><span id="idKind"></span></li>
 			    <li><label>证件号:</label><span id="idNo"></span></li>
-			    <li><label>拥有服务:</label><span id="serve"></span></li>
-			    <li><label>拥有报价:</label><span id="quote"></span></li>
-			    <li><label>等级:</label><span id="level"></span></li>
-			    <li><label>注册时间:</label><span id="createDatetime"></span></li>
+			    <li><label>注册时间:</label><span id="updateDatetime"></span></li>
 		    </ul>
 	    </div>
 		<div class="tabson">
-		 	
 		    <table id="bankTableList"></table>
-		</div>
-		<div class="tabson">
-			<!-- 操作按钮 -->
-	    	<div class="tools">
-			   <ul class="toolbar">
-			       <!--  <li id="detailBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>详情</li>-->
-		       </ul>
-		    </div>
-		    <table id="companyTableList"></table>
-		</div>
-		<div class="tabson">
-		    <!-- 搜索表单 -->
-	    	<form class="search-form">
-	        	<ul>
-		            <li><label>登录IP</label><input type="text" id="loginIpSearch"/></li>
-		            <li><label>登录时间起</label><input id="dateStartSearch" class="lay-input" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/></li>
-		        	<li><label>登录时间止</label><input id="dateEndSearch" class="lay-input" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/></li>
-		            <li>
-		                <input id="loginLogSearchBtn" type="button" class="btn" value="查询" />
-		                <input type="reset" class="btn" value="重置" />
-		            </li>
-	        	</ul>
-	    	</form>
-		    <table id="logTableList"></table>
-		</div>
-		<div class="tabson">
-			<form class="search-form">
-	        	<ul>
-		            <li><label>锁定方向</label><select id="lockDirectionSearch"></select></li>
-		            <li>
-		                <input id="LockSearchBtn" type="button" class="btn" value="查询" />
-		                <input type="reset" class="btn" value="重置" />
-		            </li>
-	        	</ul>
-	    	</form>
-		    <table id="lockTableList"></table>
-		</div>
-		<div class="tabson">
-			
-		    <table id="realTableList"></table>
 		</div>
 	</div>
 	<br/>
-	<li><input id="backBtn" type="button" class="btn margin-left-20" value="返回"/></li>
+	<input id="backBtn" type="button" class="btn margin-left-20" value="返回"/>
 </body>
 </html>

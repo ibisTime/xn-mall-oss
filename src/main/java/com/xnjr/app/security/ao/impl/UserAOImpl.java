@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.xnjr.app.customer.req.XN805053Req;
-import com.xnjr.app.enums.EUserKind;
 import com.xnjr.app.enums.EUserStatus;
 import com.xnjr.app.http.BizConnecter;
 import com.xnjr.app.http.JsonUtils;
@@ -20,6 +18,7 @@ import com.xnjr.app.security.req.XN805049Req;
 import com.xnjr.app.security.req.XN805050Req;
 import com.xnjr.app.security.req.XN805051Req;
 import com.xnjr.app.security.req.XN805052Req;
+import com.xnjr.app.security.req.XN805053Req;
 import com.xnjr.app.security.req.XN805054Req;
 import com.xnjr.app.security.req.XN805055Req;
 import com.xnjr.app.security.res.XN805043Res;
@@ -37,15 +36,20 @@ import com.xnjr.app.util.PwdUtil;
 public class UserAOImpl implements IUserAO {
 
     @Override
-    public Object queryUserPage(String loginName, String level,
+    public Object queryUserPage(String loginName, String kind, String level,
             String userReferee, String mobile, String idKind, String idNo,
             String realName, String roleCode, String status, String updater,
             String start, String limit) {
         XN805054Req req = new XN805054Req();
         req.setLoginName(loginName);
-        req.setKind(EUserKind.Operator.getCode());
-        req.setRoleCode(roleCode);
+        req.setKind(kind);
+        req.setLevel(level);
         req.setUserReferee(userReferee);
+        req.setMobile(mobile);
+        req.setIdKind(idKind);
+        req.setIdNo(idNo);
+        req.setRealName(realName);
+        req.setRoleCode(roleCode);
         req.setStatus(status);
         req.setUpdater(updater);
         req.setStart(start);
@@ -55,14 +59,20 @@ public class UserAOImpl implements IUserAO {
     }
 
     @Override
-    public List<XN805055Res> queryUserList(String loginName, String level,
-            String userReferee, String mobile, String idKind, String idNo,
-            String realName, String roleCode, String status, String updater) {
+    public List<XN805055Res> queryUserList(String loginName, String kind,
+            String level, String userReferee, String mobile, String idKind,
+            String idNo, String realName, String roleCode, String status,
+            String updater) {
         XN805055Req req = new XN805055Req();
         req.setLoginName(loginName);
-        req.setKind(EUserKind.Operator.getCode());
-        req.setRoleCode(roleCode);
+        req.setKind(kind);
+        req.setLevel(level);
         req.setUserReferee(userReferee);
+        req.setMobile(mobile);
+        req.setIdKind(idKind);
+        req.setIdNo(idNo);
+        req.setRealName(realName);
+        req.setRoleCode(roleCode);
         req.setStatus(status);
         req.setUpdater(updater);
         String jsonStr = BizConnecter.getBizData("805055",

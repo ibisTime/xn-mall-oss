@@ -219,7 +219,6 @@ function queryTableData(){
 	});
 }
 
-
 function doSuccessDelBack(res) {
 	if (res.success == true) {
 		alert("操作成功");

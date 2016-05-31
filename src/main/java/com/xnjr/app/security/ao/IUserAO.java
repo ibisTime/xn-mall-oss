@@ -24,6 +24,7 @@ public interface IUserAO {
     /**
      * 分页查询用户
      * @param loginName
+     * @param kind
      * @param level
      * @param userReferee
      * @param mobile
@@ -36,10 +37,10 @@ public interface IUserAO {
      * @param start
      * @param limit
      * @return 
-     * @create: 2016年5月30日 下午5:14:58 xieyj
+     * @create: 2016年5月31日 上午11:58:54 xieyj
      * @history:
      */
-    public Object queryUserPage(String loginName, String level,
+    public Object queryUserPage(String loginName, String kind, String level,
             String userReferee, String mobile, String idKind, String idNo,
             String realName, String roleCode, String status, String updater,
             String start, String limit);
@@ -47,6 +48,7 @@ public interface IUserAO {
     /**
      * 查询用户列表
      * @param loginName
+     * @param kind
      * @param level
      * @param userReferee
      * @param mobile
@@ -57,12 +59,13 @@ public interface IUserAO {
      * @param status
      * @param updater
      * @return 
-     * @create: 2016年5月30日 下午5:14:17 xieyj
+     * @create: 2016年5月31日 上午11:59:09 xieyj
      * @history:
      */
-    public List<XN805055Res> queryUserList(String loginName, String level,
-            String userReferee, String mobile, String idKind, String idNo,
-            String realName, String roleCode, String status, String updater);
+    public List<XN805055Res> queryUserList(String loginName, String kind,
+            String level, String userReferee, String mobile, String idKind,
+            String idNo, String realName, String roleCode, String status,
+            String updater);
 
     /**
      * 根据用户编号获取详情

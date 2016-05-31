@@ -1,6 +1,5 @@
 var dictLevel=null;
 //页面初始化
-
 $(function(){
 	//按钮权限判断
 	showPermissionControl();
@@ -22,77 +21,55 @@ $(function(){
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/queryPage"});
 	});
 	
-	//修改
-	$('#editBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/customer/customer_edit.htm?code="+selRecords[0].code;
+	//代注册
+	$('#replaceAddBtn').click(function() {
+		location.href = $("#basePath").val()+"/customer/customer_replaceadd.htm";
 	});
-	
-	
 	
 	//表格初始化
 	function queryTableData(){
 		var columns = [{
-			field : '',
-			title : '',
-			align : 'left',
-			valign : 'middle',
-			checkbox : true
+				field : '',
+				title : '',
+				align : 'left',
+				valign : 'middle',
+				checkbox : true
 			},{
-			field : 'mobile',
-			title : '手机号',
-			align : 'left',
-			valign : 'middle',
-			sortable : false
+				field : 'mobile',
+				title : '手机号',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
 			},{
-			field : 'userKind',
-			title : '用户类别',
-			align : 'left',
-			valign : 'middle',
-			sortable : false
+				field : 'idKind',
+				title : '证件类型',
+				formatter : Dict.getIDKindName
 			},{
-			field : 'userReferee',
-			title : '推荐人',
-			align : 'left',
-			valign : 'middle',
-			sortable : false
+				field : 'idNo',
+				title : '证件号码',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
 			},{
-			field : 'idKind',
-			title : '证件类型',
-			formatter : Dict.getNameForList('id_kind')
-			},{
-			field : 'idNo',
-			title : '证件号码',
-			align : 'left',
-			valign : 'middle',
-			sortable : false
-			},{
-			field : 'realName',
-			title : '真实姓名',
-			align : 'left',
-			valign : 'middle',
-			formatter : Dict.getQuoteName,
-			sortable : false
+				field : 'realName',
+				title : '真实姓名',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
 		    },{
-			field : 'status',
-			title : '状态',
-			align : 'left',
-			valign : 'middle',
-			formatter:Dict.getNameForList('order_status'),
-			sortable : false
-		    },{
-			field : 'level',
-			title : '等级',
-			align : 'left',
-			valign : 'middle',
-			sortable : false
-		}];
-		
-		
+				field : 'userReferee',
+				title : '推荐人',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+			},{
+				field : 'status',
+				title : '状态',
+				align : 'left',
+				valign : 'middle',
+				formatter: Dict.getUserStatusName,
+				sortable : false
+		    }];
 		
 		$('#tableList').bootstrapTable({
 			method : "get",
@@ -103,15 +80,11 @@ $(function(){
 			singleSelect : true,
 			queryParams : function(params) {
 				return {
-					loginName : $("#loginName").val(),
 					mobile : $("#mobile").val(),
-					userKind : $("#userKind").val(),
-					userReferee : $("#userReferee").val(),
-					idKind : $("#idKind").val(),
 					idNo : $("#idNo").val(),
 					realName : $("#realName").val(),
+					userReferee : $("#userReferee").val(),
 					status : $("#status").val(),
-					level : $("#level").val(),
 					start : params.offset / params.limit + 1,
 					limit : params.limit
 				};
@@ -133,8 +106,9 @@ $(function(){
 		});
 	}
 })
-	//表格时间格式转化
-	function dateFormatter(value, row){
-		return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
-	}
+
+//表格时间格式转化
+function dateFormatter(value, row){
+	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
+}
 
