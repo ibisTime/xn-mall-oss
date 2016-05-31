@@ -53,11 +53,11 @@ function doGetDetailBack(res){
 			var result = res.data.list[0];
 			$("#chargeNo").html(result.code);
 			$("#accountNumber").html(result.accountNumber);
-			$("#status").html(statusFormatter(result.status));
-			$("#channel").html(channelFormatter(result.channel));
+			$("#status").html(result.status);
+			$("#channel").html(result.channel);
 			$("#amount").html(moneyFormat(result.amount,2));
-			$("#bankCode").html(result.bankCode);
-			$("#bankcardNo").html(result.bankcardNo);
+			$("#bankCode").html(result.fromType);
+			$("#bankcardNo").html(result.fromCode);
 			$("#createDatetime").html(dateFormat(result.createDatetime,'yyyy-MM-dd HH:mm:ss'));
 		}else{
 			alert("根据订单编号获取详情为空");
@@ -82,39 +82,6 @@ function doSuccessBack(res) {
 		redirectUrl();
 	}else{
 		alert(res.msg);
-	}
-}
-//初始化数据字典
-function initData(){
-	//启用状态
-	var data= {"key":"withdraw_status"};
-	doGetAjaxIsAsync($("#dictUrl").val(), data, false, doSucBackStatus);
-	//渠道
-	var data= {"key":"channel"};
-	doGetAjaxIsAsync($("#dictUrl").val(), data, false, doSucBackChannel);
-}
-//数据字典（对方系统）关联的回执方法
-function doSucBackStatus(res){
-	orderStatus = res.data;
-}
-//状态转化
-function statusFormatter(value, row) {
-	for(var i = 0;i < orderStatus.length;i++){
-		if(orderStatus[i].value == value){
-			return orderStatus[i].remark;
-		}
-	}
-}
-//数据字典（渠道）关联的回执方法
-function doSucBackChannel(res){
-	channel = res.data;
-}
-//渠道转化
-function channelFormatter(value, row) {
-	for(var i = 0;i < channel.length;i++){
-		if(channel[i].value == value){
-			return channel[i].remark;
-		}
 	}
 }
 
