@@ -105,7 +105,7 @@ function queryTableData(){
 			checkbox : true
 		},{
 			field : 'code',
-			title : '取现订单号',
+			title : '取现订单',
 			align : 'left',
 			valign : 'middle',
 			sortable : false
