@@ -48,12 +48,14 @@ $(function() {
 						title : '成本价',
 						align : 'left',
 						valign : 'middle',
+						formatter:moneyFormatter,
 						sortable : false,
 					},{
 						field : 'salePrice',
 						title : '零售价',
 						align : 'left',
 						valign : 'middle',
+						formatter:moneyFormatter,
 						sortable : false,
 					}]
 		});
@@ -79,8 +81,8 @@ $(function() {
 	function doSucBackGetDetail(res){
 		if (res.success) {
 			$("#invoiceCode").html(res.data.invoiceCode);
-			$("#company").html(res.data.company);
-			$("#deliveryDatetime").html(res.data.deliveryDatetime);
+			$("#company").html(Dict.getName('kd_company',res.data.company));
+			$("#deliveryDatetime").html(dateFormat(res.data.deliveryDatetime));
 			$("#deliverer").html(res.data.deliverer);
 			$("#code").html(res.data.code);
 			$("#tableList").bootstrapTable("load", res.data.goodsList);
@@ -90,5 +92,11 @@ $(function() {
 	}
 });
 
-
-
+//表格时间格式转化
+function dateFormatter(value, row){
+	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
+}
+//格式化金额
+function moneyFormatter(value, row){
+	return moneyFormat(value, 2);
+}

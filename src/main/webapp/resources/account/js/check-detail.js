@@ -1,7 +1,7 @@
 $(function() {
 	var ajNo = getQueryString("ajNo");
 	var data = {"ajNo":ajNo,"start":"1","limit":"10"};
-	var url = $("#basePath").val()+"/account/jour/page";
+	var url = $("#basePath").val()+"/account/jourPage";
 	doGetAjax(url, data, doGetDetailBack);
 	
 	//提交
@@ -69,7 +69,7 @@ function doApprove(approveResult){
 		return false;
 	}
 	var data = {"ajNo":$("#ajNo").html(),"type":"fd","amount":$("#amount").val(),"remark":$("#remark").val()};
-	var url = $("#basePath").val()+"/account/check/write";
+	var url = $("#basePath").val()+"/account/checkInput";
 	doPostAjax(url, data, doSuccessBack);
 }
 	
