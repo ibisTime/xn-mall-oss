@@ -240,9 +240,11 @@ public class AccountController extends BaseController {
     @ResponseBody
     public Object checkInput(
             @RequestParam(value = "ajNo", required = false) String ajNo,
-            @RequestParam(value = "checkUser", required = false) String checkUser,
+            // @RequestParam(value = "checkUser", required = false) String
+            // checkUser,
             @RequestParam(value = "amount", required = false) String amount) {
-        return accountAO.checkInput(ajNo, checkUser, amount);
+        return accountAO.checkInput(ajNo, this.getSessionUser().getUserName(),
+            amount);
     }
 
     @RequestMapping(value = "/checkApprove", method = RequestMethod.POST)

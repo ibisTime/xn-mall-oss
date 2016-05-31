@@ -1,7 +1,7 @@
 $(function() {
-	var hlNo = getQueryString("hlNo");
-	var data = {"hlNo":hlNo,"start":"1","limit":"10"};
-	var url = $("#basePath").val()+"/account/redBlue/page";
+	var ajNo = getQueryString("ajNo");
+	var data = {"ajNo":ajNo,"start":"1","limit":"10"};
+	var url = $("#basePath").val()+"/account/queryAJourPage";
 	doGetAjax(url, data, doGetDetailBack);
 	
 	//提交
@@ -16,7 +16,7 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/account/tiao_zhang.htm";
+		location.href = $("#basePath").val()+"/account/check.htm";
 	});
 	
 	//入参合法性校验
@@ -40,14 +40,18 @@ function doGetDetailBack(res){
 	if (res.success == true) {
 		if(res.data.list.length > 0){
 			var result = res.data.list[0];
-			$("#hlNo").html(result.hlNo);
+			
+			$("#ajNo").html(result.ajNo);
 			$("#accountNumber").html(result.accountNumber);
-			$("#direction").html(Dict.getName('account_direction',result.direction));
-			$("#amount").html(moneyFormat(result.amount,2));
 			$("#status").html(Dict.getName('order_status',result.status));
-
-			$("#updater").html(result.updater);
-			$("#updateDatetime").html(dateFormat(result.updateDatetime));
+			$("#bizType").html(Dict.getName('biz_type',result.direction));
+			$("#refNo").html(result.refNo);
+			$("#transAmount").html(moneyFormat(result.transAmount,2));
+			
+			$("#preAmount").html(moneyFormat(result.preAmount,2));
+			$("#postAmount").html(moneyFormat(result.postAmount,2));
+			$("#createDatetime").html(dateFormat(result.createDatetime));
+			$("#workDate").html(result.workDate);
 			$("#remark").val(result.remark);
 		}else{
 			alert("根据订单编号获取详情为空");
@@ -62,8 +66,8 @@ function doApprove(approveResult){
 	if(!$("#jsForm").valid()){
 		return false;
 	}
-	var data = {"hlNo":$("#hlNo").html(),"approveResult":approveResult,"remark":$("#remark").val()};
-	var url = $("#basePath").val()+"/account/check/approve";
+	var data = {"ajNo":$("#ajNo").html(),"amount":amount,"remark":$("#remark").val()};
+	var url = $("#basePath").val()+"/account/checkApprove";
 	doPostAjax(url, data, doSuccessBack);
 }
 	

@@ -25,7 +25,7 @@ $(function() {
 		location.href = $("#basePath").val()+"/security/user_replaceadd.htm";
 	});
 	
-	//编辑用户
+	//编辑用户手机
 	$('#editBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
@@ -33,26 +33,6 @@ $(function() {
 			return;
 		}
 		window.location.href = $("#basePath").val()+"/security/change_mobile.htm?userId="+selRecords[0].userId;
-	});
-	
-	//重置密码
-	$('#rePwdBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/security/user_pwd_reset.htm?userId="+selRecords[0].userId+"&loginName="+encodeURI(encodeURI(selRecords[0].loginName));
-	});
-	
-	//重置管理员交易密码
-	$('#reTradePwdBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/security/user_resetpsd.htm?userId="+selRecords[0].userId+"&loginName="+encodeURI(encodeURI(selRecords[0].loginName));
 	});
 	
 	//锁定

@@ -107,6 +107,10 @@ function moneyFormat(money,format){
 	return money;
 }
 
+function moneyParse(money) {
+	return (money * 1000).toFixed(0);
+}
+
 /**
  * 编辑金额格式转化
  * @param money
