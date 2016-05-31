@@ -3,8 +3,8 @@ $(function(){
 		if(!$("#jsForm").validate().element($('#newMobile'))){
 			return;
 		}
-		var url = $("#basePath").val()+"/operator/operatorEdit/sms";
-		var data = {"mobile":$("#newMobile").val(),"bizType":"M13"};
+		var url = $("#basePath").val()+"/gene/changemobile/send";
+		var data = {"mobile":$("#newMobile").val(),"bizType":"805047"};
 		doPostAjax(url, data, doSuccessBack2);
 	});
 	//提交
@@ -17,7 +17,7 @@ $(function(){
 		$.each(t, function() {
 			data[this.name] = this.value;
 		});
-		var url = $("#basePath").val()+"/operator/operatorEdit/mobile";
+		var url = $("#basePath").val()+"/user/editMobile";
 		doPostAjax(url, data, doSuccessBack);
 	});
 	
@@ -58,7 +58,7 @@ $(function(){
 function doSuccessBack(res) {
 	if (res.success == true) {
 		alert("操作成功");
-		window.location.href = $("#basePath").val()+"/operator/change_mobile.htm";
+		window.location.href = $("#basePath").val()+"/security/user.htm";
 	}else{
 		alert(res.msg);
 	}

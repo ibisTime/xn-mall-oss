@@ -5,9 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <meta http-equiv="Expires" content="0"/>
 <meta http-equiv="X-UA-Compatible" content="IE=8"/>
-<title>修改密码</title>
+<title>修改交易密码</title>
 <#include 'layout/resources.html'/>
-<script type="text/javascript" src="${resourceUrl}/resources/security/js/user-pwd-change.js?version=${version}"></script>
+<script type="text/javascript" src="${resourceUrl}/resources/security/js/user-tradepwd-change.js?version=${version}"></script>
 </head>
 <body>
     <#include 'layout/hidden_ares.html' />
@@ -15,7 +15,7 @@
     	<span>位置：</span>
 	    <ul>
 	    	<li>个人信息</li>
-	    	<li>修改密码</li>
+	    	<li>修改交易密码</li>
    		</ul>
     </div>
     <form id="jsForm">
@@ -23,8 +23,8 @@
 	    <div class="form-title"><span>用户信息</span></div>
 		    <ul class="form-info">
 		    	<li style="display: none;"><label>用户编号:</label><span id="userId"></span></li>
-			    <li><label><b>*</b>旧密码:</label><input type="password" id="oldLoginPwd" name="oldLoginPwd" class="control-def"/></li>
-			    <li><label><b>*</b>新密码:</label><input type="password" id="newLoginPwd" name="newLoginPwd" class="control-def"/></li>
+			    <li><label><b>*</b>旧交易密码:</label><input type="password" id="oldTradePwd" name="oldTradePwd" class="control-def"/></li>
+			    <li><label><b>*</b>新交易密码:</label><input type="password" id="newTradePwd" name="newTradePwd" class="control-def"/></li>
 			    <li><input id="subBtn" type="button" class="btn margin-left-100" value="保存"/><input id="backBtn" type="button" class="btn margin-left-20" value="返回"/></li>
 			</ul>
 	    </div>
