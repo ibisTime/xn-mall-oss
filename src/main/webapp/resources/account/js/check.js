@@ -11,7 +11,7 @@ $(function() {
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		$('#jourTableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/redBlueOrderPage"});
+		$('#jourTableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/jourPage"});
 	});
 	
 	// 审核事件绑定
@@ -39,7 +39,7 @@ function queryJourTableData(){
 	// 绑定列表
 	$('#jourTableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/account/redBlueOrderPage",
+		url : $("#basePath").val()+"/account/jourPage",
 		
 		striped : true,
 		clickToSelect : true,
@@ -153,12 +153,12 @@ function queryJourTableData(){
 	});
 }
 
-function initData(){
-	var data= {"key":"jour_status"};
-	doGetAjaxIsAsync($("#dictUrl").val(), data, false, doSucBackJourStatus);
-	var data= {"key":"biz_type"};
-	doGetAjaxIsAsync($("#dictUrl").val(), data, false, doSucBackBizType);
-}
+//function initData(){
+//	var data= {"key":"jour_status"};
+//	doGetAjaxIsAsync($("#dictUrl").val(), data, false, doSucBackJourStatus);
+//	var data= {"key":"biz_type"};
+//	doGetAjaxIsAsync($("#dictUrl").val(), data, false, doSucBackBizType);
+//}
 //数据字典关联的回执方法
 function doSucBackJourStatus(res){
 	dictJourStatus = res.data;

@@ -24,16 +24,15 @@ $(function() {
 		queryParams : function(params) {
 			return {
 				hlNo : $("#hlNoSearch").val(),
-				direction : $("#directionSearch").val(),
 				status : $("#statusSearch").val(),
+				direction : $("#directionSearch").val(),
 				type:1,
 				dateStart : $("#dateStartSearch").val(),
 				dateEnd : $("#dateEndSearch").val(),
 				accountNumber : $("#accountNumberSearch").val(),
 				start : params.offset / params.limit + 1,
-				limit : params.limit,
-				orderColumn : this.sortName,
-				orderDir : this.sortOrder
+//				orderColumn : this.sortName,
+//				orderDir : this.sortOrder
 			};
 		},
 		queryParamsType : 'limit',
