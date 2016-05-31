@@ -1,10 +1,9 @@
 $(function(){
+	$('#idKind').renderDropdown(Dict.getIDKindName());
+
 	$("#smsBtn").click(function() {
-		if(!$("#jsForm").validate().element($('#newMobile'))){
-			return;
-		}
-		var url = $("#basePath").val()+"/gene/changemobile/send";
-		var data = {"mobile":$("#newMobile").val(),"bizType":"805047"};
+		var url = $("#basePath").val()+"/gene/smscaptcha/send";
+		var data = {"bizType":"805050"};
 		doPostAjax(url, data, doSuccessBack2);
 	});
 	
@@ -18,15 +17,14 @@ $(function(){
 		$.each(t, function() {
 			data[this.name] = this.value;
 		});
-		var url = $("#basePath").val()+"/user/editMobile";
+		var url = $("#basePath").val()+"/user/tradePwd/reset";
 		doPostAjax(url, data, doSuccessBack);
 	});
-	
 	
 	//入参合法性校验
 	$("#jsForm").validate({
 		rules: {
-			newMobile: {
+			newTradePwd: {
 				required: true,
 				maxlength: 16
 			},
@@ -34,23 +32,31 @@ $(function(){
 				required: true,
 				maxlength: 8
 			},
-			tradePwd: {
+			idKind: {
+				required: true,
+				maxlength: 2
+			},
+			idNo: {
 				required: true,
 				maxlength: 32
-			},
+			}
 		},
 		messages: {
-			newMobile: {
-				required: "请输入新的手机号",
-				maxlength: jQuery.format("手机号不能大于{0}个字符")
+			newTradePwd: {
+				required: "请输入新交易密码",
+				maxlength: jQuery.format("新交易密码不能大于{0}个字符")
 			},
 			smsCaptcha: {
 				required: "请输入短信验证码",
 				maxlength: jQuery.format("短信验证码不能大于{0}个字符")
 			},
-			tradePwd: {
-				required: "请输入密码",
-				maxlength: jQuery.format("密码不能大于{0}个字符")
+			idKind: {
+				required: "请输入证件类型",
+				maxlength: jQuery.format("证件类型不能大于{0}个字符")
+			},
+			idNo: {
+				required: "请输入证件号",
+				maxlength: jQuery.format("证件号不能大于{0}个字符")
 			},
 		}
 	});
