@@ -5,8 +5,9 @@ $(function(){
 		if(!$("#jsForm").valid()){
 			return false;
 		}
-		var sign = $("#direction").val() == "1"?"":"-";
-		var data = {"accountNumber":$("#accountNumber").val(),"sign":$("#sign").val(),"amount":sign+$("#amount").val(),"applyNote":$("#applyNote").val()};
+//		var sign = $("#direction").val() == "1"?"":"-";
+		var data = {"accountNumber":$("#accountNumber").val(),"amount":$("#amount").val(),"applyNote":$("#applyNote").val()};
+		data["direction"]=$("#direction").val();
 		var url = $("#basePath").val()+"/account/artificialAccountApply";
 		doPostAjax(url, data, doSuccessBack);
 	});
