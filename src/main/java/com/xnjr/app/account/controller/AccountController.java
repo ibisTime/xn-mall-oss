@@ -197,18 +197,16 @@ public class AccountController extends BaseController {
             @RequestParam(value = "toCode", required = false) String toCode,
             @RequestParam(value = "direction", required = false) String direction,
             @RequestParam(value = "status", required = false) String status,
-            // @RequestParam(value = "applyUser", required = false) String
-            // applyUser,
-            // @RequestParam(value = "approveUser", required = false) String
-            // approveUser,
+            @RequestParam(value = "applyUser", required = false) String applyUser,
+            @RequestParam(value = "approveUser", required = false) String approveUser,
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
             @RequestParam(value = "dateStart", required = false) String dateStart,
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
-        return accountAO.queryRedBlueOrderPage(toCode, direction, status, this
-            .getSessionUser().getUserName(), this.getSessionUser()
-            .getUserName(), accountNumber, dateStart, dateEnd, start, limit);
+        return accountAO.queryRedBlueOrderPage(toCode, direction, status,
+            applyUser, approveUser, accountNumber, dateStart, dateEnd, start,
+            limit);
     }
 
     @RequestMapping(value = "/artificialAccountApply", method = RequestMethod.POST)
@@ -217,8 +215,6 @@ public class AccountController extends BaseController {
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
             @RequestParam(value = "direction", required = false) String direction,
             @RequestParam(value = "amount", required = false) String amount,
-            // @RequestParam(value = "applyUser", required = false) String
-            // applyUser,
             @RequestParam(value = "applyNote", required = false) String applyNote) {
         return accountAO.artificialAccountApply(accountNumber, direction,
             amount, this.getSessionUser().getUserName(), applyNote);
@@ -228,8 +224,6 @@ public class AccountController extends BaseController {
     @ResponseBody
     public Object artificialApproveCheck(
             @RequestParam(value = "code", required = false) String code,
-            // @RequestParam(value = "approveUser", required = false) String
-            // approveUser,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
         return accountAO.artificialApproveCheck(code, this.getSessionUser()
@@ -240,8 +234,6 @@ public class AccountController extends BaseController {
     @ResponseBody
     public Object checkInput(
             @RequestParam(value = "ajNo", required = false) String ajNo,
-            // @RequestParam(value = "checkUser", required = false) String
-            // checkUser,
             @RequestParam(value = "amount", required = false) String amount) {
         return accountAO.checkInput(ajNo, this.getSessionUser().getUserName(),
             amount);
@@ -251,11 +243,12 @@ public class AccountController extends BaseController {
     @ResponseBody
     public Object checkApprove(
             @RequestParam(value = "code", required = false) String code,
-            @RequestParam(value = "approveUser", required = false) String approveUser,
+            // @RequestParam(value = "approveUser", required = false) String
+            // approveUser,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
-        return accountAO.checkApprove(code, approveUser, approveResult,
-            approveNote);
+        return accountAO.checkApprove(code,
+            this.getSessionUser().getUserName(), approveResult, approveNote);
     }
 
 }

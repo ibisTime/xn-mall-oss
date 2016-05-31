@@ -5,13 +5,12 @@ $(function() {
 	$('#statusSearch').renderDropdown(Dict.getName('rb_order_status'));
 	$('#directionSearch').renderDropdown(Dict.getName('account_direction'));
 	// 状态选择
-	$("#statusSearch").val("1");
+//	$("#statusSearch").val("1");
 	
 	// 绑定列表
 	$('#tableList').bootstrapTable({
 		method : "get",
 		url : $("#basePath").val() + "/account/redBlueOrderPage",
-		
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
@@ -26,9 +25,7 @@ $(function() {
 				dateEnd : $("#dateEndSearch").val(),
 				type:2,
 				start : params.offset / params.limit + 1,
-				limit : params.limit,
-//				orderColumn : this.sortName,
-//				orderDir : this.sortOrder
+				limit : params.limit
 			};
 		},
 		queryParamsType : 'limit',
@@ -51,7 +48,7 @@ $(function() {
 			valign : 'middle',
 			checkbox : true
 		},{
-			field : 'hlNo',
+			field : 'code',
 			title : '申请编号',
 			align : 'left',
 			valign : 'middle',
@@ -127,21 +124,7 @@ $(function() {
 			alert("该订单状态不是待审批状态");
 			return;
 		}
-		location.href = $("#basePath").val()+"/account/red_blue_approve.htm?hlNo="+selRecords[0].hlNo;
-	});
-
-	// 审核
-	$('#checkApproveBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		if(selRecords[0].status != "1"){
-			alert("该订单状态不是待审批状态");
-			return;
-		}
-		location.href = $("#basePath").val()+"/account/check_approve.htm?hlNo="+selRecords[0].hlNo;
+		location.href = $("#basePath").val()+"/account/red_blue_approve.htm?code="+selRecords[0].code;
 	});
 	
 //	//导出
