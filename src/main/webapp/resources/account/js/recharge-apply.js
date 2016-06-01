@@ -28,11 +28,11 @@ $(function (){
 			},
 			fromType:{
 				required: true,
-				maxlength: 32
+				maxlength: 20
 			},
 			fromCode:{
 				required: true,
-				maxlength: 64
+				maxlength: 255
 			},
 			amount:{
 				required: true,
@@ -46,12 +46,12 @@ $(function (){
 				maxlength: jQuery.format("账户编号不能大于{0}个字符")
 			},
 			fromType:{
-				required: "请输入银行行别",
-				maxlength: jQuery.format("银行行别不能大于{0}个字符")
+				required: "请输入支付类型",
+				maxlength: jQuery.format("支付类型不能大于{0}个字符")
 			},
 			fromCode:{
-				required: "请输入银行卡号",
-				maxlength: jQuery.format("银行卡号不能大于{0}个字符")
+				required: "请输入支付账号",
+				maxlength: jQuery.format("支付账号不能大于{0}个字符")
 			},
 			amount:{
 				required: "请输入充值金额",
