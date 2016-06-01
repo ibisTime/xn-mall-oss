@@ -1,43 +1,30 @@
 //数据字典
+var dictLevel = null;
 $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
-	var code = getQueryString('code');
-	doGetAjaxIsAsync($("#basePath").val()+"/product/list", {}, false, function(res) {
-		var data = res.data || [], html = "<option value=''>请选择</option>";
-		for (var i = 0, len = data.length; i < len; i++) {
-			html += "<option value='"+data[i].code+"'>"+data[i].name+"</option>";
-			$("#productCode").html(html);
-		}
-	});
-	
-	$('#status').renderDropdown(Dict.getName('product_status'));
-
+	$('#status').renderDropdown(Dict.getName('order_status'));
+		
 	//表格初始化
 	queryTableData();
 
 	//查询
 	$('#searchBtn').click(function() {
-	$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/order/Page"});
 	});
 	
-
-	//标价
-	$('#priceBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections');
+	//确认付款
+	$('#sureBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/product/price-addedit.htm?modelCode="+selRecords[0].code;
-
+		window.location.href = $("#basePath").val()+"/order/order_sure.htm?invoiceCode="+selRecords[0].code;
 	});
 	
-	
 });
-
-
 
 //表格初始化
 function queryTableData(){
@@ -48,43 +35,37 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
-		field : 'name',
-		title : '型号名称',
+		field : 'code',
+		title : '订单编号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
 	}, {
-		field : 'productCode',
-		title : '所属产品',
+		field : 'applyUser',
+		title : '下单用户',
 		align : 'left',
 		valign : 'middle',
 		sortable : false
-	}, {
-		field : 'status',
-		title : '状态',
-		align : 'left',
-		valign : 'middle',
-		formatter:Dict.getNameForList('product_status'),
-		sortable : false
-	}, {
-		field : 'originalPrice',
-		title : '价格',
+	},{
+		field : 'totalAmount',
+		title : '订单总金额',
 		align : 'left',
 		valign : 'middle',
 		formatter:moneyFormatter,
 		sortable : false
-	}, {
-		field : 'updater',
-		title : '更新人',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
-	}, {
-		field : 'updateDatetime',
-		title : '更新时间',
+	},{
+		field : 'applyDatetime',
+		title : '下单时间',
 		align : 'left',
 		valign : 'middle',
 		formatter:dateFormatter,
+		sortable : false
+	} ,{
+		field : 'status',
+		title : '状态',
+		align : 'left',
+		valign : 'middle',
+		formatter:Dict.getNameForList('order_status'),
 		sortable : false
 	}];
 	
@@ -92,16 +73,15 @@ function queryTableData(){
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/model/page",
+		url : $("#basePath").val()+"/model/order/Page",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				name : $("#name").val(),
-				productCode : $("#productCode").val(),
-				status:3,
+				applyUser : $("#applyUser").val(),
+				status : 2,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
@@ -122,8 +102,6 @@ function queryTableData(){
 		columns : columns
 	});
 }
-
-
 
 //表格时间格式转化
 function dateFormatter(value, row){

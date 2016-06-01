@@ -37,8 +37,10 @@ import com.xnjr.app.product.req.XN602025Req;
 import com.xnjr.app.product.req.XN602026Req;
 import com.xnjr.app.product.req.XN602027Req;
 import com.xnjr.app.product.req.XN602028Req;
+import com.xnjr.app.product.req.XN602029Req;
 import com.xnjr.app.res.XN602026Res;
 import com.xnjr.app.res.XNlh5014Res;
+import com.xnjr.app.util.CalculationUtil;
 import com.xnjr.app.util.UploadUtil;
 
 @Service
@@ -149,7 +151,7 @@ public class ModelAOImpl implements IModelAO {
             String remark) {
         XN601040Req req = new XN601040Req();
         req.setModelCode(modelCode);
-        req.setOriginalPrice(originalPrice);
+        req.setOriginalPrice(CalculationUtil.mult(originalPrice));
         req.setDiscountPrice(discountPrice);
         req.setToLevel(toLevel);
         req.setUpdater(updater);
@@ -164,7 +166,7 @@ public class ModelAOImpl implements IModelAO {
             String updater, String remark) {
         XN601041Req req = new XN601041Req();
         req.setCode(code);
-        req.setOriginalPrice(originalPrice);
+        req.setOriginalPrice(CalculationUtil.mult(originalPrice));
         req.setDiscountPrice(discountPrice);
         req.setToLevel(toLevel);
         req.setUpdater(updater);
@@ -296,6 +298,18 @@ public class ModelAOImpl implements IModelAO {
         req.setApproveUser(approveUser);
         req.setApproveNote(approveNote);
         return BizConnecter.getBizData("602028", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object sureOrder(String userId, String invoiceCode, String updater,
+            String remark) {
+        XN602029Req req = new XN602029Req();
+        req.setUserId(userId);
+        req.setInvoiceCode(invoiceCode);
+        req.setUpdater(updater);
+        req.setRemark(remark);
+        return BizConnecter.getBizData("602029", JsonUtils.object2Json(req),
             Object.class);
     }
 

@@ -263,4 +263,17 @@ public interface IModelAO {
      */
     public Object cancelOrder(String code, String approveUser,
             String approveNote);
+
+    /**
+     * 确认支付订单
+     * @param userId
+     * @param invoiceCode
+     * @param updater
+     * @param remark
+     * @return 
+     * @create: 2016年6月1日 下午5:20:55 XIANDONG
+     * @history:
+     */
+    public Object sureOrder(String userId, String invoiceCode, String updater,
+            String remark);
 }

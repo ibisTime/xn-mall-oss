@@ -44,6 +44,29 @@ $(function() {
 		}
 	});
 	
+//	$("#originalPrice").on("keydown", function(e){
+//		var code = e.charCode || e.keyCode;//110.  0 96-105  48-57    37   39   8back 46del
+//		console.log(code);
+//		if(!isSpecialCode(code)){
+//			if(/^[\d]+\.[\d]{2})$/.test(this.value) || !isNumber(code)){
+//				return false;
+//			}
+//		}
+//		
+//	});
+//	function isNumber(code){
+//		if(code >= 96 && code <= 105 || code >= 48 && code <= 57 || code == 110){
+//			return true;
+//		}
+//		return false;
+//	}
+//	function isSpecialCode(code){
+//		if(code == 37 || code == 39 || code == 8 || code == 46){
+//			return true;
+//		}
+//		return false;
+//	}
+	
 	
 	//返回
 	$('#backBtn').click(function() {

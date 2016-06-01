@@ -237,4 +237,14 @@ public class ModelController extends BaseController {
             approveNote);
     }
 
+    @RequestMapping(value = "/order/sure", method = RequestMethod.POST)
+    @ResponseBody
+    public Object surelOrder(@RequestParam("userId") String userId,
+            @RequestParam("invoiceCode") String invoiceCode,
+            // @RequestParam("updater") String updater,
+            @RequestParam(value = "remark") String remark) {
+        return modelAO.sureOrder(userId, invoiceCode,
+            this.getSessionUser().getUserName(), remark);
+    }
+
 }
