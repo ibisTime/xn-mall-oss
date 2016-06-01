@@ -302,13 +302,12 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object sureOrder(String userId, String invoiceCode, String updater,
-            String remark) {
+    public Object sureOrder(String code, String approveUser,
+            String approveNote) {
         XN602029Req req = new XN602029Req();
-        req.setUserId(userId);
-        req.setInvoiceCode(invoiceCode);
-        req.setUpdater(updater);
-        req.setRemark(remark);
+        req.setCode(code);
+        req.setApproveUser(approveUser);
+        req.setApproveNote(approveNote);
         return BizConnecter.getBizData("602029", JsonUtils.object2Json(req),
             Object.class);
     }

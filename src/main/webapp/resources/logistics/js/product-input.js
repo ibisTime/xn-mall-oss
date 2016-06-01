@@ -167,8 +167,8 @@ $(function() {
 			specsTable.codeStart=tableLists[i][1];
 			specsTable.codeEnd=tableLists[i][2];
 			specsTable.quantity=tableLists[i][3];
-			specsTable.costPrice=tableLists[i][4];
-			specsTable.salePrice=tableLists[i][5];
+			specsTable.costPrice=moneyParse(tableLists[i][4]);
+			specsTable.salePrice=moneyParse(tableLists[i][5]);
 		    specsTableList.push(specsTable);
 		}
 	    var data = {};

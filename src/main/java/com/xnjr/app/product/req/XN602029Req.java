@@ -7,44 +7,37 @@ package com.xnjr.app.product.req;
  */
 public class XN602029Req {
 
-    private String userId;
+    // 编号（必填）
+    private String code;
 
-    private String invoiceCode;
+    // 反馈人（必填）
+    private String approveUser;
 
-    private String updater;
+    // 反馈备注（选填）
+    private String approveNote;
 
-    private String remark;
-
-    public String getUserId() {
-        return userId;
+    public String getCode() {
+        return code;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getInvoiceCode() {
-        return invoiceCode;
+    public String getApproveUser() {
+        return approveUser;
     }
 
-    public void setInvoiceCode(String invoiceCode) {
-        this.invoiceCode = invoiceCode;
+    public void setApproveUser(String approveUser) {
+        this.approveUser = approveUser;
     }
 
-    public String getUpdater() {
-        return updater;
+    public String getApproveNote() {
+        return approveNote;
     }
 
-    public void setUpdater(String updater) {
-        this.updater = updater;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setApproveNote(String approveNote) {
+        this.approveNote = approveNote;
     }
 
 }

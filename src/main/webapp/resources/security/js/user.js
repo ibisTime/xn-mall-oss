@@ -36,7 +36,7 @@ $(function() {
 	});
 	
 	//锁定
-	$('#dropBtn').click(function() {
+	$('#lockBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");
@@ -55,7 +55,7 @@ $(function() {
 	});
 	
 	//解锁
-	$('#activeBtn').click(function() {
+	$('#unlockBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");

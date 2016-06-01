@@ -14,7 +14,7 @@ $(function() {
 	}
 	
 	
-	$('#cancelBtn').click(function() {
+	$('#confirmPayBtn').click(function() {
 		if(!$("#jsForm").valid()){
 			return false;
 		}
@@ -24,7 +24,6 @@ $(function() {
 			data[this.name] = this.value;
 		});
 		data["invoiceCode"] = $("#invoiceCode").html();
-		data["userId"] = $("#userId").html();
 		var url = $("#basePath").val()+"/model/order/sure";
 		
 		doPostAjax(url, data, doSucBackSave);
@@ -32,21 +31,21 @@ $(function() {
 
 	$("#jsForm").validate({
 		rules: {
-			remark: {
+			approveNote: {
 				required: true,
 				maxlength: 32
 			}
 		},
 		messages: {
-			remark: {
-				required: "请输入取消说明",
-				maxlength: jQuery.format("取消说明不能大于{0}个字符")
+			approveNote: {
+				required: "请输入付款说明",
+				maxlength: jQuery.format("付款说明不能大于{0}个字符")
 			}
 		}
 	});
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/order/order_sure1.htm";
+		location.href = $("#basePath").val()+"/order/order_first.htm";
 	});
 
 
@@ -76,7 +75,7 @@ $(function() {
 function doSucBackSave(res) {
 	if (res.success == true) {
 		alert("操作成功");
-		window.location.href = $("#basePath").val()+"/order/order_sure1.htm";
+		window.location.href = $("#basePath").val()+"/order/order_first.htm";
 	}else{
 		alert(res.msg);
 	}

@@ -266,14 +266,12 @@ public interface IModelAO {
 
     /**
      * 确认支付订单
-     * @param userId
-     * @param invoiceCode
-     * @param updater
-     * @param remark
+     * @param code
+     * @param approveUser
+     * @param approveNote
      * @return 
-     * @create: 2016年6月1日 下午5:20:55 XIANDONG
+     * @create: 2016年6月1日 下午11:15:19 XIANDONG
      * @history:
      */
-    public Object sureOrder(String userId, String invoiceCode, String updater,
-            String remark);
+    Object sureOrder(String code, String approveUser, String approveNote);
 }
