@@ -160,6 +160,10 @@
 		    <mvc:mapping path="/logistics/**"/>
 		    <!-- 物流相关end -->
 		    
+		    <!-- 售后服务start -->
+		    <mvc:mapping path="/repair/**"/>
+		    <!-- 售后服务end -->
+		    
 		    <!-- 取现相关start -->
 		    <mvc:mapping path="/withdraw/**"/>
 		    <!-- 取现相关end -->
