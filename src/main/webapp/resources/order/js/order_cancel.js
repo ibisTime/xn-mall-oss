@@ -68,8 +68,8 @@ $(function() {
 			$("#approveDatetime").html(res.data.approveDatetime);
 			$("#approveUser").html(res.data.approveUser);
 			$("#receiptTitle").html(res.data.receiptTitle);
-			$("#receiptType").html(res.data.receiptType);
-			$("#status").html(res.data.status);
+			$("#receiptType").html(Dict.getName('receipt_type',res.data.receiptType));
+			$("#status").html(Dict.getName('order_status',res.data.status));
 			$("#totalAmount").html(res.data.totalAmount);
 			$("#mobile").html(res.data.address?res.data.address.mobile:'-');
 			$("#name").html(res.data.address?res.data.address.addressee:'-');
@@ -119,6 +119,7 @@ function initBusinessTable(){
 					title : '价格',
 					align : 'left',
 					valign : 'middle',
+					formatter:moneyFormatter,
 					sortable : false
 				}]
 	});
@@ -126,4 +127,9 @@ function initBusinessTable(){
 //格式化时间
 function dateFormatter(value, row){
 	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
+}
+
+//格式化金额
+function moneyFormatter(value, row){
+	return moneyFormat(value, 2);
 }

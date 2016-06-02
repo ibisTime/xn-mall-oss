@@ -84,6 +84,7 @@ function initBusinessTable(){
 					title : '价格',
 					align : 'left',
 					valign : 'middle',
+					formatter:moneyFormatter,
 					sortable : false
 				}]
 	});
@@ -91,4 +92,9 @@ function initBusinessTable(){
 //格式化时间
 function dateFormatter(value, row){
 	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
+}
+
+//格式化金额
+function moneyFormatter(value, row){
+	return moneyFormat(value, 2);
 }
