@@ -6,15 +6,7 @@ $(function(){
 	//表格初始化
 	queryTableData();
 	
-	//详情绑定事件
-	$('#detailBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/customer/customer_detail.htm?userId="+selRecords[0].userId;
-	});
+	
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
@@ -23,7 +15,27 @@ $(function(){
 	
 	//代注册
 	$('#replaceAddBtn').click(function() {
-		location.href = $("#basePath").val()+"/customer/customer_replaceadd.htm";
+		location.href = $("#basePath").val()+"/customer/channel_add.htm";
+	});
+	
+	//修改名称
+	$('#editNameBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/customer/channel_name.htm?userId="+selRecords[0].userId;
+	});
+	
+	//修改手机号
+	$('#editMobilBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/customer/channel_mobil.htm?userId="+selRecords[0].userId;
 	});
 	
 	//表格初始化
@@ -35,41 +47,30 @@ $(function(){
 				valign : 'middle',
 				checkbox : true
 			},{
-				field : 'mobile',
-				title : '手机号',
+				field : 'userId',
+				title : '用户编号',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
 			},{
-				field : 'idKind',
-				title : '证件类型',
-				formatter : Dict.getIDKindName
-			},{
-				field : 'idNo',
-				title : '证件号码',
+				field : 'loginName',
+				title : '登录名',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
 			},{
 				field : 'realName',
-				title : '真实姓名',
+				title : '渠道商名称',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
 		    },{
-				field : 'userReferee',
-				title : '推荐人',
+				field : 'mobile',
+				title : '绑定手机号',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
-			},{
-				field : 'status',
-				title : '状态',
-				align : 'left',
-				valign : 'middle',
-				formatter: Dict.getUserStatusName,
-				sortable : false
-		    }];
+			}];
 		
 		$('#tableList').bootstrapTable({
 			method : "get",
