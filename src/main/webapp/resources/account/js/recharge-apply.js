@@ -1,17 +1,15 @@
 $(function (){
 	//页面数据字典初始化
 	//initData();
+	
+	$('#fromType').renderDropdown(Dict.getName('charge_type'));
 	//提交
 	$("#subBtn").click(function(){
 		if(!$("#jsForm").valid()){
 			return false;
 		}
-		var data = {};
-		var t = $("form").serializeArray();
-		$.each(t,function(){
-			data[this.name] = this.value;
-		});
-		var url = $("#basePath").val()+"/account/recharge";	
+		var data = {"accountNumber":$("#accountNumber").val(),"fromType":$("#fromType").val(),"fromCode":$("#fromCode").val(),"amount":moneyParse($("#amount").val())};
+		var url = $("#basePath").val()+"/account/recharge";
 		doPostAjax(url, data, doSuccessBack);
 	});
 	//返回
@@ -26,10 +24,10 @@ $(function (){
 				required: true,
 				maxlength: 32
 			},
-			fromType:{
-				required: true,
-				maxlength: 20
-			},
+//			fromType:{
+//				required: true,
+//				maxlength: 20
+//			},
 			fromCode:{
 				required: true,
 				maxlength: 255
@@ -45,12 +43,12 @@ $(function (){
 				required: "请输入账户编号",
 				maxlength: jQuery.format("账户编号不能大于{0}个字符")
 			},
-			fromType:{
-				required: "请输入支付类型",
-				maxlength: jQuery.format("支付类型不能大于{0}个字符")
-			},
+//			fromType:{
+//				required: "请输入充值账号类型",
+//				maxlength: jQuery.format("支付类型不能大于{0}个字符")
+//			},
 			fromCode:{
-				required: "请输入支付账号",
+				required: "请输入充值账号",
 				maxlength: jQuery.format("支付账号不能大于{0}个字符")
 			},
 			amount:{
@@ -62,27 +60,6 @@ $(function (){
 	})
 });
 
-function initData(){
-	//初始化银行编号
-	var url =$("#basePath").val()+"/account/base/bank/list";
-	doGetAjaxIsAsync(url, null, false, doSucBackBank);
-}
-
-//获取银行列表回执方法
-function doSucBackBank(res) {
-	var data = res.data;
-	var html = "<option value=''>请选择</option>";
-	if(typeof(data) != "undefined"){//判断undifined
-		for(var i = 0;i < data.length;i++){
-			if(data[i].isEnable == "1"){
-			html += "<option value='"+data[i].bankNo+"'>"+data[i].bankName+"</option>";
-			}
-		}
-	}
-	//银行列表
-	$("#bankCode").html(html);
-}
-
 //线下充值申请成功的回执方法
 function doSuccessBack(res) {
 	if (res.success == true) {
@@ -91,4 +68,9 @@ function doSuccessBack(res) {
 	}else{
 		alert(res.msg);
 	}
+}
+
+//格式化金额
+function moneyFormatter(value, row){
+	return moneyFormat(value, 2);
 }
