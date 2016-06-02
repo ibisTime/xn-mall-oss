@@ -236,12 +236,6 @@ $(function() {
 function doSucBackGetDetail(res){
 	if (res.success) {
 		$("#invoiceCode").html(res.data.code);
-//		specsTable=res.data.goodsList;
-//	    var specsTableList = new Array();
-//	    for(var i = 0;i < specsTable.length;i++){
-//	    	specsTableList[i]=[specsTable[i].modelCode,specsTable[i].codeStart,specsTable[i].codeEnd,specsTable[i].quantity,specsTable[i].costPrice,specsTable[i].salePrice];
-//		}
-//	    mytable.loadData(specsTableList);
 	}else{
 		alert(res.msg);
 	}

@@ -88,7 +88,7 @@ $(function() {
 	function doSucBackGetDetail(res){
 		if (res.success) {
 			$("#modelCode").html(res.data.code);
-			$("#originalPrice").val(res.data.originalPrice);
+			$("#originalPrice").val(moneyFormatter(res.data.originalPrice));
 //			$("#discountPrice").val(res.data.discountPrice);
 //			$("#toLevel").val(res.data.toLevel);
 //			$("#remark").val(res.data.remark);
@@ -105,5 +105,8 @@ function doSucBack(res) {
 		alert(res.msg);
 	}
 }
-
+//格式化金额
+function moneyFormatter(value, row){
+	return moneyFormat(value, 2);
+}
 
