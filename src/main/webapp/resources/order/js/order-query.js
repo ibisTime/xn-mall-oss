@@ -5,6 +5,7 @@ $(function() {
 	showPermissionControl();
 	
 	$('#status').renderDropdown(Dict.getName('order_status'));
+	
 		
 	//表格初始化
 	queryTableData();
@@ -87,7 +88,10 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
+				code : $("#code").val(),
 				applyUser : $("#applyUser").val(),
+				dateStart : $("#deliveryDatetimeStart").val(),
+				dateEnd : $("#deliveryDatetimeEnd").val(),
 				status : $("#status").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
