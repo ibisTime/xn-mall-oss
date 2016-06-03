@@ -29,7 +29,7 @@ public class ProductAOImpl implements IProductAO {
     public Object addProduct(String type, String name, String advTitle,
             String advPic, String majorPic, String majorText, String familyPic,
             String familyText, String highlightPic, String highlightText,
-            String updater) {
+            String updater, String remark) {
         XN601000Req req = new XN601000Req();
         req.setType(type);
         req.setName(name);
@@ -42,6 +42,7 @@ public class ProductAOImpl implements IProductAO {
         req.setHighlightPic(UploadUtil.uploadPicture(highlightPic));
         req.setHighlightText(highlightText);
         req.setUpdater(updater);
+        req.setRemark(remark);
         return BizConnecter.getBizData("601000", JsonUtils.object2Json(req),
             Object.class);
     }
@@ -50,7 +51,7 @@ public class ProductAOImpl implements IProductAO {
     public Object editProduct(String code, String type, String name,
             String advTitle, String advPic, String majorPic, String majorText,
             String familyPic, String familyText, String highlightPic,
-            String highlightText, String updater) {
+            String highlightText, String updater, String remark) {
         XN601001Req req = new XN601001Req();
         req.setCode(code);
         req.setType(type);
@@ -64,6 +65,7 @@ public class ProductAOImpl implements IProductAO {
         req.setHighlightPic(UploadUtil.editUploadPicture(highlightPic));
         req.setHighlightText(highlightText);
         req.setUpdater(updater);
+        req.setRemark(remark);
         return BizConnecter.getBizData("601001", JsonUtils.object2Json(req),
             Object.class);
     }

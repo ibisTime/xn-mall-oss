@@ -49,7 +49,8 @@ $(function() {
 			},
 			realName: {
 				required: true,
-				maxlength: 16
+				maxlength: 16,
+				chinese:true
 			},
 			userReferee: {
 				required: false,

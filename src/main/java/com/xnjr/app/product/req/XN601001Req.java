@@ -51,6 +51,16 @@ public class XN601001Req {
     // 更新人
     private String updater;
 
+    private String remark;
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     public String getCode() {
         return code;
     }

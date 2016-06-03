@@ -193,7 +193,8 @@ $(function() {
 		rules: {
 			code: {
 				required: true,
-				maxlength: 32
+				maxlength: 32,
+				number:true
 			},
 			deliverer: {
 				required: true,

@@ -41,18 +41,18 @@ function queryTableData(){
 		valign : 'middle',
 		sortable : false,
 	}, {
-		field : 'code',
-		title : '物流单号',
-		align : 'left',
-		valign : 'middle',
-		sortable : false,
-	}, {
 		field : 'company',
 		title : '物流公司',
 		align : 'left',
 		valign : 'middle',
 		formatter:Dict.getNameForList('kd_company'),
 		sortable : false
+	}, {
+		field : 'code',
+		title : '物流单号',
+		align : 'left',
+		valign : 'middle',
+		sortable : false,
 	},{
 		field : 'deliveryDatetime',
 		title : '发货时间',

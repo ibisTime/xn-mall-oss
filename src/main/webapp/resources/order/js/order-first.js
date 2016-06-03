@@ -80,6 +80,7 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
+				code : $("#code").val(),
 				applyUser : $("#applyUser").val(),
 				status : 2,
 				start : params.offset / params.limit + 1,

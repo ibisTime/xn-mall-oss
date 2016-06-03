@@ -34,10 +34,11 @@ public class ProductController extends BaseController {
             @RequestParam("familyPic") String familyPic,
             @RequestParam("familyText") String familyText,
             @RequestParam("highlightPic") String highlightPic,
-            @RequestParam("highlightText") String highlightText) {
+            @RequestParam("highlightText") String highlightText,
+            @RequestParam(value = "remark", required = false) String remark) {
         return productAO.addProduct(type, name, advTitle, advPic, majorPic,
-            majorText, familyPic, familyText, highlightPic, highlightText, this
-                .getSessionUser().getUserName());
+            majorText, familyPic, familyText, highlightPic, highlightText,
+            this.getSessionUser().getUserName(), remark);
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -52,10 +53,11 @@ public class ProductController extends BaseController {
             @RequestParam("familyPic") String familyPic,
             @RequestParam("highlightPic") String highlightPic,
             @RequestParam("highlightText") String highlightText,
-            @RequestParam("familyText") String familyText) {
+            @RequestParam("familyText") String familyText,
+            @RequestParam(value = "remark", required = false) String remark) {
         return productAO.editProduct(code, type, name, advTitle, advPic,
             majorPic, majorText, familyPic, familyText, highlightPic,
-            highlightText, this.getSessionUser().getUserName());
+            highlightText, this.getSessionUser().getUserName(), remark);
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
@@ -95,8 +97,8 @@ public class ProductController extends BaseController {
             // @RequestParam(value = "checkUser") String checkUser,
             @RequestParam(value = "checkResult") String checkResult,
             @RequestParam(value = "checkNote") String checkNote) {
-        return productAO.checkProduct(code,
-            this.getSessionUser().getUserName(), checkResult, checkNote);
+        return productAO.checkProduct(code, this.getSessionUser().getUserName(),
+            checkResult, checkNote);
     }
 
     @RequestMapping(value = "/up", method = RequestMethod.POST)

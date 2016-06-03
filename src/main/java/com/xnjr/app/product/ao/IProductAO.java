@@ -27,7 +27,7 @@ public interface IProductAO {
     public Object addProduct(String type, String name, String advTitle,
             String advPic, String majorPic, String majorText, String familyPic,
             String familyText, String highlightPic, String highlightText,
-            String updater);
+            String updater, String remark);
 
     /**
      * 修改产品
@@ -49,7 +49,7 @@ public interface IProductAO {
     public Object editProduct(String code, String type, String name,
             String advTitle, String advPic, String majorPic, String majorText,
             String familyPic, String familyText, String highlightPic,
-            String highlightText, String updater);
+            String highlightText, String updater, String remark);
 
     /**
      * 分页查询产品

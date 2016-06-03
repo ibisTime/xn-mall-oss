@@ -81,11 +81,10 @@ $(function(){
 			singleSelect : true,
 			queryParams : function(params) {
 				return {
-					mobile : $("#mobile").val(),
-					idNo : $("#idNo").val(),
+					userId : $("#userId").val(),
+					loginName : $("#loginName").val(),
 					realName : $("#realName").val(),
-					userReferee : $("#userReferee").val(),
-					status : $("#status").val(),
+					mobile : $("#mobile").val(),
 					start : params.offset / params.limit + 1,
 					limit : params.limit
 				};

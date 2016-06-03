@@ -7,7 +7,6 @@ $(function() {
 	var url = $("#basePath").val() + "/menu/list";
 	doGetAjax(url, data, doSuccessPCodeBack);
 	
-	$('#kind').renderDropdown(Dict.getRoleKindName());
 	
 	// 表格初始化
 	queryTableData();
@@ -77,7 +76,6 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				kind : $("#kind").val(),
 				name : $("#name").val(),
 				parentCode : $("#parentCode").val(),
 				type : $("#type").val(),

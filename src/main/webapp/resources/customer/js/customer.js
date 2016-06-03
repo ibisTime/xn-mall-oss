@@ -41,6 +41,12 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 			},{
+				field : 'realName',
+				title : '真实姓名',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+		    },{
 				field : 'idKind',
 				title : '证件类型',
 				formatter : Dict.getIDKindName
@@ -51,12 +57,6 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 			},{
-				field : 'realName',
-				title : '真实姓名',
-				align : 'left',
-				valign : 'middle',
-				sortable : false
-		    },{
 				field : 'userReferee',
 				title : '推荐人',
 				align : 'left',
