@@ -122,7 +122,27 @@ $(function() {
 
 function initSpecsTable(){
     mytable = $('#edittable').editTable({
-	    row_template: ['text', 'text'],
+    	field_templates: {
+    		'canshuzhi' : {
+ 	            html: '<input type="text" name="canshuzhi" required maxlength="32" class="number1"/>',
+ 	            getValue: function (input) {
+ 	                return $(input).val();
+ 	            },
+ 	            setValue: function (input, value) {
+ 	                return $(input).val(value);
+ 	            }
+ 	        },
+ 	       'canshuming' : {
+	            html: '<input type="text" name="canshuming" required maxlength="64" class="number1"/>',
+	            getValue: function (input) {
+	                return $(input).val();
+	            },
+	            setValue: function (input, value) {
+	                return $(input).val(value);
+	            }
+	        },
+    	},
+	    row_template: ['canshuzhi', 'canshuming'],
 	    headerCols: ['参数名','参数值'],
 	    first_row: false,
 	    data: [
