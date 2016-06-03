@@ -47,20 +47,17 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 		    },{
-				field : 'idKind',
-				title : '证件类型',
-				formatter : Dict.getIDKindName
-			},{
-				field : 'idNo',
-				title : '证件号码',
+				field : 'updater',
+				title : '更新人',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
 			},{
-				field : 'userReferee',
-				title : '推荐人',
+				field : 'updateDatetime',
+				title : '更新时间',
 				align : 'left',
 				valign : 'middle',
+				formatter:dateFormatter,
 				sortable : false
 			},{
 				field : 'status',

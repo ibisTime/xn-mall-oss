@@ -33,7 +33,7 @@ function queryTableData(){
 		valign : 'middle',
 		sortable : false,
 	},{
-		field : 'modelName',
+		field : 'productName',
 		title : '所属型号',
 		align : 'left',
 		valign : 'middle',
