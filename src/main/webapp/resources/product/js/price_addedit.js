@@ -97,6 +97,15 @@ $(function() {
 		}
 	}
 });
+
+function checknum(obj)
+{   if(/^\d+\.?\d{0,2}$/.test(obj.value)){
+       obj.value = obj.value;
+    }else{
+   obj.value = obj.value.substring(0,obj.value.length-1);
+}}
+
+
 function doSucBack(res) {
 	if (res.success == true) {
 		alert("操作成功");
