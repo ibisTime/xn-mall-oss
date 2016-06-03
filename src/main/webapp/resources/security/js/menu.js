@@ -7,10 +7,6 @@ $(function() {
 	var url = $("#basePath").val() + "/menu/list";
 	doGetAjax(url, data, doSuccessPCodeBack);
 	
-<<<<<<< HEAD
-	
-=======
->>>>>>> refs/remotes/origin/master
 	// 表格初始化
 	queryTableData();
 	
