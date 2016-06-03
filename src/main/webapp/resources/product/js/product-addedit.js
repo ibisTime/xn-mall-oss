@@ -59,7 +59,7 @@ $(function() {
 		rules: {
 			name: {
 				required: true,
-				maxlength: 32
+				maxlength: 64
 			},
 			familyText: {
 				required: true,
@@ -68,7 +68,7 @@ $(function() {
 			type: "required",
 			advTitle: {
 				required: true,
-				maxlength: 1024
+				maxlength: 64234
 			},
 			majorText: {
 				required: true,

@@ -17,7 +17,7 @@ function doGetDetailBack(res){
 			var result = res.data.list[0];
 			$("#repairCode").html(result.code);
 			$("#productCode").html(result.goodsCode);
-			$("#modelName").html(result.modelName);
+			$("#productName").html(result.productName);
 			$("#repairUser").html(result.applyUser);
 
 			$("#phone").html(result.contact);

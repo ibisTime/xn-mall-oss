@@ -33,7 +33,7 @@ function queryTableData(){
 		checkbox : true
 	}, {
 		field : 'code',
-		title : '维修单号',
+		title : '维修单编号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
@@ -57,14 +57,14 @@ function queryTableData(){
 		sortable : false
 	} ,{
 		field : 'applyDatetime',
-		title : '保修时间',
+		title : '报修时间',
 		align : 'left',
 		valign : 'middle',
 		formatter:dateFormatter,
 		sortable : false
 	},{
 		field : 'status',
-		title : '状态',
+		title : '维修单状态',
 		align : 'left',
 		valign : 'middle',
 		formatter:Dict.getNameForList('repair_status'),

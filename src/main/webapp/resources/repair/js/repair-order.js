@@ -6,17 +6,39 @@ $(function() {
 	
 	//无需受理
 	$('#noDealBtn').click(function() {
+		 if(!$("#jsForm").valid()){
+				return false;
+			}
 		doDeal("0");
 	});
 	
 	//受理
 	$('#dealBtn').click(function() {
+		 if(!$("#jsForm").valid()){
+				return false;
+			}
 		doDeal("1");
 	});
 	
 	//返回
 	$('#backBtn').click(function() {
 		location.href = $("#basePath").val()+"/repair/repair_deal.htm";
+	});
+	
+	//入参合法性校验
+	$("#jsForm").validate({
+		rules: {
+			remark: {
+				required: true,
+				maxlength: 225
+			}
+		},
+		messages: {
+			remark: {
+				required: "请输入备注信息",
+				maxlength: jQuery.format("备注信息不能大于{0}个字符")
+			}
+		}
 	});
 });
 	
