@@ -26,7 +26,7 @@ $(function() {
 		rules: {
 			mobile: {
 				required: true,
-				maxlength: 16
+				maxlength: 11
 			},
 			idKind: {
 				required: true,

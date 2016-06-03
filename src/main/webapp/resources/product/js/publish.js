@@ -84,7 +84,7 @@ function queryTableData(){
 		sortable : false
 	}, {
 		field : 'status',
-		title : '状态',
+		title : '产品状态',
 		align : 'left',
 		valign : 'middle',
 		formatter:Dict.getNameForList('product_status'),

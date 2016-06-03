@@ -68,7 +68,7 @@ $(function() {
 			type: "required",
 			advTitle: {
 				required: true,
-				maxlength: 64
+				maxlength: 64234
 			},
 			majorText: {
 				required: true,

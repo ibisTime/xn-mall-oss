@@ -96,7 +96,7 @@ $(function() {
 			sortable : false
 		}, {
 			field : 'applyDatetime',
-			title : '申请时间',
+			title : '更新时间',
 			align : 'left',
 			valign : 'middle',
 			sortable : false,
