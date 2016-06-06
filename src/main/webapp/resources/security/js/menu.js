@@ -157,13 +157,6 @@ function queryTableData(){
 			align : 'left',
 			valign : 'middle',
 			sortable : false
-		}, {
-			field : 'kind',
-			title : '哪一方',
-			align : 'left',
-			valign : 'middle',
-			sortable : false,
-			formatter: Dict.getRoleKindName
 		}]
 	});
 }

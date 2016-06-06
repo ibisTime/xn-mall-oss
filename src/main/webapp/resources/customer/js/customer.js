@@ -18,7 +18,7 @@ $(function(){
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/channelPage"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/queryPage"});
 	});
 	
 	//代注册
@@ -70,7 +70,7 @@ $(function(){
 		
 		$('#tableList').bootstrapTable({
 			method : "get",
-			url : $("#basePath").val()+"/customer/channelPage",
+			url : $("#basePath").val()+"/customer/queryPage",
 			height : $(window).height() - 180,
 			striped : true,
 			clickToSelect : true,

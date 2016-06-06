@@ -18,7 +18,7 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/security/user.htm";
+		location.href = $("#basePath").val()+"/customer/customer.htm";
 	});
 	
 	//入参合法性校验
