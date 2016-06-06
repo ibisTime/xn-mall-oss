@@ -28,6 +28,7 @@ function doSucBackGetDetail(res){
 		$("#majorText").html(res.data.majorText);
 		$("#familyText").html(res.data.familyText);
 		$("#highlightText").html(res.data.highlightText);
+		$("#remark").html(res.data.remark);
 		$("#updater").html(res.data.updater);
 		$("#img1").attr('src',res.data.advPic);
 		$("#img2").attr('src',res.data.majorPic);

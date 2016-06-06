@@ -63,8 +63,8 @@ $(function() {
 	 	                return $(input).val(value);
 	 	            }
 	 	        },
-	 	       'input' : {
-	 	            html: '<input type="text" name="input" required maxlength="5" class="number1"/>',
+	 	       'costpricebox' : {
+	 	            html: '<input type="text" name="costpricebox" required maxlength="5"/>',
 	 	            getValue: function (input) {
 	 	                return $(input).val();
 	 	            },
@@ -73,7 +73,7 @@ $(function() {
 	 	            }
 	 	        },
 	 	       'textair' : {
-	 	            html: '<input type="text" name="textair" required maxlength="5" class="number1"/>',
+	 	            html: '<input type="text" name="textair" required maxlength="5"/>',
 	 	            getValue: function (input) {
 	 	                return $(input).val();
 	 	            },
@@ -123,7 +123,7 @@ $(function() {
 	 	    	select.val(select.find('option').val());
 	 	    	setStartCode(select);
 	 	    },
-		    row_template: ['select', 'displaybox','displaybox', 'number','input', 'textair'],
+		    row_template: ['select', 'displaybox','displaybox', 'number','costpricebox', 'text'],
 		    headerCols: ['所属型号','起始编号','终止编号','数量','成本价','零售价'],
 		    first_row: false,
 		    data: [

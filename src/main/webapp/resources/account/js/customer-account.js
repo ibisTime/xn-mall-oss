@@ -75,6 +75,12 @@ function queryTableData(){
 				valign : 'middle',
 				sortable : false
 			},{
+				field : 'realName',
+				title : '真实姓名',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+			},{
 				field : 'status',
 				title : '状态',
 				align : 'left',

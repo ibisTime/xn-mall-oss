@@ -78,8 +78,7 @@ $(function(){
 			queryParams : function(params) {
 				return {
 					mobile : $("#mobile").val(),
-					idNo : $("#idNo").val(),
-					realName : $("#realName").val(),
+//					realName : $("#realName").val(),
 					userReferee : $("#userReferee").val(),
 					status : $("#status").val(),
 					start : params.offset / params.limit + 1,
