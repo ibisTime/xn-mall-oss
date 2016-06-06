@@ -60,7 +60,7 @@ $(function() {
 	function doSucBackGetDetail(res){
 		if (res.success) {
 			$("#code").html(res.data.code);
-			$("#productCode").html(res.data.productCode);
+			$("#productCode").html(res.data.productName);
 			$("#name").html(res.data.name);
 			$("#majorText").html(res.data.advTitle);
 			$("#img1").attr('src',res.data.pic1);

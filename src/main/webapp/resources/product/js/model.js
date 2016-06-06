@@ -85,7 +85,7 @@ function queryTableData(){
 		valign : 'middle',
 		sortable : false,
 	}, {
-		field : 'productCode',
+		field : 'productName',
 		title : '所属产品',
 		align : 'left',
 		valign : 'middle',
