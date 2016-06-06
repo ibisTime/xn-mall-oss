@@ -81,7 +81,6 @@ $(function(){
 			singleSelect : true,
 			queryParams : function(params) {
 				return {
-					userId : $("#userId").val(),
 					loginName : $("#loginName").val(),
 					realName : $("#realName").val(),
 					mobile : $("#mobile").val(),

@@ -88,7 +88,7 @@ function initBusinessTable(){
 		singleSelect : true,
 		clickToSelect : true,
 		columns : [{
-					field : 'modelCode',
+					field : 'productName',
 					title : '产品',
 					align : 'left',
 					valign : 'middle',

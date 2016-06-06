@@ -97,8 +97,8 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object updownModel(String code, String checkUser,
-            String checkResult, String checkNote) {
+    public Object updownModel(String code, String checkUser, String checkResult,
+            String checkNote) {
         XN601023Req req = new XN601023Req();
         req.setCode(code);
         req.setCheckUser(checkUser);
@@ -147,7 +147,8 @@ public class ModelAOImpl implements IModelAO {
 
     @Override
     public Object shopLeadadd(String modelCode, String originalPrice,
-            String discountPrice, String toLevel, String updater, String remark) {
+            String discountPrice, String toLevel, String updater,
+            String remark) {
         XN601040Req req = new XN601040Req();
         req.setModelCode(modelCode);
         req.setOriginalPrice(CalculationUtil.mult(originalPrice));
@@ -220,7 +221,8 @@ public class ModelAOImpl implements IModelAO {
     // }
 
     @Override
-    public Object shipping(String code, String approveUser, String approveNote) {
+    public Object shipping(String code, String approveUser,
+            String approveNote) {
         XN602024Req req = new XN602024Req();
         req.setCode(code);
         req.setApproveUser(approveUser);
@@ -230,9 +232,10 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object queryOrderPage(String applyUser, String status, String start,
-            String limit, String orderColumn, String orderDir) {
+    public Object queryOrderPage(String code, String applyUser, String status,
+            String start, String limit, String orderColumn, String orderDir) {
         XN602025Req req = new XN602025Req();
+        req.setCode(code);
         req.setApplyUser(applyUser);
         req.setStatus(status);
         req.setStart(start);
@@ -300,7 +303,8 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object sureOrder(String code, String approveUser, String approveNote) {
+    public Object sureOrder(String code, String approveUser,
+            String approveNote) {
         XN602029Req req = new XN602029Req();
         req.setCode(code);
         req.setApproveUser(approveUser);

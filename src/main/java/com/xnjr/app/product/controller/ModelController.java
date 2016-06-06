@@ -185,13 +185,14 @@ public class ModelController extends BaseController {
     @RequestMapping(value = "/order/Page", method = RequestMethod.GET)
     @ResponseBody
     public Object queryOrderPage(
+            @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "applyUser", required = false) String applyUser,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return modelAO.queryOrderPage(applyUser, status, start, limit,
+        return modelAO.queryOrderPage(code, applyUser, status, start, limit,
             orderColumn, orderDir);
     }
 
