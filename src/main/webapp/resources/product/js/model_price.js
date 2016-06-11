@@ -60,18 +60,18 @@ function queryTableData(){
 		valign : 'middle',
 		sortable : false
 	}, {
-		field : 'status',
-		title : '状态',
-		align : 'left',
-		valign : 'middle',
-		formatter:Dict.getNameForList('product_status'),
-		sortable : false
-	}, {
 		field : 'originalPrice',
 		title : '价格',
 		align : 'left',
 		valign : 'middle',
 		formatter:moneyFormatter,
+		sortable : false
+	}, {
+		field : 'status',
+		title : '状态',
+		align : 'left',
+		valign : 'middle',
+		formatter:Dict.getNameForList('product_status'),
 		sortable : false
 	}, {
 		field : 'updater',

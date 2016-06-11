@@ -57,4 +57,5 @@ public class XN601024Req extends APageReq {
     public void setProductCode(String productCode) {
         this.productCode = productCode;
     }
+
 }

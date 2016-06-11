@@ -81,13 +81,6 @@ function queryTableData(){
 				valign : 'middle',
 				sortable : false
 			},{
-				field : 'status',
-				title : '状态',
-				align : 'left',
-				valign : 'middle',
-				formatter: Dict.getNameForList('account_status'),
-				sortable : false
-			},{
 				field : 'amount',
 				title : '资金',
 				align : 'left',
@@ -100,6 +93,13 @@ function queryTableData(){
 				align : 'left',
 				valign : 'middle',
 				formatter : moneyFormatter,
+				sortable : false
+			},{
+				field : 'status',
+				title : '状态',
+				align : 'left',
+				valign : 'middle',
+				formatter: Dict.getNameForList('account_status'),
 				sortable : false
 			},{
 				field : 'createDatetime',

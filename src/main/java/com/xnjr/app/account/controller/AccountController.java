@@ -103,8 +103,8 @@ public class AccountController extends BaseController {
             // approveUser,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
-        return accountAO.approveRecharge(chargeNo, this.getSessionUser()
-            .getUserName(), approveResult, approveNote);
+        return accountAO.approveRecharge(chargeNo,
+            this.getSessionUser().getUserName(), approveResult, approveNote);
     }
 
     @RequestMapping(value = "/withdrawOrderPage", method = RequestMethod.GET)
@@ -147,8 +147,8 @@ public class AccountController extends BaseController {
             // approveUser,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
-        return accountAO.approveWithdrawOrder(withdrawNo, this.getSessionUser()
-            .getUserName(), approveResult, approveNote);
+        return accountAO.approveWithdrawOrder(withdrawNo,
+            this.getSessionUser().getUserName(), approveResult, approveNote);
     }
 
     @RequestMapping(value = "/payWithdrawOrder", method = RequestMethod.POST)
@@ -161,8 +161,9 @@ public class AccountController extends BaseController {
             @RequestParam(value = "payNote", required = false) String payNote,
             @RequestParam(value = "refNo", required = false) String refNo,
             @RequestParam(value = "fee", required = false) String fee) {
-        return accountAO.payWithdrawOrder(withdrawNo, this.getSessionUser()
-            .getUserName(), payResult, payNote, refNo, fee);
+        return accountAO.payWithdrawOrder(withdrawNo,
+            this.getSessionUser().getUserName(), payResult, payNote, refNo,
+            fee);
     }
 
     @RequestMapping(value = "/turnOutListPage", method = RequestMethod.GET)
@@ -187,8 +188,8 @@ public class AccountController extends BaseController {
             @RequestParam(value = "amount", required = false) String amount,
             @RequestParam(value = "fee", required = false) String fee,
             @RequestParam(value = "remark", required = false) String remark) {
-        return accountAO
-            .transfer(accountNumber, direction, amount, fee, remark);
+        return accountAO.transfer(accountNumber, direction, amount, fee,
+            remark);
     }
 
     @RequestMapping(value = "/redBlueOrderPage", method = RequestMethod.GET)
@@ -226,8 +227,8 @@ public class AccountController extends BaseController {
             @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
-        return accountAO.artificialApproveCheck(code, this.getSessionUser()
-            .getUserName(), approveResult, approveNote);
+        return accountAO.artificialApproveCheck(code,
+            this.getSessionUser().getUserName(), approveResult, approveNote);
     }
 
     @RequestMapping(value = "/checkInput", method = RequestMethod.POST)
@@ -247,8 +248,67 @@ public class AccountController extends BaseController {
             // approveUser,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
-        return accountAO.checkApprove(code,
-            this.getSessionUser().getUserName(), approveResult, approveNote);
+        return accountAO.checkApprove(code, this.getSessionUser().getUserName(),
+            approveResult, approveNote);
+    }
+
+    @RequestMapping(value = "/addaccount", method = RequestMethod.POST)
+    @ResponseBody
+    public Object addaccount(@RequestParam("companyCode") String companyCode,
+            @RequestParam("subbranch") String subbranch,
+            @RequestParam("cardNo") String cardNo,
+            @RequestParam("status") String status,
+            // @RequestParam("updater") String updater,
+            @RequestParam(value = "remark", required = false) String remark) {
+        return accountAO.addaccount(companyCode, subbranch, cardNo, status,
+            this.getSessionUser().getUserName(), remark);
+    }
+
+    @RequestMapping(value = "/editaccount", method = RequestMethod.POST)
+    @ResponseBody
+    public Object editaccount(@RequestParam("code") String code,
+            @RequestParam("companyCode") String companyCode,
+            @RequestParam("subbranch") String subbranch,
+            @RequestParam("cardNo") String cardNo,
+            @RequestParam("status") String status,
+            // @RequestParam("updater") String updater,
+            @RequestParam(value = "remark", required = false) String remark) {
+        return accountAO.editaccount(code, companyCode, subbranch, cardNo,
+            status, this.getSessionUser().getUserName(), remark);
+    }
+
+    @RequestMapping(value = "/datailaccount", method = RequestMethod.POST)
+    @ResponseBody
+    public Object detailaccount(@RequestParam("code") String code) {
+        return accountAO.detailaccount(code);
+    }
+
+    @RequestMapping(value = "/dropaccount", method = RequestMethod.POST)
+    @ResponseBody
+    public Object dropaccount(@RequestParam("code") String code) {
+        return accountAO.dropaccount(code);
+    }
+
+    @RequestMapping(value = "/accountpage", method = RequestMethod.GET)
+    @ResponseBody
+    public Object queryaccountPage(
+            @RequestParam(value = "companyCode", required = false) String companyCode,
+            @RequestParam(value = "subbranch", required = false) String subbranch,
+            @RequestParam(value = "cardNo", required = false) String cardNo,
+            @RequestParam(value = "status", required = false) String status) {
+        return accountAO.queryaccountPage(companyCode, subbranch, cardNo,
+            status);
+    }
+
+    @RequestMapping(value = "/accountlist", method = RequestMethod.GET)
+    @ResponseBody
+    public Object queryaccountList(
+            @RequestParam(value = "companyCode", required = false) String companyCode,
+            @RequestParam(value = "subbranch", required = false) String subbranch,
+            @RequestParam(value = "cardNo", required = false) String cardNo,
+            @RequestParam(value = "status", required = false) String status) {
+        return accountAO.queryaccountList(companyCode, subbranch, cardNo,
+            status);
     }
 
 }

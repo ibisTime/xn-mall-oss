@@ -10,17 +10,17 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/logistics/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/orderPage"});
 	});
 	
-	//详情
-	$('#detailBtn').click(function() {
+	//录入
+	$('#inputBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/logistics/logistics_detail.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/logistics/product_input.htm?invoiceCode="+selRecords[0].code;
 	});
 	
 });
@@ -35,44 +35,45 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
-		field : 'invoiceCode',
-		title : '发货单编号',
-		align : 'left',
-		valign : 'middle',
-		sortable : false,
-	}, {
-		field : 'company',
-		title : '物流公司',
-		align : 'left',
-		valign : 'middle',
-		formatter:Dict.getNameForList('kd_company'),
-		sortable : false
-	}, {
 		field : 'code',
-		title : '物流单编号',
+		title : '订单编号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
+	}, {
+		field : 'applyUser',
+		title : '下单用户',
+		align : 'left',
+		valign : 'middle',
+		sortable : false
 	},{
-		field : 'deliveryDatetime',
-		title : '发货时间',
+		field : 'totalAmount',
+		title : '订单总金额',
+		align : 'left',
+		valign : 'middle',
+		formatter:moneyFormatter,
+		sortable : false
+	},{
+		field : 'applyDatetime',
+		title : '下单时间',
 		align : 'left',
 		valign : 'middle',
 		formatter:dateFormatter,
 		sortable : false
-	},{
-		field : 'deliverer',
-		title : '发货人',
+	} ,{
+		field : 'status',
+		title : '状态',
 		align : 'left',
 		valign : 'middle',
+		formatter:Dict.getNameForList('order_status'),
 		sortable : false
-	} ];
+	}];
 	
 	
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/logistics/page",
+		url : $("#basePath").val()+"/model/order/Page",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,
@@ -80,10 +81,8 @@ function queryTableData(){
 		queryParams : function(params) {
 			return {
 				code : $("#code").val(),
-				invoiceCode : $("#invoiceCode").val(),
-				userId : $("#userId").val(),
-				deliveryDatetimeStart : $("#deliveryDatetimeStart").val(),
-				deliveryDatetimeEnd : $("#deliveryDatetimeEnd").val(),
+				applyUser : $("#applyUser").val(),
+				status : 3,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
