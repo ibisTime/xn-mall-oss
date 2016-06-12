@@ -334,12 +334,14 @@ public class AccountAOImpl implements IAccountAO {
 
     @Override
     public Object queryaccountPage(String companyCode, String subbranch,
-            String cardNo, String status) {
+            String cardNo, String status, String start, String limit) {
         XN602403Req req = new XN602403Req();
         req.setCompanyCode(companyCode);
         req.setSubbranch(subbranch);
         req.setCardNo(cardNo);
         req.setStatus(status);
+        req.setStart(start);
+        req.setLimit(limit);
         return BizConnecter.getBizData("602403", JsonUtils.object2Json(req),
             Object.class);
     }

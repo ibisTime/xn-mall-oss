@@ -329,7 +329,7 @@ public interface IAccountAO {
      * @history:
      */
     public Object queryaccountPage(String companyCode, String subbranch,
-            String cardNo, String status);
+            String cardNo, String status, String start, String limit);
 
     /**
      * 分页查询列表

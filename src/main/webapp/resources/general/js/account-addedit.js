@@ -1,14 +1,15 @@
 //页面初始化
 $(function(){
-	var id = getQueryString('id');
+	var code = getQueryString('code');
+	$('#status').renderDropdown(Dict.getName('account-status'));
 	//新增修改判断
-	if(isBlank(id)){
+	if(isBlank(code)){
 		$("#operate").val("add");
 	}else{
 		$("#operate").val("edit");
 		$("#operContent").text("修改系统参数");
-		var data = {"id":id};
-		var url = $("#basePath").val()+"/general/system/param/detail";
+		var data = {"code":code};
+		var url = $("#basePath").val()+"/account/datailaccount";
 		doGetAjax(url, data, doGetDetailBack);
 	}
 	
@@ -18,7 +19,7 @@ $(function(){
 			return false;
 		}
 		var data = $('#jsForm').serializeObject();
-		var url = $("#basePath").val()+"/general/system/param/" + $("#operate").val();
+		var url = $("#basePath").val()+"/account/addaccount" ;
 		doPostAjax(url, data, doSuccessBack);
 	});
 	
@@ -30,39 +31,39 @@ $(function(){
 	//入参合法性校验
 	$("#jsForm").validate({
 		rules: {
-			key: {
+			companyCode: {
 				required: true,
 				maxlength: 20
 			},
-			value: {
+			subbranch: {
 				required: true,
 				maxlength: 20
 			},
-			note: {
+			cardNo: {
 				required: true,
 				maxlength: 30
 			},
-			remark: {
-				required: false,
+			status: {
+				required: true,
 				maxlength: 200
 			}
 		},
 		messages: {
-			key: {
-				required: "请输入参数键",
-				maxlength: jQuery.format("参数键不能大于{0}个字符")
+			companyCode: {
+				required: "请输入开户公司",
+				maxlength: jQuery.format("开户公司不能大于{0}个字符")
 			},
-			value: {
-				required: "请输入参数值",
-				maxlength:jQuery.format("参数值不能大于{0}个字符")
+			subbranch: {
+				required: "请输入开户银行",
+				maxlength:jQuery.format("开户银行不能大于{0}个字符")
 			},
-			note: {
-				required: "请输入参数说明",
-				maxlength:jQuery.format("参数说明不能大于{0}个字符")
+			cardNo: {
+				required: "请输入账号",
+				maxlength:jQuery.format("账号不能大于{0}个字符")
 			},
-			remark: {
-				required: "请输入备注",
-				maxlength:jQuery.format("备注不能大于{0}个字符")
+			status: {
+				required: "请选择状态",
+				maxlength:jQuery.format("状态不能大于{0}个字符")
 			}
 		}
 	});
@@ -71,10 +72,10 @@ $(function(){
 function doGetDetailBack(res){
 	if (res.success) {
 		result = res.data;
-		$("#id").val(result.id);
-		$('#key').replaceWith($('<span>'+result.ckey+'</span>'));
-		$("#value").val(result.cvalue);
-		$("#note").val(result.note);
+		$("#companyCode").val(result.companyCode);
+		$("#subbranch").val(result.subbranch);
+		$("#cardNo").val(result.cardNo);
+		$("#status").val(result.status);
 	}else{
 		alert(res.msg);
 	}

@@ -277,7 +277,7 @@ public class AccountController extends BaseController {
             status, this.getSessionUser().getUserName(), remark);
     }
 
-    @RequestMapping(value = "/datailaccount", method = RequestMethod.POST)
+    @RequestMapping(value = "/datailaccount", method = RequestMethod.GET)
     @ResponseBody
     public Object detailaccount(@RequestParam("code") String code) {
         return accountAO.detailaccount(code);
@@ -295,9 +295,11 @@ public class AccountController extends BaseController {
             @RequestParam(value = "companyCode", required = false) String companyCode,
             @RequestParam(value = "subbranch", required = false) String subbranch,
             @RequestParam(value = "cardNo", required = false) String cardNo,
-            @RequestParam(value = "status", required = false) String status) {
+            @RequestParam(value = "status", required = false) String status,
+            @RequestParam("start") String start,
+            @RequestParam("limit") String limit) {
         return accountAO.queryaccountPage(companyCode, subbranch, cardNo,
-            status);
+            status, start, limit);
     }
 
     @RequestMapping(value = "/accountlist", method = RequestMethod.GET)

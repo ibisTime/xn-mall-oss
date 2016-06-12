@@ -10,10 +10,18 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/logistics/goods/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/logistics/page"});
 	});
 	
-	
+	//收货确认
+	$('#sureBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/logistics/goods_detail.htm?code="+selRecords[0].code;
+	});
 	
 });
 
@@ -27,50 +35,51 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
+		field : 'invoiceCode',
+		title : '发货单编号',
+		align : 'left',
+		valign : 'middle',
+		sortable : false,
+	}, {
+		field : 'company',
+		title : '物流公司',
+		align : 'left',
+		valign : 'middle',
+		formatter:Dict.getNameForList('kd_company'),
+		sortable : false
+	}, {
 		field : 'code',
-		title : '货品编号',
+		title : '物流单编号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
 	},{
-		field : 'productName',
-		title : '所属型号',
+		field : 'deliveryDatetime',
+		title : '发货时间',
 		align : 'left',
 		valign : 'middle',
-		sortable : false
-	} ,{
-		field : 'logisticsCode',
-		title : '所属物流单',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
-	}, {
-		field : 'costPrice',
-		title : '成本价',
-		align : 'left',
-		valign : 'middle',
-		formatter:moneyFormatter,
+		formatter:dateFormatter,
 		sortable : false
 	},{
-		field : 'salePrice',
-		title : '零售价',
+		field : 'deliverer',
+		title : '发货人',
 		align : 'left',
 		valign : 'middle',
-		formatter:moneyFormatter,
 		sortable : false
 	},{
 		field : 'status',
 		title : '状态',
 		align : 'left',
 		valign : 'middle',
+		formatter:Dict.getNameForList('logistic_status'),
 		sortable : false
-	}];
+	} ];
 	
 	
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/logistics/goods/page",
+		url : $("#basePath").val()+"/logistics/page",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,
@@ -78,8 +87,11 @@ function queryTableData(){
 		queryParams : function(params) {
 			return {
 				code : $("#code").val(),
-				logisticsCode : $("#logisticsCode").val(),
-				status : 0,
+				invoiceCode : $("#invoiceCode").val(),
+				userId : $("#userId").val(),
+				status:0,
+				deliveryDatetimeStart : $("#deliveryDatetimeStart").val(),
+				deliveryDatetimeEnd : $("#deliveryDatetimeEnd").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};

@@ -58,6 +58,13 @@ function queryTableData(){
 		valign : 'middle',
 		formatter:moneyFormatter,
 		sortable : false
+	},{
+		field : 'status',
+		title : '状态',
+		align : 'left',
+		valign : 'middle',
+		formatter:Dict.getNameForList('logistic_status'),
+		sortable : false
 	}];
 	
 	
@@ -72,6 +79,7 @@ function queryTableData(){
 		queryParams : function(params) {
 			return {
 				code : $("#code").val(),
+				status : 1,
 				logisticsCode : $("#logisticsCode").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
