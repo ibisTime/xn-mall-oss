@@ -22,52 +22,73 @@ public class XN602040Req {
     // 货品信息(必填)
     private List<GoodsReq> goodsList;
 
-	public String getInvoiceCode() {
-		return invoiceCode;
-	}
+    // 更新人
+    private String updater;
 
-	public void setInvoiceCode(String invoiceCode) {
-		this.invoiceCode = invoiceCode;
-	}
+    // remark
+    private String remark;
 
-	public String getCompany() {
-		return company;
-	}
+    public String getInvoiceCode() {
+        return invoiceCode;
+    }
 
-	public void setCompany(String company) {
-		this.company = company;
-	}
+    public void setInvoiceCode(String invoiceCode) {
+        this.invoiceCode = invoiceCode;
+    }
 
-	public String getDeliveryDatetime() {
-		return deliveryDatetime;
-	}
+    public String getCompany() {
+        return company;
+    }
 
-	public void setDeliveryDatetime(String deliveryDatetime) {
-		this.deliveryDatetime = deliveryDatetime;
-	}
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
-	public String getDeliverer() {
-		return deliverer;
-	}
+    public String getDeliveryDatetime() {
+        return deliveryDatetime;
+    }
 
-	public void setDeliverer(String deliverer) {
-		this.deliverer = deliverer;
-	}
+    public void setDeliveryDatetime(String deliveryDatetime) {
+        this.deliveryDatetime = deliveryDatetime;
+    }
 
-	public List<GoodsReq> getGoodsList() {
-		return goodsList;
-	}
+    public String getDeliverer() {
+        return deliverer;
+    }
 
-	public void setGoodsList(List<GoodsReq> goodsList) {
-		this.goodsList = goodsList;
-	}
+    public void setDeliverer(String deliverer) {
+        this.deliverer = deliverer;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public List<GoodsReq> getGoodsList() {
+        return goodsList;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void setGoodsList(List<GoodsReq> goodsList) {
+        this.goodsList = goodsList;
+    }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getUpdater() {
+        return updater;
+    }
+
+    public void setUpdater(String updater) {
+        this.updater = updater;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 }

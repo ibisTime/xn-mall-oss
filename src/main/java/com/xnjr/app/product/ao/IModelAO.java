@@ -221,8 +221,8 @@ public interface IModelAO {
      * @history:
      */
     public Object queryOrderPage(String code, String applyUser, String status,
-            String dateStart, String dateEnd, String start, String limit,
-            String orderColumn, String orderDir);
+            String isSecondPay, String dateStart, String dateEnd, String start,
+            String limit, String orderColumn, String orderDir);
 
     /**
      * 订单列表查询

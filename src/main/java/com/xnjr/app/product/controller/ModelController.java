@@ -188,14 +188,15 @@ public class ModelController extends BaseController {
             @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "applyUser", required = false) String applyUser,
             @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "isSecondPay", required = false) String isSecondPay,
             @RequestParam(value = "dateStart", required = false) String dateStart,
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return modelAO.queryOrderPage(code, applyUser, status, dateStart,
-            dateEnd, start, limit, orderColumn, orderDir);
+        return modelAO.queryOrderPage(code, applyUser, status, isSecondPay,
+            dateStart, dateEnd, start, limit, orderColumn, orderDir);
     }
 
     @RequestMapping(value = "/order/List", method = RequestMethod.GET)

@@ -3,10 +3,16 @@ $(function() {
 	doGetAjaxIsAsync($("#basePath").val()+"/account/accountlist", {}, false, function(res) {
 		var data = res.data || [], html = "<option value=''>请选择</option>";
 		for (var i = 0, len = data.length; i < len; i++) {
-			html += "<option value='"+data[i].subbranch+"'>"+data[i].cardNo+"</option>";
+			html += "<option value='"+data[i].companyCode+"'>"+data[i].subbranch+""+data[i].cardNo+"</option>";
 			$("#toCardNo").html(html);
 		}
 	});
+	
+	$("#toCardNo").on("change", function(){
+		
+		$("#shoukuang").html($(this).val());
+	});
+	$('#fromType').renderDropdown(Dict.getName('pay_type'));
 	//新增修改判断
 	initBusinessTable();
 	if(isBlank(invoiceCode)){
@@ -115,7 +121,7 @@ $(function() {
 		if (res.success) {
 			$("#code").html(res.data.code);
 			$("#applyDatetime").html(dateFormatter(res.data.applyDatetime));
-			$("#applyNote").html(res.data.applyNote);
+			$("#applyNote").html(res.data.applyNote || '无');
 			$("#loginName").html(res.data.loginName);
 			$("#approveDatetime").html(res.data.approveDatetime);
 			$("#approveUser").html(res.data.approveUser);
@@ -196,6 +202,13 @@ function ajaxFileUpload(postUrl,fileId,uploadControlId) {
     )
     return false;
 }
+
+function checknum(obj)
+{   if(/^\d+\.?\d{0,2}$/.test(obj.value)){
+       obj.value = obj.value;
+    }else{
+   obj.value = obj.value.substring(0,obj.value.length-1);
+}}
 //保存回调方法
 function doSucBackSave(res) {
 	if (res.success == true) {

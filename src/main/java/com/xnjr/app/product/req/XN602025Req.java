@@ -23,7 +23,9 @@ public class XN602025Req extends APageReq {
     // 状态（选填）
     private String status;
 
-    // private String dateStart;
+    // 是否为尾款支付
+    private String isSecondPay;
+
     //
     // // 状态（选填）
     // private String dateEnd;
@@ -52,20 +54,12 @@ public class XN602025Req extends APageReq {
         this.code = code;
     }
 
-    // public String getDateStart() {
-    // return dateStart;
-    // }
-    //
-    // public void setDateStart(String dateStart) {
-    // this.dateStart = dateStart;
-    // }
-    //
-    // public String getDateEnd() {
-    // return dateEnd;
-    // }
-    //
-    // public void setDateEnd(String dateEnd) {
-    // this.dateEnd = dateEnd;
-    // }
+    public String getIsSecondPay() {
+        return isSecondPay;
+    }
+
+    public void setIsSecondPay(String isSecondPay) {
+        this.isSecondPay = isSecondPay;
+    }
 
 }

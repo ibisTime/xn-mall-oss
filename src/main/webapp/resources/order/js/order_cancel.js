@@ -63,14 +63,15 @@ $(function() {
 		if (res.success) {
 			$("#code").html(res.data.code);
 			$("#applyDatetime").html(dateFormatter(res.data.applyDatetime));
-			$("#applyNote").html(res.data.applyNote);
-			$("#applyUser").html(res.data.applyUser);
+			$("#applyNote").html(res.data.applyNote || '无');
+			$("#loginName").html(res.data.loginName);
 			$("#approveDatetime").html(res.data.approveDatetime);
 			$("#approveUser").html(res.data.approveUser);
 			$("#receiptTitle").html(res.data.receiptTitle);
 			$("#receiptType").html(Dict.getName('receipt_type',res.data.receiptType));
 			$("#status").html(Dict.getName('order_status',res.data.status));
-			$("#totalAmount").html(res.data.totalAmount);
+			$("#totalAmount").html(moneyFormatter(res.data.totalAmount));
+			$("#payAmount").html(moneyFormatter(res.data.payAmount));
 			$("#mobile").html(res.data.address?res.data.address.mobile:'-');
 			$("#name").html(res.data.address?res.data.address.addressee:'-');
 			$("#address").html(res.data.address?res.data.address.province+res.data.address.city+res.data.address.district+res.data.address.detailAddress:'-');

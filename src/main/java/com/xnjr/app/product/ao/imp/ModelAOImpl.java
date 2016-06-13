@@ -233,12 +233,13 @@ public class ModelAOImpl implements IModelAO {
 
     @Override
     public Object queryOrderPage(String code, String applyUser, String status,
-            String dateStart, String dateEnd, String start, String limit,
-            String orderColumn, String orderDir) {
+            String isSecondPay, String dateStart, String dateEnd, String start,
+            String limit, String orderColumn, String orderDir) {
         XN602025Req req = new XN602025Req();
         req.setCode(code);
         req.setApplyUser(applyUser);
         req.setStatus(status);
+        req.setIsSecondPay(isSecondPay);
         req.setDateStart(dateStart);
         req.setDateEnd(dateEnd);
         req.setStart(start);
@@ -311,7 +312,7 @@ public class ModelAOImpl implements IModelAO {
             String approveNote) {
         XN602029Req req = new XN602029Req();
         req.setCode(code);
-        req.setAmount(amount);
+        req.setAmount(CalculationUtil.mult(amount));
         req.setFromType(fromType);
         req.setFromCode(fromCode);
         req.setPdf(pdf);

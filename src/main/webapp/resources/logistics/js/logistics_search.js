@@ -66,6 +66,13 @@ function queryTableData(){
 		align : 'left',
 		valign : 'middle',
 		sortable : false
+	},{
+		field : 'status',
+		title : '状态',
+		align : 'left',
+		formatter:Dict.getNameForList('logistic_status'),
+		valign : 'middle',
+		sortable : false
 	} ];
 	
 	

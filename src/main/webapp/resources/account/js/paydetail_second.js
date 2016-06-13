@@ -3,10 +3,16 @@ $(function() {
 	doGetAjaxIsAsync($("#basePath").val()+"/account/accountlist", {}, false, function(res) {
 		var data = res.data || [], html = "<option value=''>请选择</option>";
 		for (var i = 0, len = data.length; i < len; i++) {
-			html += "<option value='"+data[i].subbranch+"'>"+data[i].cardNo+"</option>";
+			html += "<option value='"+data[i].companyCode+"'>"+data[i].subbranch+""+data[i].cardNo+"</option>";
 			$("#toCardNo").html(html);
 		}
 	});
+	
+	$("#toCardNo").on("change", function(){
+		
+		$("#shoukuang").html($(this).val());
+	});
+	$('#fromType').renderDropdown(Dict.getName('pay_type'));
 	//新增修改判断
 	initBusinessTable();
 	if(isBlank(invoiceCode)){
@@ -115,9 +121,10 @@ $(function() {
 		if (res.success) {
 			$("#code").html(res.data.code);
 			$("#applyDatetime").html(dateFormatter(res.data.applyDatetime));
-			$("#applyNote").html(res.data.applyNote);
+			$("#applyNote").html(res.data.applyNote || '无');
 			$("#approveDatetime").html(res.data.approveDatetime);
 			$("#loginName").html(res.data.loginName);
+			$("#amount").val(moneyFormat(res.data.totalAmount-res.data.payAmount));
 			$("#status").html(Dict.getName('order_status',res.data.status));
 			$("#totalAmount").html(moneyFormat(res.data.totalAmount,2));
 			$("#payAmount").html(moneyFormat(res.data.payAmount,2));
@@ -163,6 +170,15 @@ function initBusinessTable(){
 				}]
 	});
 }
+
+
+function checknum(obj)
+{   if(/^\d+\.?\d{0,2}$/.test(obj.value)){
+       obj.value = obj.value;
+    }else{
+   obj.value = obj.value.substring(0,obj.value.length-1);
+}}
+
 
 function ajaxFileUpload(postUrl,fileId,uploadControlId) {
     $.ajaxFileUpload

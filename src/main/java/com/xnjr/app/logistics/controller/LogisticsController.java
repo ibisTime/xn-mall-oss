@@ -37,7 +37,8 @@ public class LogisticsController extends BaseController {
             new TypeToken<List<GoodsReq>>() {
             }.getType());
         return logisticsAO.addLogistics(code, invoiceCode, company,
-            deliveryDatetime, deliverer, goodsList);
+            deliveryDatetime, deliverer, this.getSessionUser().getUserName(),
+            goodsList);
     }
 
     // 物流单分页查询
