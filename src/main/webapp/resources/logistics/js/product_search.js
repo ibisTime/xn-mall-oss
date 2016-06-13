@@ -33,7 +33,7 @@ function queryTableData(){
 		valign : 'middle',
 		sortable : false,
 	},{
-		field : 'productName',
+		field : 'modelName',
 		title : '所属型号',
 		align : 'left',
 		valign : 'middle',
@@ -57,12 +57,6 @@ function queryTableData(){
 		align : 'left',
 		valign : 'middle',
 		formatter:moneyFormatter,
-		sortable : false
-	},{
-		field : 'status',
-		title : '状态',
-		align : 'left',
-		valign : 'middle',
 		sortable : false
 	}];
 	
