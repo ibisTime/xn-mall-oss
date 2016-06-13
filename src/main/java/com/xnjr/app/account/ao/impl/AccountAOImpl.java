@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.xnjr.app.account.ao.IAccountAO;
+import com.xnjr.app.account.req.XN602030Req;
 import com.xnjr.app.account.req.XN602400Req;
 import com.xnjr.app.account.req.XN602401Req;
 import com.xnjr.app.account.req.XN602402Req;
@@ -30,6 +31,7 @@ import com.xnjr.app.account.req.XN802721Req;
 import com.xnjr.app.general.ao.IDictAO;
 import com.xnjr.app.http.BizConnecter;
 import com.xnjr.app.http.JsonUtils;
+import com.xnjr.app.util.UploadUtil;
 
 @Service
 public class AccountAOImpl implements IAccountAO {
@@ -363,6 +365,21 @@ public class AccountAOImpl implements IAccountAO {
         XN602405Req req = new XN602405Req();
         req.setCode(code);
         return BizConnecter.getBizData("602405", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object payaccount(String code, String amount, String fromType,
+            String fromCode, String pdf, String toCardNo, String remark) {
+        XN602030Req req = new XN602030Req();
+        req.setCode(code);
+        req.setAmount(amount);
+        req.setFromType(fromType);
+        req.setFromCode(fromCode);
+        req.setPdf(UploadUtil.uploadPicture(pdf));
+        req.setToCardNo(toCardNo);
+        req.setRemark(remark);
+        return BizConnecter.getBizData("602030", JsonUtils.object2Json(req),
             Object.class);
     }
 

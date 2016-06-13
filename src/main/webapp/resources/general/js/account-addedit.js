@@ -33,19 +33,19 @@ $(function(){
 		rules: {
 			companyCode: {
 				required: true,
-				maxlength: 20
+				maxlength: 32
 			},
 			subbranch: {
 				required: true,
-				maxlength: 20
+				maxlength: 255
 			},
 			cardNo: {
 				required: true,
-				maxlength: 30
+				maxlength: 64
 			},
 			status: {
 				required: true,
-				maxlength: 200
+				maxlength: 2
 			}
 		},
 		messages: {

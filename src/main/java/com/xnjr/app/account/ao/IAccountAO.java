@@ -353,4 +353,20 @@ public interface IAccountAO {
      */
     public Object detailaccount(String code);
 
+    /**
+     * 付款
+     * @param code
+     * @param amount
+     * @param fromType
+     * @param fromCode
+     * @param pdf
+     * @param toCardNo
+     * @param remark
+     * @return 
+     * @create: 2016年6月12日 下午8:42:33 XIANDONG
+     * @history:
+     */
+    public Object payaccount(String code, String amount, String fromType,
+            String fromCode, String pdf, String toCardNo, String remark);
+
 }
