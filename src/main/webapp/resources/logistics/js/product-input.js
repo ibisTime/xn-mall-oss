@@ -36,6 +36,17 @@ $(function() {
 		setEndCode($(this).parent().prev().prev().html(), $(this).val(), $(this).parent().parent());
 	});
 	
+	// qrcode
+	var qrcode = new QRCode('qrcode');
+	$('#code').on('blur', function() {
+		if (this.value) {
+			qrcode.makeCode(this.value);
+		} else {
+			qrcode.clear();
+			$('#qrcode').find('img').hide();
+		}
+	});
+	
 	var modelData;
 	function initSpecsTable(modelData){
 		var html = '<select class="select1">';
