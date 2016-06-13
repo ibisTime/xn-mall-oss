@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.xnjr.app.enums.EUserKind;
 import com.xnjr.app.enums.EUserStatus;
 import com.xnjr.app.http.BizConnecter;
 import com.xnjr.app.http.JsonUtils;
@@ -199,6 +200,7 @@ public class UserAOImpl implements IUserAO {
         XN805043Req req = new XN805043Req();
         req.setLoginName(loginName);
         req.setLoginPwd(loginPwd);
+        req.setKind(EUserKind.Operator.getCode());
         return BizConnecter.getBizData("805043", JsonUtils.object2Json(req),
             XN805043Res.class);
     }
