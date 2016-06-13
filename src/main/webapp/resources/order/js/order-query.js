@@ -49,7 +49,7 @@ function queryTableData(){
 		valign : 'middle',
 		sortable : false,
 	}, {
-		field : 'applyUser',
+		field : 'loginName',
 		title : '下单用户',
 		align : 'left',
 		valign : 'middle',

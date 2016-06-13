@@ -64,7 +64,7 @@ textarea.error{background: none;margin: 0; width: 504px;}
 /*操作按钮*/
 .tools{clear:both; height:0px; margin-bottom:8px;}
 .toolbar{float:left;}
-.toolbar li{line-height:33px; height:33px; border:solid 1px #d3dbde; float:left; padding-right:10px; margin-right:5px;border-radius: 3px; behavior:url(js/pie.htc); cursor:pointer; display:block;}
+.toolbar li{line-height:33px; height:33px; border:solid 1px #d3dbde; float:left; padding-right:10px; margin-right:5px;border-radius: 3px; behavior:url(js/pie.htc); cursor:pointer; display:none;}
 .toolbar li span{float:left; margin-left:10px; margin-right:5px; margin-top:5px;}
 
 /*操作按钮-二级页面*/
