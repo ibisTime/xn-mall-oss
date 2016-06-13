@@ -36,7 +36,7 @@ function queryTableData(){
 		checkbox : true
 	}, {
 		field : 'code',
-		title : '订单编号',
+		title : '发货单编号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,

@@ -36,7 +36,7 @@ $(function(){
 			},
 			value: {
 				required: true,
-				maxlength: 20
+				maxlength: 255
 			},
 			note: {
 				required: true,

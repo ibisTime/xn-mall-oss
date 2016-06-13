@@ -23,6 +23,11 @@ public class XN602025Req extends APageReq {
     // 状态（选填）
     private String status;
 
+    // private String dateStart;
+    //
+    // // 状态（选填）
+    // private String dateEnd;
+
     public String getApplyUser() {
         return applyUser;
     }
@@ -46,5 +51,21 @@ public class XN602025Req extends APageReq {
     public void setCode(String code) {
         this.code = code;
     }
+
+    // public String getDateStart() {
+    // return dateStart;
+    // }
+    //
+    // public void setDateStart(String dateStart) {
+    // this.dateStart = dateStart;
+    // }
+    //
+    // public String getDateEnd() {
+    // return dateEnd;
+    // }
+    //
+    // public void setDateEnd(String dateEnd) {
+    // this.dateEnd = dateEnd;
+    // }
 
 }

@@ -81,8 +81,8 @@ public interface IAccountAO {
      */
     public Object queryRechargeOrderPage(String accountNumber, String code,
             String fromType, String fromCode, String channel, String refNo,
-            String status, String approveUser, String dateStart,
-            String dateEnd, String start, String limit);
+            String status, String approveUser, String dateStart, String dateEnd,
+            String start, String limit);
 
     /**
      * 线下充值
@@ -94,8 +94,8 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午4:42:34 wu
      * @history:
      */
-    public Object recharge(String accountNumber, String amount,
-            String fromType, String fromCode);
+    public Object recharge(String accountNumber, String amount, String fromType,
+            String fromCode);
 
     /**
      * 审批充值订单
@@ -131,8 +131,8 @@ public interface IAccountAO {
      */
     public Object queryWithdrawOrderPage(String accountNumber, String code,
             String toType, String toCode, String channel, String refNo,
-            String status, String approveUser, String payUser,
-            String dateStart, String dateEnd, String start, String limit);
+            String status, String approveUser, String payUser, String dateStart,
+            String dateEnd, String start, String limit);
 
     /**
      * 代线下取现
@@ -238,8 +238,8 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午5:05:10 wu
      * @history:
      */
-    public Object artificialAccountApply(String accountNumber,
-            String direction, String amount, String applyUser, String applyNote);
+    public Object artificialAccountApply(String accountNumber, String direction,
+            String amount, String applyUser, String applyNote);
 
     /**
      * 人工干预账户审批：需要对账
@@ -277,5 +277,96 @@ public interface IAccountAO {
      */
     public Object checkApprove(String code, String approveUser,
             String approveResult, String approveNote);
+
+    /**
+     * 新增账号
+     * @param companyCode
+     * @param subbranch
+     * @param cardNo
+     * @param status
+     * @param updater
+     * @param remark
+     * @return 
+     * @create: 2016年6月11日 下午5:17:47 XIANDONG
+     * @history:
+     */
+    public Object addaccount(String companyCode, String subbranch,
+            String cardNo, String status, String updater, String remark);
+
+    /**
+     * 修改账号
+     * @param code
+     * @param companyCode
+     * @param subbranch
+     * @param cardNo
+     * @param status
+     * @param updater
+     * @param remark
+     * @return 
+     * @create: 2016年6月11日 下午5:18:50 XIANDONG
+     * @history:
+     */
+    public Object editaccount(String code, String companyCode, String subbranch,
+            String cardNo, String status, String updater, String remark);
+
+    /**
+     * 删除账号
+     * @param code
+     * @return 
+     * @create: 2016年6月11日 下午5:19:31 XIANDONG
+     * @history:
+     */
+    public Object dropaccount(String code);
+
+    /**
+     * 分页查询账户
+     * @param companyCode
+     * @param subbranch
+     * @param cardNo
+     * @param status
+     * @return 
+     * @create: 2016年6月11日 下午5:20:32 XIANDONG
+     * @history:
+     */
+    public Object queryaccountPage(String companyCode, String subbranch,
+            String cardNo, String status, String start, String limit);
+
+    /**
+     * 分页查询列表
+     * @param companyCode
+     * @param subbranch
+     * @param cardNo
+     * @param status
+     * @return 
+     * @create: 2016年6月11日 下午5:22:09 XIANDONG
+     * @history:
+     */
+    public Object queryaccountList(String companyCode, String subbranch,
+            String cardNo, String status);
+
+    /**
+     * 账号详情
+     * @param code
+     * @return 
+     * @create: 2016年6月11日 下午5:22:25 XIANDONG
+     * @history:
+     */
+    public Object detailaccount(String code);
+
+    /**
+     * 付款
+     * @param code
+     * @param amount
+     * @param fromType
+     * @param fromCode
+     * @param pdf
+     * @param toCardNo
+     * @param remark
+     * @return 
+     * @create: 2016年6月12日 下午8:42:33 XIANDONG
+     * @history:
+     */
+    public Object payaccount(String code, String amount, String fromType,
+            String fromCode, String pdf, String toCardNo, String remark);
 
 }

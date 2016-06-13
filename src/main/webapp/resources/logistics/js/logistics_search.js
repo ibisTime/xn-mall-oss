@@ -49,7 +49,7 @@ function queryTableData(){
 		sortable : false
 	}, {
 		field : 'code',
-		title : '物流单号',
+		title : '物流单编号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,

@@ -72,6 +72,15 @@ $(function() {
 	 	                return $(input).val(value);
 	 	            }
 	 	        },
+	 	       'linshou' : {
+	 	            html: '<input type="text" name="linshou" required maxlength="5"/>',
+	 	            getValue: function (input) {
+	 	                return $(input).val();
+	 	            },
+	 	            setValue: function (input, value) {
+	 	                return $(input).val(value);
+	 	            }
+	 	        },
 	 	       'textair' : {
 	 	            html: '<input type="text" name="textair" required maxlength="5"/>',
 	 	            getValue: function (input) {
@@ -123,7 +132,7 @@ $(function() {
 	 	    	select.val(select.find('option').val());
 	 	    	setStartCode(select);
 	 	    },
-		    row_template: ['select', 'displaybox','displaybox', 'number','costpricebox', 'text'],
+		    row_template: ['select', 'displaybox','displaybox', 'number','costpricebox', 'linshou'],
 		    headerCols: ['所属型号','起始编号','终止编号','数量','成本价','零售价'],
 		    first_row: false,
 		    data: [
@@ -212,7 +221,6 @@ $(function() {
 			code: {
 				required: true,
 				maxlength: 32,
-				number:true
 			},
 			deliverer: {
 				required: true,

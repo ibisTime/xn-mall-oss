@@ -33,7 +33,7 @@ function queryTableData(){
 		valign : 'middle',
 		sortable : false,
 	},{
-		field : 'productName',
+		field : 'modelName',
 		title : '所属型号',
 		align : 'left',
 		valign : 'middle',
@@ -73,6 +73,7 @@ function queryTableData(){
 			return {
 				code : $("#code").val(),
 				logisticsCode : $("#logisticsCode").val(),
+				status : 0,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};

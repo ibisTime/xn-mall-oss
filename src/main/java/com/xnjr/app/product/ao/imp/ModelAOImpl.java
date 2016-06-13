@@ -113,7 +113,7 @@ public class ModelAOImpl implements IModelAO {
             String productCode, String start, String limit, String orderColumn,
             String orderDir) {
         XN601024Req req = new XN601024Req();
-        req.setCode(productCode);
+        req.setCode(code);
         req.setName(name);
         req.setStatus(status);
         req.setProductCode(productCode);
@@ -233,11 +233,14 @@ public class ModelAOImpl implements IModelAO {
 
     @Override
     public Object queryOrderPage(String code, String applyUser, String status,
-            String start, String limit, String orderColumn, String orderDir) {
+            String dateStart, String dateEnd, String start, String limit,
+            String orderColumn, String orderDir) {
         XN602025Req req = new XN602025Req();
         req.setCode(code);
         req.setApplyUser(applyUser);
         req.setStatus(status);
+        req.setDateStart(dateStart);
+        req.setDateEnd(dateEnd);
         req.setStart(start);
         req.setLimit(limit);
         req.setOrderColumn(orderColumn);

@@ -81,7 +81,7 @@ function initBusinessTable(){
 					sortable : false
 				},{
 					field : 'salePrice',
-					title : '价格',
+					title : '单价',
 					align : 'left',
 					valign : 'middle',
 					formatter:moneyFormatter,
