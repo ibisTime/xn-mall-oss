@@ -37,14 +37,29 @@ $(function() {
 	});
 	
 	// qrcode
+	
+	function savePic() {
+	    var img = $("#qrcode").find('img')[0];
+	    var alink = document.createElement("a");
+	    alink.href = img.src;
+	    alink.download = "物流单专属二维码.jpg";
+	    alink.click();
+	}
+	
 	var qrcode = new QRCode('qrcode');
 	$('#code').on('blur', function() {
 		if (this.value) {
 			qrcode.makeCode(this.value);
+			$('#downloadBtn').show();
 		} else {
 			qrcode.clear();
 			$('#qrcode').find('img').hide();
+			$('#downloadBtn').hide();
 		}
+	});
+	
+	$('#downloadBtn').on('click', function() {
+		savePic();
 	});
 	
 	var modelData;
