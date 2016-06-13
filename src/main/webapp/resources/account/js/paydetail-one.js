@@ -38,7 +38,7 @@ $(function() {
 		
 		data['code'] = $("#code").html();
 		data['pdf'] = $("#url1").attr("href");
-		var url = $("#basePath").val()+"/account/payaccount";
+		var url = $("#basePath").val()+"/model/order/sure";
 		
 		doPostAjax(url, data, doSucBackSave);
 	});
@@ -75,7 +75,7 @@ $(function() {
 				required: true,
 				maxlength: 255
 			},
-			remark: {
+			approveNote: {
 				required: true,
 				maxlength: 32
 			}
@@ -101,7 +101,7 @@ $(function() {
 				required: "请上传水单",
 				maxlength: jQuery.format("水单链接不能大于{0}个字符")
 			},
-			remark: {
+			approveNote: {
 				required: "请输入备注",
 				maxlength: jQuery.format("备注不能大于{0}个字符")
 			}

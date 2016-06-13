@@ -10,7 +10,7 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/orderPage"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/order/Page"});
 	});
 	
 	//录入

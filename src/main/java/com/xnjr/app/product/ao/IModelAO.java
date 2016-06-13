@@ -274,5 +274,8 @@ public interface IModelAO {
      * @create: 2016年6月1日 下午11:15:19 XIANDONG
      * @history:
      */
-    Object sureOrder(String code, String approveUser, String approveNote);
+
+    Object sureOrder(String code, String amount, String fromType,
+            String fromCode, String pdf, String toCardNo, String approveUser,
+            String approveNote);
 }

@@ -242,10 +242,16 @@ public class ModelController extends BaseController {
 
     @RequestMapping(value = "/order/sure", method = RequestMethod.POST)
     @ResponseBody
-    public Object surelOrder(@RequestParam("invoiceCode") String invoiceCode,
-            @RequestParam(value = "approveNote", required = true) String approveNote) {
-        return modelAO.sureOrder(invoiceCode,
-            this.getSessionUser().getUserName(), approveNote);
+    public Object surelOrder(@RequestParam("code") String code,
+            @RequestParam("amount") String amount,
+            @RequestParam("fromType") String fromType,
+            @RequestParam("fromCode") String fromCode,
+            @RequestParam("pdf") String pdf,
+            @RequestParam("toCardNo") String toCardNo,
+            // @RequestParam("approveUser") String approveUser,
+            @RequestParam("approveNote") String approveNote) {
+        return modelAO.sureOrder(code, amount, fromType, fromCode, pdf,
+            toCardNo, this.getSessionUser().getUserName(), approveNote);
     }
 
 }

@@ -7,13 +7,28 @@ package com.xnjr.app.product.req;
  */
 public class XN602029Req {
 
-    // 编号（必填）
+    // 编号(必填)
     private String code;
 
-    // 反馈人（必填）
+    // 金额(必填)
+    private String amount;
+
+    // 打款方式(必填)
+    private String fromType;
+
+    // 打款账号(必填)
+    private String fromCode;
+
+    // pdf(必填)
+    private String pdf;
+
+    // 受款账号(必填)
+    private String toCardNo;
+
+    // 审核人(必填)
     private String approveUser;
 
-    // 反馈备注（选填）
+    // 审核意见(必填)
     private String approveNote;
 
     public String getCode() {
@@ -22,6 +37,46 @@ public class XN602029Req {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getFromType() {
+        return fromType;
+    }
+
+    public void setFromType(String fromType) {
+        this.fromType = fromType;
+    }
+
+    public String getFromCode() {
+        return fromCode;
+    }
+
+    public void setFromCode(String fromCode) {
+        this.fromCode = fromCode;
+    }
+
+    public String getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(String pdf) {
+        this.pdf = pdf;
+    }
+
+    public String getToCardNo() {
+        return toCardNo;
+    }
+
+    public void setToCardNo(String toCardNo) {
+        this.toCardNo = toCardNo;
     }
 
     public String getApproveUser() {

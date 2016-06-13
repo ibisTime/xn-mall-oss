@@ -313,17 +313,17 @@ public class AccountController extends BaseController {
             status);
     }
 
-    @RequestMapping(value = "/payaccount", method = RequestMethod.POST)
-    @ResponseBody
-    public Object payaccount(@RequestParam("code") String code,
-            @RequestParam("amount") String amount,
-            @RequestParam("fromType") String fromType,
-            @RequestParam("fromCode") String fromCode,
-            @RequestParam("pdf") String pdf,
-            @RequestParam("toCardNo") String toCardNo,
-            @RequestParam("remark") String remark) {
-        return accountAO.payaccount(code, amount, fromType, fromCode, pdf,
-            toCardNo, remark);
-
-    }
+    // @RequestMapping(value = "/payaccount", method = RequestMethod.POST)
+    // @ResponseBody
+    // public Object payaccount(@RequestParam("code") String code,
+    // @RequestParam("amount") String amount,
+    // @RequestParam("fromType") String fromType,
+    // @RequestParam("fromCode") String fromCode,
+    // @RequestParam("pdf") String pdf,
+    // @RequestParam("toCardNo") String toCardNo,
+    // @RequestParam("remark") String remark) {
+    // return accountAO.payaccount(code, amount, fromType, fromCode, pdf,
+    // toCardNo, remark);
+    //
+    // }
 }
