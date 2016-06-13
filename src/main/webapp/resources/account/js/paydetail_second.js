@@ -116,12 +116,11 @@ $(function() {
 			$("#code").html(res.data.code);
 			$("#applyDatetime").html(dateFormatter(res.data.applyDatetime));
 			$("#applyNote").html(res.data.applyNote);
-			$("#applyUser").html(res.data.applyUser);
 			$("#approveDatetime").html(res.data.approveDatetime);
-			$("#approveUser").html(res.data.approveUser);
+			$("#loginName").html(res.data.loginName);
 			$("#status").html(Dict.getName('order_status',res.data.status));
-			$("#totalAmount").html(res.data.totalAmount);
-			$("#payAmount").html(res.data.payAmount);
+			$("#totalAmount").html(moneyFormat(res.data.totalAmount,2));
+			$("#payAmount").html(moneyFormat(res.data.payAmount,2));
 			$("#tableList").bootstrapTable("load", res.data.invoiceModelList);
 		}else{
 			alert(res.msg);
