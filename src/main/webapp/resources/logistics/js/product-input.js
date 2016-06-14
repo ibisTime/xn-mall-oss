@@ -86,7 +86,7 @@ $(function() {
 	 	                return $(input).val();
 	 	            },
 	 	            setValue: function (input, value) {
-	 	                return $(input).val(value);
+	 	            	return $(input).attr('value', value);
 	 	            }
 	 	        },
 	 	       'costpricebox' : {
@@ -95,7 +95,7 @@ $(function() {
 	 	                return $(input).val();
 	 	            },
 	 	            setValue: function (input, value) {
-	 	                return $(input).val(value);
+	 	            	return $(input).attr('value', value);
 	 	            }
 	 	        },
 	 	       'linshou' : {
@@ -104,7 +104,7 @@ $(function() {
 	 	                return $(input).val();
 	 	            },
 	 	            setValue: function (input, value) {
-	 	                return $(input).val(value);
+	 	            	return $(input).attr('value', value);
 	 	            }
 	 	        },
 	 	       'textair' : {
@@ -113,7 +113,7 @@ $(function() {
 	 	                return $(input).val();
 	 	            },
 	 	            setValue: function (input, value) {
-	 	                return $(input).val(value);
+	 	            	return $(input).attr('value', value);
 	 	            }
 	 	        },
 	 	        'checkbox' : {

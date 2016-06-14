@@ -129,7 +129,7 @@ function initSpecsTable(){
  	                return $(input).val();
  	            },
  	            setValue: function (input, value) {
- 	                return $(input).val(value);
+ 	                return $(input).attr('value', value);
  	            }
  	        },
  	       'canshuming' : {
@@ -138,11 +138,11 @@ function initSpecsTable(){
 	                return $(input).val();
 	            },
 	            setValue: function (input, value) {
-	                return $(input).val(value);
+	            	return $(input).attr('value', value);
 	            }
 	        },
     	},
-	    row_template: ['text', 'text'],
+	    row_template: ['canshuzhi', 'canshuming'],
 	    headerCols: ['参数名','参数值'],
 	    first_row: false,
 	    data: [
