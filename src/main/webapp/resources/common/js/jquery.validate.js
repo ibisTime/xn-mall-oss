@@ -482,6 +482,10 @@ $.extend($.validator, {
 				if ( !this.name && validator.settings.debug && window.console ) {
 					console.error( "%o has no name assigned", this);
 				}
+				
+				if ($(this).attr('maxLength') || $(this).attr('required')) {
+					return true;
+				}
 
 				// select only the first element for each name, and only those with rules specified
 				if ( this.name in rulesCache || !validator.objectLength($(this).rules()) ) {

@@ -4,13 +4,13 @@ table.inputtable a.icon-button.addcol,table.inputtable a.icon-button.addrow{back
 table.inputtable a.icon-button.delcol,table.inputtable a.icon-button.delrow{background-color:#db4a39}
 table.inputtable a.icon-button.disabled{background-color:#eee}
 table.inputtable td:last-child,table.inputtable th:last-child{background-color:#f8f8f8;width:54px;border:none}
-table.inputtable td,table.inputtable th{border:1px solid #eee;text-align:center;height:40px;vertical-align:middle;font-size:14px}
+table.inputtable td,table.inputtable th{border:1px solid #eee;text-align:center;height:40px;vertical-align:middle;font-size:14px;white-space: nowrap;}
 table.inputtable th{background-color:#f1f1f1;border-top:none;border-bottom:2px solid #ddd;border-color:#ddd}
 table.inputtable td input[type=text]{border:0;width:90%;height:100%;text-align:center;padding:0 5%}
 table.inputtable tr td input:focus{background-color:#fafafa}
 table.inputtable.wh tbody tr:nth-child(1),table.inputtable.wh tbody tr:nth-child(1) input{background-color:#fdfdfd;font-weight:800}
 table.inputtable th:first-child,table.inputtable td:first-child{border-left:none}
-table.inputtable tr:last-child td{border-bottom:none}
+table.inputtable tr:last-child td{border-bottom:none;white-space: nowrap;}
 @media only screen and max-width 480px {
 table.inputtable td,table.inputtable th{min-width:40px;height:80px}
 table.inputtable a.icon-button{width:40px;height:40px;font-size:18px;min-width:40px;line-height:40px;margin:3px 0}

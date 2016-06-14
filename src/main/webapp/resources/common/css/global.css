@@ -37,7 +37,7 @@ input.error{border-color: red; background: none;margin: 0; width: 345px;border:1
 .btn{width:95px;height:35px; background-color: #2598d0; border-radius: 4px; font-size:14px; color:#fff; cursor:pointer; margin-right: 8px;}
 input[type="radio"].error{width: auto;}
 input[type="checkbox"].error{width: auto;}
-span.error{background: none;margin: 0; width: auto; display: inline-block; color: red; font-size: 13px; margin-left: 8px}
+span.error{background: none;margin: 0; width: auto; display: inline-block; color: red; font-size: 13px; margin-left: 8px;position: relative;}
 select.error{background: none;margin: 0; width: auto;}
 select{ border-top:solid 1px #a7b5bc; border-left:solid 1px #a7b5bc; height: auto; border-right:solid 1px #ced9df; border-bottom:solid 1px #ced9df; }
 textarea.error{background: none;margin: 0; width: 504px;}
