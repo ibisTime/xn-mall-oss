@@ -55,7 +55,7 @@ $(function() {
 			valign : 'middle',
 			checkbox : true
 		},{
-			field : 'toCode',
+			field : 'code',
 			title : '申请编号',
 			align : 'left',
 			valign : 'middle',

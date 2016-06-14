@@ -16,7 +16,7 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/account/check.htm";
+		location.href = $("#basePath").val()+"/account/tiao_zhang.htm";
 	});
 	
 	//入参合法性校验
@@ -44,15 +44,8 @@ function doGetDetailBack(res){
 			$("#code").html(result.code);
 			$("#accountNumber").html(result.accountNumber);
 			$("#status").html(Dict.getName('rb_order_status',result.status));
-			$("#bizType").html(Dict.getName('biz_type',result.direction));
-			$("#refNo").html(result.refNo);
-			$("#transAmount").html(moneyFormat(result.transAmount,2));
-			
-			$("#preAmount").html(moneyFormat(result.preAmount,2));
-			$("#postAmount").html(moneyFormat(result.postAmount,2));
-			$("#createDatetime").html(dateFormat(result.createDatetime));
-			$("#workDate").html(result.workDate);
-			$("#remark").val(result.remark);
+			$("#direction").html(Dict.getName('account_direction',result.direction));
+			$("#amount").html(moneyFormat(result.amount, 2));
 		}else{
 			alert("根据订单编号获取详情为空");
 		}
@@ -66,7 +59,7 @@ function doApprove(approveResult){
 	if(!$("#jsForm").valid()){
 		return false;
 	}
-	var data = {"ajNo":$("#ajNo").html(),"amount":amount,"remark":$("#remark").val()};
+	var data = {"code":$("#code").html(),"approveResult":approveResult,"approveNote":$("#remark").val()};
 	var url = $("#basePath").val()+"/account/checkApprove";
 	doPostAjax(url, data, doSuccessBack);
 }
