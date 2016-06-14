@@ -7,7 +7,7 @@ $(function() {
 //	initData();
 	
 	$("#accountNumberSearch").val(getQueryString("accountNumber"));
-	$('#bizTypeSearch').renderDropdown(Dict.getName('sys_biz_type'));
+	$('#bizTypeSearch').renderDropdown(Dict.getName('biz_type'));
 	// 资金明细查询
 	queryJourTableData();
 	
@@ -18,7 +18,7 @@ $(function() {
 				return;
 			}
 		}
-		$('#jourTableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/sys/page"});
+		$('#jourTableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/jourPage"});
 	});
 });
 
@@ -27,7 +27,7 @@ function queryJourTableData(){
 	// 绑定列表
 	$('#jourTableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/account/sys/page",
+		url : $("#basePath").val()+"/account/jourPage",
 		
 		striped : true,
 		clickToSelect : true,
@@ -38,6 +38,7 @@ function queryJourTableData(){
 				bizType : $("#bizTypeSearch").val(),
 				dateStart : $("#dateStartSearch").val(),
 				dateEnd : $("#dateEndSearch").val(),
+				accountNumber: $("#accountNumberSearch").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
@@ -67,7 +68,7 @@ function queryJourTableData(){
 			align : 'middle',
 			valign : 'middle',
 			sortable : false,
-			formatter:Dict.getNameForList('sys_biz_type'),
+			formatter:Dict.getNameForList('biz_type'),
 		},{
 			field : 'refNo',
 			title : '相关单号',

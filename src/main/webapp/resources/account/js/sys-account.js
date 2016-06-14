@@ -8,8 +8,10 @@ $(function() {
 	initData();
 	
 	//页面赋值
-	var url = $("#basePath").val()+"/account/sys/list";
-	doGetAjax(url, null, doGetDetailBack);
+	var url = $("#basePath").val()+"/account/datailsystemaccount";
+	doGetAjax(url, {
+		accountNumber: 'SYS_ACCOUNT'
+	}, doGetDetailBack);
 });
 
 function initData(){
@@ -33,7 +35,7 @@ function doGetDetailBack(res){
 		if(res.data != null){
 			var result = res.data;
 			$("#status").html(Dict.getName('account_status',result.status));
-			$("#currency").html(Dict.getName('currency',result.currency));
+			$("#currency").html(result.currency);
 			$("#amount").html(moneyFormat(result.amount,2));
 			$("#frozenAmount").html(moneyFormat(result.frozenAmount,2));
 		}else{
