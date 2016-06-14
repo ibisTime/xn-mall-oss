@@ -129,7 +129,7 @@ function initSpecsTable(){
  	                return $(input).val();
  	            },
  	            setValue: function (input, value) {
- 	                return $(input).val(value);
+ 	                return $(input).attr('value', value);
  	            }
  	        },
  	       'canshuming' : {
@@ -138,7 +138,7 @@ function initSpecsTable(){
 	                return $(input).val();
 	            },
 	            setValue: function (input, value) {
-	                return $(input).val(value);
+	            	return $(input).attr('value', value);
 	            }
 	        },
     	},
