@@ -107,8 +107,9 @@ function moneyFormat(money,format){
 	return money;
 }
 
-function moneyParse(money) {
-	return (money * 1000).toFixed(0);
+function moneyParse(money, rate) {
+	rate = rate || 1000;
+	return ((+('' + money).replace(/,/g, '')) * rate).toFixed(0);
 }
 
 /**

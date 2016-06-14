@@ -65,7 +65,7 @@ $(function() {
 				required: "请输入真实姓名",
 				maxlength: jQuery.format("真实姓名不能大于{0}个字符")
 			},
-			userRefence: {
+			userReferee: {
 				maxlength: jQuery.format("推荐人不能大于{0}个字符")
 			},
 			remark: {

@@ -1,6 +1,5 @@
 package com.xnjr.app.account.req;
 
-
 /**
  * 线下充值
  * @author: wu 
@@ -20,6 +19,8 @@ public class XN802110Req {
 
     // 银行卡号
     private String fromCode;
+
+    private String pdf;
 
     public String getAccountNumber() {
         return accountNumber;
@@ -51,6 +52,14 @@ public class XN802110Req {
 
     public void setFromCode(String fromCode) {
         this.fromCode = fromCode;
+    }
+
+    public String getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(String pdf) {
+        this.pdf = pdf;
     }
 
 }

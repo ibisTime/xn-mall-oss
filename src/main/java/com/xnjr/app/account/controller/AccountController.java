@@ -90,9 +90,11 @@ public class AccountController extends BaseController {
     public Object recharge(
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
             @RequestParam(value = "amount", required = false) String amount,
+            @RequestParam("pdf") String pdf,
             @RequestParam(value = "fromType", required = false) String fromType,
             @RequestParam(value = "fromCode", required = false) String fromCode) {
-        return accountAO.recharge(accountNumber, amount, fromType, fromCode);
+        return accountAO.recharge(accountNumber, amount, pdf, fromType,
+            fromCode);
     }
 
     @RequestMapping(value = "/approveRecharge", method = RequestMethod.POST)
@@ -195,7 +197,7 @@ public class AccountController extends BaseController {
     @RequestMapping(value = "/redBlueOrderPage", method = RequestMethod.GET)
     @ResponseBody
     public Object queryRedBlueOrderPage(
-            @RequestParam(value = "toCode", required = false) String toCode,
+            @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "direction", required = false) String direction,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "applyUser", required = false) String applyUser,
@@ -205,7 +207,7 @@ public class AccountController extends BaseController {
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
-        return accountAO.queryRedBlueOrderPage(toCode, direction, status,
+        return accountAO.queryRedBlueOrderPage(code, direction, status,
             applyUser, approveUser, accountNumber, dateStart, dateEnd, start,
             limit);
     }
@@ -252,7 +254,7 @@ public class AccountController extends BaseController {
             approveResult, approveNote);
     }
 
-    @RequestMapping(value = "/addaccount", method = RequestMethod.POST)
+    @RequestMapping(value = "/account/add", method = RequestMethod.POST)
     @ResponseBody
     public Object addaccount(@RequestParam("companyCode") String companyCode,
             @RequestParam("subbranch") String subbranch,
@@ -264,7 +266,7 @@ public class AccountController extends BaseController {
             this.getSessionUser().getUserName(), remark);
     }
 
-    @RequestMapping(value = "/editaccount", method = RequestMethod.POST)
+    @RequestMapping(value = "/account/edit", method = RequestMethod.POST)
     @ResponseBody
     public Object editaccount(@RequestParam("code") String code,
             @RequestParam("companyCode") String companyCode,

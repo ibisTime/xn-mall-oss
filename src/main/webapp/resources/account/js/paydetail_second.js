@@ -1,6 +1,6 @@
 $(function() {
 	var invoiceCode = getQueryString("invoiceCode");
-	doGetAjaxIsAsync($("#basePath").val()+"/account/accountlist", {}, false, function(res) {
+	doGetAjaxIsAsync($("#basePath").val()+"/account/accountlist", {status:1}, false, function(res) {
 		var data = res.data || [], html = "<option value=''>请选择</option>";
 		for (var i = 0, len = data.length; i < len; i++) {
 			html += "<option value='"+data[i].companyCode+"'>"+data[i].subbranch+""+data[i].cardNo+"</option>";
@@ -44,6 +44,7 @@ $(function() {
 		
 		data['code'] = $("#code").html();
 		data['pdf'] = $("#url1").attr("href");
+		data['amount'] = moneyParse(data['amount'], 1);
 		var url = $("#basePath").val()+"/model/order/sure";
 		
 		doPostAjax(url, data, doSucBackSave);

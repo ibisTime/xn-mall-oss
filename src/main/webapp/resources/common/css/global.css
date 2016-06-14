@@ -76,7 +76,7 @@ textarea.error{background: none;margin: 0; width: 504px;}
 
 /*编辑表单*/
 .form-body{padding:10px 18px;}
-.form-body .bootstrap-table{margin-left: 100px;}
+.form-body .bootstrap-table{margin-left: 100px;margin-bottom:17px;}
 .form-title{border-bottom:solid 1px #d0dee5; line-height:35px; position:relative; height:35px; margin-bottom:28px;clear:both;}
 .form-title span{font-weight:bold;font-size:14px; border-bottom:solid 3px #66c9f3;float:left; position:absolute; z-index:100; bottom:-1px; padding:0 3px; height:30px; line-height:30px;}
 .form-info{padding-left:23px;}
@@ -87,7 +87,7 @@ textarea.error{background: none;margin: 0; width: 504px;}
 .form-info li cite{display:block; padding-top:10px;}
 .form-info li .control-def{width:345px; height:32px; line-height:32px; border-top:solid 1px #a7b5bc; border-left:solid 1px #a7b5bc; border-right:solid 1px #ced9df; border-bottom:solid 1px #ced9df; background:url(../images/inputbg.gif) repeat-x; text-indent:10px;}
 .form-info li .textinput{border-top:solid 1px #a7b5bc; border-left:solid 1px #a7b5bc; border-right:solid 1px #ced9df; border-bottom:solid 1px #ced9df; background:url(../images/inputbg.gif) repeat-x; padding:10px; width:504px; height:135px; line-height:20px; overflow:hidden;}
-.form-info .btn{width:95px;height:35px; background-color: #2598d0; border-radius: 4px; font-size:14px; color:#fff; cursor:pointer; margin-right: 8px;}
+.form-info .btn{width:95px;height:35px; background-color: #2598d0; border-radius: 4px; font-size:14px; color:#fff; cursor:pointer; margin-left: 8px;margin-top: 20px;}
 .form-info span{line-height:34px;display:table;}
 .form-info a{line-height:34px;display:table;}
 .form-info span.error{display:inline-block;}

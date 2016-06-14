@@ -49,7 +49,7 @@ function queryTableData(){
 		sortable : false
 	},{
 		field : 'totalAmount',
-		title : '订单总金额',
+		title : '总金额',
 		align : 'left',
 		valign : 'middle',
 		formatter:moneyFormatter,
@@ -82,7 +82,7 @@ function queryTableData(){
 		queryParams : function(params) {
 			return {
 				code : $("#code").val(),
-				applyUser : $("#applyUser").val(),
+				loginName : $("#loginName").val(),
 				status : 1,
 				start : params.offset / params.limit + 1,
 				limit : params.limit

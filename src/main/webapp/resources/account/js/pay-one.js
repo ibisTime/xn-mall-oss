@@ -49,7 +49,7 @@ function queryTableData(){
 		sortable : false
 	},{
 		field : 'totalAmount',
-		title : '订单总金额',
+		title : '总金额',
 		align : 'left',
 		valign : 'middle',
 		formatter:moneyFormatter,

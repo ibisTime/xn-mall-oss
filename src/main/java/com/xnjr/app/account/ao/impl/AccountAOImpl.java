@@ -117,11 +117,12 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object recharge(String accountNumber, String amount, String fromType,
-            String fromCode) {
+    public Object recharge(String accountNumber, String amount, String pdf,
+            String fromType, String fromCode) {
         XN802110Req req = new XN802110Req();
         req.setAccountNumber(accountNumber);
         req.setAmount(amount);
+        req.setPdf(UploadUtil.uploadPicture(pdf));
         req.setFromType(fromType);
         req.setFromCode(fromCode);
         return BizConnecter.getBizData("802110", JsonUtils.object2Json(req),

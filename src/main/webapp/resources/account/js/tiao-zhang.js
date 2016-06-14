@@ -23,10 +23,9 @@ $(function() {
 //		sortOrder : 'desc',
 		queryParams : function(params) {
 			return {
-				code : $("#hlNoSearch").val(),
+				code : $("#code").val(),
 				status : $("#statusSearch").val(),
 				direction : $("#directionSearch").val(),
-				type:1,
 				dateStart : $("#dateStartSearch").val(),
 				dateEnd : $("#dateEndSearch").val(),
 				accountNumber : $("#accountNumberSearch").val(),
@@ -56,7 +55,7 @@ $(function() {
 			valign : 'middle',
 			checkbox : true
 		},{
-			field : 'code',
+			field : 'toCode',
 			title : '申请编号',
 			align : 'left',
 			valign : 'middle',

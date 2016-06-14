@@ -4,7 +4,7 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
-		
+	$('#status').renderDropdown(Dict.getName('logistic_status'));		
 	//表格初始化
 	queryTableData();
 
@@ -89,6 +89,7 @@ function queryTableData(){
 				code : $("#code").val(),
 				invoiceCode : $("#invoiceCode").val(),
 				userId : $("#userId").val(),
+				status : $("#status").val(),
 				deliveryDatetimeStart : $("#deliveryDatetimeStart").val(),
 				deliveryDatetimeEnd : $("#deliveryDatetimeEnd").val(),
 				start : params.offset / params.limit + 1,

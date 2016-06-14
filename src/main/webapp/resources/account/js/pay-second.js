@@ -49,17 +49,26 @@ function queryTableData(){
 		sortable : false
 	},{
 		field : 'totalAmount',
-		title : '订单总金额',
+		title : '总金额',
 		align : 'left',
 		valign : 'middle',
 		formatter:moneyFormatter,
 		sortable : false
 	},{
+		field : 'payRate',
+		title : '已付比例',
+		align : 'left',
+		valign : 'middle',
+		sortable : false,
+		formatter: function(data, record, index) {
+			return (record.payAmount / record.totalAmount * 100).toFixed(2) + '%';
+		}
+	},{
 		field : 'applyDatetime',
 		title : '下单时间',
 		align : 'left',
 		valign : 'middle',
-		formatter:dateFormatter,
+		formatter: dateFormatter,
 		sortable : false
 	} ,{
 		field : 'status',

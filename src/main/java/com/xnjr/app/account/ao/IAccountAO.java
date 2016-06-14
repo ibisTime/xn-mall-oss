@@ -94,8 +94,8 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午4:42:34 wu
      * @history:
      */
-    public Object recharge(String accountNumber, String amount, String fromType,
-            String fromCode);
+    public Object recharge(String accountNumber, String amount, String pdf,
+            String fromType, String fromCode);
 
     /**
      * 审批充值订单

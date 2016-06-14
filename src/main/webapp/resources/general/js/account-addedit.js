@@ -19,7 +19,9 @@ $(function(){
 			return false;
 		}
 		var data = $('#jsForm').serializeObject();
-		var url = $("#basePath").val()+"/account/addaccount" ;
+		data['code']=$('#code').html();
+		var operator = $("#operate").val() != "edit"?"add":"edit";
+		var url = $("#basePath").val()+"/account/account/" + operator;
 		doPostAjax(url, data, doSuccessBack);
 	});
 	
@@ -72,6 +74,7 @@ $(function(){
 function doGetDetailBack(res){
 	if (res.success) {
 		result = res.data;
+		$("#code").html(result.code);
 		$("#companyCode").val(result.companyCode);
 		$("#subbranch").val(result.subbranch);
 		$("#cardNo").val(result.cardNo);

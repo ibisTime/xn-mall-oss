@@ -79,6 +79,20 @@ $(function() {
 		
 		doPostAjax(url, data, doSuccessBack);
 	});
+	$("#jsForm").validate({
+		rules: {
+			remark: {
+				required: true,
+				maxlength: 32
+			}
+		},
+		messages: {
+			remark: {
+				required: "请输入备注",
+				maxlength: jQuery.format("备注不能大于{0}个字符")
+			}
+		}
+	});
 	//返回
 	$('#backBtn').click(function() {
 		location.href = $("#basePath").val()+"/logistics/goods-sure.htm";

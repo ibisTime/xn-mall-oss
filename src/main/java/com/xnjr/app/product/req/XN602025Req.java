@@ -18,6 +18,8 @@ public class XN602025Req extends APageReq {
     // 用户编号（选填）
     private String applyUser;
 
+    private String loginName;
+
     private String code;
 
     // 状态（选填）
@@ -60,6 +62,14 @@ public class XN602025Req extends APageReq {
 
     public void setIsSecondPay(String isSecondPay) {
         this.isSecondPay = isSecondPay;
+    }
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 
 }

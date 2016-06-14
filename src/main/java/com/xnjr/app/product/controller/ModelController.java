@@ -187,6 +187,7 @@ public class ModelController extends BaseController {
     public Object queryOrderPage(
             @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "applyUser", required = false) String applyUser,
+            @RequestParam(value = "loginName", required = false) String loginName,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "isSecondPay", required = false) String isSecondPay,
             @RequestParam(value = "dateStart", required = false) String dateStart,
@@ -195,8 +196,9 @@ public class ModelController extends BaseController {
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return modelAO.queryOrderPage(code, applyUser, status, isSecondPay,
-            dateStart, dateEnd, start, limit, orderColumn, orderDir);
+        return modelAO.queryOrderPage(code, applyUser, loginName, status,
+            isSecondPay, dateStart, dateEnd, start, limit, orderColumn,
+            orderDir);
     }
 
     @RequestMapping(value = "/order/List", method = RequestMethod.GET)
@@ -223,7 +225,7 @@ public class ModelController extends BaseController {
         // 表格命名
         String sheetName = "sheet1";
         // 列名
-        String columnNames[] = { "订单编号", "下单用户", "订单总金额", "下单时间", "状态" };
+        String columnNames[] = { "订单编号", "下单用户", "总金额", "下单时间", "状态" };
 
         // 列表数据
         List<XN602026Res> list = modelAO.exportList(applyUser, status);
