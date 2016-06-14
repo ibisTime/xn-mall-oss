@@ -285,6 +285,13 @@ public class AccountController extends BaseController {
         return accountAO.detailaccount(code);
     }
 
+    @RequestMapping(value = "/datailsystemaccount", method = RequestMethod.GET)
+    @ResponseBody
+    public Object detailsystemaccount(
+            @RequestParam("accountNumber") String accountNumber) {
+        return accountAO.detailsystemaccount(accountNumber);
+    }
+
     @RequestMapping(value = "/dropaccount", method = RequestMethod.POST)
     @ResponseBody
     public Object dropaccount(@RequestParam("code") String code) {

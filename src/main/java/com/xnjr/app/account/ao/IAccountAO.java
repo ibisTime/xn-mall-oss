@@ -319,6 +319,16 @@ public interface IAccountAO {
     public Object dropaccount(String code);
 
     /**
+     * 系统账户详情
+     * @param accountNumber
+     * @return 
+     * @create: 2016年6月14日 下午6:40:56 XIANDONG
+     * @history:
+     */
+
+    public Object detailsystemaccount(String accountNumber);
+
+    /**
      * 分页查询账户
      * @param companyCode
      * @param subbranch

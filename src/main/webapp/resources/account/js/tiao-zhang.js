@@ -126,6 +126,6 @@ $(function() {
 			alert("该订单状态不是待审批状态");
 			return;
 		}
-		location.href = $("#basePath").val()+"/account/red_blue_approve.htm?code="+selRecords[0].code;
+		location.href = $("#basePath").val()+"/account/check_approve.htm?hlNo="+selRecords[0].hlNo;
 	});
 });

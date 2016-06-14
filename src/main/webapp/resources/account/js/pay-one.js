@@ -82,7 +82,7 @@ function queryTableData(){
 		queryParams : function(params) {
 			return {
 				code : $("#code").val(),
-				applyUser : $("#applyUser").val(),
+				loginName : $("#loginName").val(),
 				status : 1,
 				start : params.offset / params.limit + 1,
 				limit : params.limit

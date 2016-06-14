@@ -12,6 +12,7 @@ import com.xnjr.app.account.req.XN602403Req;
 import com.xnjr.app.account.req.XN602404Req;
 import com.xnjr.app.account.req.XN602405Req;
 import com.xnjr.app.account.req.XN802010Req;
+import com.xnjr.app.account.req.XN802011Req;
 import com.xnjr.app.account.req.XN802020Req;
 import com.xnjr.app.account.req.XN802030Req;
 import com.xnjr.app.account.req.XN802100Req;
@@ -381,6 +382,14 @@ public class AccountAOImpl implements IAccountAO {
         req.setToCardNo(toCardNo);
         req.setRemark(remark);
         return BizConnecter.getBizData("602030", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object detailsystemaccount(String accountNumber) {
+        XN802011Req req = new XN802011Req();
+        req.setAccountNumber(accountNumber);
+        return BizConnecter.getBizData("802011", JsonUtils.object2Json(req),
             Object.class);
     }
 

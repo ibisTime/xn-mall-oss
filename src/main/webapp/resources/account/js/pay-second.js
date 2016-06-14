@@ -11,7 +11,7 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/repair/queryPage"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/order/Page"});
 	});
 	
 	//详情
@@ -91,7 +91,7 @@ function queryTableData(){
 		queryParams : function(params) {
 			return {
 				code : $("#code").val(),
-				applyUser : $("#applyUser").val(),
+				loginName : $("#loginNameloginName").val(),
 				isSecondPay:1,
 				start : params.offset / params.limit + 1,
 				limit : params.limit

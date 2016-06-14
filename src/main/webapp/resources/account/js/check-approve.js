@@ -1,7 +1,7 @@
 $(function() {
 	var ajNo = getQueryString("ajNo");
 	var data = {"ajNo":ajNo,"start":"1","limit":"10"};
-	var url = $("#basePath").val()+"/account/queryAJourPage";
+	var url = $("#basePath").val()+"/account/redBlueOrderPage";
 	doGetAjax(url, data, doGetDetailBack);
 	
 	//提交
