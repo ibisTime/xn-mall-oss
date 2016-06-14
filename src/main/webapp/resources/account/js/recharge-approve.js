@@ -53,8 +53,8 @@ function doGetDetailBack(res){
 			var result = res.data.list[0];
 			$("#chargeNo").html(result.code);
 			$("#accountNumber").html(result.accountNumber);
-			$("#status").html(result.status);
-			$("#channel").html(result.channel);
+//			$("#status").html(Dict.getName('withdraw_status',result.status));
+//			$("#channel").html(result.channel);
 			$("#amount").html(moneyFormat(result.amount,2));
 			$("#bankCode").html(result.fromType);
 			$("#bankcardNo").html(result.fromCode);

@@ -17,8 +17,8 @@ public interface IAccountAO {
      * @history:
      */
     public Object queryAccountPage(String accountNumber, String status,
-            String userId, String realName, String dateStart, String dateEnd,
-            String start, String limit);
+            String type, String userId, String realName, String dateStart,
+            String dateEnd, String start, String limit);
 
     /**
      * 分页查询资金明细

@@ -104,19 +104,12 @@ function queryTableData(){
 		align : 'left',
 		valign : 'middle',
 		sortable : false
-	}, {
-		field : 'status',
-		title : '状态',
+	},{
+		field : 'realName',
+		title : '真实姓名',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
-		formatter : Dict.getUserStatusName
-	}, {
-		field : 'userReferee',
-		title : '推荐人',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
 	}, {
 		field : 'idKind',
 		title : '证件类型',
@@ -131,17 +124,17 @@ function queryTableData(){
 		valign : 'middle',
 		sortable : false
 	},{
-		field : 'realName',
-		title : '真实姓名',
-		align : 'left',
-		valign : 'middle',
-		sortable : false,
-	},{
 		field : 'mobile',
 		title : '手机号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
+	}, {
+		field : 'userReferee',
+		title : '推荐人',
+		align : 'left',
+		valign : 'middle',
+		sortable : false
 	},{
 		field : 'updater',
 		title : '更新人',
@@ -155,6 +148,13 @@ function queryTableData(){
 		valign : 'middle',
 		sortable : false,
 		formatter : dateTimeFormat
+	}, {
+		field : 'status',
+		title : '状态',
+		align : 'left',
+		valign : 'middle',
+		sortable : false,
+		formatter : Dict.getUserStatusName
 	}, {
 		field : 'remark',
 		title : '备注',

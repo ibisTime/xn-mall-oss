@@ -77,6 +77,10 @@ $(function() {
 			highlightText: {
 				required: true,
 				maxlength: 1024
+			},
+			remark: {
+				required: false,
+				maxlength: 255
 			}
 		},
 		messages: {
@@ -100,6 +104,9 @@ $(function() {
 			highlightText: {
 				required: "请输入亮点文本",
 				maxlength: jQuery.format("亮点文本不能大于{0}个字符")
+			},
+			remark: {
+				maxlength: jQuery.format("备注不能大于{0}个字符")
 			}
 		}
 	});

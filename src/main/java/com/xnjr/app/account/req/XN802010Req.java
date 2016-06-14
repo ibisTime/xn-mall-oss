@@ -17,6 +17,8 @@ public class XN802010Req {
     // 用户(选填）
     private String userId;
 
+    private String type;
+
     // 真实姓名(选填）
     private String realName;
 
@@ -94,6 +96,14 @@ public class XN802010Req {
 
     public void setLimit(String limit) {
         this.limit = limit;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
 }
