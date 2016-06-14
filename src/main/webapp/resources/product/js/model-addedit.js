@@ -60,6 +60,7 @@ $(function() {
 		data["pic1"]=$('#pic1').next().attr("src");
 		data["pic2"]=$('#pic2').next().attr("src");
 		data["pic3"]=$('#pic3').next().attr("src");
+		data['code']= $('#code').html();
 		var url = $("#basePath").val()+"/model/" + operator;
 		
 		doPostAjax(url, data, doSucBackSave);
@@ -154,7 +155,7 @@ function initSpecsTable(){
 //获取详情回调方法
 function doSucBackGetDetail(res){
 	if (res.success) {
-		$("#code").val(res.data.code);
+		$("#code").html(res.data.code);
 		$("#productCode").val(res.data.productCode);
 		$("#name").val(res.data.name);
 		$("#majorText").val(res.data.advTitle);

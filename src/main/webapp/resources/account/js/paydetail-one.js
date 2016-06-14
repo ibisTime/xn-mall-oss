@@ -78,6 +78,7 @@ $(function() {
 			},
 			fromCode: {
 				required: true,
+				number:true,
 				maxlength: 32
 			},
 			toCardNo: {

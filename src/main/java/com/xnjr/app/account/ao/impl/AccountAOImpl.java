@@ -41,11 +41,12 @@ public class AccountAOImpl implements IAccountAO {
 
     @Override
     public Object queryAccountPage(String accountNumber, String status,
-            String userId, String realName, String dateStart, String dateEnd,
-            String start, String limit) {
+            String type, String userId, String realName, String dateStart,
+            String dateEnd, String start, String limit) {
         XN802010Req req = new XN802010Req();
         req.setAccountNumber(accountNumber);
         req.setStatus(status);
+        req.setType(type);
         req.setUserId(userId);
         req.setRealName(realName);
         req.setDateStart(dateStart);

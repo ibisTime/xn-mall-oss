@@ -21,13 +21,14 @@ public class AccountController extends BaseController {
     public Object queryAccountPage(
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
             @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "userId", required = false) String userId,
             @RequestParam(value = "realName", required = false) String realName,
             @RequestParam(value = "dateStart", required = false) String dateStart,
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
-        return accountAO.queryAccountPage(accountNumber, status, userId,
+        return accountAO.queryAccountPage(accountNumber, status, type, userId,
             realName, dateStart, dateEnd, start, limit);
     }
 

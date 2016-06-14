@@ -29,7 +29,7 @@ $(function() {
 	});
 	
 	$('#exportBtn').click(function() {
-		var url=$("#basePath").val()+"/account/check/list/export?ajNo="+$("#ajNoSearch").val()+"&accountNumber="+$("#accountNumberSearch").val()+"&status="+$("#statusSearch").val()+"&bizType="+$("#bizTypeSearch").val()+"&refNo="+$("#refNoSearch").val()+"&workDate="+$("#workDateSearch").val();
+		var url=$("#basePath").val()+"/account/check/list/export?code="+$("#ajNoSearch").val()+"&accountNumber="+$("#accountNumberSearch").val()+"&status="+$("#statusSearch").val()+"&bizType="+$("#bizTypeSearch").val()+"&refNo="+$("#refNoSearch").val()+"&workDate="+$("#workDateSearch").val();
 		window.open(url);
 	});
 });

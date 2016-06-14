@@ -71,7 +71,7 @@ public class ModelAOImpl implements IModelAO {
             String pic1, String pic2, String pic3, String description,
             List<ModelSpecs> modelSpecsList, String updater) {
         XN601021Req req = new XN601021Req();
-        req.setCode(productCode);
+        req.setCode(code);
         req.setProductCode(productCode);
         req.setName(name);
         req.setPic1(UploadUtil.editUploadPicture(pic1));

@@ -69,6 +69,7 @@ function doApprove(approveResult){
 		return false;
 	}
 	var data = {"ajNo":$("#ajNo").html(),"type":"fd","amount":$("#amount").val(),"remark":$("#remark").val()};
+	data['amount'] = moneyParse(data['amount']);
 	var url = $("#basePath").val()+"/account/checkInput";
 	doPostAjax(url, data, doSuccessBack);
 }

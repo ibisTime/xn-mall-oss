@@ -39,6 +39,7 @@ function queryTableData(){
 			    accountNumber:$("#accountNumber").val(),
 			    realName:$("#realName").val(),
 			    status:$("#status").val(),
+			    type:user,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
