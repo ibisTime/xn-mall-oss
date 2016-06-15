@@ -58,6 +58,8 @@ function doGetDetailBack(res){
 			$("#amount").html(moneyFormat(result.amount,2));
 			$("#bankCode").html(result.fromType);
 			$("#bankcardNo").html(result.fromCode);
+			$('#pdf').html(result.pdf.substring(result.pdf.lastIndexOf('/')+1));
+			$('#pdf')[0].href = result.pdf;
 			$("#createDatetime").html(dateFormat(result.createDatetime,'yyyy-MM-dd HH:mm:ss'));
 		}else{
 			alert("根据订单编号获取详情为空");
