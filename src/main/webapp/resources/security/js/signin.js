@@ -30,6 +30,7 @@ $(function(){
         pagination: '.tabs',
         paginationClickable: true,
         bulletClass: 'tab',
+        onlyExternal : true,
         bulletActiveClass: 'active',
 //        //loop: true,
         paginationBulletRender: function (index, className) {
