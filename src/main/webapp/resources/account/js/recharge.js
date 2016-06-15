@@ -31,7 +31,7 @@ $(function() {
 			alert("该订单状态不是待审批状态");
 			return;
 		}
-		location.href = $("#basePath").val()+"/account/recharge_approve.htm?cqNo="+selRecords[0].cqNo+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01";
+		location.href = $("#basePath").val()+"/account/recharge_approve.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01";
 	});
 	
 	// 查看详情
@@ -41,7 +41,7 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		location.href = $("#basePath").val()+"/account/recharge_detail.htm?cqNo="+selRecords[0].cqNo+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01&rechargeStatus=normal";
+		location.href = $("#basePath").val()+"/account/recharge_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01&rechargeStatus=normal";
 	});
 	
 	//导出
