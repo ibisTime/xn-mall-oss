@@ -65,11 +65,11 @@ function queryTableData(){
 		sortOrder : 'desc',
 		queryParams : function(params) {
 			return {
-				cqNo : $("#cqNoSearch").val(),
+				code : $("#code").val(),
 				//mobile : $("#mobileSearch").val(),
 				//realName : $("#realNameSearch").val(),
 				accountNumber : $("#accountNumberSearch").val(),
-				status : "1",
+				status : 1,
 				channel : "01",//线下
 				dateStart : $("#dateStartSearch").val(),
 				dateEnd : $("#dateEndSearch").val(),

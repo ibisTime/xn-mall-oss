@@ -134,12 +134,13 @@ public class AccountController extends BaseController {
     @RequestMapping(value = "/agentWithdraw", method = RequestMethod.POST)
     @ResponseBody
     public Object queryAgentWithdrawPage(
+            @RequestParam(value = "toBelong", required = false) String toBelong,
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
             @RequestParam(value = "amount", required = false) String amount,
             @RequestParam(value = "toType", required = false) String toType,
             @RequestParam(value = "toCode", required = false) String toCode) {
-        return accountAO.agentWithdrawCash(accountNumber, amount, toType,
-            toCode);
+        return accountAO.agentWithdrawCash(toBelong, accountNumber, amount,
+            toType, toCode);
     }
 
     @RequestMapping(value = "/approveWithdrawOrder", method = RequestMethod.POST)

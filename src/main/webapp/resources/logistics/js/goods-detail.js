@@ -20,7 +20,7 @@ $(function() {
 			singleSelect : true,
 			clickToSelect : true,
 			columns : [{
-						field : 'modelCode',
+						field : 'modelName',
 						title : '所属型号',
 						align : 'left',
 						valign : 'middle',

@@ -103,7 +103,7 @@ public class AccountAOImpl implements IAccountAO {
             String start, String limit) {
         XN802100Req req = new XN802100Req();
         req.setAccountNumber(accountNumber);
-        req.setCode(fromCode);
+        req.setCode(code);
         req.setFromType(fromType);
         req.setFromCode(fromCode);
         req.setChannel(channel);
@@ -167,9 +167,10 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object agentWithdrawCash(String accountNumber, String amount,
-            String toType, String toCode) {
+    public Object agentWithdrawCash(String toBelong, String accountNumber,
+            String amount, String toType, String toCode) {
         XN802210Req req = new XN802210Req();
+        req.setToBelong(toBelong);
         req.setAccountNumber(accountNumber);
         req.setAmount(amount);
         req.setToType(toType);

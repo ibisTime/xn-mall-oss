@@ -129,12 +129,6 @@ function queryTableData(){
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
-	}, {
-		field : 'userReferee',
-		title : '推荐人',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
 	},{
 		field : 'updater',
 		title : '更新人',
