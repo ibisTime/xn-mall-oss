@@ -36,19 +36,19 @@ $(function (){
 				required: true,
 				maxlength: 32
 			},
-//			fromType:{
-//				required: true,
-//				maxlength: 20
-//			},
+			fromType:{
+				required: true,
+				maxlength: 32
+			},
 			fromCode:{
 				required: true,
-				maxlength: 255
+				maxlength: 32
 			},
 			amount:{
 				required: true,
 				number:true,
 				isPositive: true,
-				maxlength: 20
+				maxlength: 13
 			}
 		},
 		messages:{
@@ -56,10 +56,10 @@ $(function (){
 				required: "请输入账户编号",
 				maxlength: jQuery.format("账户编号不能大于{0}个字符")
 			},
-//			fromType:{
-//				required: "请输入充值账号类型",
-//				maxlength: jQuery.format("支付类型不能大于{0}个字符")
-//			},
+			fromType:{
+				required: "请输入充值账号",
+				maxlength: jQuery.format("支付账号不能大于{0}个字符")
+			},
 			fromCode:{
 				required: "请输入充值账号",
 				maxlength: jQuery.format("支付账号不能大于{0}个字符")

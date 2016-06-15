@@ -17,6 +17,9 @@ public class XN802210Req {
     // 去方类型
     private String toType;
 
+    // 归属
+    private String toBelong;
+
     // 去方编号
     private String toCode;
 
@@ -50,6 +53,14 @@ public class XN802210Req {
 
     public void setToCode(String toCode) {
         this.toCode = toCode;
+    }
+
+    public String getToBelong() {
+        return toBelong;
+    }
+
+    public void setToBelong(String toBelong) {
+        this.toBelong = toBelong;
     }
 
 }

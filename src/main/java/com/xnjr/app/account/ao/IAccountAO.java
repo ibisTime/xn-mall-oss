@@ -144,8 +144,8 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午4:55:02 wu
      * @history:
      */
-    public Object agentWithdrawCash(String accountNumber, String amount,
-            String toType, String toCode);
+    public Object agentWithdrawCash(String toBelong, String accountNumber,
+            String amount, String toType, String toCode);
 
     /**
      * 审批取现订单

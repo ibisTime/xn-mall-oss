@@ -47,12 +47,6 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 		    },{
-				field : 'loginName',
-				title : '更新人',
-				align : 'left',
-				valign : 'middle',
-				sortable : false
-			},{
 				field : 'updateDatetime',
 				title : '更新时间',
 				align : 'left',

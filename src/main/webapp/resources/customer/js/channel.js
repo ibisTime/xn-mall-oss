@@ -47,12 +47,6 @@ $(function(){
 				valign : 'middle',
 				checkbox : true
 			},{
-				field : 'userId',
-				title : '用户编号',
-				align : 'left',
-				valign : 'middle',
-				sortable : false
-			},{
 				field : 'loginName',
 				title : '登录名',
 				align : 'left',
@@ -69,6 +63,13 @@ $(function(){
 				title : '绑定手机号',
 				align : 'left',
 				valign : 'middle',
+				sortable : false
+			},{
+				field : 'updateDatetime',
+				title : '更新时间',
+				align : 'left',
+				valign : 'middle',
+				formatter:dateFormatter,
 				sortable : false
 			}];
 		
