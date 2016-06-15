@@ -70,7 +70,7 @@ $(function() {
 				align : 'left',
 				valign : 'middle',
 				formatter:function(value){
-					if(!value=='无'){
+					if(value!='无'){
 						return '<a target="_blank" href="'+value+'">'+value+'</a>';
 					} else {
 						return '无';
