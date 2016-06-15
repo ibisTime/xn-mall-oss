@@ -5,16 +5,16 @@ $(function() {
 	showPermissionControl();
 	
 	//页面数据字典初始化
-//	$("#status").renderDropdown(Dict.getName('withdraw_status'));
-	doGetAjaxIsAsync($("#dictUrl").val(), {"parentKey": 'withdraw_status'}, false, function(res) {
-		var data = res.data || [], filterData = [];
-		for (var i = 0, len = data.length; i < len; i++) {
-			if(data[i].dkey == 1 || data[i].dkey == 2||data[i].dkey == 3 || data[i].dkey == 4) {
-				filterData.push(data[i]);
-			}
-		}
-		$('#status').renderDropdown(filterData);
-	});
+	$("#status").renderDropdown(Dict.getName('recharge_status'));
+//	doGetAjaxIsAsync($("#dictUrl").val(), {"parentKey": 'withdraw_status'}, false, function(res) {
+//		var data = res.data || [], filterData = [];
+//		for (var i = 0, len = data.length; i < len; i++) {
+//			if(data[i].dkey == 1 || data[i].dkey == 2||data[i].dkey == 3 || data[i].dkey == 4) {
+//				filterData.push(data[i]);
+//			}
+//		}
+//		$('#status').renderDropdown(filterData);
+//	});
 	
 	// 表格初始化
 	queryTableData();
@@ -142,7 +142,7 @@ function queryTableData(){
 			align : 'left',
 			valign : 'middle',
 			sortable : false,
-			formatter : Dict.getNameForList('withdraw_status')
+			formatter : Dict.getNameForList('recharge_status')
 		},{
 			field : 'createDatetime',
 			title : '申请时间',
