@@ -5,7 +5,16 @@ $(function() {
 	showPermissionControl();
 	
 	//页面数据字典初始化
-	$("#status").renderDropdown(Dict.getName('withdraw_status'));
+//	$("#status").renderDropdown(Dict.getName('withdraw_status'));
+	doGetAjaxIsAsync($("#dictUrl").val(), {"parentKey": 'withdraw_status'}, false, function(res) {
+		var data = res.data || [], filterData = [];
+		for (var i = 0, len = data.length; i < len; i++) {
+			if(data[i].dkey == 1 || data[i].dkey == 2||data[i].dkey == 3 || data[i].dkey == 4) {
+				filterData.push(data[i]);
+			}
+		}
+		$('#status').renderDropdown(filterData);
+	});
 	
 	// 表格初始化
 	queryTableData();
@@ -32,6 +41,16 @@ $(function() {
 			return;
 		}
 		location.href = $("#basePath").val()+"/account/recharge_approve.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01";
+	});
+	
+	// 详情事件绑定
+	$('#detailBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections');
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		location.href = $("#basePath").val()+"/account/recharge_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01";
 	});
 	
 	// 查看详情
@@ -69,7 +88,7 @@ function queryTableData(){
 				//mobile : $("#mobileSearch").val(),
 				//realName : $("#realNameSearch").val(),
 				accountNumber : $("#accountNumberSearch").val(),
-				status : 1,
+				status : $("#status").val(),
 				channel : "01",//线下
 				dateStart : $("#dateStartSearch").val(),
 				dateEnd : $("#dateEndSearch").val(),

@@ -11,6 +11,69 @@ $(function() {
 		var data = {"invoiceCode":invoiceCode};
 		var url = $("#basePath").val()+"/model/order/detail";
 		doGetAjax(url, data, doSucBackGetDetail);
+		
+		
+		$('#pay-tableList').bootstrapTable({
+			striped : true,
+			singleSelect : true,
+			method : "get",
+			url : $("#basePath").val()+"/account/rechargeOrderPage",
+			clickToSelect : true,
+			queryParamsType : 'limit',
+			queryParams : function(params) {
+				return {
+//					realName : $("#realName").val(),
+					start : params.offset / params.limit + 1,
+					limit : params.limit
+				};
+			},
+			responseHandler : function(res) {
+				return {
+					rows : res.data.list,
+					total : res.data.totalCount
+				};
+			},
+			pagination : true,
+			sidePagination : 'server', // 服务端请求
+			totalRows : 0,
+			pageNumber : 1,
+			pageSize : 10,
+			pageList : [ 10, 20, 30, 40, 50 ],
+			columns : [{
+				field : 'code',
+				title : '订单编号',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+			},{
+				field : 'accountNumber',
+				title : '账户编号',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+			},{
+				field : 'amount',
+				title : '金额',
+				align : 'left',
+				valign : 'middle',
+				sortable : true,
+				formatter : moneyFormatter
+			},{
+				field : 'status',
+				title : '状态',
+				align : 'left',
+				valign : 'middle',
+				sortable : false,
+				formatter : Dict.getNameForList('withdraw_status')
+			},{
+				field : 'createDatetime',
+				title : '申请时间',
+				align : 'left',
+				valign : 'middle',
+				sortable : true,
+				formatter : dateFormatter
+			}]
+		});
 	}
 	
 
@@ -29,6 +92,14 @@ $(function() {
 		}
 	}
 	
+	function doSucBackGetJour(res){
+		if (res.success) {
+			//...
+			
+		}else{
+			alert(res.msg);
+		}
+	}
 
 	//获取详情回调方法
 	function doSucBackGetDetail(res){

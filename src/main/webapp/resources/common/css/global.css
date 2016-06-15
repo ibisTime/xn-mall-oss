@@ -94,6 +94,15 @@ textarea.error{background: none;margin: 0; width: 504px;}
 .form-info span.error{display:inline-block;}
 .form-info a span{line-height:14px;display:inline-block;}
 .form-info .bootstrap-table {display:inline-block;}
+.form-info .bootstrap-table .btn {color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    margin: 0;
+    text-align: center;
+}
+
+.form-info .bootstrap-table .btn span {display: block;line-height: initial;}
+.form-info .bootstrap-table .btn span.caret {display: inline-block};
 
 /*Tab切换页*/
 .itab{height:36px; border-bottom:solid 1px #d0dee5; position:relative; border-left:solid 1px #d3dbde;}

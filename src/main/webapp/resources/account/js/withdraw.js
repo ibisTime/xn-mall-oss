@@ -16,7 +16,17 @@ $(function() {
 	$('#searchBtn').click(function() {
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/withdrawOrderPage"});
 	});
-	// 审核事件绑定
+	// 详情
+	$('#detailBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		location.href = $("#basePath").val()+"/account/withdraw_detail.htm?cqNo="+selRecords[0].cqNo+"&accountNumber="+selRecords[0].accountNumber;
+	});
+	
+	// 
 	$('#approveBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
