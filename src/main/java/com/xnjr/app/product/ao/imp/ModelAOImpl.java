@@ -270,9 +270,9 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public List<XN602026Res> exportList(String applyUser, String status) {
+    public List<XN602026Res> exportList(String loginName, String status) {
         XN602026Req req = new XN602026Req();
-        req.setApplyUser(applyUser);
+        req.setLoginName(loginName);
         req.setStatus(status);
         String jsonStr = BizConnecter.getBizData("602026",
             JsonUtils.object2Json(req));

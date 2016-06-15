@@ -219,7 +219,7 @@ public class ModelController extends BaseController {
     @RequestMapping(value = "/export", method = RequestMethod.GET)
     @ResponseBody
     public void exportRecWithList(
-            @RequestParam(value = "applyUser", required = false) String applyUser,
+            @RequestParam(value = "loginName", required = false) String loginName,
             @RequestParam(value = "status", required = false) String status,
             HttpServletResponse response) throws IOException {
         // 表格命名
@@ -228,7 +228,7 @@ public class ModelController extends BaseController {
         String columnNames[] = { "订单编号", "下单用户", "总金额", "下单时间", "状态" };
 
         // 列表数据
-        List<XN602026Res> list = modelAO.exportList(applyUser, status);
+        List<XN602026Res> list = modelAO.exportList(loginName, status);
         // 导出数据
         ExcelUtil<XN602026Res> excelUtil = new ExcelUtil<XN602026Res>();
         excelUtil.generateExcel("订单列表", sheetName, columnNames, list, response);

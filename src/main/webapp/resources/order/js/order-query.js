@@ -27,7 +27,7 @@ $(function() {
 	
 	//导出
 	$('#exportBtn').click(function() {
-		var url=$('#basePath').val()+'/model/export?applyUser=' + $('#loginName').val() + 
+		var url=$('#basePath').val()+'/model/export?loginName=' + $('#loginName').val() + 
 		'&status=' + $('#status').val();
 		window.open(url);
 	});

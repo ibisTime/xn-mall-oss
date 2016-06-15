@@ -246,13 +246,13 @@ public interface IModelAO {
 
     /**
      * 导出列表
-     * @param applyUser
+     * @param loginName
      * @param status
      * @return 
      * @create: 2016年5月26日 下午4:50:05 XIANDONG
      * @history:
      */
-    List<XN602026Res> exportList(String applyUser, String status);
+    List<XN602026Res> exportList(String loginName, String status);
 
     /**
      * 取消订单

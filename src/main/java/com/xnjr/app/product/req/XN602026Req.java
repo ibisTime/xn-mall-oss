@@ -9,17 +9,19 @@ package com.xnjr.app.product.req;
 public class XN602026Req {
 
     // 用户编号（选填）
-    private String applyUser;
+    private String loginName;
 
     // 状态（选填）
     private String status;
+    
+    private String applyUser;
 
-    public String getApplyUser() {
-        return applyUser;
+    public String getLoginName() {
+        return loginName;
     }
 
-    public void setApplyUser(String applyUser) {
-        this.applyUser = applyUser;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 
     public String getStatus() {
@@ -29,4 +31,12 @@ public class XN602026Req {
     public void setStatus(String status) {
         this.status = status;
     }
+
+	public String getApplyUser() {
+		return applyUser;
+	}
+
+	public void setApplyUser(String applyUser) {
+		this.applyUser = applyUser;
+	}
 }
