@@ -70,7 +70,12 @@ $(function() {
 				align : 'left',
 				valign : 'middle',
 				formatter:function(value){
-					return '<a target="_blank" href="'+value+'">'+value+'</a>';
+					if(!value=='无'){
+						return '<a target="_blank" href="'+value+'">'+value+'</a>';
+					} else {
+						return '无';
+					}
+					
 				},
 				sortable : true
 			}]
