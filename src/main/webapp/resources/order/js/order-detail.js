@@ -1,7 +1,7 @@
 $(function() {
 	
 	//获取菜单URL入参
-	var invoiceCode = getQueryString("invoiceCode");
+	invoiceCode = getQueryString("invoiceCode");
 	//新增修改判断
 	initBusinessTable();
 	if(isBlank(invoiceCode)){
@@ -12,7 +12,6 @@ $(function() {
 		var url = $("#basePath").val()+"/model/order/detail";
 		doGetAjax(url, data, doSucBackGetDetail);
 		
-		
 		$('#pay-tableList').bootstrapTable({
 			striped : true,
 			singleSelect : true,
@@ -22,7 +21,7 @@ $(function() {
 			queryParamsType : 'limit',
 			queryParams : function(params) {
 				return {
-//					realName : $("#realName").val(),
+					refNo : invoiceCode,
 					start : params.offset / params.limit + 1,
 					limit : params.limit
 				};
@@ -59,19 +58,18 @@ $(function() {
 				sortable : true,
 				formatter : moneyFormatter
 			},{
-				field : 'status',
-				title : '状态',
-				align : 'left',
-				valign : 'middle',
-				sortable : false,
-				formatter : Dict.getNameForList('withdraw_status')
-			},{
 				field : 'createDatetime',
-				title : '申请时间',
+				title : '付款时间',
 				align : 'left',
 				valign : 'middle',
 				sortable : true,
 				formatter : dateFormatter
+			},{
+				field : 'pdf',
+				title : '水单',
+				align : 'left',
+				valign : 'middle',
+				sortable : true
 			}]
 		});
 	}
