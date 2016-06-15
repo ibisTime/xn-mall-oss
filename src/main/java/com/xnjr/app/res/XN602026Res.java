@@ -6,7 +6,7 @@ public class XN602026Res {
 
     private String code;
 
-    private String applyUser;
+    private String loginName;
 
     private Long totalAmount;
 
@@ -20,14 +20,6 @@ public class XN602026Res {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getApplyUser() {
-        return applyUser;
-    }
-
-    public void setApplyUser(String applyUser) {
-        this.applyUser = applyUser;
     }
 
     public Long getTotalAmount() {
@@ -53,5 +45,13 @@ public class XN602026Res {
     public void setStatus(String status) {
         this.status = status;
     }
+
+	public String getLoginName() {
+		return loginName;
+	}
+
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
 
 }

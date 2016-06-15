@@ -47,6 +47,7 @@ $(function (){
 			amount:{
 				required: true,
 				number:true,
+				isPositive: true,
 				maxlength: 13
 			}
 		},

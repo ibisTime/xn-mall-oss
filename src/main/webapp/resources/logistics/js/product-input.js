@@ -203,7 +203,23 @@ $(function() {
 		$("#invoiceCode").attr("readonly","readonly");
 		var data = {"invoiceCode":invoiceCode};
 		var url = $("#basePath").val()+"/model/order/detail";
-		doGetAjax(url, data, doSucBackGetDetail);
+		doGetAjax(url, data, function(res) {
+			if (res.success) {
+				$("#invoiceCode").html(res.data.code);
+				var modelList = res.data.invoiceModelList || [], res = [];
+				modelList.forEach(function(item) {
+					var list = [item.modelCode, '', '', item.quantity, '', moneyFormat(item.salePrice)];
+					res.push(list);
+				});
+				mytable.loadData(res);
+				setStartCode($('.select1'));
+				$('.select1').each(function(index, el) {
+					setEndCode($(el).parent().next().html(), $(el).parent().next().next().next().find('input').val(), $(el).parent().parent());
+				});
+			}else{
+				alert(res.msg);
+			}
+		});
 	}
 	
 	//提交
@@ -285,14 +301,6 @@ $(function() {
 	});
 });
 
-//获取详情回调方法
-function doSucBackGetDetail(res){
-	if (res.success) {
-		$("#invoiceCode").html(res.data.code);
-	}else{
-		alert(res.msg);
-	}
-}
 
 //保存回调方法
 function doSucBackSave(res) {

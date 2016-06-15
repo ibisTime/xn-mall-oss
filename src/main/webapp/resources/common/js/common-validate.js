@@ -87,6 +87,11 @@ jQuery.validator.addMethod("gt",function(value, element){
     return returnVal;
 },"不能小于0 或空");
 
+$.validator.addMethod("isPositive",function(value,element){
+	var aint=parseFloat(value);
+    return this.optional(element) || aint > 0;
+}, '请输入大于0的数字');
+
 //汉字
 jQuery.validator.addMethod("chinese", function (value, element) {
     var chinese = /^[\u4E00-\u9FFF]+$/;
