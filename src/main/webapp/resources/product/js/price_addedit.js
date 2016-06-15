@@ -1,6 +1,7 @@
 $(function() {
 	//获取菜单URL入参
 	var modelCode = getQueryString("modelCode");
+	initBusinessTable();
 	//新增修改判断
 	if(isBlank(modelCode)){
 		$("#product").val("add");
@@ -67,6 +68,27 @@ $(function() {
 //		return false;
 //	}
 	
+	function initBusinessTable(){
+		//绑定列表
+		$('#tableList').bootstrapTable({
+			striped : true,
+			singleSelect : true,
+			clickToSelect : true,
+			columns : [{
+						field : 'dkey',
+						title : '参数名',
+						align : 'left',
+						valign : 'middle',
+						sortable : false,
+					},{
+						field : 'dvalue',
+						title : '参数值',
+						align : 'left',
+						valign : 'middle',
+						sortable : false,
+					}]
+		});
+	}
 	
 	//返回
 	$('#backBtn').click(function() {
@@ -89,9 +111,16 @@ $(function() {
 		if (res.success) {
 			$("#modelCode").html(res.data.code);
 			$("#originalPrice").val(moneyFormatter(res.data.originalPrice));
-//			$("#discountPrice").val(res.data.discountPrice);
-//			$("#toLevel").val(res.data.toLevel);
-//			$("#remark").val(res.data.remark);
+			$("#code").html(res.data.code);
+			$("#productCode").html(res.data.productName);
+			$("#name").html(res.data.name);
+			$("#majorText").html(res.data.advTitle);
+			$("#img1").attr('src',res.data.pic1);
+			$("#img2").attr('src',res.data.pic2);
+			$("#img3").attr('src',res.data.pic3);
+			$("#description").html(res.data.description);
+			$("#checkNote").html(res.data.checkNote);
+			$("#tableList").bootstrapTable("load", res.data.modelSpecsList);
 		}else{
 			alert(res.msg);
 		}

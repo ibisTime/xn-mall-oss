@@ -39,7 +39,7 @@ function queryTableData(){
 			    accountNumber:$("#accountNumber").val(),
 			    realName:$("#realName").val(),
 			    status:$("#status").val(),
-			    type:user,
+			    type:"user",
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};
@@ -66,12 +66,6 @@ function queryTableData(){
 			},{
 				field : 'accountNumber',
 				title : '账户编号',
-				align : 'left',
-				valign : 'middle',
-				sortable : false
-			},{
-				field : 'userId',
-				title : '用户编号',
 				align : 'left',
 				valign : 'middle',
 				sortable : false

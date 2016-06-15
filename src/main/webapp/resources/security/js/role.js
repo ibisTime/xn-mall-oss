@@ -174,5 +174,7 @@ function doSucBackDrop(res) {
 	if (res.success == true) {
 		alert("删除成功");
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/role/page"});
+	}else{
+		alert("该角色已在使用，无法删除！");
 	}
 }

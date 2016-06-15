@@ -67,8 +67,8 @@ $(function() {
 			$("#loginName").html(res.data.loginName);
 			$("#approveDatetime").html(res.data.approveDatetime);
 			$("#approveUser").html(res.data.approveUser);
-			$("#receiptTitle").html(res.data.receiptTitle);
-			$("#receiptType").html(Dict.getName('receipt_type',res.data.receiptType));
+			$("#receiptTitle").html(res.data.receiptTitle|| '-');
+			$("#receiptType").html(Dict.getName('receipt_type',res.data.receiptType||'无'));
 			$("#status").html(Dict.getName('order_status',res.data.status));
 			$("#totalAmount").html(moneyFormatter(res.data.totalAmount));
 			$("#payAmount").html(moneyFormatter(res.data.payAmount));

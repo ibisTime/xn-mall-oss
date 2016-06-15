@@ -57,11 +57,11 @@ $(function (){
 				maxlength: jQuery.format("账户编号不能大于{0}个字符")
 			},
 			fromType:{
-				required: "请输入充值账号",
+				required: "请选择充值账户类型",
 				maxlength: jQuery.format("支付账号不能大于{0}个字符")
 			},
 			fromCode:{
-				required: "请输入充值账号",
+				required: "请输入充值账户",
 				maxlength: jQuery.format("支付账号不能大于{0}个字符")
 			},
 			amount:{

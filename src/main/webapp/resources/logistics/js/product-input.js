@@ -90,7 +90,7 @@ $(function() {
 	 	            }
 	 	        },
 	 	       'costpricebox' : {
-	 	            html: '<input type="text" name="costpricebox" required maxlength="5"/>',
+	 	            html: '<input type="text" name="costpricebox" required maxlength="13"/>',
 	 	            getValue: function (input) {
 	 	                return $(input).val();
 	 	            },
@@ -99,7 +99,7 @@ $(function() {
 	 	            }
 	 	        },
 	 	       'linshou' : {
-	 	            html: '<input type="text" name="linshou" required maxlength="5"/>',
+	 	            html: '<input type="text" name="linshou" required maxlength="13"/>',
 	 	            getValue: function (input) {
 	 	                return $(input).val();
 	 	            },

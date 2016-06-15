@@ -91,7 +91,7 @@ function queryTableData(){
 		queryParams : function(params) {
 			return {
 				code : $("#code").val(),
-				loginName : $("#loginNameloginName").val(),
+				loginName : $("#loginName").val(),
 				isSecondPay:1,
 				start : params.offset / params.limit + 1,
 				limit : params.limit
