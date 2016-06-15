@@ -67,7 +67,7 @@ $(function() {
 			valign : 'middle',
 			sortable : false,
 		},{
-			field : 'loginName',
+			field : 'updater',
 			title : '更新人',
 			align : 'left',
 			valign : 'middle',
