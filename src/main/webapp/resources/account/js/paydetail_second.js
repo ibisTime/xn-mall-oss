@@ -12,7 +12,7 @@ $(function() {
 		
 		$("#shoukuang").html($(this).val());
 	});
-	$('#fromType').renderDropdown(Dict.getName('pay_type'));
+	$('#fromType').renderDropdown(Dict.getName('charge_type'));
 	//新增修改判断
 	initBusinessTable();
 	if(isBlank(invoiceCode)){
