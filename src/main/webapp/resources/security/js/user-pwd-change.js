@@ -16,7 +16,8 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/security/user.htm";
+		sessionStorage.setItem('activeMenu', 'user.htm');
+		$('.nav li a', window.parent.frames['topFrame'].document).first().trigger('click');
 	});
 	
 	//入参合法性校验
@@ -51,7 +52,8 @@ $(function() {
 function doSuccessBack(res) {
 	if (res.success == true) {
 		alert("操作成功");
-		window.location.href = $("#basePath").val()+"/security/user.htm";
+		sessionStorage.setItem('activeMenu', 'user.htm');
+		$('.nav li a', window.parent.frames['topFrame'].document).first().trigger('click');
 	}else{
 		alert(res.msg);
 	}
