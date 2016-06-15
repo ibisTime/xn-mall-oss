@@ -89,7 +89,7 @@ textarea.error{background: none;margin: 0; width: 504px;}
 .form-info li .control-def{width:345px; height:32px; line-height:32px; border-top:solid 1px #a7b5bc; border-left:solid 1px #a7b5bc; border-right:solid 1px #ced9df; border-bottom:solid 1px #ced9df; background:url(../images/inputbg.gif) repeat-x; text-indent:10px;}
 .form-info li .textinput{border-top:solid 1px #a7b5bc; border-left:solid 1px #a7b5bc; border-right:solid 1px #ced9df; border-bottom:solid 1px #ced9df; background:url(../images/inputbg.gif) repeat-x; padding:10px; width:504px; height:135px; line-height:20px; overflow:hidden;}
 .form-info .btn{width:95px;height:35px; background-color: #2598d0; border-radius: 4px; font-size:14px; color:#fff; cursor:pointer; margin-left: 180px;margin-top: 20px;}
-.form-info span{line-height:34px;display:table;}
+.form-info span{line-height:34px;display:table;white-space: normal;}
 .form-info a{line-height:34px;display:table;}
 .form-info span.error{display:inline-block;}
 .form-info a span{line-height:14px;display:inline-block;}
