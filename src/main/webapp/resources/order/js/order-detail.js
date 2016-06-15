@@ -69,6 +69,9 @@ $(function() {
 				title : '水单',
 				align : 'left',
 				valign : 'middle',
+				formatter:function(value){
+					return '<a target="_blank" href="'+value+'">'+value+'</a>';
+				},
 				sortable : true
 			}]
 		});
