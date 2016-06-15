@@ -65,7 +65,8 @@ $(function(){
 function doSuccessBack(res) {
 	if (res.success == true) {
 		alert("操作成功");
-		$('.nav li a', window.parent.frames['topFrame'].document).first().click();
+		sessionStorage.setItem('activeMenu', 'user.htm');
+		$('.nav li a', window.parent.frames['topFrame'].document).first().trigger('click');
 	}else{
 		alert(res.msg);
 	}

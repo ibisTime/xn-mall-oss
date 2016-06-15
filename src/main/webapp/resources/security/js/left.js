@@ -39,9 +39,15 @@ function doSuccessMenuBack(res) {
 				$(this).next('ul').slideDown();
 			}
 		});
+		if (sessionStorage.getItem('activeMenu')) {
+			var activeMenu = sessionStorage.getItem('activeMenu');
+			$("#child_menu_0[href*='"+activeMenu+"']")[0].click();
+			sessionStorage.setItem('activeMenu', '');
+		} else {
+			//获取第一个菜单链接，显示左边属性
+			$("#child_menu_0")[0].click();
+		}
 		
-		//获取第一个菜单链接，显示左边属性
-		$("#child_menu_0")[0].click();
 	}else{
 		dealErrorMsg(res.msg);
 	}
