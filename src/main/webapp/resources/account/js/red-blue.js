@@ -18,7 +18,7 @@ $(function() {
 		sortOrder : 'desc',
 		queryParams : function(params) {
 			return {
-				accountNumber : $("#accountNumberSearch").val(),
+				accountNumber : $("#accountNumber").val(),
 				status : $("#statusSearch").val(),
 				direction : $("#directionSearch").val(),
 				dateStart : $("#dateStartSearch").val(),
