@@ -217,7 +217,7 @@ function ajaxFileUpload(postUrl,fileId,uploadControlId) {
 function doSucBackSave(res) {
 	if (res.success == true) {
 		alert("操作成功");
-		window.location.href = $("#basePath").val()+"/account/pay_one.htm";
+		window.location.href = $("#basePath").val()+"/account/pay_second.htm";
 	}else{
 		alert(res.msg);
 	}
