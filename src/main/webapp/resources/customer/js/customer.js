@@ -47,6 +47,12 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 		    },{
+				field : 'userReferee',
+				title : '积分商',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+		    },{
 				field : 'updateDatetime',
 				title : '更新时间',
 				align : 'left',

@@ -127,7 +127,7 @@ function queryTableData(){
 			sortable : false
 		},{
 			field : 'amount',
-			title : '金额',
+			title : '积分',
 			align : 'left',
 			valign : 'middle',
 			sortable : true,

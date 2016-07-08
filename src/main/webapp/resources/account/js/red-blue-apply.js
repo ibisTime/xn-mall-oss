@@ -55,9 +55,9 @@ $(function(){
 			},
 			amount: {
 				required: "请输入积分",
-				number:"金额请输入数字",
+				number:"积分请输入数字",
 				maxlength: jQuery.format("积分不能大于{0}个字符"),
-				min: jQuery.format("金额不能小于{0}")
+				min: jQuery.format("积分不能小于{0}")
 			},
 			applyUser: {
 				required: "请输入申请人",

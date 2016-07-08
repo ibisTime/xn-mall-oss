@@ -75,7 +75,7 @@ $(function() {
 			formatter : Dict.getNameForList('account_direction')
 		}, {
 			field : 'amount',
-			title : '金额',
+			title : '积分',
 			align : 'right',
 			valign : 'middle',
 			sortable : true,
