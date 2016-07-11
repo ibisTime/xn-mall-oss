@@ -150,6 +150,12 @@ function queryTableData(){
 			valign : 'middle',
 			sortable : true,
 			formatter : dateFormatter
+		},{
+			field : 'approveNote',
+			title : '备注',
+			align : 'left',
+			valign : 'middle',
+			sortable : true,
 		}]
 	});
 }
