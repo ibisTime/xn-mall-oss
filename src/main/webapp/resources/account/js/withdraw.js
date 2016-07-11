@@ -16,6 +16,11 @@ $(function() {
 	$('#searchBtn').click(function() {
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/withdrawOrderPage"});
 	});
+	
+	$('#applyBtn').click(function() {
+		window.location.href = $("#basePath").val()+"/account/withdrawl_apply.htm";
+	});
+	
 	// 详情
 	$('#detailBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')

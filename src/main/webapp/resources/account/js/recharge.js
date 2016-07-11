@@ -43,15 +43,15 @@ $(function() {
 		location.href = $("#basePath").val()+"/account/recharge_approve.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01";
 	});
 	
-	// 详情事件绑定
-	$('#detailBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections');
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		location.href = $("#basePath").val()+"/account/recharge_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01";
-	});
+//	// 详情事件绑定
+//	$('#detailBtn').click(function() {
+//		var selRecords = $('#tableList').bootstrapTable('getSelections');
+//		if(selRecords.length <= 0){
+//			alert("请选择记录");
+//			return;
+//		}
+//		location.href = $("#basePath").val()+"/account/recharge_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01";
+//	});
 	
 	// 查看详情
 	$('#detailBtn').click(function() {
