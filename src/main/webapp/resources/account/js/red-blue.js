@@ -92,14 +92,12 @@ $(function() {
 			align : 'left',
 			valign : 'middle',
 			sortable : false,
-//			formatter : dateTimeFormat
 		}, {
-			field : 'remark',
+			field : 'approveNote',
 			title : '备注',
 			align : 'left',
 			valign : 'middle',
 			sortable : false,
-			visible : false
 		}]
 	});
 

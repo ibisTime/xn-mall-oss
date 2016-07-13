@@ -23,7 +23,7 @@ function savePic() {
     var img = $("#qrcode").find('img')[0];
     var alink = document.createElement("a");
     alink.href = img.src;
-    alink.download = "物流单专属二维码.jpg";
+    alink.download = "首注册二维码.jpg";
     alink.click();
 }
 
