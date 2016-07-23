@@ -21,9 +21,13 @@ $(function(){
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/queryPage"});
 	});
 	
-	//代注册
 	$('#replaceAddBtn').click(function() {
-		location.href = $("#basePath").val()+"/customer/customer_replaceadd.htm";
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/account/jifendetail_account.htm?userId="+selRecords[0].userId;
 	});
 	
 	//表格初始化
@@ -70,7 +74,7 @@ $(function(){
 		
 		$('#tableList').bootstrapTable({
 			method : "get",
-			url : $("#basePath").val()+"/customer/queryPage",
+			url : $("#basePath").val()+"/customer/zhongduanPage",
 			height : $(window).height() - 180,
 			striped : true,
 			clickToSelect : true,

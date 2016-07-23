@@ -1,61 +1,33 @@
-//账户状态
-var accountStatus=null;
 $(function() {
-	//按钮权限判断
-	showPermissionControl();
-	
-	//页面数据字典初始化
-	initData();
-	
-	//页面赋值
+	//获取菜单URL入参
 	var userId = getQueryString("userId");
-	var data = {"userId":userId,"start":"1","limit":"10"};
-	var url = $("#basePath").val()+"/customer/detailmoney";
-	doGetAjax(url, 
-		data, doGetDetailBack);
+		var data = {"userId":userId};
+		var url = $("#basePath").val()+"/customer/detail";
+		doGetAjax(url, data, doSucBackGetDetail);
+	//返回
+	$('#backBtn').click(function() {
+		location.href = $("#basePath").val()+"/customer/score.htm";
+	});
 });
 
-function initData(){
-	//账户状态
-	var data= {"key":"account_status"};
-	doGetAjaxIsAsync($("#dictUrl").val(), data,false, doSucBackAccountStatus);
-}
 
-//数据字典（账户状态）关联的回执方法
-function doSucBackAccountStatus(res){
-	accountStatus = res.data;
-}
 
-//跳转系统资金明细
-function redirectAmountJour(){
-	location.href = $("#basePath").val()+"/account/sys_account_detail.htm?accountNumber="+$("#accountNumber").html();
-}
-
-function doGetDetailBack(res){
-	if (res.success == true) {
-		if(res.data != null){
-			var result = res.data;
-			$("#status").html(Dict.getName('account_status',result.status));
-			$("#accountNumber").html(result.accountNumber);
-			$("#currency").html(result.currency);
-			$("#amount").html(moneyFormat(result.amount,2));
-			$("#frozenAmount").html(moneyFormat(result.frozenAmount,2));
-		}else{
-			alert("系统账户获取详情失败");
-		}
+function doSucBackGetDetail(res){
+	if (res.success) {
+		$("#loginName").html(res.data.loginName||'-');
+		$("#mobile").html(res.data.mobile||'-');
+		$("#idKind").html(res.data.idKind||'-');
+		$("#idNo").html(res.data.idNo||'-');
+		$("#realName").html(res.data.realName||'-');
+		$("#userReferee").html(res.data.userReferee||'-');
+		$("#remark").html(res.data.remark||'-');
+		$("#img").attr('src',res.data.pdf);
 	}else{
 		alert(res.msg);
 	}
 }
 
-//证件类型转化
-function statusFormatter(value, row) {
-	for(var i = 0;i < accountStatus.length;i++){
-		if(accountStatus[i].value == value){
-			return accountStatus[i].remark;
-		}
-	}
-}
+
 
 //格式化金额
 function moneyFormatter(value, row){

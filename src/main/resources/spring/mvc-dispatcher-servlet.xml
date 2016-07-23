@@ -204,7 +204,9 @@
 		 	<mvc:exclude-mapping path="/user/login"/>
 		 	<mvc:exclude-mapping path="/user/logout"/>
 		 	<!--登录登出相关 end  -->
-		 	
+		 	<!-- 入驻相关 -->
+		 	<mvc:exclude-mapping path="/customer/jifen_replaceadd.htm" />
+		 	<mvc:exclude-mapping path="/customer/channel_add.htm" />
 		 	<!--找回登录密码相关 start  -->
 		 	<mvc:exclude-mapping path="/user/find_psd*.htm" />
 		 	<mvc:exclude-mapping path="/gene/findloginpwd/send" />

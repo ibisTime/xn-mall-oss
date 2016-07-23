@@ -51,6 +51,8 @@ public class XN805056Res {
     // 更新人
     private String updater;
 
+    private String pdf;
+
     // 更新时间
     private Date updateDatetime;
 
@@ -183,6 +185,14 @@ public class XN805056Res {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(String pdf) {
+        this.pdf = pdf;
     }
 
 }

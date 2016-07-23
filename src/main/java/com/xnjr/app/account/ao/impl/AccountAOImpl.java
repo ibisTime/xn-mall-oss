@@ -5,6 +5,14 @@ import org.springframework.stereotype.Service;
 
 import com.xnjr.app.account.ao.IAccountAO;
 import com.xnjr.app.account.req.XN602030Req;
+import com.xnjr.app.account.req.XN602100Req;
+import com.xnjr.app.account.req.XN602101Req;
+import com.xnjr.app.account.req.XN602102Req;
+import com.xnjr.app.account.req.XN602103Req;
+import com.xnjr.app.account.req.XN602104Req;
+import com.xnjr.app.account.req.XN602105Req;
+import com.xnjr.app.account.req.XN602106Req;
+import com.xnjr.app.account.req.XN602107Req;
 import com.xnjr.app.account.req.XN602400Req;
 import com.xnjr.app.account.req.XN602401Req;
 import com.xnjr.app.account.req.XN602402Req;
@@ -392,6 +400,92 @@ public class AccountAOImpl implements IAccountAO {
         XN802011Req req = new XN802011Req();
         req.setAccountNumber(accountNumber);
         return BizConnecter.getBizData("802011", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object inciseScore(String userId, String quantity, String price,
+            String isApprove, String remark) {
+        XN602100Req req = new XN602100Req();
+        req.setUserId(userId);
+        req.setQuantity(quantity);
+        req.setPrice(price);
+        req.setIsApprove(isApprove);
+        req.setRemark(remark);
+        return BizConnecter.getBizData("602100", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object inciseScorePage(String userId, String isApprove,
+            String status, String start, String limit) {
+        XN602101Req req = new XN602101Req();
+        req.setUserId(userId);
+        req.setIsApprove(isApprove);
+        req.setStatus(status);
+        req.setStart(start);
+        req.setLimit(limit);
+        return BizConnecter.getBizData("602101", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object inciseScoreList(String userId, String isApprove,
+            String status) {
+        XN602102Req req = new XN602102Req();
+        req.setUserId(userId);
+        req.setIsApprove(isApprove);
+        req.setStatus(status);
+        return BizConnecter.getBizData("602102", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object inciseScoreDetail(String code) {
+        XN602103Req req = new XN602103Req();
+        req.setCode(code);
+        return BizConnecter.getBizData("602103", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object erweiScore(String userId, String integralCode) {
+        XN602104Req req = new XN602104Req();
+        req.setUserId(userId);
+        req.setIntegralCode(integralCode);
+        return BizConnecter.getBizData("602104", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object updownScore(String integralCode, String updater,
+            String updateResult, String remark) {
+        XN602105Req req = new XN602105Req();
+        req.setIntegralCode(integralCode);
+        req.setUpdater(updater);
+        req.setUpdateResult(updateResult);
+        req.setRemark(remark);
+        return BizConnecter.getBizData("602105", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object buyScore(String userId, String integralCode) {
+        XN602106Req req = new XN602106Req();
+        req.setUserId(userId);
+        req.setIntegralCode(integralCode);
+        return BizConnecter.getBizData("602106", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object shixiaoScore(String integralCode, String updater,
+            String remark) {
+        XN602107Req req = new XN602107Req();
+        req.setIntegralCode(integralCode);
+        req.setUpdater(updater);
+        req.setRemark(remark);
+        return BizConnecter.getBizData("602107", JsonUtils.object2Json(req),
             Object.class);
     }
 

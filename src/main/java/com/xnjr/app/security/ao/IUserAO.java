@@ -90,9 +90,9 @@ public interface IUserAO {
      * @create: 2016年5月31日 上午8:19:47 xieyj
      * @history:
      */
-    public Object addUser(String mobile, String idKind, String idNo,
-            String realName, String userReferee, String updater, String remark,
-            String kind);
+    public Object addUser(String loginName, String mobile, String idKind,
+            String idNo, String realName, String userReferee, String updater,
+            String remark, String kind, String pdf);
 
     /**
      * 修改手机号
@@ -104,8 +104,8 @@ public interface IUserAO {
      * @create: 2016年5月30日 下午5:34:02 xieyj
      * @history:
      */
-    public Object editMobile(String userId, String newMobile,
-            String smsCaptcha, String tradePwd);
+    public Object editMobile(String userId, String newMobile, String smsCaptcha,
+            String tradePwd);
 
     /**
      * 注销用户

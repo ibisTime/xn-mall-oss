@@ -43,8 +43,8 @@ public class UserController extends BaseController {
         // 校验用户名密码
         XN805043Res res = userAO.login(loginName, loginPwd);
         // 创建session
-        sessionProvider.setUserDetail(new SessionUser(res.getUserId(),
-            loginName));
+        sessionProvider
+            .setUserDetail(new SessionUser(res.getUserId(), loginName));
         return true;
     }
 
@@ -82,8 +82,7 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/tradePwd/reset", method = RequestMethod.POST)
     @ResponseBody
-    public Object resetTradePwd(
-            @RequestParam("newTradePwd") String newTradePwd,
+    public Object resetTradePwd(@RequestParam("newTradePwd") String newTradePwd,
             @RequestParam("smsCaptcha") String smsCaptcha,
             @RequestParam("idKind") String idKind,
             @RequestParam("idNo") String idNo) {
@@ -96,8 +95,8 @@ public class UserController extends BaseController {
     public Object changeUserRole(@RequestParam("userId") String userId,
             @RequestParam("roleCode") String roleCode,
             @RequestParam(value = "remark", required = false) String remark) {
-        return userAO.allotRole(userId, roleCode, this.getSessionUser()
-            .getUserName(), remark);
+        return userAO.allotRole(userId, roleCode,
+            this.getSessionUser().getUserName(), remark);
     }
 
     // 权限--UI显示
@@ -117,16 +116,18 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object addUser(
-            @RequestParam("mobile") String mobile,
+    public Object addUser(@RequestParam("loginName") String loginName,
+            @RequestParam(value = "mobile", required = false) String mobile,
             @RequestParam(value = "idKind", required = false) String idKind,
             @RequestParam(value = "idNo", required = false) String idNo,
-            @RequestParam("realName") String realName,
+            @RequestParam(value = "realName", required = false) String realName,
             @RequestParam(value = "userReferee", required = false) String userReferee,
-            @RequestParam(value = "remark", required = false) String remark) {
-        return userAO.addUser(mobile, idKind, idNo, realName, userReferee, this
-            .getSessionUser().getUserName(), remark, EUserKind.Operator
-            .getCode());
+            @RequestParam(value = "remark", required = false) String remark,
+            // @RequestParam(value = "kind", required = false) String kind,
+            @RequestParam(value = "pdf", required = false) String pdf) {
+        return userAO.addUser(loginName, mobile, idKind, idNo, realName,
+            userReferee, this.getSessionUser().getUserName(), remark,
+            EUserKind.Operator.getCode(), pdf);
     }
 
     @RequestMapping(value = "/drop", method = RequestMethod.POST)

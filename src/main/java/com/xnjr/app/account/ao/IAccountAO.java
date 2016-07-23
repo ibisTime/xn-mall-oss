@@ -379,4 +379,127 @@ public interface IAccountAO {
     public Object payaccount(String code, String amount, String fromType,
             String fromCode, String pdf, String toCardNo, String remark);
 
+    /**
+     * 积分切割
+     * @param userId
+     * @param quantity
+     * @param price
+     * @param isApprove
+     * @param remark
+     * @return 
+     * @create: 2016年7月21日 下午3:13:08 XIANDONG
+     * @history:
+     */
+    public Object inciseScore(String userId, String quantity, String price,
+            String isApprove, String remark);
+
+    /**
+     * 积分切割分页
+     * @param userId
+     * @param isApprove
+     * @param status
+     * @param start
+     * @param limit
+     * @return 
+     * @create: 2016年7月21日 下午3:13:59 XIANDONG
+     * @history:
+     */
+    public Object inciseScorePage(String userId, String isApprove,
+            String status, String start, String limit);
+
+    /**
+     * 积分切割列表
+     * @param userId
+     * @param isApprove
+     * @param status
+     * @return 
+     * @create: 2016年7月21日 下午3:14:40 XIANDONG
+     * @history:
+     */
+    public Object inciseScoreList(String userId, String isApprove,
+            String status);
+
+    /**
+     * 积分切割详情
+     * @param code
+     * @return 
+     * @create: 2016年7月21日 下午3:15:26 XIANDONG
+     * @history:
+     */
+    public Object inciseScoreDetail(String code);
+
+    /**
+     * 扫描积分二维码
+     * @param userId
+     * @param integralCode
+     * @return 
+     * @create: 2016年7月21日 下午3:19:24 XIANDONG
+     * @history:
+     */
+    public Object erweiScore(String userId, String integralCode);
+
+    /**
+     * 积分上架/下架
+     * @param integralCode
+     * @param updater
+     * @param updateResult
+     * @param remark
+     * @return 
+     * @create: 2016年7月23日 下午1:44:54 XIANDONG
+     * @history:
+     */
+    public Object updownScore(String integralCode, String updater,
+            String updateResult, String remark);
+
+    /**
+     * 购买积分二维码
+     * @param userId
+     * @param integralCode
+     * @return 
+     * @create: 2016年7月23日 下午1:45:54 XIANDONG
+     * @history:
+     */
+    public Object buyScore(String userId, String integralCode);
+
+    /**
+     * 积分二维码失效
+     * @param integralCode
+     * @param updater
+     * @param remark
+     * @return 
+     * @create: 2016年7月23日 下午1:46:51 XIANDONG
+     * @history:
+     */
+    public Object shixiaoScore(String integralCode, String updater,
+            String remark);
+
+    // /**
+    // * 积分充值
+    // * @param fromUserId
+    // * @param toUserId
+    // * @param amount
+    // * @param price
+    // * @param type
+    // * @param pdf
+    // * @param applyUser
+    // * @return
+    // * @create: 2016年7月23日 下午4:36:30 XIANDONG
+    // * @history:
+    // */
+    // public Object buyshangjiaScore(String fromUserId, String toUserId,
+    // String amount, String price, String type, String pdf,
+    // String applyUser);
+    //
+    // /**
+    // * 审批积分充值订单
+    // * @param chargeNo
+    // * @param approveUser
+    // * @param approveResult
+    // * @param approveNote
+    // * @return
+    // * @create: 2016年7月23日 下午4:38:26 XIANDONG
+    // * @history:
+    // */
+    // public Object applyshangjiaScore(String chargeNo, String approveUser,
+    // String approveResult, String approveNote);
 }

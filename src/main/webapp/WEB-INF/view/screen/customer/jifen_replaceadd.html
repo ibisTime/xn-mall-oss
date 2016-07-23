@@ -24,12 +24,13 @@
 	    <div class="form-title"><span>用户信息</span></div>
 		    <ul class="form-info">
 		    	<li><input type="hidden" id="userId" name="userId"></input></li>
-			    <li><label><b>*</b>手机号:</label><input type="text" id="mobile" name="mobile" class="control-def"/></li>
-			    <li><label><b>*</b>证件类型:</label><select id="idKind" name="idKind" class="control-def"></select></li>
-			    <li><label><b>*</b>证件号:</label><input type="text" id="idNo" name="idNo" class="control-def"/></li>
-			    <li><label><b>*</b>真实姓名:</label><input type="text" id="realName" name="realName" class="control-def"/></li>
-			    <li><label>推荐人:</label><input type="text" id="userReferee" name="userReferee" class="control-def"/></li>
+		    	<li><label><b>*</b>登录名:</label><input type="text" id="loginName" name="loginName" class="control-def"/></li>
+			    <li><label>手机号:</label><input type="text" id="mobile" name="mobile" class="control-def"/></li>
+			    <li><label>证件类型:</label><select id="idKind" name="idKind" class="control-def"></select></li>
+			    <li><label>证件号:</label><input type="text" id="idNo" name="idNo" class="control-def"/></li>
+			    <li><label>真实姓名:</label><input type="text" id="realName" name="realName" class="control-def"/></li>
 			    <li><label>备注:</label><input type="text" id="remark" name="remark" class="control-def"/></li>
+			    <li><label>pdf:</label><input type="file" onchange="selectImagepdf(this);" id="pdf" name="pdf"/><img src="" id="pdfImg" width="100" height="100"></img></li>
 			    <li><input id="subBtn" type="button" class="btn margin-left-100" value="保存"/><input id="backBtn" type="button" class="btn margin-left-20" value="返回"/></li>
 			</ul>
 	    </div>

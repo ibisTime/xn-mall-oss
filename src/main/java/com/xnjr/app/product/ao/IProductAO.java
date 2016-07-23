@@ -120,4 +120,67 @@ public interface IProductAO {
     public Object upProduct(String code, String checkUser, String checkResult,
             String checkNote);
 
+    /**
+     * 退货申请
+     * @param goodsCode
+     * @param price
+     * @param quantity
+     * @param applyUser
+     * @param applyNote
+     * @return 
+     * @create: 2016年7月21日 下午5:41:09 XIANDONG
+     * @history:
+     */
+    public Object tuihuoApply(String goodsCode, String price, String quantity,
+            String applyUser, String applyNote);
+
+    /**
+     * 退货审核
+     * @param code
+     * @param approveUser
+     * @param approveResult
+     * @param approveNote
+     * @return 
+     * @create: 2016年7月21日 下午5:57:09 XIANDONG
+     * @history:
+     */
+    public Object tuihuoCheck(String code, String approveUser,
+            String approveResult, String approveNote);
+
+    /**
+     * 退货分页
+     * @param code
+     * @param goodsCode
+     * @param status
+     * @param applyUser
+     * @param start
+     * @param limit
+     * @return 
+     * @create: 2016年7月21日 下午5:57:29 XIANDONG
+     * @history:
+     */
+    public Object goodsPage(String code, String goodsCode, String status,
+            String applyUser, String start, String limit);
+
+    /**
+     * 退货列表
+     * @param code
+     * @param goodsCode
+     * @param status
+     * @param applyUser
+     * @return 
+     * @create: 2016年7月21日 下午5:58:20 XIANDONG
+     * @history:
+     */
+    public Object goodsList(String code, String goodsCode, String status,
+            String applyUser);
+
+    /**
+     * 退货详情
+     * @param code
+     * @return 
+     * @create: 2016年7月21日 下午5:59:05 XIANDONG
+     * @history:
+     */
+    public Object goodsDteail(String code);
 }

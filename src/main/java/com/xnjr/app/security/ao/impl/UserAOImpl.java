@@ -2,6 +2,7 @@ package com.xnjr.app.security.ao.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
@@ -26,6 +27,7 @@ import com.xnjr.app.security.res.XN805043Res;
 import com.xnjr.app.security.res.XN805055Res;
 import com.xnjr.app.security.res.XN805056Res;
 import com.xnjr.app.util.PwdUtil;
+import com.xnjr.app.util.UploadUtil;
 
 /**
  * 系统用户模块
@@ -92,10 +94,11 @@ public class UserAOImpl implements IUserAO {
     }
 
     @Override
-    public Object addUser(String mobile, String idKind, String idNo,
-            String realName, String userReferee, String updater, String remark,
-            String kind) {
+    public Object addUser(String loginName, String mobile, String idKind,
+            String idNo, String realName, String userReferee, String updater,
+            String remark, String kind, String pdf) {
         XN805042Req req = new XN805042Req();
+        req.setLoginName(loginName);
         req.setMobile(mobile);
         req.setIdKind(idKind);
         req.setIdNo(idNo);
@@ -104,6 +107,10 @@ public class UserAOImpl implements IUserAO {
         req.setUpdater(updater);
         req.setRemark(remark);
         req.setKind(kind);
+        if (StringUtils.isNotBlank(pdf)) {
+            req.setPdf(UploadUtil.uploadPicture(pdf));
+        }
+
         return BizConnecter.getBizData("805042", JsonUtils.object2Json(req),
             Object.class);
     }
@@ -209,8 +216,8 @@ public class UserAOImpl implements IUserAO {
      * @see com.xnjr.app.security.ao.IUserAO#editMobile(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
-    public Object editMobile(String userId, String newMobile,
-            String smsCaptcha, String tradePwd) {
+    public Object editMobile(String userId, String newMobile, String smsCaptcha,
+            String tradePwd) {
         XN805047Req req = new XN805047Req();
         req.setUserId(userId);
         req.setNewMobile(newMobile);

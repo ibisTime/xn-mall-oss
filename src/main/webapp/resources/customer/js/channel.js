@@ -18,25 +18,7 @@ $(function(){
 		location.href = $("#basePath").val()+"/customer/channel_add.htm";
 	});
 	
-	//修改名称
-	$('#editNameBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/customer/channel_name.htm?userId="+selRecords[0].userId;
-	});
 	
-	//修改手机号
-	$('#editMobilBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/customer/channel_mobil.htm?userId="+selRecords[0].userId;
-	});
 	
 	//表格初始化
 	function queryTableData(){
@@ -53,18 +35,18 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 			},{
-				field : 'realName',
-				title : '渠道商名称',
-				align : 'left',
-				valign : 'middle',
-				sortable : false
-		    },{
 				field : 'mobile',
 				title : '绑定手机号',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
 			},{
+				field : 'userReferee',
+				title : '推荐人',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+		    },{
 				field : 'updateDatetime',
 				title : '更新时间',
 				align : 'left',
@@ -75,7 +57,7 @@ $(function(){
 		
 		$('#tableList').bootstrapTable({
 			method : "get",
-			url : $("#basePath").val()+"/customer/channelPage",
+			url : $("#basePath").val()+"/customer/zhongduanPage",
 			height : $(window).height() - 180,
 			striped : true,
 			clickToSelect : true,

@@ -324,17 +324,74 @@ public class AccountController extends BaseController {
             status);
     }
 
-    // @RequestMapping(value = "/payaccount", method = RequestMethod.POST)
-    // @ResponseBody
-    // public Object payaccount(@RequestParam("code") String code,
-    // @RequestParam("amount") String amount,
-    // @RequestParam("fromType") String fromType,
-    // @RequestParam("fromCode") String fromCode,
-    // @RequestParam("pdf") String pdf,
-    // @RequestParam("toCardNo") String toCardNo,
-    // @RequestParam("remark") String remark) {
-    // return accountAO.payaccount(code, amount, fromType, fromCode, pdf,
-    // toCardNo, remark);
-    //
-    // }
+    @RequestMapping(value = "/incise/score", method = RequestMethod.POST)
+    @ResponseBody
+    public Object inciseScore(@RequestParam(value = "quantity") String quantity,
+            @RequestParam(value = "price") String price,
+            @RequestParam(value = "isApprove") String isApprove,
+            @RequestParam(value = "remark", required = false) String remark) {
+        return accountAO.inciseScore(this.getSessionUser().getUserId(),
+            quantity, price, isApprove, remark);
+    }
+
+    @RequestMapping(value = "/inciseScore/page", method = RequestMethod.GET)
+    @ResponseBody
+    public Object inciseScorePage(
+            @RequestParam(value = "isApprove", required = false) String isApprove,
+            @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "start") String start,
+            @RequestParam(value = "limit") String limit) {
+        return accountAO.inciseScorePage(this.getSessionUser().getUserId(),
+            isApprove, status, start, limit);
+    }
+
+    @RequestMapping(value = "/inciseScore/list", method = RequestMethod.GET)
+    @ResponseBody
+    public Object inciseScoreList(
+            @RequestParam(value = "isApprove") String isApprove,
+            @RequestParam(value = "status", required = false) String status) {
+        return accountAO.inciseScoreList(this.getSessionUser().getUserId(),
+            isApprove, status);
+    }
+
+    @RequestMapping(value = "/inciseScore/detail", method = RequestMethod.GET)
+    @ResponseBody
+    public Object inciseScoreDetail(@RequestParam(value = "code") String code) {
+        return accountAO.inciseScoreDetail(code);
+    }
+
+    @RequestMapping(value = "/erweiscore", method = RequestMethod.GET)
+    @ResponseBody
+    public Object erweiScore(
+            @RequestParam(value = "integralCode") String integralCode) {
+        return accountAO.erweiScore(this.getSessionUser().getUserId(),
+            integralCode);
+    }
+
+    @RequestMapping(value = "/score/updown", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updownScore(
+            @RequestParam(value = "integralCode") String integralCode,
+            @RequestParam(value = "updateResult") String updateResult,
+            @RequestParam(value = "remark") String remark) {
+        return accountAO.updownScore(integralCode,
+            this.getSessionUser().getUserId(), updateResult, remark);
+    }
+
+    @RequestMapping(value = "/score/buy", method = RequestMethod.GET)
+    @ResponseBody
+    public Object buyScore(
+            @RequestParam(value = "integralCode") String integralCode) {
+        return accountAO.buyScore(this.getSessionUser().getUserId(),
+            integralCode);
+    }
+
+    @RequestMapping(value = "/score/shixiao", method = RequestMethod.GET)
+    @ResponseBody
+    public Object shixiaoScore(
+            @RequestParam(value = "integralCode") String integralCode,
+            @RequestParam(value = "remark") String remark) {
+        return accountAO.shixiaoScore(integralCode,
+            this.getSessionUser().getUserId(), remark);
+    }
 }

@@ -5,34 +5,35 @@ $(function(){
 	showPermissionControl();
 	//表格初始化
 	queryTableData();
+	$('#isApprove').renderDropdown(Dict.getName("isApprove"));
 	
 	$('#firsterweiBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/customer/firsterwei.htm?userId="+selRecords[0].userId;
+		window.location.href = $("#basePath").val()+"/customer/firsterwei.htm";
 	});
 	
-	$('#seconderweiBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		window.location.href = $("#basePath").val()+"/customer/seconderwei.htm?userId="+selRecords[0].userId;
-	});
+//	$('#seconderweiBtn').click(function() {
+//		var selRecords = $('#tableList').bootstrapTable('getSelections')
+//		if(selRecords.length <= 0){
+//			alert("请选择记录");
+//			return;
+//		}
+//		window.location.href = $("#basePath").val()+"/customer/seconderwei.htm?userId="+selRecords[0].userId;
+//	});
 	//window.location.href = "http://121.43.101.148:8067/xn-mall-appms/m/user/register.html?u="+selRecords[0].userId;
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/jifenPage"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/inciseScore/page"});
 	});
 	
-	//代注册
-	$('#replaceAddBtn').click(function() {
-		location.href = $("#basePath").val()+"/customer/jifen_replaceadd.htm";
+	//详情
+	$('#detailBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/customer/firsterwei_detail.htm?code="+selRecords[0].code;
 	});
 	
 	//表格初始化
@@ -44,16 +45,23 @@ $(function(){
 				valign : 'middle',
 				checkbox : true
 			},{
-				field : 'mobile',
-				title : '手机号',
+				field : 'quantity',
+				title : '数量',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
 			},{
-				field : 'realName',
-				title : '真实姓名',
+				field : 'price',
+				title : '价格',
 				align : 'left',
 				valign : 'middle',
+				sortable : false
+		    },{
+				field : 'isApprove',
+				title : '是否审批',
+				align : 'left',
+				valign : 'middle',
+				formatter:Dict.getNameForList('isApprove'),
 				sortable : false
 		    },{
 				field : 'updateDatetime',
@@ -63,24 +71,23 @@ $(function(){
 				formatter:dateFormatter,
 				sortable : false
 			},{
-				field : 'status',
-				title : '状态',
+				field : 'remark',
+				title : '备注',
 				align : 'left',
 				valign : 'middle',
-				formatter: Dict.getUserStatusName,
 				sortable : false
 		    }];
 		
 		$('#tableList').bootstrapTable({
 			method : "get",
-			url : $("#basePath").val()+"/customer/jifenPage",
+			url : $("#basePath").val()+"/account/inciseScore/page",
 			height : $(window).height() - 180,
 			striped : true,
 			clickToSelect : true,
 			singleSelect : true,
 			queryParams : function(params) {
 				return {
-					mobile : $("#mobile").val(),
+					isApprove : $("#isApprove").val(),
 //					realName : $("#realName").val(),
 					userReferee : $("#userReferee").val(),
 					status : $("#status").val(),

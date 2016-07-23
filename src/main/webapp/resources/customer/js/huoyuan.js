@@ -35,30 +35,28 @@ $(function(){
 				valign : 'middle',
 				checkbox : true
 			},{
+				field : 'loginName',
+				title : '登录名',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+			},{
 				field : 'mobile',
 				title : '手机号',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
-			},{
+		    },{
 				field : 'realName',
 				title : '真实姓名',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
-		    },{
-				field : 'updateDatetime',
-				title : '更新时间',
-				align : 'left',
-				valign : 'middle',
-				formatter:dateFormatter,
-				sortable : false
 			},{
-				field : 'status',
-				title : '状态',
+				field : 'remark',
+				title : '备注',
 				align : 'left',
 				valign : 'middle',
-				formatter: Dict.getUserStatusName,
 				sortable : false
 		    }];
 		

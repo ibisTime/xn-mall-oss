@@ -1,4 +1,6 @@
+
 $(function() {
+	$('#idKind').renderDropdown(Dict.getIDKindName());
 
 	//提交
 	$('#subBtn').click(function() {
@@ -10,8 +12,8 @@ $(function() {
 		$.each(t, function() {
 			data[this.name] = this.value;
 		});
-		data['kind'] = 'f2';
-		var url = $("#basePath").val()+"/customer/channel/add";
+		data['loginName']= $('#mobile').val();
+		var url = $("#basePath").val()+"/customer/zhongduan/add";
 		doPostAjax(url, data, doSaveSuccessBack);
 	});
 	
@@ -23,59 +25,60 @@ $(function() {
 	//入参合法性校验
 	$("#jsForm").validate({
 		rules: {
-		    realName: {
-				required: true,
-				maxlength: 16
-			},
+			
 			mobile: {
 				required: true,
+				maxlength: 11
+			},
+			idKind: {
+				required: false,
+				maxlength: 2
+			},
+			idNo: {
+				required: false,
 				maxlength: 32
 			},
-			province: {
-				required: true,
-				maxlength: 20
+			realName: {
+				required: false,
+				maxlength: 16
 			},
-			city: {
-				required: true,
-				maxlength: 20
+			userReferee: {
+				required: false,
+				maxlength: 32
 			},
-			district: {
-				required: true,
-				maxlength: 20
-			},
-			detailAddress: {
-				required: true,
-				maxlength: 128
+			remark: {
+				maxlength: 200
 			}
 		},
 		messages: {
-			realName: {
-				required: "请输入渠道商名称",
-				maxlength: jQuery.format("渠道商名称不能大于{0}个字符")
-			},
+			
 			mobile: {
 				required: "请输入手机号",
 				maxlength: jQuery.format("手机号不能大于{0}个字符")
 			},
-			province: {
-				required: "请输入渠道商名称",
-				maxlength: jQuery.format("省份名称不能大于{0}个字符")
+			idKind: {
+				required: "请输入证件类型",
+				maxlength: jQuery.format("证件类型不能大于{0}个字符")
 			},
-			city: {
-				required: "请输入收货地址",
-				maxlength: jQuery.format("城市名称不能大于{0}个字符")
+			idNo: {
+				required: "请输入证件号",
+				maxlength: jQuery.format("证件号不能大于{0}个字符")
 			},
-			district: {
-				required: "请输入收货地址",
-				maxlength: jQuery.format("县/县级市/区名称不能大于{0}个字符")
+			realName: {
+				required: "请输入真实姓名",
+				maxlength: jQuery.format("真实姓名不能大于{0}个字符")
 			},
-			detailAddress: {
-				required: "请输入收货地址",
-				maxlength: jQuery.format("详细地址不能大于{0}个字符")
+			userReferee: {
+				maxlength: jQuery.format("推荐人不能大于{0}个字符")
+			},
+			remark: {
+				maxlength: jQuery.format("备注不能大于{0}个字符"),
 			}
 		}
 	});
 });
+
+
 
 function doSaveSuccessBack(res) {
 	if (res.success == true) {

@@ -110,4 +110,56 @@ public class ProductController extends BaseController {
             checkResult, checkNote);
     }
 
+    @RequestMapping(value = "/goods/apply", method = RequestMethod.POST)
+    @ResponseBody
+    public Object tuihuoApply(
+            @RequestParam(value = "goodsCode") String goodsCode,
+            @RequestParam(value = "price") String price,
+            @RequestParam(value = "quantity") String quantity,
+            // @RequestParam(value = "applyUser") String applyUser,
+            @RequestParam(value = "applyNote") String applyNote) {
+        return productAO.tuihuoApply(goodsCode, price, quantity,
+            this.getSessionUser().getUserName(), applyNote);
+    }
+
+    @RequestMapping(value = "/goods/check", method = RequestMethod.POST)
+    @ResponseBody
+    public Object tuihuoCheck(@RequestParam(value = "code") String code,
+            @RequestParam(value = "approveResult") String approveResult,
+            @RequestParam(value = "approveNote") String approveNote) {
+        return productAO.tuihuoCheck(code, this.getSessionUser().getUserName(),
+            approveResult, approveNote);
+    }
+
+    @RequestMapping(value = "/goods/page", method = RequestMethod.GET)
+    @ResponseBody
+    public Object goodsPage(
+            @RequestParam(value = "code", required = false) String code,
+            @RequestParam(value = "goodsCode", required = false) String goodsCode,
+            @RequestParam(value = "status", required = false) String status,
+            // @RequestParam(value = "applyUser", required = false) String
+            // applyUser,
+            @RequestParam("start") String start,
+            @RequestParam("limit") String limit,
+            @RequestParam(value = "orderColumn", required = false) String orderColumn,
+            @RequestParam(value = "orderDir", required = false) String orderDir) {
+        return productAO.goodsPage(code, goodsCode, status,
+            this.getSessionUser().getUserName(), start, limit);
+    }
+
+    @RequestMapping(value = "/goods/list", method = RequestMethod.GET)
+    @ResponseBody
+    public Object goodsList(
+            @RequestParam(value = "code", required = false) String code,
+            @RequestParam(value = "goodsCode", required = false) String goodsCode,
+            @RequestParam(value = "status", required = false) String status) {
+        return productAO.goodsList(code, goodsCode, status,
+            this.getSessionUser().getUserName());
+    }
+
+    @RequestMapping(value = "/goods/detail", method = RequestMethod.GET)
+    @ResponseBody
+    public Object goodsDteail(@RequestParam(value = "code") String code) {
+        return productAO.goodsDteail(code);
+    }
 }

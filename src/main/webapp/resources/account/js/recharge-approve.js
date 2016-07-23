@@ -53,7 +53,7 @@ function doGetDetailBack(res){
 			var result = res.data.list[0];
 			$("#chargeNo").html(result.code);
 			$("#accountNumber").html(result.accountNumber);
-//			$("#status").html(Dict.getName('withdraw_status',result.status));
+			$("#status").html(Dict.getName('withdraw_status',result.status));
 //			$("#channel").html(result.channel);
 			$("#approveNote").html(result.approveNote);
 			$("#amount").html(moneyFormat(result.amount,2));

@@ -20,6 +20,11 @@ import com.xnjr.app.product.req.XN601003Req;
 import com.xnjr.app.product.req.XN601004Req;
 import com.xnjr.app.product.req.XN601005Req;
 import com.xnjr.app.product.req.XN601006Req;
+import com.xnjr.app.product.req.XN602120Req;
+import com.xnjr.app.product.req.XN602121Req;
+import com.xnjr.app.product.req.XN602122Req;
+import com.xnjr.app.product.req.XN602123Req;
+import com.xnjr.app.product.req.XN602124Req;
 import com.xnjr.app.util.UploadUtil;
 
 @Service
@@ -128,6 +133,65 @@ public class ProductAOImpl implements IProductAO {
         req.setCheckResult(checkResult);
         req.setCheckNote(checkNote);
         return BizConnecter.getBizData("601003", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object tuihuoApply(String goodsCode, String price, String quantity,
+            String applyUser, String applyNote) {
+        XN602120Req req = new XN602120Req();
+        req.setGoodsCode(goodsCode);
+        req.setPrice(price);
+        req.setQuantity(quantity);
+        req.setApplyUser(applyUser);
+        req.setApplyNote(applyNote);
+        return BizConnecter.getBizData("602120", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object tuihuoCheck(String code, String approveUser,
+            String approveResult, String approveNote) {
+        XN602121Req req = new XN602121Req();
+        req.setCode(code);
+        req.setApproveUser(approveUser);
+        req.setApproveResult(approveResult);
+        req.setApproveNote(approveNote);
+        return BizConnecter.getBizData("602121", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object goodsPage(String code, String goodsCode, String status,
+            String applyUser, String start, String limit) {
+        XN602122Req req = new XN602122Req();
+        req.setCode(code);
+        req.setGoodsCode(goodsCode);
+        req.setStatus(status);
+        req.setApplyUser(applyUser);
+        req.setStart(start);
+        req.setLimit(limit);
+        return BizConnecter.getBizData("602122", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object goodsList(String code, String goodsCode, String status,
+            String applyUser) {
+        XN602123Req req = new XN602123Req();
+        req.setCode(code);
+        req.setGoodsCode(goodsCode);
+        req.setStatus(status);
+        req.setApplyUser(applyUser);
+        return BizConnecter.getBizData("602123", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object goodsDteail(String code) {
+        XN602124Req req = new XN602124Req();
+        req.setCode(code);
+        return BizConnecter.getBizData("602124", JsonUtils.object2Json(req),
             Object.class);
     }
 }

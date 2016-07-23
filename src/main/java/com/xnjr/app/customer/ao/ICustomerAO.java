@@ -40,4 +40,6 @@ public interface ICustomerAO {
 
     public Object detailmoney(String userId);
 
+    public Object detailaccount(String userId, String currency);
+
 }

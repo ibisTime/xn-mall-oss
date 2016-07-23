@@ -12,6 +12,7 @@ $(function() {
 		$.each(t, function() {
 			data[this.name] = this.value;
 		});
+		if(pdfImg.constructor === String) data["pdf"]=pdfImg;
 		var url = $("#basePath").val()+"/customer/jifen/add";
 		doPostAjax(url, data, doSaveSuccessBack);
 	});
@@ -24,20 +25,24 @@ $(function() {
 	//入参合法性校验
 	$("#jsForm").validate({
 		rules: {
-			mobile: {
+			loginName: {
 				required: true,
 				maxlength: 11
 			},
+			mobile: {
+				required: false,
+				maxlength: 11
+			},
 			idKind: {
-				required: true,
+				required: false,
 				maxlength: 2
 			},
 			idNo: {
-				required: true,
+				required: false,
 				maxlength: 32
 			},
 			realName: {
-				required: true,
+				required: false,
 				maxlength: 16
 			},
 			userReferee: {
@@ -49,6 +54,10 @@ $(function() {
 			}
 		},
 		messages: {
+			loginName: {
+				required: "请输入登录名",
+				maxlength: jQuery.format("登录名不能大于{0}个字符")
+			},
 			mobile: {
 				required: "请输入手机号",
 				maxlength: jQuery.format("手机号不能大于{0}个字符")
@@ -74,6 +83,21 @@ $(function() {
 		}
 	});
 });
+
+function selectImagepdf(file){
+	if(!file.files || !file.files[0]){
+		return;
+	}
+	var reader = new FileReader();
+	reader.onload = function(evt){
+		document.getElementById('pdf').src = evt.target.result;
+		pdfImg = evt.target.result;
+		$("#pdfImg").show();
+		$("#pdfImg").attr("src",pdfImg);
+	}
+	reader.readAsDataURL(file.files[0]);
+}
+
 
 function doSaveSuccessBack(res) {
 	if (res.success == true) {

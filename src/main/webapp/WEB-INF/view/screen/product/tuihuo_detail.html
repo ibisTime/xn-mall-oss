@@ -1,0 +1,40 @@
+<#include 'layout/config.html' />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<title>角色设置</title>
+<#include 'layout/resources.html'/>
+<script type="text/javascript" src="${resourceUrl}/resources/product/js/tuihuo-detail.js?version=${version}"></script>
+</head>
+<body>
+    <#include 'layout/hidden_ares.html'/>
+    <!-- 导航 -->
+	<div class="place">
+    	<span>位置：</span>
+	    <ul>
+	    	<li>产品管理</li>
+	    	<li>产品设置</li>
+	    	<li id="operContent">新增产品</li>
+   		</ul>
+    </div>
+    <!-- 表单 -->
+    <form id="jsForm">
+	    <div class="form-body">
+	    <div class="form-title"><span></span></div>
+	    	<!-- <li><input type="hidden" name="code" id="code"/></li> -->
+		    <ul class="form-info">
+		    	<li><label>货品编号:</label><span id="goodsCode"></span></li>
+ 		    	<li><label>单价:</label><span id="price"></span></li>
+ 		    	<li><label>数量:</label><span id="quantity"></span></li>
+ 		    	<li><label>申请备注:</label><span id="applyNote"></span></li>
+			    <li>
+			    <input id="backBtn" type="button" class="btn margin-left-20" value="返回"/>
+			    </li>
+			</ul>
+	    </div>
+    </form>
+</body>
+</html>
