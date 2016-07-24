@@ -89,12 +89,12 @@ public class AccountController extends BaseController {
     @RequestMapping(value = "/recharge", method = RequestMethod.POST)
     @ResponseBody
     public Object recharge(@RequestParam("fromUserId") String fromUserId,
-            @RequestParam("toUserId") String toUserId,
             @RequestParam("amount") String amount,
             @RequestParam("price") String price,
             @RequestParam("type") String type, @RequestParam("pdf") String pdf) {
-        return accountAO.jfRecharge(fromUserId, toUserId, amount, price, type,
-            pdf, this.getSessionUser().getUserId());
+        return accountAO.jfRecharge(fromUserId, this.getSessionUser()
+            .getUserId(), amount, price, type, pdf, this.getSessionUser()
+            .getUserId());
     }
 
     @RequestMapping(value = "/approveRecharge", method = RequestMethod.POST)

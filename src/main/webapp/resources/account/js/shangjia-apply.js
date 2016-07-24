@@ -11,10 +11,10 @@ $(function (){
 	var url = $("#basePath").val() + "/general/system/param/page";
 	doGetAjaxIsAsync(url, data, false, doSuccessDhhlBack);
 	
-	$("#amount").on(function(){
+	$("#amount").on('input',function(e){
 		var priceVal = this.value * dhhlValue;
 		$("#price").html(priceVal);
-	 });
+	});
 	
 	//提交
 	$("#subBtn").click(function(){
@@ -25,9 +25,8 @@ $(function (){
 			alert("请上传水单");
 			return;
 		}
-		var data = {"accountNumber":$("#accountNumber").val(),"fromType":$("#fromType").val(),"fromCode":$("#fromCode").val(),"amount":moneyParse($("#amount").val())};
+		var data = {"fromUserId":fromUserId,"type":"1","amount":moneyParse($("#amount").val()),"price":moneyParse($("#price").val())};
 		data['pdf'] = $("#url1").attr("href");
-		data['amount'] = moneyParse(data['amount'], 1);
 		var url = $("#basePath").val()+"/account/recharge";
 		doPostAjax(url, data, doSuccessBack);
 	});
