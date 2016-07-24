@@ -101,8 +101,6 @@ public class AccountController extends BaseController {
     @ResponseBody
     public Object approveRecharge(
             @RequestParam(value = "chargeNo", required = false) String chargeNo,
-            // @RequestParam(value = "approveUser", required = false) String
-            // approveUser,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
         return accountAO.approveRecharge(chargeNo, this.getSessionUser()

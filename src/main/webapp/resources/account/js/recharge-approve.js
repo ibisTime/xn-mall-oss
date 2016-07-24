@@ -1,19 +1,11 @@
 //订单状态
 var orderStatus = null;
-//渠道
-var channel = null;
 $(function() {
-	//页面数据字典初始化
-//	initData();
-	
 	var code = getQueryString("code");
 	var accountNumber = getQueryString("accountNumber");
 	var data = {"code":code,"start":"1","limit":"10"};
 	var url = $("#basePath").val()+"/account/rechargeOrderPage";
 	doGetAjax(url, data, doGetDetailBack);
-	
-	//区分线上线下
-	rechargeType = getQueryString("rechargeType");
 	
 	//提交
 	$('#passBtn').click(function() {
@@ -51,7 +43,7 @@ function doGetDetailBack(res){
 	if (res.success == true) {
 		if(res.data.list.length > 0){
 			var result = res.data.list[0];
-			$("#chargeNo").html(result.code);
+			$("#chargeNo").val(result.code);
 			$("#accountNumber").html(result.accountNumber);
 			$("#status").html(Dict.getName('withdraw_status',result.status));
 //			$("#channel").html(result.channel);
@@ -75,7 +67,7 @@ function doApprove(approveResult){
 		return false;
 	}
 	var data = {"approveResult":approveResult,"approveNote":$("#remark").val()};
-	data['chargeNo']=$("#chargeNo").html();
+	data['chargeNo']=$("#chargeNo").val();
 	var url = $("#basePath").val()+"/account/approveRecharge";
 	doPostAjax(url, data, doSuccessBack);
 }

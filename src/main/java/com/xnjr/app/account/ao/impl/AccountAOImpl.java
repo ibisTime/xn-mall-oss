@@ -24,8 +24,8 @@ import com.xnjr.app.account.req.XN802011Req;
 import com.xnjr.app.account.req.XN802020Req;
 import com.xnjr.app.account.req.XN802030Req;
 import com.xnjr.app.account.req.XN802100Req;
-import com.xnjr.app.account.req.XN802111Req;
 import com.xnjr.app.account.req.XN802120Req;
+import com.xnjr.app.account.req.XN802121Req;
 import com.xnjr.app.account.req.XN802200Req;
 import com.xnjr.app.account.req.XN802210Req;
 import com.xnjr.app.account.req.XN802212Req;
@@ -144,12 +144,12 @@ public class AccountAOImpl implements IAccountAO {
     @Override
     public Object approveRecharge(String chargeNo, String approveUser,
             String approveResult, String approveNote) {
-        XN802111Req req = new XN802111Req();
+        XN802121Req req = new XN802121Req();
         req.setChargeNo(chargeNo);
         req.setApproveUser(approveUser);
         req.setApproveResult(approveResult);
         req.setApproveNote(approveNote);
-        return BizConnecter.getBizData("802111", JsonUtils.object2Json(req),
+        return BizConnecter.getBizData("802121", JsonUtils.object2Json(req),
             Object.class);
     }
 
