@@ -8,9 +8,9 @@ $(function (){
 		if(!$("#jsForm").valid()){
 			return false;
 		}
-		var data = {"accountNumber":$("#accountNumber").val(),"fromType":$("#fromType").val(),"fromCode":$("#fromCode").val(),"amount":moneyParse($("#amount").val())};
+		var data = {"price":$("#price").val(),"type":$("#type").val(),"amount":moneyParse($("#amount").val())};
 		data['amount'] = moneyParse(data['amount'], 1);
-		var url = $("#basePath").val()+"/account/agentWithdraw";
+		var url = $("#basePath").val()+"/account/duixian";
 		doPostAjax(url, data, doSuccessBack);
 	});
 	
