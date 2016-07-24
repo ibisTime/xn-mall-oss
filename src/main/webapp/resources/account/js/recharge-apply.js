@@ -3,6 +3,14 @@ $(function (){
 	//initData();
 	
 	$('#fromType').renderDropdown(Dict.getName('charge_type'));
+	
+	doGetAjaxIsAsync($("#basePath").val()+"/user/list", {}, false, function(res) {
+		var data = res.data || [], html = "<option value=''>请选择</option>";
+		for (var i = 0, len = data.length; i < len; i++) {
+			html += "<option value='"+data[i].loginName+"'>"+data[i].loginName+"</option>";
+			$("#toUserId").html(html);
+		}
+	});
 	//提交
 	$("#subBtn").click(function(){
 		if(!$("#jsForm").valid()){

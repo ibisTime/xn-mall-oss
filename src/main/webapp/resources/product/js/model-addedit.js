@@ -4,7 +4,7 @@ $(function() {
 	doGetAjaxIsAsync($("#basePath").val()+"/product/list", {}, false, function(res) {
 		var data = res.data || [], html = "<option value=''>请选择</option>";
 		for (var i = 0, len = data.length; i < len; i++) {
-			html += "<option value='"+data[i].code+"'>"+data[i].name+"</option>";
+			html += "<option value='"+data[i].userId+"'>"+data[i].name+"</option>";
 			$("#productCode").html(html);
 		}
 	});
