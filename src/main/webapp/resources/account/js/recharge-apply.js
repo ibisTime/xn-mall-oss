@@ -29,7 +29,7 @@ $(function (){
 		}
 		var data = {"amount":moneyParse($("#amount").val())};
 		data['pdf'] = $("#url1").attr("href");
-		data['toUserId'] =$("#toUserId").val();
+		data['toUserId'] =$("#toUserId").val().split("|")[0];
 		data['price'] =$("#price").html();
 		data['type'] ='1';
 		data['amount'] = moneyParse(data['amount'], 1);
@@ -50,7 +50,6 @@ $(function (){
 		var toUserIdSelectVal = $("#toUserId").val();
 		console.log(toUserIdSelectVal);
 		var level = toUserIdSelectVal.split("|")[1];
-		console.log(level);
 		for(var i = 0;i < dhhl.length; i++) {
 			if(dhhl[i].ckey == 'TOP_TWO_DHHL' && level == '2'){
 				dhhlValue = dhhl[i].cvalue;

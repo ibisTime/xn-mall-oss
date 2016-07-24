@@ -91,11 +91,10 @@ public class AccountController extends BaseController {
     public Object fromRecharge(@RequestParam("fromUserId") String fromUserId,
             @RequestParam("amount") String amount,
             @RequestParam("price") String price,
-            @RequestParam("type") String type,
-            @RequestParam("pdf") String pdf) {
-        return accountAO.jfRecharge(fromUserId,
-            this.getSessionUser().getUserId(), amount, price, type, pdf,
-            this.getSessionUser().getUserId());
+            @RequestParam("type") String type, @RequestParam("pdf") String pdf) {
+        return accountAO.jfRecharge(fromUserId, this.getSessionUser()
+            .getUserId(), amount, price, type, pdf, this.getSessionUser()
+            .getUserId());
     }
 
     @RequestMapping(value = "/toRecharge", method = RequestMethod.POST)
@@ -103,10 +102,10 @@ public class AccountController extends BaseController {
     public Object toRecharge(@RequestParam("toUserId") String toUserId,
             @RequestParam("amount") String amount,
             @RequestParam("price") String price,
-            @RequestParam("type") String type,
-            @RequestParam("pdf") String pdf) {
-        return accountAO.jfRecharge(this.getSessionUser().getUserId(), toUserId,
-            amount, price, type, pdf, this.getSessionUser().getUserId());
+            @RequestParam("type") String type, @RequestParam("pdf") String pdf) {
+        return accountAO.jfRecharge(this.getSessionUser().getUserId(),
+            toUserId, amount, price, type, pdf, this.getSessionUser()
+                .getUserId());
     }
 
     @RequestMapping(value = "/approveRecharge", method = RequestMethod.POST)
@@ -115,8 +114,8 @@ public class AccountController extends BaseController {
             @RequestParam(value = "chargeNo", required = false) String chargeNo,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
-        return accountAO.approveRecharge(chargeNo,
-            this.getSessionUser().getUserId(), approveResult, approveNote);
+        return accountAO.approveRecharge(chargeNo, this.getSessionUser()
+            .getUserId(), approveResult, approveNote);
     }
 
     @RequestMapping(value = "/withdrawOrderPage", method = RequestMethod.GET)
@@ -156,27 +155,22 @@ public class AccountController extends BaseController {
     @ResponseBody
     public Object approveWithdrawOrder(
             @RequestParam(value = "withdrawNo", required = false) String withdrawNo,
-            // @RequestParam(value = "approveUser", required = false) String
-            // approveUser,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
-        return accountAO.approveWithdrawOrder(withdrawNo,
-            this.getSessionUser().getUserName(), approveResult, approveNote);
+        return accountAO.approveWithdrawOrder(withdrawNo, this.getSessionUser()
+            .getUserName(), approveResult, approveNote);
     }
 
     @RequestMapping(value = "/payWithdrawOrder", method = RequestMethod.POST)
     @ResponseBody
     public Object payWithdrawOrder(
             @RequestParam(value = "withdrawNo", required = false) String withdrawNo,
-            // @RequestParam(value = "payUser", required = false) String
-            // payUser,
             @RequestParam(value = "payResult", required = false) String payResult,
             @RequestParam(value = "payNote", required = false) String payNote,
             @RequestParam(value = "refNo", required = false) String refNo,
             @RequestParam(value = "fee", required = false) String fee) {
-        return accountAO.payWithdrawOrder(withdrawNo,
-            this.getSessionUser().getUserName(), payResult, payNote, refNo,
-            fee);
+        return accountAO.payWithdrawOrder(withdrawNo, this.getSessionUser()
+            .getUserName(), payResult, payNote, refNo, fee);
     }
 
     @RequestMapping(value = "/turnOutListPage", method = RequestMethod.GET)
@@ -201,8 +195,8 @@ public class AccountController extends BaseController {
             @RequestParam(value = "amount", required = false) String amount,
             @RequestParam(value = "fee", required = false) String fee,
             @RequestParam(value = "remark", required = false) String remark) {
-        return accountAO.transfer(accountNumber, direction, amount, fee,
-            remark);
+        return accountAO
+            .transfer(accountNumber, direction, amount, fee, remark);
     }
 
     @RequestMapping(value = "/redBlueOrderPage", method = RequestMethod.GET)
@@ -240,8 +234,8 @@ public class AccountController extends BaseController {
             @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
-        return accountAO.artificialApproveCheck(code,
-            this.getSessionUser().getUserName(), approveResult, approveNote);
+        return accountAO.artificialApproveCheck(code, this.getSessionUser()
+            .getUserName(), approveResult, approveNote);
     }
 
     @RequestMapping(value = "/checkInput", method = RequestMethod.POST)
@@ -261,8 +255,8 @@ public class AccountController extends BaseController {
             // approveUser,
             @RequestParam(value = "approveResult", required = false) String approveResult,
             @RequestParam(value = "approveNote", required = false) String approveNote) {
-        return accountAO.checkApprove(code, this.getSessionUser().getUserName(),
-            approveResult, approveNote);
+        return accountAO.checkApprove(code,
+            this.getSessionUser().getUserName(), approveResult, approveNote);
     }
 
     @RequestMapping(value = "/account/add", method = RequestMethod.POST)
@@ -335,7 +329,8 @@ public class AccountController extends BaseController {
 
     @RequestMapping(value = "/incise/score", method = RequestMethod.POST)
     @ResponseBody
-    public Object inciseScore(@RequestParam(value = "quantity") String quantity,
+    public Object inciseScore(
+            @RequestParam(value = "quantity") String quantity,
             @RequestParam(value = "price") String price,
             @RequestParam(value = "isApprove") String isApprove,
             @RequestParam(value = "remark", required = false) String remark) {
@@ -383,8 +378,8 @@ public class AccountController extends BaseController {
             @RequestParam(value = "integralCode") String integralCode,
             @RequestParam(value = "updateResult") String updateResult,
             @RequestParam(value = "remark") String remark) {
-        return accountAO.updownScore(integralCode,
-            this.getSessionUser().getUserId(), updateResult, remark);
+        return accountAO.updownScore(integralCode, this.getSessionUser()
+            .getUserId(), updateResult, remark);
     }
 
     @RequestMapping(value = "/score/buy", method = RequestMethod.GET)
@@ -400,21 +395,19 @@ public class AccountController extends BaseController {
     public Object shixiaoScore(
             @RequestParam(value = "integralCode") String integralCode,
             @RequestParam(value = "remark") String remark) {
-        return accountAO.shixiaoScore(integralCode,
-            this.getSessionUser().getUserId(), remark);
+        return accountAO.shixiaoScore(integralCode, this.getSessionUser()
+            .getUserId(), remark);
     }
 
     @RequestMapping(value = "/duixian", method = RequestMethod.POST)
     @ResponseBody
-    public Object duixian(@RequestParam(value = "fromUserId") String fromUserId,
-            @RequestParam(value = "toUserId") String toUserId,
+    public Object duixian(
+            @RequestParam(value = "fromUserId") String fromUserId,
             @RequestParam(value = "amount") String amount,
             @RequestParam(value = "price") String price,
-            @RequestParam(value = "type") String type
-    // @RequestParam(value = "applyUser") String applyUser
-    ) {
-        return accountAO.duixian(fromUserId, toUserId, amount, price, type,
-            this.getSessionUser().getUserId());
+            @RequestParam(value = "type") String type) {
+        return accountAO.duixian(fromUserId, this.getSessionUser().getUserId(),
+            amount, price, type, this.getSessionUser().getUserId());
     }
 
     @RequestMapping(value = "/duixian/check", method = RequestMethod.POST)
@@ -423,8 +416,8 @@ public class AccountController extends BaseController {
             @RequestParam(value = "withdrawNo") String withdrawNo,
             @RequestParam(value = "approveResult") String approveResult,
             @RequestParam(value = "approveNote") String approveNote) {
-        return accountAO.checkduixian(withdrawNo,
-            this.getSessionUser().getUserId(), approveResult, approveNote);
+        return accountAO.checkduixian(withdrawNo, this.getSessionUser()
+            .getUserId(), approveResult, approveNote);
     }
 
     @RequestMapping(value = "/duixian/pay", method = RequestMethod.POST)
@@ -435,7 +428,7 @@ public class AccountController extends BaseController {
             @RequestParam(value = "payNote") String payNote,
             @RequestParam(value = "refNo") String refNo,
             @RequestParam(value = "fee") String fee) {
-        return accountAO.payduixian(withdrawNo,
-            this.getSessionUser().getUserId(), payResult, payNote, refNo, fee);
+        return accountAO.payduixian(withdrawNo, this.getSessionUser()
+            .getUserId(), payResult, payNote, refNo, fee);
     }
 }

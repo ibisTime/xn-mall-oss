@@ -1,9 +1,6 @@
 //账户状态
 var orderStatus = null;
-//渠道
-var channel = null;
 $(function() {
-
 	var code = getQueryString("code");
 	var data = {"code":code,"start":"1","limit":"10"};
 	var url = $("#basePath").val()+"/account/withdrawOrderPage";
@@ -16,12 +13,23 @@ $(function() {
 		if(!$("#jsForm").valid()){
 			return false;
 		}
-		var data = {"approveResult":$("#approveResult").val(),"approveNote":$("#approveNote").val()};
+		checkApprove(1);
+	});
+	
+	// 通过
+	$('#noPassBtn').click(function() {
+		if(!$("#jsForm").valid()){
+			return false;
+		}
+		checkApprove(0);
+	});
+	
+	function checkApprove(approveResult){
+		var data = {"approveResult":approveResult,"approveNote":$("#approveNote").val()};
 		data['withdrawNo']=$("#withdrawNo").html();
 		var url = $("#basePath").val()+"/account/duixian/check";
 		doPostAjax(url, data, doSuccessBack);
-	});
-	
+	}
 	
 	//返回
 	$('#backBtn').click(function() {

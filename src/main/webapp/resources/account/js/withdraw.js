@@ -3,15 +3,11 @@ var orderStatus = null;
 $(function() {
 	//按钮权限判断
 	showPermissionControl();
-	
 	//页面数据字典初始化
 	$("#status").renderDropdown(Dict.getName('withdraw_status'));
-	//默认值设置
-	//$("#statusSearch").val("1");
 	
 	// 表格初始化
 	queryTableData();
-	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/withdrawOrderPage"});
@@ -21,17 +17,6 @@ $(function() {
 		window.location.href = $("#basePath").val()+"/account/withdrawl_apply.htm";
 	});
 	
-	// 详情
-	$('#detailBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		location.href = $("#basePath").val()+"/account/withdraw_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber;
-	});
-	
-	// 
 	$('#approveBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
@@ -59,21 +44,15 @@ $(function() {
 		location.href = $("#basePath").val()+"/account/withdraw_pay.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber;
 	});
 	
-//	// 查看详情事件绑定
-//	$('#detailBtn').click(function() {
-//		var selRecords = $('#tableList').bootstrapTable('getSelections')
-//		if(selRecords.length <= 0){
-//			alert("请选择记录");
-//			return;
-//		}
-//		location.href = $("#basePath").val()+"/account/withdraw_detail.htm?cqNo="+selRecords[0].cqNo+"&accountNumber="+selRecords[0].accountNumber+"&withdrawStatus=normal";
-//	});
-//	
-//	//导出
-//	$('#exportBtn').click(function() {
-//		var url=$("#basePath").val()+"/account/recWith/list/export?qxNo="+$("#cqNoSearch").val()+"&mobile="+$("#mobileSearch").val()+"&realName="+$("#realNameSearch").val()+"&direction=0"+"&status="+$("#statusSearch").val()+"&channel=01"+"&dateStart="+$("#dateStartSearch").val()+"&dateEnd="+$("#dateEndSearch").val()+"&fileName=线下取现列表";
-//		window.open(url);
-//	});
+	// 详情
+	$('#detailBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		location.href = $("#basePath").val()+"/account/withdraw_detail.htm?code="+selRecords[0].code;
+	});
 });
 
 //表格初始化
@@ -86,12 +65,8 @@ function queryTableData(){
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
-//		sortName : 'createDatetime',
-//		sortOrder : 'desc',
 		queryParams : function(params) {
 			return {
-				code : $("#code").val(),
-				accountNumber : $("#accountNumber").val(),
 				status : $("#status").val(),
 				dateStart : $("#dateStart").val(),
 				dateEnd : $("#dateEnd").val(),
@@ -120,19 +95,26 @@ function queryTableData(){
 			checkbox : true
 		},{
 			field : 'code',
-			title : '取现订单',
+			title : '订单编号',
 			align : 'left',
 			valign : 'middle',
 			sortable : false
 		},{
-			field : 'accountNumber',
-			title : '账户编号',
+			field : 'type',
+			title : '订单类型',
 			align : 'left',
 			valign : 'middle',
 			sortable : false
 		},{
 			field : 'amount',
 			title : '积分',
+			align : 'left',
+			valign : 'middle',
+			sortable : true,
+			formatter : moneyFormatter
+		},{
+			field : 'price',
+			title : '价格',
 			align : 'left',
 			valign : 'middle',
 			sortable : true,

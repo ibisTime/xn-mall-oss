@@ -1,7 +1,5 @@
 //账户状态
 var orderStatus = null;
-//渠道
-var channel = null;
 $(function() {
 	//页面数据字典初始化
 	initData();
@@ -32,29 +30,23 @@ $(function() {
 	//入参合法性校验
 	$("#jsForm").validate({
 		rules: {
-			workDate: {
-				required: true
-			},
-			remark: {
-				required: true,
-				maxlength: 64
-			},
-			payNo:{
+			payNote:{
 				required:false, 
 				maxlength:30
+			},
+			refNo: {
+				required: true,
+				maxlength: 64
 			}
 		},
 		messages: {
-			workDate: {
-				required: "请输入对账日期"
-			},
-			remark: {
+			payNote: {
 				required: "请输入备注",
 				maxlength: jQuery.format("备注不能大于{0}个字符")
 			},
-			payNo:{
-				required:"请输入支付订单",
-				maxlength: jQuery.format("支付订单不能大于{0}个字符")
+			refNo:{
+				required:"请输入支付单号",
+				maxlength: jQuery.format("支付单号不能大于{0}个字符")
 			}
 		}
 	});
@@ -65,13 +57,9 @@ function doGetDetailBack(res){
 		if(res.data.list.length > 0){
 			var result = res.data.list[0];
 			$("#withdrawNo").html(result.code);
-			$("#mobile").html(result.mobile);
-			$("#realName").html(result.realName);
-			$("#accountNumber").html(result.accountNumber);
-			$("#toBelong").html(result.toBelong);
-			$("#bankcardNo").html(result.toCode);
 			$("#status").html(Dict.getName('withdraw_status', result.status));
 			$("#amount").html(moneyFormat(result.amount,2));
+			$("#price").html(moneyFormat(result.price,2));
 			$("#createDatetime").html(dateFormat(result.createDatetime,'yyyy-MM-dd HH:mm:ss'));
 			$("#approveUser").html(result.approveUser);
 			$("#approveDatetime").html(dateFormat(result.approveDatetime,'yyyy-MM-dd HH:mm:ss'));
@@ -84,7 +72,7 @@ function doGetDetailBack(res){
 }
 
 function doPay(payResult){
-	var data = {"withdrawNo":$("#withdrawNo").html(),"payResult":payResult,"payNo":$("#payNo").val(),"fee":moneyFormatByEnLarge($("#fee").val()),"payNote":$("#remark").val()};
+	var data = {"withdrawNo":$("#withdrawNo").html(),"payResult":payResult,"refNo":$("#refNo").val(),"payNote":$("#payNote").val()};
 	var url = $("#basePath").val()+"/account/payWithdrawOrder";
 	doPostAjax(url, data, doSuccessBack);
 }

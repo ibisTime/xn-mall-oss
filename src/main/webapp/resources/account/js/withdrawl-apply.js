@@ -1,15 +1,18 @@
 $(function (){
-	//页面数据字典初始化
-	//initData();
+	doGetAjaxIsAsync($("#basePath").val()+"/user/under/list", {}, false, function(res) {
+		var data = res.data || [], html = "<option value=''>请选择</option>";
+		for (var i = 0, len = data.length; i < len; i++) {
+			html += "<option value='"+data[i].userId+"|"+data[i].level+"'>"+data[i].loginName+"</option>";
+			$("#fromUserId").html(html);
+		}
+	});
 	
-	$('#toType').renderDropdown(Dict.getName('charge_type'));
 	//提交
 	$("#subBtn").click(function(){
 		if(!$("#jsForm").valid()){
 			return false;
 		}
-		var data = {"price":$("#price").val(),"type":$("#type").val(),"amount":moneyParse($("#amount").val())};
-		data['amount'] = moneyParse(data['amount'], 1);
+		var data = {"fromUserId":$("#fromUserId").val().split("|")[0],"price":$("#price").val(),"price":$("#price").val(),"amount":moneyParse($("#amount").val()),"type":"1"};
 		var url = $("#basePath").val()+"/account/duixian";
 		doPostAjax(url, data, doSuccessBack);
 	});
