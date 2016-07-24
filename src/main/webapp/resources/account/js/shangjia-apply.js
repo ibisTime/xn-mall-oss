@@ -11,10 +11,11 @@ $(function (){
 	var url = $("#basePath").val() + "/general/system/param/page";
 	doGetAjaxIsAsync(url, data, false, doSuccessDhhlBack);
 	
-	$("#amount").on(function(){
-		var priceVal = this.value * dhhlValue;
-		$("#price").html(priceVal);
-	 });
+	$("#amount").on("change",function(){
+        this.value = this.value.replace(/[^\d]/gi,"");
+        var priceVal = this.value * dhhlValue;
+        $("#price").html(priceVal);
+		});
 	
 	//提交
 	$("#subBtn").click(function(){
