@@ -7,6 +7,7 @@ $(function (){
 	//获取用户类型
     url = $("#basePath").val() + "/user";
 	doGetAjaxIsAsync(url, data, false, doSuccessUserBack);
+	
 	var data = {"dhhlFlag":"in","start":"0","limit":"10"};
 	var url = $("#basePath").val() + "/general/system/param/page";
 	doGetAjaxIsAsync(url, data, false, doSuccessDhhlBack);

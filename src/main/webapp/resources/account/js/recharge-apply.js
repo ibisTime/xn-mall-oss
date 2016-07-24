@@ -1,8 +1,21 @@
 $(function (){
-	//页面数据字典初始化
-	//initData();
 	
-	$('#fromType').renderDropdown(Dict.getName('charge_type'));
+	doGetAjaxIsAsync($("#basePath").val()+"/user/under/list", {}, false, function(res) {
+		var data = res.data || [], html = "<option value=''>请选择</option>";
+		for (var i = 0, len = data.length; i < len; i++) {
+			html += "<option value='"+data[i].loginName+"'>"+data[i].loginName+"</option>";
+			$("#toUserId").html(html);
+		}
+	});
+	var data = {"dhhlFlag":"in","start":"0","limit":"10"};
+	var url = $("#basePath").val() + "/general/system/param/page";
+	doGetAjaxIsAsync(url, data, false, doSuccessDhhlBack);
+	
+	$("#amount").on('input',function(e){
+		var priceVal = this.value * dhhlValue;
+		$("#price").html(priceVal);
+	});
+	
 	//提交
 	$("#subBtn").click(function(){
 		if(!$("#jsForm").valid()){
@@ -18,6 +31,7 @@ $(function (){
 		var url = $("#basePath").val()+"/account/recharge";
 		doPostAjax(url, data, doSuccessBack);
 	});
+	
 	
 	//返回
 	$("#backBtn").click(function(){
@@ -115,7 +129,22 @@ function ajaxFileUpload(postUrl,fileId,uploadControlId) {
     )
     return false;
 }
-
+function doSuccessDhhlBack(res){
+	if (res.success) {
+		if(res.data != null){
+			var dhhl = res.data.list;
+			for(var i = 0;i < dhhl.length; i++) {
+				if(dhhl[i].ckey == 'TOP_TWO_DHHL' && level == '2'){
+					dhhlValue = dhhl[i].cvalue;
+				}else if(dhhl[i].ckey == 'TWO_THREE_DHHL' && level == '3'){
+					dhhlValue = dhhl[i].cvalue;
+				}
+			}
+		}
+	}else{
+		alert(res.msg);
+	}
+}
 
 //格式化金额
 function moneyFormatter(value, row){
