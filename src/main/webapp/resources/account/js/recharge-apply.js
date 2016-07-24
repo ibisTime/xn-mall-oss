@@ -1,15 +1,15 @@
+var dhhlValue = null;
 $(function (){
-	
 	$('#fromType').renderDropdown(Dict.getName('charge_type'));
-	
-	doGetAjaxIsAsync($("#basePath").val()+"/user/list", {}, false, function(res) {
+	doGetAjaxIsAsync($("#basePath").val()+"/user/under/list", {}, false, function(res) {
 		var data = res.data || [], html = "<option value=''>请选择</option>";
 		for (var i = 0, len = data.length; i < len; i++) {
-			html += "<option value='"+data[i].loginName+"'>"+data[i].loginName+"</option>";
+			html += "<option value='"+data[i].userId+"|"+data[i].level+"'>"+data[i].loginName+"</option>";
 			$("#toUserId").html(html);
 		}
 	});
 	var data = {"dhhlFlag":"in","start":"0","limit":"10"};
+	
 	var url = $("#basePath").val() + "/general/system/param/page";
 	doGetAjaxIsAsync(url, data, false, doSuccessDhhlBack);
 	
@@ -27,13 +27,15 @@ $(function (){
 			alert("请上传水单");
 			return;
 		}
-		var data = {"accountNumber":$("#accountNumber").val(),"fromType":$("#fromType").val(),"fromCode":$("#fromCode").val(),"amount":moneyParse($("#amount").val())};
+		var data = {"amount":moneyParse($("#amount").val())};
 		data['pdf'] = $("#url1").attr("href");
+		data['toUserId'] =$("#toUserId").val();
+		data['price'] =$("#price").html();
+		data['type'] ='1';
 		data['amount'] = moneyParse(data['amount'], 1);
-		var url = $("#basePath").val()+"/account/recharge";
+		var url = $("#basePath").val()+"/account/toRecharge";
 		doPostAjax(url, data, doSuccessBack);
 	});
-	
 	
 	//返回
 	$("#backBtn").click(function(){
@@ -44,6 +46,19 @@ $(function (){
 		var postUrl = $("#basePath").val()+"/upload/file";
         ajaxFileUpload(postUrl,"pdf","url1");
     });
+	$("#toUserId").on('change',function(e){
+		var toUserIdSelectVal = $("#toUserId").val();
+		console.log(toUserIdSelectVal);
+		var level = toUserIdSelectVal.split("|")[1];
+		console.log(level);
+		for(var i = 0;i < dhhl.length; i++) {
+			if(dhhl[i].ckey == 'TOP_TWO_DHHL' && level == '2'){
+				dhhlValue = dhhl[i].cvalue;
+			}else if(dhhl[i].ckey == 'TWO_THREE_DHHL' && level == '3'){
+				dhhlValue = dhhl[i].cvalue;
+			}
+		}
+	});
 	
 	//入参合法校验
 	$("#jsForm").validate({
@@ -134,14 +149,7 @@ function ajaxFileUpload(postUrl,fileId,uploadControlId) {
 function doSuccessDhhlBack(res){
 	if (res.success) {
 		if(res.data != null){
-			var dhhl = res.data.list;
-			for(var i = 0;i < dhhl.length; i++) {
-				if(dhhl[i].ckey == 'TOP_TWO_DHHL' && level == '2'){
-					dhhlValue = dhhl[i].cvalue;
-				}else if(dhhl[i].ckey == 'TWO_THREE_DHHL' && level == '3'){
-					dhhlValue = dhhl[i].cvalue;
-				}
-			}
+			 dhhl = res.data.list;
 		}
 	}else{
 		alert(res.msg);

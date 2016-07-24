@@ -81,8 +81,8 @@ public interface IAccountAO {
      */
     public Object queryRechargeOrderPage(String accountNumber, String code,
             String fromType, String fromCode, String channel, String refNo,
-            String status, String approveUser, String dateStart,
-            String dateEnd, String start, String limit);
+            String status, String approveUser, String dateStart, String dateEnd,
+            String start, String limit);
 
     /**
      * 积分充值
@@ -133,8 +133,8 @@ public interface IAccountAO {
      */
     public Object queryWithdrawOrderPage(String accountNumber, String code,
             String toType, String toCode, String channel, String refNo,
-            String status, String approveUser, String payUser,
-            String dateStart, String dateEnd, String start, String limit);
+            String status, String approveUser, String payUser, String dateStart,
+            String dateEnd, String start, String limit);
 
     /**
      * 代线下取现
@@ -240,8 +240,8 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午5:05:10 wu
      * @history:
      */
-    public Object artificialAccountApply(String accountNumber,
-            String direction, String amount, String applyUser, String applyNote);
+    public Object artificialAccountApply(String accountNumber, String direction,
+            String amount, String applyUser, String applyNote);
 
     /**
      * 人工干预账户审批：需要对账
@@ -308,9 +308,8 @@ public interface IAccountAO {
      * @create: 2016年6月11日 下午5:18:50 XIANDONG
      * @history:
      */
-    public Object editaccount(String code, String companyCode,
-            String subbranch, String cardNo, String status, String updater,
-            String remark);
+    public Object editaccount(String code, String companyCode, String subbranch,
+            String cardNo, String status, String updater, String remark);
 
     /**
      * 删除账号
@@ -419,7 +418,8 @@ public interface IAccountAO {
      * @create: 2016年7月21日 下午3:14:40 XIANDONG
      * @history:
      */
-    public Object inciseScoreList(String userId, String isApprove, String status);
+    public Object inciseScoreList(String userId, String isApprove,
+            String status);
 
     /**
      * 积分切割详情
@@ -475,33 +475,46 @@ public interface IAccountAO {
     public Object shixiaoScore(String integralCode, String updater,
             String remark);
 
-    // /**
-    // * 积分充值
-    // * @param fromUserId
-    // * @param toUserId
-    // * @param amount
-    // * @param price
-    // * @param type
-    // * @param pdf
-    // * @param applyUser
-    // * @return
-    // * @create: 2016年7月23日 下午4:36:30 XIANDONG
-    // * @history:
-    // */
-    // public Object buyshangjiaScore(String fromUserId, String toUserId,
-    // String amount, String price, String type, String pdf,
-    // String applyUser);
-    //
-    // /**
-    // * 审批积分充值订单
-    // * @param chargeNo
-    // * @param approveUser
-    // * @param approveResult
-    // * @param approveNote
-    // * @return
-    // * @create: 2016年7月23日 下午4:38:26 XIANDONG
-    // * @history:
-    // */
-    // public Object applyshangjiaScore(String chargeNo, String approveUser,
-    // String approveResult, String approveNote);
+    /**
+     * 代线下兑现 
+     * @param fromUserId
+     * @param toUserId
+     * @param amount
+     * @param price
+     * @param type
+     * @param applyUser
+     * @return 
+     * @create: 2016年7月24日 下午8:25:38 XIANDONG
+     * @history:
+     */
+    public Object duixian(String fromUserId, String toUserId, String amount,
+            String price, String type, String applyUser);
+
+    /**
+     * 审批兑现订单
+     * @param withdrawNo
+     * @param approveUser
+     * @param approveResult
+     * @param approveNote
+     * @return 
+     * @create: 2016年7月24日 下午8:26:33 XIANDONG
+     * @history:
+     */
+    public Object checkduixian(String withdrawNo, String approveUser,
+            String approveResult, String approveNote);
+
+    /**
+     * 支付兑现订单
+     * @param withdrawNo
+     * @param payUser
+     * @param payResult
+     * @param payNote
+     * @param refNo
+     * @param fee
+     * @return 
+     * @create: 2016年7月24日 下午8:28:28 XIANDONG
+     * @history:
+     */
+    public Object payduixian(String withdrawNo, String payUser,
+            String payResult, String payNote, String refNo, String fee);
 }

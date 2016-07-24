@@ -30,6 +30,9 @@ import com.xnjr.app.account.req.XN802200Req;
 import com.xnjr.app.account.req.XN802210Req;
 import com.xnjr.app.account.req.XN802212Req;
 import com.xnjr.app.account.req.XN802213Req;
+import com.xnjr.app.account.req.XN802220Req;
+import com.xnjr.app.account.req.XN802222Req;
+import com.xnjr.app.account.req.XN802223Req;
 import com.xnjr.app.account.req.XN802300Req;
 import com.xnjr.app.account.req.XN802310Req;
 import com.xnjr.app.account.req.XN802700Req;
@@ -107,8 +110,8 @@ public class AccountAOImpl implements IAccountAO {
     @Override
     public Object queryRechargeOrderPage(String accountNumber, String code,
             String fromType, String fromCode, String channel, String refNo,
-            String status, String approveUser, String dateStart,
-            String dateEnd, String start, String limit) {
+            String status, String approveUser, String dateStart, String dateEnd,
+            String start, String limit) {
         XN802100Req req = new XN802100Req();
         req.setAccountNumber(accountNumber);
         req.setCode(code);
@@ -156,8 +159,8 @@ public class AccountAOImpl implements IAccountAO {
     @Override
     public Object queryWithdrawOrderPage(String accountNumber, String code,
             String toType, String toCode, String channel, String refNo,
-            String status, String approveUser, String payUser,
-            String dateStart, String dateEnd, String start, String limit) {
+            String status, String approveUser, String payUser, String dateStart,
+            String dateEnd, String start, String limit) {
         XN802200Req req = new XN802200Req();
         req.setAccountNumber(accountNumber);
         req.setCode(code);
@@ -265,8 +268,8 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object artificialAccountApply(String accountNumber,
-            String direction, String amount, String applyUser, String applyNote) {
+    public Object artificialAccountApply(String accountNumber, String direction,
+            String amount, String applyUser, String applyNote) {
         XN802710Req req = new XN802710Req();
         req.setAccountNumber(accountNumber);
         req.setDirection(direction);
@@ -326,9 +329,8 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object editaccount(String code, String companyCode,
-            String subbranch, String cardNo, String status, String updater,
-            String remark) {
+    public Object editaccount(String code, String companyCode, String subbranch,
+            String cardNo, String status, String updater, String remark) {
         XN602402Req req = new XN602402Req();
         req.setCode(code);
         req.setCompanyCode(companyCode);
@@ -433,7 +435,8 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object inciseScoreList(String userId, String isApprove, String status) {
+    public Object inciseScoreList(String userId, String isApprove,
+            String status) {
         XN602102Req req = new XN602102Req();
         req.setUserId(userId);
         req.setIsApprove(isApprove);
@@ -488,6 +491,46 @@ public class AccountAOImpl implements IAccountAO {
         req.setUpdater(updater);
         req.setRemark(remark);
         return BizConnecter.getBizData("602107", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object duixian(String fromUserId, String toUserId, String amount,
+            String price, String type, String applyUser) {
+        XN802220Req req = new XN802220Req();
+        req.setFromUserId(fromUserId);
+        req.setToUserId(toUserId);
+        req.setAmount(amount);
+        req.setPrice(price);
+        req.setType(type);
+        req.setApplyUser(applyUser);
+        return BizConnecter.getBizData("802220", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object checkduixian(String withdrawNo, String approveUser,
+            String approveResult, String approveNote) {
+        XN802222Req req = new XN802222Req();
+        req.setWithdrawNo(withdrawNo);
+        req.setApproveUser(approveUser);
+        req.setApproveResult(approveResult);
+        req.setApproveNote(approveNote);
+        return BizConnecter.getBizData("802222", JsonUtils.object2Json(req),
+            Object.class);
+    }
+
+    @Override
+    public Object payduixian(String withdrawNo, String payUser,
+            String payResult, String payNote, String refNo, String fee) {
+        XN802223Req req = new XN802223Req();
+        req.setWithdrawNo(withdrawNo);
+        req.setPayUser(payUser);
+        req.setPayResult(payResult);
+        req.setPayNote(payNote);
+        req.setRefNo(refNo);
+        req.setFee(fee);
+        return BizConnecter.getBizData("802223", JsonUtils.object2Json(req),
             Object.class);
     }
 }

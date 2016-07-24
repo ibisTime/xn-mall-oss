@@ -28,7 +28,7 @@ $(function (){
 		}
 		var data = {"fromUserId":fromUserId,"type":"1","amount":moneyParse($("#amount").val()),"price":moneyParse($("#price").val())};
 		data['pdf'] = $("#url1").attr("href");
-		var url = $("#basePath").val()+"/account/recharge";
+		var url = $("#basePath").val()+"/account/fromRecharge";
 		doPostAjax(url, data, doSuccessBack);
 	});
 	

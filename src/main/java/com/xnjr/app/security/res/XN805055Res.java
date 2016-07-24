@@ -46,6 +46,9 @@ public class XN805055Res {
     // 角色编号
     private String roleCode;
 
+    // 等级
+    private String level;
+
     public String getUserId() {
         return userId;
     }
@@ -149,4 +152,13 @@ public class XN805055Res {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
 }

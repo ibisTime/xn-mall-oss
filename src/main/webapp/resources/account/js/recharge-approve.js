@@ -46,11 +46,11 @@ function doGetDetailBack(res){
 			$("#chargeNo").val(result.code);
 			$("#accountNumber").html(result.accountNumber);
 			$("#status").html(Dict.getName('withdraw_status',result.status));
-//			$("#channel").html(result.channel);
+			$("#price").html(result.price);
 			$("#approveNote").html(result.approveNote);
 			$("#amount").html(moneyFormat(result.amount,2));
 			$("#bankCode").html(Dict.getName('charge_type',result.fromType));
-			$("#bankcardNo").html(result.fromCode);
+			$("#fromAccountNumber").html(result.fromAccountNumber);
 			$('#pdf').html(result.pdf.substring(result.pdf.lastIndexOf('/')+1));
 			$('#pdf')[0].href = result.pdf;
 			$("#createDatetime").html(dateFormat(result.createDatetime,'yyyy-MM-dd HH:mm:ss'));
