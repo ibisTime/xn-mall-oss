@@ -81,21 +81,24 @@ public interface IAccountAO {
      */
     public Object queryRechargeOrderPage(String accountNumber, String code,
             String fromType, String fromCode, String channel, String refNo,
-            String status, String approveUser, String dateStart, String dateEnd,
-            String start, String limit);
+            String status, String approveUser, String dateStart,
+            String dateEnd, String start, String limit);
 
     /**
-     * 线下充值
-     * @param accountNumber
-     * @param amount
-     * @param fromType
-     * @param fromCode
+     * 积分充值
+     * @param fromUserId 来方用户
+     * @param toUserId 去方用户
+     * @param amount 积分数量
+     * @param price 人民币价格
+     * @param type 类型
+     * @param pdf 
+     * @param applyUser
      * @return 
-     * @create: 2016年5月27日 下午4:42:34 wu
+     * @create: 2016年7月24日 下午3:52:15 xieyj
      * @history:
      */
-    public Object recharge(String accountNumber, String amount, String pdf,
-            String fromType, String fromCode);
+    public Object jfRecharge(String fromUserId, String toUserId, String amount,
+            String price, String type, String pdf, String applyUser);
 
     /**
      * 审批充值订单
@@ -107,7 +110,6 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午4:44:11 wu
      * @history:
      */
-    // @SuppressWarnings("rawtypes")
     public Object approveRecharge(String chargeNo, String approveUser,
             String approveResult, String approveNote);
 
@@ -131,8 +133,8 @@ public interface IAccountAO {
      */
     public Object queryWithdrawOrderPage(String accountNumber, String code,
             String toType, String toCode, String channel, String refNo,
-            String status, String approveUser, String payUser, String dateStart,
-            String dateEnd, String start, String limit);
+            String status, String approveUser, String payUser,
+            String dateStart, String dateEnd, String start, String limit);
 
     /**
      * 代线下取现
@@ -238,8 +240,8 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午5:05:10 wu
      * @history:
      */
-    public Object artificialAccountApply(String accountNumber, String direction,
-            String amount, String applyUser, String applyNote);
+    public Object artificialAccountApply(String accountNumber,
+            String direction, String amount, String applyUser, String applyNote);
 
     /**
      * 人工干预账户审批：需要对账
@@ -306,8 +308,9 @@ public interface IAccountAO {
      * @create: 2016年6月11日 下午5:18:50 XIANDONG
      * @history:
      */
-    public Object editaccount(String code, String companyCode, String subbranch,
-            String cardNo, String status, String updater, String remark);
+    public Object editaccount(String code, String companyCode,
+            String subbranch, String cardNo, String status, String updater,
+            String remark);
 
     /**
      * 删除账号
@@ -416,8 +419,7 @@ public interface IAccountAO {
      * @create: 2016年7月21日 下午3:14:40 XIANDONG
      * @history:
      */
-    public Object inciseScoreList(String userId, String isApprove,
-            String status);
+    public Object inciseScoreList(String userId, String isApprove, String status);
 
     /**
      * 积分切割详情

@@ -1,8 +1,21 @@
+var dhhlData = null;
+var level = null;
+var fromUserId = null;
+var dhhlValue = null;
 $(function (){
-	//页面数据字典初始化
-	//initData();
+	// 输入积分数量，获取人民币数量
+	//获取用户类型
+    url = $("#basePath").val() + "/user";
+	doGetAjaxIsAsync(url, data, false, doSuccessUserBack);
+	var data = {"dhhlFlag":"in","start":"0","limit":"10"};
+	var url = $("#basePath").val() + "/general/system/param/page";
+	doGetAjaxIsAsync(url, data, false, doSuccessDhhlBack);
 	
-	$('#fromType').renderDropdown(Dict.getName('charge_type'));
+	$("#amount").on(function(){
+		var priceVal = this.value * dhhlValue;
+		$("#price").html(priceVal);
+	 });
+	
 	//提交
 	$("#subBtn").click(function(){
 		if(!$("#jsForm").valid()){
@@ -32,18 +45,6 @@ $(function (){
 	//入参合法校验
 	$("#jsForm").validate({
 		rules:{
-			accountNumber:{
-				required: true,
-				maxlength: 32
-			},
-			fromType:{
-				required: true,
-				maxlength: 32
-			},
-			fromCode:{
-				required: true,
-				maxlength: 32
-			},
 			amount:{
 				required: true,
 				number:true,
@@ -52,26 +53,42 @@ $(function (){
 			}
 		},
 		messages:{
-			accountNumber:{
-				required: "请输入账户编号",
-				maxlength: jQuery.format("账户编号不能大于{0}个字符")
-			},
-			fromType:{
-				required: "请选择充值账户类型",
-				maxlength: jQuery.format("支付账号不能大于{0}个字符")
-			},
-			fromCode:{
-				required: "请输入充值账户",
-				maxlength: jQuery.format("支付账号不能大于{0}个字符")
-			},
 			amount:{
-				required: "请输入充值积分",
-				number:"充值积分请输入数字",
-				maxlength: jQuery.format("充值积分不能大于{0}个字符")
+				required: "请输入申请积分数量",
+				number:"申请积分数量请输入数字",
+				maxlength: jQuery.format("申请积分数量不能大于{0}个字符")
 			}
 		}
 	})
 });
+
+function doSuccessDhhlBack(res){
+	if (res.success) {
+		if(res.data != null){
+			var dhhl = res.data.list;
+			for(var i = 0;i < dhhl.length; i++) {
+				if(dhhl[i].ckey == 'TOP_TWO_DHHL' && level == '2'){
+					dhhlValue = dhhl[i].cvalue;
+				}else if(dhhl[i].ckey == 'TWO_THREE_DHHL' && level == '3'){
+					dhhlValue = dhhl[i].cvalue;
+				}
+			}
+		}
+	}else{
+		alert(res.msg);
+	}
+}
+
+function doSuccessUserBack(res){
+	if (res.success) {
+		if(res.data != null){
+			level = res.data.level;
+			fromUserId = res.data.userReferee;
+		}
+	}else{
+		alert(res.msg);
+	}
+}
 
 //线下充值申请成功的回执方法
 function doSuccessBack(res) {

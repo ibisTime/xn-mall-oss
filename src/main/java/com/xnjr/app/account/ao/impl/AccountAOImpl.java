@@ -24,8 +24,8 @@ import com.xnjr.app.account.req.XN802011Req;
 import com.xnjr.app.account.req.XN802020Req;
 import com.xnjr.app.account.req.XN802030Req;
 import com.xnjr.app.account.req.XN802100Req;
-import com.xnjr.app.account.req.XN802110Req;
 import com.xnjr.app.account.req.XN802111Req;
+import com.xnjr.app.account.req.XN802120Req;
 import com.xnjr.app.account.req.XN802200Req;
 import com.xnjr.app.account.req.XN802210Req;
 import com.xnjr.app.account.req.XN802212Req;
@@ -107,8 +107,8 @@ public class AccountAOImpl implements IAccountAO {
     @Override
     public Object queryRechargeOrderPage(String accountNumber, String code,
             String fromType, String fromCode, String channel, String refNo,
-            String status, String approveUser, String dateStart, String dateEnd,
-            String start, String limit) {
+            String status, String approveUser, String dateStart,
+            String dateEnd, String start, String limit) {
         XN802100Req req = new XN802100Req();
         req.setAccountNumber(accountNumber);
         req.setCode(code);
@@ -127,15 +127,17 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object recharge(String accountNumber, String amount, String pdf,
-            String fromType, String fromCode) {
-        XN802110Req req = new XN802110Req();
-        req.setAccountNumber(accountNumber);
+    public Object jfRecharge(String fromUserId, String toUserId, String amount,
+            String price, String type, String pdf, String applyUser) {
+        XN802120Req req = new XN802120Req();
+        req.setFromUserId(fromUserId);
+        req.setToUserId(toUserId);
         req.setAmount(amount);
-        req.setPdf(UploadUtil.uploadPicture(pdf));
-        req.setFromType(fromType);
-        req.setFromCode(fromCode);
-        return BizConnecter.getBizData("802110", JsonUtils.object2Json(req),
+        req.setPrice(price);
+        req.setType(type);
+        req.setPdf(pdf);
+        req.setApplyUser(applyUser);
+        return BizConnecter.getBizData("802120", JsonUtils.object2Json(req),
             Object.class);
     }
 
@@ -154,8 +156,8 @@ public class AccountAOImpl implements IAccountAO {
     @Override
     public Object queryWithdrawOrderPage(String accountNumber, String code,
             String toType, String toCode, String channel, String refNo,
-            String status, String approveUser, String payUser, String dateStart,
-            String dateEnd, String start, String limit) {
+            String status, String approveUser, String payUser,
+            String dateStart, String dateEnd, String start, String limit) {
         XN802200Req req = new XN802200Req();
         req.setAccountNumber(accountNumber);
         req.setCode(code);
@@ -263,8 +265,8 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object artificialAccountApply(String accountNumber, String direction,
-            String amount, String applyUser, String applyNote) {
+    public Object artificialAccountApply(String accountNumber,
+            String direction, String amount, String applyUser, String applyNote) {
         XN802710Req req = new XN802710Req();
         req.setAccountNumber(accountNumber);
         req.setDirection(direction);
@@ -324,8 +326,9 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object editaccount(String code, String companyCode, String subbranch,
-            String cardNo, String status, String updater, String remark) {
+    public Object editaccount(String code, String companyCode,
+            String subbranch, String cardNo, String status, String updater,
+            String remark) {
         XN602402Req req = new XN602402Req();
         req.setCode(code);
         req.setCompanyCode(companyCode);
@@ -430,8 +433,7 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object inciseScoreList(String userId, String isApprove,
-            String status) {
+    public Object inciseScoreList(String userId, String isApprove, String status) {
         XN602102Req req = new XN602102Req();
         req.setUserId(userId);
         req.setIsApprove(isApprove);
@@ -488,5 +490,4 @@ public class AccountAOImpl implements IAccountAO {
         return BizConnecter.getBizData("602107", JsonUtils.object2Json(req),
             Object.class);
     }
-
 }

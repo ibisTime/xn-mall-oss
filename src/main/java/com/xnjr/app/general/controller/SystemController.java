@@ -56,13 +56,15 @@ public class SystemController extends BaseController {
     @RequestMapping(value = "param/page", method = RequestMethod.GET)
     @ResponseBody
     public Object querySystemParamPage(
-            @RequestParam("key") String key,
+            // notIn 查询不包括汇率的 in 查询只有汇率 什么都不传查所有
+            @RequestParam(value = "dhhlFlag", required = false) String dhhlFlag,
+            @RequestParam(value = "key", required = false) String key,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return systemAo.querySystemParamPage(key, start, limit, orderColumn,
-            orderDir);
+        return systemAo.querySystemParamPage(dhhlFlag, key, start, limit,
+            orderColumn, orderDir);
     }
 
     @RequestMapping(value = "param/detail", method = RequestMethod.GET)
