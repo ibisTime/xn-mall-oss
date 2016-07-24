@@ -124,13 +124,14 @@ function queryTableData(){
 			valign : 'middle',
 			sortable : false
 		},{
-			field : 'accountNumber',
+			field : 'amount',
 			title : '积分',
 			align : 'left',
 			valign : 'middle',
-			sortable : false
+			sortable : false,
+			formatter : moneyFormatter
 		},{
-			field : 'amount',
+			field : 'price',
 			title : '价格',
 			align : 'left',
 			valign : 'middle',
@@ -144,11 +145,12 @@ function queryTableData(){
 			sortable : false,
 			formatter : Dict.getNameForList('recharge_status')
 		},{
-			field : 'approveNote',
-			title : '备注',
+			field : 'createDatetime',
+			title : '申请时间',
 			align : 'left',
 			valign : 'middle',
-			sortable : true,
+			sortable : false,
+			formatter : dateFormatter
 		}]
 	});
 }

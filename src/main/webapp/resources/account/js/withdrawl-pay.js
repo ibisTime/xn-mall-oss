@@ -16,7 +16,7 @@ $(function() {
 		if(!$("#jsForm").valid()){
 			return false;
 		}
-		var data = {"approveResult":$("#approveResult").val(),"approveNote":$("#approveNote").val()};
+		var data = {"payResult":$("#payResult").val(),"payNote":$("#payNote").val(),"refNo":$("#refNo").val(),"fee":$("#fee").val()};
 		data['withdrawNo']=$("#withdrawNo").html();
 		var url = $("#basePath").val()+"/account/duixian/check";
 		doPostAjax(url, data, doSuccessBack);
