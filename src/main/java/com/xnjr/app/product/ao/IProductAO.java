@@ -185,4 +185,7 @@ public interface IProductAO {
      * @history:
      */
     public Object goodsDteail(String code);
+    
+    public Object producerAdd(String loginName, String mobile, String idKind, 
+    		String idNo, String realName, String userReferee, String pdf);
 }

@@ -172,4 +172,17 @@ public class ProductController extends BaseController {
     public Object goodsDteail(@RequestParam(value = "code") String code) {
         return productAO.goodsDteail(code);
     }
+    
+    // 货品商入驻
+    @RequestMapping(value = "/producer/add", method = RequestMethod.GET)
+    @ResponseBody
+    public Object producerAdd(@RequestParam(value = "loginName") String loginName,
+    		@RequestParam(value = "mobile") String mobile,
+    		@RequestParam(value = "idKind") String idKind,
+    		@RequestParam(value = "idNo") String idNo,
+    		@RequestParam(value = "realName") String realName,
+    		@RequestParam(value = "userReferee") String userReferee,
+    		@RequestParam(value = "pdf") String pdf) {
+        return productAO.producerAdd(loginName, mobile, idKind, idNo, realName, userReferee, pdf);
+    }
 }
