@@ -1,5 +1,6 @@
 package com.xnjr.app.account.ao.impl;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -546,7 +547,9 @@ public class AccountAOImpl implements IAccountAO {
         req.setIdNo(idNo);
         req.setRealName(realName);
         req.setUserReferee(userReferee);
-        req.setPdf(pdf);
+        if (StringUtils.isNotBlank(pdf)) {
+            req.setPdf(UploadUtil.uploadPicture(pdf));
+        }
         return BizConnecter.getBizData("602600", JsonUtils.object2Json(req),
             Object.class);
     }
