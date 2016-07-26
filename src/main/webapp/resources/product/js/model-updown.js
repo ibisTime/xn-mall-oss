@@ -69,7 +69,7 @@ $(function() {
 	//获取详情回调方法
 	function doSucBackGetDetail(res){
 		if (res.success) {
-			var data = res.data[0];
+			var data = res.data;
 			$("#code").val(data.code);
 			$("#modelName").html(data.model.name);
 			$("#productCode").html(data.model.productName);
