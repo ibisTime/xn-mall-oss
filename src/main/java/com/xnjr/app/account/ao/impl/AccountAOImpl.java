@@ -460,10 +460,10 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object updownScore(String code, String updater, String updateResult,
-            String remark) {
+    public Object updownScore(String integralCode, String updater,
+            String updateResult, String remark) {
         XN602622Req req = new XN602622Req();
-        req.setCode(code);
+        req.setIntegralCode(integralCode);
         req.setUpdater(updater);
         req.setUpdateResult(updateResult);
         req.setRemark(remark);

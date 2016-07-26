@@ -9,7 +9,7 @@ package com.xnjr.app.account.req;
 public class XN602622Req {
 
     // 编号(必填)
-    private String code;
+    private String integralCode;
 
     // 更新人(必填)
     private String updater;
@@ -44,11 +44,12 @@ public class XN602622Req {
         this.updateResult = updateResult;
     }
 
-	public String getCode() {
-		return code;
-	}
+    public String getIntegralCode() {
+        return integralCode;
+    }
 
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public void setIntegralCode(String integralCode) {
+        this.integralCode = integralCode;
+    }
+
 }
