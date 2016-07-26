@@ -21,7 +21,7 @@ $(function(){
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/queryxiajiaPage"});
 	});
 	
-	$('#replaceAddBtn').click(function() {
+	$('#jifenDetailBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
 		if(selRecords.length <= 0){
 			alert("请选择记录");

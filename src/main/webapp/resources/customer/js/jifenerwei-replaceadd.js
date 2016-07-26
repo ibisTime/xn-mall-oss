@@ -21,7 +21,7 @@ function savePic() {
 function doSuccessData(res){
 	if (res.success) {
 		var result = res.data;
-		$("#userId").val($('#frontBaseUrl').val() + '/customer/channel_add.htm?userId='+result.userId);
+		$("#userId").val($('#qianduanBaseUrl').val() + '/m/home/index.htm?u'+result.userId);
 		
 		
 		var qrcode = new QRCode('qrcode');
