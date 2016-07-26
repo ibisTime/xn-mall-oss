@@ -16,7 +16,7 @@ function doSucBackGetDetail(res){
 	if (res.success) {
 		$("#loginName").html(res.data.loginName||'-');
 		$("#mobile").html(res.data.mobile||'-');
-		$("#idKind").html(res.data.idKind||'-');
+		$("#idKind").html(Dict.getIDKindName(res.data.idKind));
 		$("#idNo").html(res.data.idNo||'-');
 		$("#realName").html(res.data.realName||'-');
 		$("#userReferee").html(res.data.userReferee||'-');
@@ -25,16 +25,4 @@ function doSucBackGetDetail(res){
 	}else{
 		alert(res.msg);
 	}
-}
-
-
-
-//格式化金额
-function moneyFormatter(value, row){
-	return moneyFormat(value, 2);
-}
-
-// 格式化时间
-function dateFormatter(value, row){
-	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
 }

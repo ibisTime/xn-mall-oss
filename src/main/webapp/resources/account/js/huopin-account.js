@@ -8,10 +8,10 @@ $(function() {
 	initData();
 	
 	//页面赋值
-	var userId = getQueryString("userId");
-	var data = {"userId":userId};
 	var url = $("#basePath").val()+"/customer/own/account";
-	doGetAjax(url, data, doGetDetailBack);
+	doGetAjax(url, {
+		currency: 'XNB'
+	}, doGetDetailBack);
 });
 
 function initData(){
@@ -27,7 +27,12 @@ function doSucBackAccountStatus(res){
 
 //跳转系统资金明细
 function redirectAmountJour(){
-	location.href = $("#basePath").val()+"/account/sys_account_detail.htm?accountNumber="+$("#accountNumber").html();
+	location.href = $("#basePath").val()+"/account/frozen_account_detail.htm?accountNumber="+$("#accountNumber").html();
+}
+
+//跳转系统资金明细
+function redirectFrozenAmountJour(){
+	location.href = $("#basePath").val()+"/account/frozen_account_detail.htm?accountNumber="+$("#accountNumber").html();
 }
 
 function doGetDetailBack(res){
@@ -35,9 +40,8 @@ function doGetDetailBack(res){
 		if(res.data != null){
 			var result = res.data;
 			$("#status").html(Dict.getName('account_status',result.status));
-			$("#accountNumber").html(result.accountNumber);
-			$("#accountName").html(result.accountName||'-');
 			$("#currency").html(result.currency);
+			$("#accountNumber").html(result.accountNumber);
 			$("#amount").html(moneyFormat(result.amount,2));
 			$("#frozenAmount").html(moneyFormat(result.frozenAmount,2));
 		}else{

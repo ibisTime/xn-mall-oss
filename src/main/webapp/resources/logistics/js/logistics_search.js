@@ -13,6 +13,16 @@ $(function() {
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/logistics/page"});
 	});
 	
+	//收货确认
+	$('#sureBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/logistics/goods_detail.htm?code="+selRecords[0].code;
+	});
+	
 	//详情
 	$('#detailBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')

@@ -31,12 +31,12 @@ $(function() {
 	$("#jsForm").validate({
 		rules: {
 			payNote:{
-				required:false, 
+				required:true, 
 				maxlength:30
 			},
 			refNo: {
 				required: true,
-				maxlength: 64
+				maxlength: 32
 			}
 		},
 		messages: {

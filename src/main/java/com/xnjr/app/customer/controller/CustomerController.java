@@ -133,8 +133,6 @@ public class CustomerController extends BaseController {
     public Object huoyuanPage(
             @RequestParam(value = "loginName", required = false) String loginName,
             @RequestParam(value = "mobile", required = false) String mobile,
-            // @RequestParam(value = "userReferee", required = false) String
-            // userReferee,
             @RequestParam(value = "idKind", required = false) String idKind,
             @RequestParam(value = "idNo", required = false) String idNo,
             @RequestParam(value = "realName", required = false) String realName,

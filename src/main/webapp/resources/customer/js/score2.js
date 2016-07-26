@@ -13,7 +13,7 @@ $(function(){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/customer/account2.htm?userId="+selRecords[0].userId;
+		window.location.href = $("#basePath").val()+"/customer/hpm_detail.htm?userId="+selRecords[0].userId;
 	});
 	
 	// 查询事件绑定
@@ -69,10 +69,7 @@ $(function(){
 			singleSelect : true,
 			queryParams : function(params) {
 				return {
-					mobile : $("#mobile").val(),
-//					realName : $("#realName").val(),
-					userReferee : $("#userReferee").val(),
-					status : $("#status").val(),
+					loginName : $("#loginName").val(),
 					start : params.offset / params.limit + 1,
 					limit : params.limit
 				};

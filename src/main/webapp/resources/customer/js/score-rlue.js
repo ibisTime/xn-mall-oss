@@ -11,15 +11,6 @@ $(function(){
 		window.location.href = $("#basePath").val()+"/customer/firsterwei.htm";
 	});
 	
-//	$('#seconderweiBtn').click(function() {
-//		var selRecords = $('#tableList').bootstrapTable('getSelections')
-//		if(selRecords.length <= 0){
-//			alert("请选择记录");
-//			return;
-//		}
-//		window.location.href = $("#basePath").val()+"/customer/seconderwei.htm?userId="+selRecords[0].userId;
-//	});
-	//window.location.href = "http://121.43.101.148:8067/xn-mall-appms/m/user/register.html?u="+selRecords[0].userId;
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
@@ -89,7 +80,7 @@ $(function(){
 				return {
 					isApprove : $("#isApprove").val(),
 //					realName : $("#realName").val(),
-					userReferee : $("#userReferee").val(),
+					quantity : $("#quantity").val(),
 					status : $("#status").val(),
 					start : params.offset / params.limit + 1,
 					limit : params.limit

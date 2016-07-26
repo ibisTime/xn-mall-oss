@@ -18,7 +18,14 @@ $(function(){
 		location.href = $("#basePath").val()+"/customer/channel_add.htm";
 	});
 	
-	
+	$('#detailBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/customer/channel_detail.htm?userId="+selRecords[0].userId;
+	});
 	
 	//表格初始化
 	function queryTableData(){
@@ -29,29 +36,22 @@ $(function(){
 				valign : 'middle',
 				checkbox : true
 			},{
-				field : 'loginName',
-				title : '登录名',
-				align : 'left',
-				valign : 'middle',
-				sortable : false
-			},{
 				field : 'mobile',
-				title : '绑定手机号',
+				title : '手机号',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
 			},{
-				field : 'userReferee',
-				title : '推荐人',
+				field : 'realName',
+				title : '真实姓名',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
 		    },{
-				field : 'updateDatetime',
-				title : '更新时间',
+				field : 'idNo',
+				title : '证件号码',
 				align : 'left',
 				valign : 'middle',
-				formatter:dateFormatter,
 				sortable : false
 			}];
 		
@@ -64,8 +64,6 @@ $(function(){
 			singleSelect : true,
 			queryParams : function(params) {
 				return {
-					loginName : $("#loginName").val(),
-					realName : $("#realName").val(),
 					mobile : $("#mobile").val(),
 					start : params.offset / params.limit + 1,
 					limit : params.limit

@@ -34,15 +34,24 @@ $(function (){
 				required: true,
 				maxlength: 32
 			},
+			fromUserId:{
+				required: true,
+				maxlength: 32
+			},
 			toCode:{
 				required: true,
 				maxlength: 32
+			},	
+			price:{
+				required: true,
+				number:true,
+				maxlength: 11
 			},
 			amount:{
 				required: true,
 				number:true,
 				isPositive: true,
-				maxlength: 13
+				maxlength: 11
 			}
 		},
 		messages:{
@@ -53,9 +62,16 @@ $(function (){
 			toType:{
 				required: "请选择取现账户类型",
 			},
+			fromUserId:{
+				required: "请选择来方用户",
+			},
 			toCode:{
 				required: "请输入取现账户",
 				maxlength: jQuery.format("取现账号不能大于{0}个字符")
+			},
+			price:{
+				required: "请输入价格",
+				maxlength: jQuery.format("价格不能大于{0}个字符")
 			},
 			amount:{
 				required: "请输入取现积分",

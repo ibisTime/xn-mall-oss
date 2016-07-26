@@ -21,9 +21,13 @@ $(function(){
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/queryxiajiaPage"});
 	});
 	
-	//代注册
 	$('#replaceAddBtn').click(function() {
-		location.href = $("#basePath").val()+"/customer/customer_replaceadd.htm";
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/account/jifendetail_account.htm?userId="+selRecords[0].userId;
 	});
 	
 	//表格初始化
@@ -54,7 +58,7 @@ $(function(){
 				sortable : false
 		    },{
 				field : 'userReferee',
-				title : '上家编号',
+				title : '推荐人',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
@@ -75,7 +79,7 @@ $(function(){
 			singleSelect : true,
 			queryParams : function(params) {
 				return {
-					mobile : $("#mobile").val(),
+					loginName : $("#loginName").val(),
 //					realName : $("#realName").val(),
 //					userReferee : $("#userReferee").val(),
 					status : $("#status").val(),

@@ -12,7 +12,7 @@ $(function() {
 		$.each(t, function() {
 			data[this.name] = this.value;
 		});
-		data["pdf"]=pdfImg;
+		if(pdfImg.constructor === String) data["pdf"]=pdfImg;
 		var url = $("#basePath").val()+"/customer/huoyuan/add";
 		doPostAjax(url, data, doSaveSuccessBack);
 	});

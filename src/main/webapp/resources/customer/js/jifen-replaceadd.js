@@ -31,6 +31,7 @@ $(function() {
 			},
 			mobile: {
 				required: true,
+				number: true,
 				maxlength: 11
 			},
 			idKind: {
