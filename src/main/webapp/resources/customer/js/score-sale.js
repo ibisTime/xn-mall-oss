@@ -11,14 +11,14 @@ $(function(){
 		window.location.href = $("#basePath").val()+"/customer/firsterwei.htm";
 	});
 	
-//	$('#seconderweiBtn').click(function() {
-//		var selRecords = $('#tableList').bootstrapTable('getSelections')
-//		if(selRecords.length <= 0){
-//			alert("请选择记录");
-//			return;
-//		}
-//		window.location.href = $("#basePath").val()+"/customer/seconderwei.htm?userId="+selRecords[0].userId;
-//	});
+	$('#erweiBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/customer/erweimaSale.htm?code="+selRecords[0].code;
+	});
 	//window.location.href = "http://121.43.101.148:8067/xn-mall-appms/m/user/register.html?u="+selRecords[0].userId;
 	
 	// 查询事件绑定
@@ -42,7 +42,7 @@ $(function(){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/customer/firsterwei_detail.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/customer/firsterwei_detail2.htm?code="+selRecords[0].code;
 	});
 	
 	//表格初始化
@@ -77,6 +77,7 @@ $(function(){
 				title : '状态',
 				align : 'left',
 				valign : 'middle',
+				formatter:Dict.getNameForList('score_updown'),
 				sortable : false
 			},{
 				field : 'updateDatetime',
