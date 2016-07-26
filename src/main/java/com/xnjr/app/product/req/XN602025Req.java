@@ -18,15 +18,12 @@ public class XN602025Req extends APageReq {
     // 用户编号（选填）
     private String applyUser;
 
-    private String loginName;
+    private String toUser;
 
     private String code;
 
     // 状态（选填）
     private String status;
-
-    // 是否为尾款支付
-    private String isSecondPay;
 
     //
     // // 状态（选填）
@@ -56,20 +53,12 @@ public class XN602025Req extends APageReq {
         this.code = code;
     }
 
-    public String getIsSecondPay() {
-        return isSecondPay;
-    }
+	public String getToUser() {
+		return toUser;
+	}
 
-    public void setIsSecondPay(String isSecondPay) {
-        this.isSecondPay = isSecondPay;
-    }
-
-    public String getLoginName() {
-        return loginName;
-    }
-
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
-    }
+	public void setToUser(String toUser) {
+		this.toUser = toUser;
+	}
 
 }

@@ -114,10 +114,7 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				code : $("#code").val(),
-				loginName : $("#loginName").val(),
-				dateStart : $("#deliveryDatetimeStart").val(),
-				dateEnd : $("#deliveryDatetimeEnd").val(),
+				applyUser : $("#applyUser").val(),
 				status : $("#status").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit

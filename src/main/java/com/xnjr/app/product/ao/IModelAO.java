@@ -220,9 +220,8 @@ public interface IModelAO {
      * @create: 2016年5月23日 上午11:38:30 XIANDONG
      * @history:
      */
-    public Object queryOrderPage(String code, String applyUser,
-            String loginName, String status, String isSecondPay,
-            String dateStart, String dateEnd, String start, String limit,
+    public Object queryOrderPage(String applyUser,
+            String toUser, String status, String start, String limit,
             String orderColumn, String orderDir);
 
     /**

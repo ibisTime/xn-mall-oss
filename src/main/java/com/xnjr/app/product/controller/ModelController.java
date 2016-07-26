@@ -192,20 +192,17 @@ public class ModelController extends BaseController {
     @RequestMapping(value = "/order/Page", method = RequestMethod.GET)
     @ResponseBody
     public Object queryOrderPage(
-            @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "applyUser", required = false) String applyUser,
-            @RequestParam(value = "loginName", required = false) String loginName,
+            @RequestParam(value = "toUser", required = false) String toUser,
             @RequestParam(value = "status", required = false) String status,
-            @RequestParam(value = "isSecondPay", required = false) String isSecondPay,
             @RequestParam(value = "dateStart", required = false) String dateStart,
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return modelAO.queryOrderPage(code, applyUser, loginName, status,
-            isSecondPay, dateStart, dateEnd, start, limit, orderColumn,
-            orderDir);
+        return modelAO.queryOrderPage(applyUser, toUser, status,
+            start, limit, orderColumn, orderDir);
     }
 
     @RequestMapping(value = "/order/List", method = RequestMethod.GET)

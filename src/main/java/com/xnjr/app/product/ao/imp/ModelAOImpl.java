@@ -233,18 +233,13 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object queryOrderPage(String code, String applyUser,
-            String loginName, String status, String isSecondPay,
-            String dateStart, String dateEnd, String start, String limit,
+    public Object queryOrderPage(String applyUser,
+            String toUser, String status, String start, String limit,
             String orderColumn, String orderDir) {
         XN602025Req req = new XN602025Req();
-        req.setCode(code);
         req.setApplyUser(applyUser);
-        req.setLoginName(loginName);
         req.setStatus(status);
-        req.setIsSecondPay(isSecondPay);
-        req.setDateStart(dateStart);
-        req.setDateEnd(dateEnd);
+        req.setToUser(toUser);
         req.setStart(start);
         req.setLimit(limit);
         req.setOrderColumn(orderColumn);
