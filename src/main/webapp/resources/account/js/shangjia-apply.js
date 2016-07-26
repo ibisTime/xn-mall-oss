@@ -26,7 +26,7 @@ $(function (){
 			alert("请上传水单");
 			return;
 		}
-		var data = {"fromUserId":fromUserId,"type":"1","amount":moneyParse($("#amount").val()),"price":moneyParse($("#price").val())};
+		var data = {"fromUserId":fromUserId,"type":"1","amount":moneyParse($("#amount").val()),"price":moneyParse($("#price").html())};
 		data['pdf'] = $("#url1").attr("href");
 		var url = $("#basePath").val()+"/account/fromRecharge";
 		doPostAjax(url, data, doSuccessBack);

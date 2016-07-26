@@ -19,7 +19,7 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		redirectUrl();
+		window.location.href = $("#basePath").val()+"/account/recharge.htm";
 	});
 	
 	//入参合法性校验
@@ -75,7 +75,7 @@ function doApprove(approveResult){
 function doSuccessBack(res) {
 	if (res.success == true) {
 		alert("操作成功");
-		redirectUrl();
+		window.location.href = $("#basePath").val()+"/account/recharge.htm";
 	}else{
 		alert(res.msg);
 	}

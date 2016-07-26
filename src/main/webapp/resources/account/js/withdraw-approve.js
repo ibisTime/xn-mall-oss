@@ -39,15 +39,15 @@ $(function() {
 	//入参合法性校验
 	$("#jsForm").validate({
 		rules: {
-			remark: {
+			approveNote: {
 				required: true,
 				maxlength: 64
 			}
 		},
 		messages: {
-			remark: {
-				required: "请输入备注",
-				maxlength: jQuery.format("备注不能大于{0}个字符")
+			approveNote: {
+				required: "请输入审批意见",
+				maxlength: jQuery.format("审批意见不能大于{0}个字符")
 			}
 		}
 	});

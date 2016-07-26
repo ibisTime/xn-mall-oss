@@ -242,11 +242,9 @@ public class CustomerController extends BaseController {
     // 渠道商修改名称
     @RequestMapping(value = "/own/account", method = RequestMethod.GET)
     @ResponseBody
-    public Object owner(
-            // @RequestParam(value = "userId") String userId,
+    public Object owner(@RequestParam(value = "userId") String userId,
             @RequestParam(value = "currency") String currency) {
-        return customerAO.detailaccount(this.getSessionUser().getUserId(),
-            currency);
+        return customerAO.detailaccount(userId, currency);
 
     }
 

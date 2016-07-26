@@ -10,7 +10,7 @@ $(function() {
 	//页面赋值
 	var userId = getQueryString("userId");
 	var data = {"userId":userId};
-	var url = $("#basePath").val()+"/customer/detailmoney";
+	var url = $("#basePath").val()+"/customer/own/account";
 	doGetAjax(url, data, doGetDetailBack);
 });
 

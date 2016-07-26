@@ -1,6 +1,6 @@
 
 $(function() {
-//	$('#isApprove').renderDropdown(Dict.getName("isApprove"));
+	$('#isApprove').renderDropdown(Dict.getName("isApprove"));
 
 	//提交
 	$('#subBtn').click(function() {
@@ -31,7 +31,7 @@ $(function() {
 			},
 			price: {
 				required: true,
-				maxlength: 2
+				maxlength: 11
 			},
 			isApprove: {
 				required: true,

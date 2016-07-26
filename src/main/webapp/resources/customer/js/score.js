@@ -75,10 +75,7 @@ $(function(){
 			singleSelect : true,
 			queryParams : function(params) {
 				return {
-					mobile : $("#mobile").val(),
-//					realName : $("#realName").val(),
-					userReferee : $("#userReferee").val(),
-					status : $("#status").val(),
+					loginName : $("#loginName").val(),
 					start : params.offset / params.limit + 1,
 					limit : params.limit
 				};

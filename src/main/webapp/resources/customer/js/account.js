@@ -16,7 +16,7 @@ function doSucBackGetDetail(res){
 	if (res.success) {
 		$("#loginName").html(res.data.loginName||'-');
 		$("#mobile").html(res.data.mobile||'-');
-		$("#idKind").html(res.data.idKind||'-');
+		$("#idKind").html(Dict.getName("id_kind",res.data.idKind||'-'));
 		$("#idNo").html(res.data.idNo||'-');
 		$("#realName").html(res.data.realName||'-');
 		$("#userReferee").html(res.data.userReferee||'-');
