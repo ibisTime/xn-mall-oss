@@ -1,0 +1,1 @@
+UPDATE tsys_menu set name = '上架销售' where url = '/product/model_publish.htm';

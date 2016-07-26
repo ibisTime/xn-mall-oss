@@ -1,6 +1,8 @@
 $(function() {
 	
+	$('#category').renderDropdown(Dict.getName('pro_category'));
 	$('#type').renderDropdown(Dict.getName('product_type'));
+	$('#status').renderDropdown(Dict.getName('product_status'));
 	
 	//获取菜单URL入参
 	var code = getQueryString("code");
@@ -10,7 +12,6 @@ $(function() {
 	}else{
 		$("#code").attr("readonly","readonly");
 		$("#operate").val("edit");
-		$("#operContent").text("修改产品");
 		var data = {"code":code};
 		var url = $("#basePath").val()+"/product/detail";
 		doGetAjax(url, data, doSucBackGetDetail);
@@ -18,25 +19,18 @@ $(function() {
 	
 	//提交
 	$('#subBtn').click(function() {
-		if(isBlank($('#majorPic').next().attr("src"))){
-			alert("请上传主推图");
-			return;
-		}
-		if(isBlank($('#advPic').next().attr("src"))){
-			alert("请上传广告图");
-			return;
-		}
-		if(isBlank($('#familyPic').next().attr("src"))){
-			alert("请上传全家福图");
-			return;
-		}
-		if(isBlank($('#highlightPic').next().attr("src"))){
-			alert("请上传亮点图");
-			return;
-		}
 	    if(!$("#jsForm").valid()){
 			return false;
 		}
+	    if(isBlank($('#img1').attr("src"))){
+			alert("请上传广告图");
+			return;
+		}
+	    if(isBlank($('#img2').attr("src"))){
+			alert("请上传小类图");
+			return;
+		}
+		
 	    var data = {};
 		var t = $('form').serializeArray();
 		$.each(t, function() {
@@ -44,10 +38,8 @@ $(function() {
 		});
 		var operator = $("#operate").val() != "edit"?"add":"edit";
 		
-		data["advPic"]=$('#advPic').next().attr("src");
-		data["majorPic"]=$('#majorPic').next().attr("src");
-		data["familyPic"]=$('#familyPic').next().attr("src");
-		data["highlightPic"]=$('#highlightPic').next().attr("src");
+		data["advPic"]=$('#img1').attr("src");
+		data["typePic"]=$('#img2').attr("src");
 		var url = $("#basePath").val()+"/product/" + operator;
 		
 		doPostAjax(url, data, doSucBackSave);
@@ -59,54 +51,29 @@ $(function() {
 		rules: {
 			name: {
 				required: true,
-				maxlength: 64
+				maxlength: 30
 			},
-			familyText: {
-				required: true,
-				maxlength: 1024
-			},
-			type: "required",
 			advTitle: {
 				required: true,
-				maxlength: 64
+				maxlength: 60
 			},
-			majorText: {
-				required: true,
-				maxlength: 1024
+			category: {
+				required: true
 			},
-			highlightText: {
+			type: {
+				required: true
+			},
+			orderNo: {
 				required: true,
-				maxlength: 1024
+				number: true,
+				maxlength: 4
+			},
+			status: {
+				required: true
 			},
 			remark: {
 				required: false,
-				maxlength: 255
-			}
-		},
-		messages: {
-			name: {
-				required: "请输入产品名称",
-				maxlength: jQuery.format("产品名称不能大于{0}个字符")
-			},
-			familyText: {
-				required: "请输入全家福文本",
-				maxlength: jQuery.format("全家福文本不能大于{0}个字符")
-			},
-			type: "请选择类型",
-			advTitle: {
-				required: "请输入广告语",
-				maxlength: jQuery.format("广告语不能大于{0}个字符")
-			},
-			majorText: {
-				required: "请输入主推文本",
-				maxlength: jQuery.format("主推文本不能大于{0}个字符")
-			},
-			highlightText: {
-				required: "请输入亮点文本",
-				maxlength: jQuery.format("亮点文本不能大于{0}个字符")
-			},
-			remark: {
-				maxlength: jQuery.format("备注不能大于{0}个字符")
+				maxlength: 250
 			}
 		}
 	});
@@ -122,17 +89,15 @@ $(function() {
 function doSucBackGetDetail(res){
 	if (res.success) {
 		$("#code").val(res.data.code);
+		$("#category").val(res.data.category);
 		$("#type").val(res.data.type);
 		$("#name").val(res.data.name);
+		$("#orderNo").val(res.data.orderNo);
+		$("#status").val(res.data.status);
 		$("#advTitle").val(res.data.advTitle);
-		$("#majorText").val(res.data.majorText);
-		$("#familyText").val(res.data.familyText);
-		$("#highlightText").val(res.data.highlightText);
 		$("#remark").val(res.data.remark);
 		$("#img1").attr('src',res.data.advPic);
-		$("#img2").attr('src',res.data.majorPic);
-		$("#img3").attr('src',res.data.familyPic);
-		$("#img4").attr('src',res.data.highlightPic);
+		$("#img2").attr('src',res.data.typePic);
 	}else{
 		alert(res.msg);
 	}

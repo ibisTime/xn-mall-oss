@@ -32,46 +32,14 @@ $(function() {
 
 	//上架
 	$('#updownBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections');
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
+//		var selRecords = $('#tableList').bootstrapTable('getSelections');
+//		if(selRecords.length <= 0){
+//			alert("请选择记录");
+//			return;
+//		}
 		
-		window.location.href = $("#basePath").val()+"/product/model_updown.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/product/model_updown.htm?code="+1;
 
-	});
-	
-	//下架
-	$('#downBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections');
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		
-		window.location.href = $("#basePath").val()+"/product/product_updown.htm?code="+selRecords[0].code;
-
-	});
-	
-	$('#updownBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-    	var url = $("#basePath").val()+"/model/up";
-    	var data = {code:selRecords[0].code};
-    	doPostAjax(url, data, doSucBackPublish);
-	});
-	
-	$('#changeBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-      	window.location.href = $("#basePath").val()+"/security/role_menu.htm?code="+selRecords[0].code+"&name="+encodeURI(encodeURI(selRecords[0].name))+"&kind="+selRecords[0].kind;
 	});
 });
 
@@ -87,38 +55,43 @@ function queryTableData(){
 		checkbox : true
 	}, {
 		field : 'name',
-		title : '型号名称',
-		align : 'left',
-		valign : 'middle',
-		sortable : false,
+		title : '货品名称'
 	}, {
-		field : 'productName',
-		title : '所属产品',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
+		field : 'name',
+		title : '货品类型'
 	}, {
-		field : 'status',
-		title : '状态',
-		align : 'left',
-		valign : 'middle',
-		formatter:Dict.getNameForList('product_status'),
-		sortable : false
+		field : 'name',
+		title : '进货价（元）'
+	}, {
+		field : 'name',
+		title : '仓库数量'
+	}, {
+		field : 'name',
+		title : '状态'
+	}, {
+		field : 'name',
+		title : '售价（积分）'
+	}, {
+		field : 'name',
+		title : '位置'
+	}, {
+		field : 'name',
+		title : '备注'
 	}];
 	
 	
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/model/page",
+		url : $("#basePath").val()+"/model/price/page",
 		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				name : $("#name").val(),
-				productCode : $("#productCode").val(),
+				modelName : $("#modelName").val(),
+				productName : $("#productName").val(),
 				status : $("#status").val()||13,
 				start : params.offset / params.limit + 1,
 				limit : params.limit

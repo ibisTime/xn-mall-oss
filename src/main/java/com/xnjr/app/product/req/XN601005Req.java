@@ -14,6 +14,8 @@ package com.xnjr.app.product.req;
  * @history:
  */
 public class XN601005Req {
+	
+	private String category;
 
     // 产品大类
     private String type;
@@ -58,5 +60,13 @@ public class XN601005Req {
     public void setUpdater(String updater) {
         this.updater = updater;
     }
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 }

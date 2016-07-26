@@ -81,11 +81,14 @@ public class ModelController extends BaseController {
     @RequestMapping(value = "/updown", method = RequestMethod.POST)
     @ResponseBody
     public Object updownModel(@RequestParam("code") String code,
-            // @RequestParam("checkUser") String checkUser,
-            @RequestParam("checkResult") String checkResult,
-            @RequestParam("checkNote") String checkNote) {
-        return modelAO.updownModel(code, this.getSessionUser().getUserName(),
-            checkResult, checkNote);
+            @RequestParam(value = "originalPrice", required = false) String originalPrice,
+            @RequestParam(value = "discountPrice", required = false) String discountPrice,
+            @RequestParam(value = "toLevel", required = false) String toLevel,
+            @RequestParam(value = "toSite", required = false) String toSite,
+            @RequestParam("isUp") String isUp,
+            @RequestParam(value = "remark", required = false) String remark) {
+        return modelAO.updownModel(code, originalPrice, discountPrice, toLevel, toSite, 
+        		this.getSessionUser().getUserName(), isUp, remark);
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
@@ -94,12 +97,12 @@ public class ModelController extends BaseController {
             @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "status", required = false) String status,
-            @RequestParam(value = "productCode", required = false) String productCode,
+            @RequestParam(value = "productName", required = false) String productName,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return modelAO.queryModelPage(code, name, status, productCode, start,
+        return modelAO.queryModelPage(code, name, status, productName, start,
             limit, orderColumn, orderDir);
     }
 
@@ -149,23 +152,24 @@ public class ModelController extends BaseController {
 
     @RequestMapping(value = "/price/page", method = RequestMethod.GET)
     @ResponseBody
-    public Object shopCarPage(@RequestParam("code") String code,
-            @RequestParam("modelCode") String modelCode,
-            @RequestParam("toLevel") String toLevel,
+    public Object shopCarPage(
+            @RequestParam(value = "modelCode", required = false) String modelCode,
+            @RequestParam(value = "toLevel", required = false) String toLevel,
+            @RequestParam(value = "toSite", required = false) String toSite,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return modelAO.shopCarPage(code, modelCode, toLevel, start, limit,
+        return modelAO.shopCarPage(modelCode, toLevel, toSite, start, limit,
             orderColumn, orderDir);
     }
 
     @RequestMapping(value = "/price/list", method = RequestMethod.GET)
     @ResponseBody
-    public Object shopCarList(@RequestParam("code") String code,
+    public Object shopCarList(@RequestParam("toSite") String toSite,
             @RequestParam("modelCode") String modelCode,
             @RequestParam("toLevel") String toLevel) {
-        return modelAO.shopCarList(code, modelCode, toLevel);
+        return modelAO.shopCarList(modelCode, toLevel, toSite);
     }
 
     @RequestMapping(value = "/price/detail", method = RequestMethod.GET)

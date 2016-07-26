@@ -20,7 +20,6 @@ function doSucBackGetDetail(res){
 		$("#idNo").html(res.data.idNo||'-');
 		$("#realName").html(res.data.realName||'-');
 		$("#userReferee").html(res.data.userReferee||'-');
-		$("#remark").html(res.data.remark||'-');
 		$("#img").attr('src',res.data.pdf);
 	}else{
 		alert(res.msg);

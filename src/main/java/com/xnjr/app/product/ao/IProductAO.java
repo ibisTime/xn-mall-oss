@@ -24,7 +24,8 @@ public interface IProductAO {
      * @create: 2016年5月17日 下午1:41:30 XIANDONG
      * @history:
      */
-    public Object addProduct(String type, String name, String advTitle,
+    public Object addProduct(String category, String type, String typePic, String name, 
+    		String order, String status, String advTitle,
             String advPic, String majorPic, String majorText, String familyPic,
             String familyText, String highlightPic, String highlightText,
             String updater, String remark);
@@ -46,10 +47,11 @@ public interface IProductAO {
      * @create: 2016年5月17日 下午1:41:40 XIANDONG
      * @history:
      */
-    public Object editProduct(String code, String type, String name,
-            String advTitle, String advPic, String majorPic, String majorText,
-            String familyPic, String familyText, String highlightPic,
-            String highlightText, String updater, String remark);
+    public Object editProduct(String code, String category, String type, String typePic, String name, 
+    		String order, String status, String advTitle,
+            String advPic, String majorPic, String majorText, String familyPic,
+            String familyText, String highlightPic, String highlightText,
+            String updater, String remark);
 
     /**
      * 分页查询产品
@@ -79,7 +81,7 @@ public interface IProductAO {
      * @create: 2016年5月17日 下午1:41:58 XIANDONG
      * @history:
      */
-    public Object queryProductList(String type, String name, String updater,
+    public Object queryProductList(String category, String type, String name, String updater,
             String status);
 
     /**

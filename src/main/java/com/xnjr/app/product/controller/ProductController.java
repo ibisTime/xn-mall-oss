@@ -25,18 +25,23 @@ public class ProductController extends BaseController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object addproduct(@RequestParam("type") String type,
+    public Object addproduct(
+    		@RequestParam("category") String category,
+    		@RequestParam("type") String type,
+    		@RequestParam("typePic") String typePic,
             @RequestParam("name") String name,
+            @RequestParam("orderNo") String order,
+            @RequestParam("status") String status,
             @RequestParam("advTitle") String advTitle,
             @RequestParam("advPic") String advPic,
-            @RequestParam("majorPic") String majorPic,
-            @RequestParam("majorText") String majorText,
-            @RequestParam("familyPic") String familyPic,
-            @RequestParam("familyText") String familyText,
-            @RequestParam("highlightPic") String highlightPic,
-            @RequestParam("highlightText") String highlightText,
+            @RequestParam(value = "majorPic", required = false) String majorPic,
+            @RequestParam(value = "majorText", required = false) String majorText,
+            @RequestParam(value = "familyPic", required = false) String familyPic,
+            @RequestParam(value = "familyText", required = false) String familyText,
+            @RequestParam(value = "highlightPic", required = false) String highlightPic,
+            @RequestParam(value = "highlightText", required = false) String highlightText,
             @RequestParam(value = "remark", required = false) String remark) {
-        return productAO.addProduct(type, name, advTitle, advPic, majorPic,
+        return productAO.addProduct(category, type, typePic, name, order, status, advTitle, advPic, majorPic,
             majorText, familyPic, familyText, highlightPic, highlightText,
             this.getSessionUser().getUserName(), remark);
     }
@@ -44,20 +49,24 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
     public Object editMenu(@RequestParam("code") String code,
-            @RequestParam("type") String type,
+    		@RequestParam("category") String category,
+    		@RequestParam("type") String type,
+    		@RequestParam("typePic") String typePic,
             @RequestParam("name") String name,
+            @RequestParam("orderNo") String order,
+            @RequestParam("status") String status,
             @RequestParam("advTitle") String advTitle,
             @RequestParam("advPic") String advPic,
-            @RequestParam("majorPic") String majorPic,
-            @RequestParam("majorText") String majorText,
-            @RequestParam("familyPic") String familyPic,
-            @RequestParam("highlightPic") String highlightPic,
-            @RequestParam("highlightText") String highlightText,
-            @RequestParam("familyText") String familyText,
+            @RequestParam(value = "majorPic", required = false) String majorPic,
+            @RequestParam(value = "majorText", required = false) String majorText,
+            @RequestParam(value = "familyPic", required = false) String familyPic,
+            @RequestParam(value = "familyText", required = false) String familyText,
+            @RequestParam(value = "highlightPic", required = false) String highlightPic,
+            @RequestParam(value = "highlightText", required = false) String highlightText,
             @RequestParam(value = "remark", required = false) String remark) {
-        return productAO.editProduct(code, type, name, advTitle, advPic,
-            majorPic, majorText, familyPic, familyText, highlightPic,
-            highlightText, this.getSessionUser().getUserName(), remark);
+        return productAO.editProduct(code, category, type, typePic, name, order, status, advTitle, advPic, majorPic,
+                majorText, familyPic, familyText, highlightPic, highlightText,
+                this.getSessionUser().getUserName(), remark);
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
@@ -78,11 +87,12 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public Object queryProductList(
+    		@RequestParam(value = "category", required = false) String category,
             @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "updater", required = false) String updater,
             @RequestParam(value = "status", required = false) String status) {
-        return productAO.queryProductList(type, name, updater, status);
+        return productAO.queryProductList(category, type, name, updater, status);
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)

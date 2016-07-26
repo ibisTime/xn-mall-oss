@@ -16,10 +16,7 @@
     <!-- 导航 -->
 	<div class="place">
     	<span>位置：</span>
-	    <ul>
-	    	<li>型号管理</li>
-	    	<li>型号设置</li>
-	    	<li id="operContent">新增型号</li>
+    	<ul>
    		</ul>
     </div>
     <!-- 表单 -->
@@ -28,12 +25,14 @@
 	    <div class="form-title"><span>型号信息</span></div>
 		    <ul class="form-info">
 		    	<li style="display:none;"><label></label><span id="code" ></span></li>
-		        <li><label><b>*</b>所属产品:</label><select id="productCode" name="productCode" class="control-def"></select></li>
- 		    	<li><label><b>*</b>型号名称:</label><input type="text" id="name" name="name" class="control-def"/></li>
- 		    	<li><label><b>*</b>图片1:</label><input type="file" id="pic1" name="pic1" onchange="selectImage(this,'pic1');" /><img src="" id="img1" width="180" height="180"></img><b>请上传图片1建议大小500*500</b></li>
-		    	<li><label><b>*</b>图片2:</label><input type="file" id="pic2" name="pic2" onchange="selectImage(this,'pic2');" /><img src="" id="img2" width="180" height="180"></img><b>请上传图片2建议大小500*500</b></li>
- 		    	<li><label><b>*</b>图片3:</label><input type="file" id="pic3" name="pic3" onchange="selectImage(this,'pic3');" /><img src="" id="img3" width="180" height="180"></img><b>请上传图片3建议大小500*500</b></li>
- 		    	<li><label><b>*</b>文本:</label><input type="text" id="description" name="description" class="control-def"/></li>
+		        <li><label><b>*</b>所属品类:</label><select id="productCode" name="productCode" class="control-def"></select></li>
+ 		    	<li><label><b>*</b>货品名称:</label><input type="text" id="name" name="name" class="control-def"/></li>
+ 		    	<li><label><b>*</b>图片1:</label><input type="file" id="pic1" name="pic1" onchange="selectImage(this,'pic1');" /><img src="" id="img1" width="180" height="180"></img><b> 请上传图片1建议大小500*500</b></li>
+		    	<li><label><b>*</b>图片2:</label><input type="file" id="pic2" name="pic2" onchange="selectImage(this,'pic2');" /><img src="" id="img2" width="180" height="180"></img><b> 请上传图片2建议大小500*500</b></li>
+ 		    	<li><label><b>*</b>图片3:</label><input type="file" id="pic3" name="pic3" onchange="selectImage(this,'pic3');" /><img src="" id="img3" width="180" height="180"></img><b> 请上传图片3建议大小500*500</b></li>
+ 		    	<li><label><b>*</b>货品描述:</label><textarea id="description" name="description" style="width:800px;height:250px;float:left"></textarea></li>
+ 		    	<li><label><b>*</b>状态:</label><select id="status" name="status" class="control-def"></select></li>
+ 		    	<li><label><b></b>备注:</label><input type="text" id="remark" name="remark" class="control-def"/></li>
 		    	<div id="edittable"></div>
 		    </ul>
 			<li>

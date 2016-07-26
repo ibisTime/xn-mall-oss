@@ -97,26 +97,38 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object updownModel(String code, String checkUser, String checkResult,
-            String checkNote) {
-        XN601023Req req = new XN601023Req();
-        req.setCode(code);
-        req.setCheckUser(checkUser);
-        req.setCheckResult(checkResult);
-        req.setCheckNote(checkNote);
-        return BizConnecter.getBizData("601023", JsonUtils.object2Json(req),
-            Object.class);
+    public Object updownModel(String code, String originalPrice, String discountPrice, 
+    		String toLevel, String toSite, String updater, String isUp, String remark) {
+    	if (isUp == "1") {
+    		XN601040Req req = new XN601040Req();
+    		req.setCode(code);
+    		req.setOriginalPrice(originalPrice);
+    		req.setDiscountPrice(discountPrice);
+    		req.setToLevel(toLevel);
+    		req.setToSite(toSite);
+    		req.setUpdater(updater);
+    		req.setRemark(remark);
+    		return BizConnecter.getBizData("601040", JsonUtils.object2Json(req),
+    	            Object.class);
+    	} else {
+    		XN601041Req req = new XN601041Req();
+    		req.setCode(code);
+    		req.setUpdater(updater);
+    		req.setRemark(remark);
+    		return BizConnecter.getBizData("601041", JsonUtils.object2Json(req),
+    	            Object.class);
+    	}
     }
 
     @Override
     public Object queryModelPage(String code, String name, String status,
-            String productCode, String start, String limit, String orderColumn,
+            String productName, String start, String limit, String orderColumn,
             String orderDir) {
         XN601024Req req = new XN601024Req();
         req.setCode(code);
         req.setName(name);
         req.setStatus(status);
-        req.setProductCode(productCode);
+        req.setProductName(productName);
         req.setStart(start);
         req.setLimit(limit);
         req.setOrderColumn(orderColumn);
@@ -149,38 +161,23 @@ public class ModelAOImpl implements IModelAO {
     public Object shopLeadadd(String modelCode, String originalPrice,
             String discountPrice, String toLevel, String updater,
             String remark) {
-        XN601040Req req = new XN601040Req();
-        req.setModelCode(modelCode);
-        req.setOriginalPrice(CalculationUtil.mult(originalPrice));
-        req.setDiscountPrice(discountPrice);
-        req.setToLevel(toLevel);
-        req.setUpdater(updater);
-        req.setRemark(remark);
-        return BizConnecter.getBizData("601040", JsonUtils.object2Json(req),
-            Object.class);
+        return null;
     }
 
     @Override
     public Object shopLeadedit(String code, String modelCode,
             String originalPrice, String discountPrice, String toLevel,
             String updater, String remark) {
-        XN601041Req req = new XN601041Req();
-        req.setCode(code);
-        req.setOriginalPrice(CalculationUtil.mult(originalPrice));
-        req.setDiscountPrice(discountPrice);
-        req.setToLevel(toLevel);
-        req.setUpdater(updater);
-        req.setRemark(remark);
-        return BizConnecter.getBizData("601041", JsonUtils.object2Json(req),
-            Object.class);
+        return null;
     }
 
     @Override
-    public Object shopCarPage(String code, String modelCode, String toLevel,
+    public Object shopCarPage(String modelCode, String toLevel, String toSite,
             String start, String limit, String orderColumn, String orderDir) {
         XN601042Req req = new XN601042Req();
-        req.setCode(code);
-        req.setCode(modelCode);
+        req.setModelCode(modelCode);
+        req.setToLevel(toLevel);
+        req.setToSite(toSite);
         req.setStart(start);
         req.setLimit(limit);
         req.setOrderColumn(orderColumn);
@@ -190,11 +187,11 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object shopCarList(String code, String modelCode, String toLevel) {
+    public Object shopCarList(String modelCode, String toLevel, String toSite) {
         XN601043Req req = new XN601043Req();
-        req.setCode(code);
-        req.setCode(modelCode);
+        req.setModelCode(modelCode);
         req.setToLevel(toLevel);
+        req.setToSite(toSite);
         return BizConnecter.getBizData("601043", JsonUtils.object2Json(req),
             Object.class);
     }

@@ -10,18 +10,6 @@ public class XN601041Req {
     // 编号（必填）
     private String code;
 
-    // 型号编号（必填）
-    private String modelCode;
-
-    // 原价（必填）
-    private String originalPrice;
-
-    // 折扣价（必填）
-    private String discountPrice;
-
-    // 受众（必填）
-    private String toLevel;
-
     // 更新人（必填）
     private String updater;
 
@@ -34,38 +22,6 @@ public class XN601041Req {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getModelCode() {
-        return modelCode;
-    }
-
-    public void setModelCode(String modelCode) {
-        this.modelCode = modelCode;
-    }
-
-    public String getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public void setOriginalPrice(String originalPrice) {
-        this.originalPrice = originalPrice;
-    }
-
-    public String getDiscountPrice() {
-        return discountPrice;
-    }
-
-    public void setDiscountPrice(String discountPrice) {
-        this.discountPrice = discountPrice;
-    }
-
-    public String getToLevel() {
-        return toLevel;
-    }
-
-    public void setToLevel(String toLevel) {
-        this.toLevel = toLevel;
     }
 
     public String getUpdater() {

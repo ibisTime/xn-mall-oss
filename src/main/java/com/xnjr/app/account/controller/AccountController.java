@@ -326,7 +326,23 @@ public class AccountController extends BaseController {
         return accountAO.queryaccountList(companyCode, subbranch, cardNo,
             status);
     }
-
+    
+    // 积分商入驻
+    @RequestMapping(value = "/scorer/add", method = RequestMethod.POST)
+    @ResponseBody
+    public Object scorerAdd(
+            @RequestParam(value = "loginName") String loginName,
+            @RequestParam(value = "mobile") String mobile,
+            @RequestParam(value = "idKind") String idKind,
+            @RequestParam(value = "idNo") String idNo,
+            @RequestParam(value = "realName") String realName,
+            @RequestParam(value = "userReferee") String userReferee,
+            @RequestParam(value = "pdf", required = false) String pdf) {
+        return accountAO.scorerAdd(loginName, mobile, idKind, idNo,
+        		realName, userReferee, pdf);
+    }
+    
+    // 积分切割
     @RequestMapping(value = "/incise/score", method = RequestMethod.POST)
     @ResponseBody
     public Object inciseScore(
@@ -337,7 +353,36 @@ public class AccountController extends BaseController {
         return accountAO.inciseScore(this.getSessionUser().getUserId(),
             quantity, price, isApprove, remark);
     }
-
+    
+    // 删除积分二维码
+    @RequestMapping(value = "/score/drop", method = RequestMethod.POST)
+    @ResponseBody
+    public Object delScore(
+            @RequestParam(value = "code") String code) {
+        return accountAO.delScore(code);
+    }
+    
+    // 积分二维码上架/下架
+    @RequestMapping(value = "/score/updown", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updownScore(
+            @RequestParam(value = "integralCode") String integralCode,
+            @RequestParam(value = "updateResult") String updateResult,
+            @RequestParam(value = "remark") String remark) {
+        return accountAO.updownScore(integralCode, this.getSessionUser()
+            .getUserId(), updateResult, remark);
+    }
+    
+    // 扫一扫加积分
+    @RequestMapping(value = "/erweiscore", method = RequestMethod.GET)
+    @ResponseBody
+    public Object erweiScore(
+            @RequestParam(value = "integralCode") String integralCode) {
+        return accountAO.erweiScore(this.getSessionUser().getUserId(),
+            integralCode);
+    }
+    
+    // 积分切割分页查询
     @RequestMapping(value = "/inciseScore/page", method = RequestMethod.GET)
     @ResponseBody
     public Object inciseScorePage(
@@ -348,7 +393,8 @@ public class AccountController extends BaseController {
         return accountAO.inciseScorePage(this.getSessionUser().getUserId(),
             isApprove, status, start, limit);
     }
-
+    
+    // 积分切割列表查询
     @RequestMapping(value = "/inciseScore/list", method = RequestMethod.GET)
     @ResponseBody
     public Object inciseScoreList(
@@ -357,78 +403,11 @@ public class AccountController extends BaseController {
         return accountAO.inciseScoreList(this.getSessionUser().getUserId(),
             isApprove, status);
     }
-
+    
+    // 积分切割详情查询
     @RequestMapping(value = "/inciseScore/detail", method = RequestMethod.GET)
     @ResponseBody
     public Object inciseScoreDetail(@RequestParam(value = "code") String code) {
         return accountAO.inciseScoreDetail(code);
-    }
-
-    @RequestMapping(value = "/erweiscore", method = RequestMethod.GET)
-    @ResponseBody
-    public Object erweiScore(
-            @RequestParam(value = "integralCode") String integralCode) {
-        return accountAO.erweiScore(this.getSessionUser().getUserId(),
-            integralCode);
-    }
-
-    @RequestMapping(value = "/score/updown", method = RequestMethod.POST)
-    @ResponseBody
-    public Object updownScore(
-            @RequestParam(value = "integralCode") String integralCode,
-            @RequestParam(value = "updateResult") String updateResult,
-            @RequestParam(value = "remark") String remark) {
-        return accountAO.updownScore(integralCode, this.getSessionUser()
-            .getUserId(), updateResult, remark);
-    }
-
-    @RequestMapping(value = "/score/buy", method = RequestMethod.GET)
-    @ResponseBody
-    public Object buyScore(
-            @RequestParam(value = "integralCode") String integralCode) {
-        return accountAO.buyScore(this.getSessionUser().getUserId(),
-            integralCode);
-    }
-
-    @RequestMapping(value = "/score/shixiao", method = RequestMethod.GET)
-    @ResponseBody
-    public Object shixiaoScore(
-            @RequestParam(value = "integralCode") String integralCode,
-            @RequestParam(value = "remark") String remark) {
-        return accountAO.shixiaoScore(integralCode, this.getSessionUser()
-            .getUserId(), remark);
-    }
-
-    @RequestMapping(value = "/duixian", method = RequestMethod.POST)
-    @ResponseBody
-    public Object duixian(
-            @RequestParam(value = "fromUserId") String fromUserId,
-            @RequestParam(value = "amount") String amount,
-            @RequestParam(value = "price") String price,
-            @RequestParam(value = "type") String type) {
-        return accountAO.duixian(fromUserId, this.getSessionUser().getUserId(),
-            amount, price, type, this.getSessionUser().getUserId());
-    }
-
-    @RequestMapping(value = "/duixian/check", method = RequestMethod.POST)
-    @ResponseBody
-    public Object checkduixian(
-            @RequestParam(value = "withdrawNo") String withdrawNo,
-            @RequestParam(value = "approveResult") String approveResult,
-            @RequestParam(value = "approveNote") String approveNote) {
-        return accountAO.checkduixian(withdrawNo, this.getSessionUser()
-            .getUserId(), approveResult, approveNote);
-    }
-
-    @RequestMapping(value = "/duixian/pay", method = RequestMethod.POST)
-    @ResponseBody
-    public Object payduixian(
-            @RequestParam(value = "withdrawNo") String withdrawNo,
-            @RequestParam(value = "payResult") String payResult,
-            @RequestParam(value = "payNote") String payNote,
-            @RequestParam(value = "refNo") String refNo,
-            @RequestParam(value = "fee") String fee) {
-        return accountAO.payduixian(withdrawNo, this.getSessionUser()
-            .getUserId(), payResult, payNote, refNo, fee);
     }
 }

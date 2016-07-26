@@ -8,153 +8,197 @@
  */
 package com.xnjr.app.product.req;
 
-/** 
- * @author: haiqingzheng 
- * @since: 2016年5月17日 上午9:08:54 
+/**
+ * @author: haiqingzheng
+ * @since: 2016年5月17日 上午9:08:54
  * @history:
  */
 public class XN601001Req {
+	
+	// ID
+	private String code;
+	
+	// 产品大类
+	private String category;
 
-    // 产品编号
-    private String code;
+	// 产品小类
+	private String type;
 
-    // 产品大类
-    private String type;
+	// 小类图片
+	private String typePic;
 
-    // 产品名称
-    private String name;
+	// 产品名称
+	private String name;
 
-    // 广告语
-    private String advTitle;
+	// 次序
+	private String orderNo;
 
-    // 广告图片
-    private String advPic;
+	// 状态
+	private String status;
 
-    // 主推图
-    private String majorPic;
+	// 广告语
+	private String advTitle;
 
-    // 主推文本
-    private String majorText;
+	// 广告图片
+	private String advPic;
 
-    // 全家福图
-    private String familyPic;
+	// 主推图
+	private String majorPic;
 
-    // 全家福文本
-    private String familyText;
+	// 主推文本
+	private String majorText;
 
-    // 亮点图
-    private String highlightPic;
+	// 全家福图
+	private String familyPic;
 
-    // 亮点文本
-    private String highlightText;
+	// 全家福文本
+	private String familyText;
 
-    // 更新人
-    private String updater;
+	// 亮点图
+	private String highlightPic;
 
-    private String remark;
+	// 亮点文本
+	private String highlightText;
 
-    public String getRemark() {
-        return remark;
-    }
+	// 更新人
+	private String updater;
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
+	private String remark;
 
-    public String getCode() {
-        return code;
-    }
+	public String getCode() {
+		return code;
+	}
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public String getCategory() {
+		return category;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getType() {
+		return type;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    public String getAdvTitle() {
-        return advTitle;
-    }
+	public String getTypePic() {
+		return typePic;
+	}
 
-    public void setAdvTitle(String advTitle) {
-        this.advTitle = advTitle;
-    }
+	public void setTypePic(String typePic) {
+		this.typePic = typePic;
+	}
 
-    public String getAdvPic() {
-        return advPic;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setAdvPic(String advPic) {
-        this.advPic = advPic;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getMajorPic() {
-        return majorPic;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public void setMajorPic(String majorPic) {
-        this.majorPic = majorPic;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public String getMajorText() {
-        return majorText;
-    }
+	public String getAdvTitle() {
+		return advTitle;
+	}
 
-    public void setMajorText(String majorText) {
-        this.majorText = majorText;
-    }
+	public void setAdvTitle(String advTitle) {
+		this.advTitle = advTitle;
+	}
 
-    public String getFamilyPic() {
-        return familyPic;
-    }
+	public String getAdvPic() {
+		return advPic;
+	}
 
-    public void setFamilyPic(String familyPic) {
-        this.familyPic = familyPic;
-    }
+	public void setAdvPic(String advPic) {
+		this.advPic = advPic;
+	}
 
-    public String getFamilyText() {
-        return familyText;
-    }
+	public String getMajorPic() {
+		return majorPic;
+	}
 
-    public void setFamilyText(String familyText) {
-        this.familyText = familyText;
-    }
+	public void setMajorPic(String majorPic) {
+		this.majorPic = majorPic;
+	}
 
-    public String getHighlightPic() {
-        return highlightPic;
-    }
+	public String getMajorText() {
+		return majorText;
+	}
 
-    public void setHighlightPic(String highlightPic) {
-        this.highlightPic = highlightPic;
-    }
+	public void setMajorText(String majorText) {
+		this.majorText = majorText;
+	}
 
-    public String getHighlightText() {
-        return highlightText;
-    }
+	public String getFamilyPic() {
+		return familyPic;
+	}
 
-    public void setHighlightText(String highlightText) {
-        this.highlightText = highlightText;
-    }
+	public void setFamilyPic(String familyPic) {
+		this.familyPic = familyPic;
+	}
 
-    public String getUpdater() {
-        return updater;
-    }
+	public String getFamilyText() {
+		return familyText;
+	}
 
-    public void setUpdater(String updater) {
-        this.updater = updater;
-    }
+	public void setFamilyText(String familyText) {
+		this.familyText = familyText;
+	}
+
+	public String getHighlightPic() {
+		return highlightPic;
+	}
+
+	public void setHighlightPic(String highlightPic) {
+		this.highlightPic = highlightPic;
+	}
+
+	public String getHighlightText() {
+		return highlightText;
+	}
+
+	public void setHighlightText(String highlightText) {
+		this.highlightText = highlightText;
+	}
+
+	public String getUpdater() {
+		return updater;
+	}
+
+	public void setUpdater(String updater) {
+		this.updater = updater;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public String getOrderNo() {
+		return orderNo;
+	}
+
+	public void setOrderNo(String orderNo) {
+		this.orderNo = orderNo;
+	}
 
 }

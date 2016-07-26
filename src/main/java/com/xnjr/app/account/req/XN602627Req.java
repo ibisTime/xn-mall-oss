@@ -8,7 +8,7 @@ import com.xnjr.app.req.APageReq;
  * @since: 2016年7月20日 下午5:38:20 
  * @history:
  */
-public class XN602101Req extends APageReq {
+public class XN602627Req extends APageReq {
     /** 
      * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么) 
      */

@@ -5,14 +5,14 @@ $(function() {
 	showPermissionControl();
 	
 	var code = getQueryString('code');
-	doGetAjaxIsAsync($("#basePath").val()+"/product/list", {}, false, function(res) {
+	doGetAjaxIsAsync($("#basePath").val()+"/product/list", {status: 1}, false, function(res) {
 		var data = res.data || [], html = "<option value=''>请选择</option>";
 		for (var i = 0, len = data.length; i < len; i++) {
 			html += "<option value='"+data[i].code+"'>"+data[i].name+"</option>";
 			$("#productCode").html(html);
 		}
 	});
-	$('#status').renderDropdown(Dict.getName('product_status'));
+	$('#status').renderDropdown(Dict.getName('model_status'));
 		
 	//表格初始化
 	queryTableData();
@@ -35,22 +35,6 @@ $(function() {
 			return;
 		}
 		window.location.href = $("#basePath").val()+"/product/model_addedit.htm?code="+selRecords[0].code;
-	});
-	
-	//审核
-	$('#checkBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections');
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		if(selRecords[0].status!=0){
-			alert("请选择待审核状态");
-			return;
-		}
-		
-		window.location.href = $("#basePath").val()+"/product/model_check.htm?code="+selRecords[0].code;
-
 	});
 		
 	//详情
@@ -80,23 +64,17 @@ function queryTableData(){
 		checkbox : true
 	}, {
 		field : 'name',
-		title : '型号名称',
-		align : 'left',
-		valign : 'middle',
-		sortable : false,
+		title : '货品名称'
 	}, {
 		field : 'productName',
-		title : '所属产品',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
+		title : '所属品类'
 	}, {
 		field : 'status',
 		title : '状态',
-		align : 'left',
-		valign : 'middle',
-		formatter:Dict.getNameForList('product_status'),
-		sortable : false
+		formatter: Dict.getNameForList('model_status')
+	}, {
+		field : 'remark',
+		title : '备注'
 	}];
 	
 	
@@ -111,8 +89,8 @@ function queryTableData(){
 		queryParams : function(params) {
 			return {
 				name : $("#name").val(),
-				productCode : $("#productCode").val(),
-				status : $("#status").val(),
+				productName : $("#productCode").val(),
+				status: $('#status').val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};

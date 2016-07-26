@@ -6,10 +6,10 @@ package com.xnjr.app.account.req;
  * @since: 2016年7月20日 下午5:38:20 
  * @history:
  */
-public class XN602105Req {
+public class XN602622Req {
 
     // 编号(必填)
-    private String integralCode;
+    private String code;
 
     // 更新人(必填)
     private String updater;
@@ -19,14 +19,6 @@ public class XN602105Req {
 
     // 备注(必填)
     private String remark;
-
-    public String getIntegralCode() {
-        return integralCode;
-    }
-
-    public void setIntegralCode(String integralCode) {
-        this.integralCode = integralCode;
-    }
 
     public String getUpdater() {
         return updater;
@@ -51,4 +43,12 @@ public class XN602105Req {
     public void setUpdateResult(String updateResult) {
         this.updateResult = updateResult;
     }
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 }

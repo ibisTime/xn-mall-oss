@@ -1,13 +1,14 @@
 $(function() {
-	
+	var description = UE.getEditor('description');
 	var code = getQueryString('code');
-	doGetAjaxIsAsync($("#basePath").val()+"/product/list", {}, false, function(res) {
+	doGetAjaxIsAsync($("#basePath").val()+"/product/list", {status: 1}, false, function(res) {
 		var data = res.data || [], html = "<option value=''>请选择</option>";
 		for (var i = 0, len = data.length; i < len; i++) {
-			html += "<option value='"+data[i].userId+"'>"+data[i].name+"</option>";
+			html += "<option value='"+data[i].code+"'>"+data[i].name+"</option>";
 			$("#productCode").html(html);
 		}
 	});
+	$('#status').renderDropdown(Dict.getName('model_status'));
 	//获取菜单URL入参
 	var code = getQueryString("code");
 	//新增修改判断
@@ -19,11 +20,35 @@ $(function() {
 		$("#operContent").text("修改型号");
 		var data = {"code":code};
 		var url = $("#basePath").val()+"/model/detail";
-		doGetAjax(url, data, doSucBackGetDetail);
+		doGetAjax(url, data, function(res) {
+			if (res.success) {
+				$("#code").html(res.data.code);
+				$("#productCode").val(res.data.productCode);
+				$("#name").val(res.data.name);
+				$("#img1").attr('src',res.data.pic1);
+				$("#img2").attr('src',res.data.pic2);
+				$("#img3").attr('src',res.data.pic3);
+				$("#status").val(Dict.getName('model_status', res.data.status));
+				description.ready(function() {
+					description.setContent(res.data.description);
+				});
+				var specsTable=res.data.modelSpecsList;
+			    var specsTableList = new Array();
+			    for(var i = 0;i < specsTable.length;i++){
+			    	specsTableList[i]=[specsTable[i].dkey,specsTable[i].dvalue];
+				}
+			    mytable.loadData(specsTableList);
+			}else{
+				alert(res.msg);
+			}
+		});
 	}
 	
 	//提交
 	$('#subBtn').click(function() {
+		if(!$("#jsForm").valid()){
+			return false;
+		}
 		if(isBlank($('#pic1').next().attr("src"))){
 			alert("请上传图片1");
 			return;
@@ -36,9 +61,7 @@ $(function() {
 			alert("请上传图片3");
 			return;
 		}
-	    if(!$("#jsForm").valid()){
-			return false;
-		}
+	    
 	    tableLists = mytable.getData();
 		var specsTableList = new Array();
 		for(var i = 0;i < tableLists.length;i++){
@@ -90,23 +113,12 @@ $(function() {
 		rules: {
 			name: {
 				required: true,
-				maxlength: 32
+				maxlength: 30
 			},
 			productCode: "required",
 			description: {
 				required: true,
-				maxlength: 255
-			},
-		},
-		messages: {
-			name: {
-				required: "请输入型号名称",
-				maxlength: jQuery.format("型号名称不能大于{0}个字符")
-			},
-			productCode: "请选择产品",
-			description: {
-				required: "请输入描述",
-				maxlength: jQuery.format("描述不能大于{0}个字符")
+				maxlength: 250
 			},
 		}
 	});
@@ -150,27 +162,6 @@ function initSpecsTable(){
 	});
 }
 
-//获取详情回调方法
-function doSucBackGetDetail(res){
-	if (res.success) {
-		$("#code").html(res.data.code);
-		$("#productCode").val(res.data.productCode);
-		$("#name").val(res.data.name);
-		$("#majorText").val(res.data.advTitle);
-		$("#img1").attr('src',res.data.pic1);
-		$("#img2").attr('src',res.data.pic2);
-		$("#img3").attr('src',res.data.pic3);
-		$("#description").val(res.data.description);
-		specsTable=res.data.modelSpecsList;
-	    var specsTableList = new Array();
-	    for(var i = 0;i < specsTable.length;i++){
-	    	specsTableList[i]=[specsTable[i].dkey,specsTable[i].dvalue];
-		}
-	    mytable.loadData(specsTableList);
-	}else{
-		alert(res.msg);
-	}
-}
 
 //保存回调方法
 function doSucBackSave(res) {

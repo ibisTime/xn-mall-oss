@@ -4,7 +4,7 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
-	$('#type').renderDropdown(Dict.getName('product_type'));
+	$('#type').renderDropdown(Dict.getName('pro_category'));
 	$('#status').renderDropdown(Dict.getName('product_status'));
 		
 	//表格初始化
@@ -40,14 +40,10 @@ $(function() {
 	});
 	
 	//审核
-	$('#checkBtn').click(function() {
+	$('#deleteBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
 		if(selRecords.length <= 0){
 			alert("请选择记录");
-			return;
-		}
-		if(selRecords[0].status!=0){
-			alert("请选择待审核状态");
 			return;
 		}
 		
@@ -72,47 +68,45 @@ function queryTableData(){
 		checkbox : true
 	}, {
 		field : 'name',
-		title : '产品名称',
-		align : 'left',
-		valign : 'middle',
-		sortable : false,
+		title : '品类名称'
 	}, {
-		field : 'type',
-		title : '产品类型',
-		align : 'left',
-		valign : 'middle',
-		formatter:Dict.getNameForList('product_type'),
-		sortable : false
+		field : 'advTitle',
+		title : '广告语'
+	}, {
+		field : 'advPic',
+		title : '广告图',
+		formatter: function(v) {
+			return '<img width="50" src="'+v+'" />';
+		}
+	}, {
+		field : 'category',
+		title : 'UI大类',
+		formatter: Dict.getNameForList('pro_category')
+	}, {
+		field : 'orderNo',
+		title : 'UI次序'
 	}, {
 		field : 'status',
 		title : '状态',
-		align : 'left',
-		valign : 'middle',
-		formatter:Dict.getNameForList('product_status'),
-		sortable : false
+		formatter: Dict.getNameForList('product_status')
 	}, {
-		field : 'updater',
-		title : '更新人',
-		align : 'left',
-		valign : 'middle',
-		sortable : false
-		}];
+		field : 'remark',
+		title : '备注'
+	}];
 	
 	
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
 		url : $("#basePath").val()+"/product/page",
-		height : $(window).height() - 180,
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				type : $("#type").val(),
+				category : $("#type").val(),
 				name : $("#name").val(),
 				status : $("#status").val(),
-				updater : $("#updater").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};

@@ -6,7 +6,7 @@ package com.xnjr.app.account.req;
  * @since: 2016年7月20日 下午5:38:20 
  * @history:
  */
-public class XN602103Req {
+public class XN602629Req {
     // 编号(必填)
     private String code;
 

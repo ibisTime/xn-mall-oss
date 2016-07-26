@@ -14,12 +14,24 @@ package com.xnjr.app.product.req;
  * @history:
  */
 public class XN601000Req {
+	
+	// 产品大类
+	private String category;
 
-    // 产品大类
+    // 产品小类
     private String type;
+    
+    // 小类图片
+    private String typePic;
 
     // 产品名称
     private String name;
+    
+    // 次序
+    private String orderNo;
+    
+    // 状态
+    private String status;
 
     // 广告语
     private String advTitle;
@@ -145,5 +157,37 @@ public class XN601000Req {
     public void setUpdater(String updater) {
         this.updater = updater;
     }
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getTypePic() {
+		return typePic;
+	}
+
+	public void setTypePic(String typePic) {
+		this.typePic = typePic;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getOrderNo() {
+		return orderNo;
+	}
+
+	public void setOrderNo(String orderNo) {
+		this.orderNo = orderNo;
+	}
 
 }

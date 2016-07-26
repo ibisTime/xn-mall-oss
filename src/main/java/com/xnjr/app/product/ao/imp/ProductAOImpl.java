@@ -31,13 +31,18 @@ import com.xnjr.app.util.UploadUtil;
 public class ProductAOImpl implements IProductAO {
 
     @Override
-    public Object addProduct(String type, String name, String advTitle,
+    public Object addProduct(String category, String type, String typePic, String name, 
+    		String order, String status, String advTitle,
             String advPic, String majorPic, String majorText, String familyPic,
             String familyText, String highlightPic, String highlightText,
             String updater, String remark) {
         XN601000Req req = new XN601000Req();
+        req.setCategory(category);
         req.setType(type);
+        req.setTypePic(UploadUtil.uploadPicture(typePic));
         req.setName(name);
+        req.setOrderNo(order);
+        req.setStatus(status);
         req.setAdvTitle(advTitle);
         req.setAdvPic(UploadUtil.uploadPicture(advPic));
         req.setMajorPic(UploadUtil.uploadPicture(majorPic));
@@ -53,21 +58,26 @@ public class ProductAOImpl implements IProductAO {
     }
 
     @Override
-    public Object editProduct(String code, String type, String name,
-            String advTitle, String advPic, String majorPic, String majorText,
-            String familyPic, String familyText, String highlightPic,
-            String highlightText, String updater, String remark) {
+    public Object editProduct(String code, String category, String type, String typePic, String name, 
+    		String order, String status, String advTitle,
+            String advPic, String majorPic, String majorText, String familyPic,
+            String familyText, String highlightPic, String highlightText,
+            String updater, String remark) {
         XN601001Req req = new XN601001Req();
         req.setCode(code);
+        req.setCategory(category);
         req.setType(type);
+        req.setTypePic(UploadUtil.uploadPicture(typePic));
         req.setName(name);
+        req.setOrderNo(order);
+        req.setStatus(status);
         req.setAdvTitle(advTitle);
-        req.setAdvPic(UploadUtil.editUploadPicture(advPic));
-        req.setMajorPic(UploadUtil.editUploadPicture(majorPic));
+        req.setAdvPic(UploadUtil.uploadPicture(advPic));
+        req.setMajorPic(UploadUtil.uploadPicture(majorPic));
         req.setMajorText(majorText);
-        req.setFamilyPic(UploadUtil.editUploadPicture(familyPic));
+        req.setFamilyPic(UploadUtil.uploadPicture(familyPic));
         req.setFamilyText(familyText);
-        req.setHighlightPic(UploadUtil.editUploadPicture(highlightPic));
+        req.setHighlightPic(UploadUtil.uploadPicture(highlightPic));
         req.setHighlightText(highlightText);
         req.setUpdater(updater);
         req.setRemark(remark);
@@ -93,9 +103,10 @@ public class ProductAOImpl implements IProductAO {
     }
 
     @Override
-    public Object queryProductList(String type, String name, String updater,
+    public Object queryProductList(String category, String type, String name, String updater,
             String status) {
         XN601005Req req = new XN601005Req();
+        req.setCategory(category);
         req.setType(type);
         req.setName(name);
         req.setStatus(status);

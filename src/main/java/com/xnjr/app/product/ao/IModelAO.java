@@ -72,8 +72,8 @@ public interface IModelAO {
      * @create: 2016年5月23日 上午11:21:54 XIANDONG
      * @history:
      */
-    public Object updownModel(String code, String checkUser, String checkResult,
-            String checkNote);
+    public Object updownModel(String code, String originalPrice, String discountPrice, 
+    		String toLevel, String toSite, String updater, String isUp, String remark);
 
     /**
      * 分页查询型号
@@ -89,7 +89,7 @@ public interface IModelAO {
      * @history:
      */
     public Object queryModelPage(String code, String name, String status,
-            String productCode, String start, String limit, String orderColumn,
+            String productName, String start, String limit, String orderColumn,
             String orderDir);
 
     /**
@@ -160,7 +160,7 @@ public interface IModelAO {
      * @create: 2016年5月25日 上午11:40:46 wu
      * @history:
      */
-    public Object shopCarPage(String code, String modelCode, String toLevel,
+    public Object shopCarPage(String modelCode, String toLevel, String toSite,
             String start, String limit, String orderColumn, String orderDir);
 
     /**
@@ -172,7 +172,7 @@ public interface IModelAO {
      * @create: 2016年5月25日 上午11:42:55 wu
      * @history:
      */
-    public Object shopCarList(String code, String modelCode, String toLevel);
+    public Object shopCarList(String modelCode, String toLevel, String toSite);
 
     /**
      * 购物车引导详情查询 
