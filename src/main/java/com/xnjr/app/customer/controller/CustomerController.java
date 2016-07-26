@@ -133,8 +133,6 @@ public class CustomerController extends BaseController {
     public Object huoyuanPage(
             @RequestParam(value = "loginName", required = false) String loginName,
             @RequestParam(value = "mobile", required = false) String mobile,
-            // @RequestParam(value = "userReferee", required = false) String
-            // userReferee,
             @RequestParam(value = "idKind", required = false) String idKind,
             @RequestParam(value = "idNo", required = false) String idNo,
             @RequestParam(value = "realName", required = false) String realName,
@@ -242,9 +240,11 @@ public class CustomerController extends BaseController {
     // 渠道商修改名称
     @RequestMapping(value = "/own/account", method = RequestMethod.GET)
     @ResponseBody
-    public Object owner(@RequestParam(value = "userId") String userId,
+    public Object owner(
+            // @RequestParam(value = "userId") String userId,
             @RequestParam(value = "currency") String currency) {
-        return customerAO.detailaccount(userId, currency);
+        return customerAO.detailaccount(this.getSessionUser().getUserId(),
+            currency);
 
     }
 

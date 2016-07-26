@@ -5,10 +5,39 @@ $(function() {
 	showPermissionControl();
 	
 	$('#status').renderDropdown(Dict.getName('order_status'));
-	
 		
 	//表格初始化
 	queryTableData();
+	
+	//取消
+	$('#cancelBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/order/order_cancel.htm?invoiceCode="+selRecords[0].code;
+	});
+	
+	//录入
+	$('#importBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/logistics/product_input.htm?invoiceCode="+selRecords[0].code;
+	});
+	
+	//现场录入
+	$('#siteImportBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/logistics/product_input.htm?invoiceCode="+selRecords[0].code;
+	});
 
 	//查询
 	$('#searchBtn').click(function() {
@@ -31,7 +60,6 @@ $(function() {
 		'&status=' + $('#status').val();
 		window.open(url);
 	});
-	
 });
 
 //表格初始化
@@ -44,7 +72,7 @@ function queryTableData(){
 		checkbox : true
 	}, {
 		field : 'code',
-		title : '发货单编号',
+		title : '订单编号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false,
@@ -62,22 +90,20 @@ function queryTableData(){
 		formatter:moneyFormatter,
 		sortable : false
 	},{
-		field : 'applyDatetime',
-		title : '下单时间',
-		align : 'left',
-		valign : 'middle',
-		formatter:dateFormatter,
-		sortable : false
-	} ,{
 		field : 'status',
 		title : '状态',
 		align : 'left',
 		valign : 'middle',
 		formatter:Dict.getNameForList('order_status'),
 		sortable : false
+	},{
+		field : 'applyDatetime',
+		title : '下单时间',
+		align : 'left',
+		valign : 'middle',
+		formatter:dateFormatter,
+		sortable : false
 	}];
-	
-	
 	
 	$('#tableList').bootstrapTable({
 		method : "get",
