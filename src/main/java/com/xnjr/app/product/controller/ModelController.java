@@ -40,6 +40,7 @@ public class ModelController extends BaseController {
             @RequestParam("pic1") String pic1,
             @RequestParam("pic2") String pic2,
             @RequestParam("pic3") String pic3,
+            @RequestParam("status") String status,
             @RequestParam("description") String description,
             @RequestParam(value = "remark", required = false) String remark,
             @RequestParam(value = "specsTableJson", required = true) String specsTableJson) {
@@ -47,7 +48,7 @@ public class ModelController extends BaseController {
         List<ModelSpecs> modelSpecsList = gson.fromJson(specsTableJson,
             new TypeToken<List<ModelSpecs>>() {
             }.getType());
-        return modelAO.addModel(productCode, name, pic1, pic2, pic3,
+        return modelAO.addModel(productCode, name, pic1, pic2, pic3, status,
             description, modelSpecsList, this.getSessionUser().getUserName(), remark);
     }
 
@@ -59,6 +60,7 @@ public class ModelController extends BaseController {
             @RequestParam("pic1") String pic1,
             @RequestParam("pic2") String pic2,
             @RequestParam("pic3") String pic3,
+            @RequestParam("status") String status,
             @RequestParam("description") String description,
             @RequestParam(value = "remark", required = false) String remark,
             @RequestParam(value = "specsTableJson", required = true) String specsTableJson) {
@@ -66,7 +68,7 @@ public class ModelController extends BaseController {
         List<ModelSpecs> modelSpecsList = gson.fromJson(specsTableJson,
             new TypeToken<List<ModelSpecs>>() {
             }.getType());
-        return modelAO.editModel(code, productCode, name, pic1, pic2, pic3,
+        return modelAO.editModel(code, productCode, name, pic1, pic2, pic3, status,
             description, modelSpecsList, this.getSessionUser().getUserName(), remark);
     }
 

@@ -34,6 +34,8 @@ public class XN601020Req {
     private String updater;
     
     private String remark;
+    
+    private String status;
 
     public String getName() {
         return name;
@@ -105,6 +107,14 @@ public class XN601020Req {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
     // public void setModelSpecsList(List<ModelSpecs> modelSpecsList2) {
