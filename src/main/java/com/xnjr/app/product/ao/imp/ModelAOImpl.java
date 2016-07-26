@@ -23,7 +23,6 @@ import com.xnjr.app.product.req.ModelSpecs;
 import com.xnjr.app.product.req.XN601020Req;
 import com.xnjr.app.product.req.XN601021Req;
 import com.xnjr.app.product.req.XN601022Req;
-import com.xnjr.app.product.req.XN601023Req;
 import com.xnjr.app.product.req.XN601024Req;
 import com.xnjr.app.product.req.XN601025Req;
 import com.xnjr.app.product.req.XN601026Req;
@@ -97,27 +96,28 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object updownModel(String code, String originalPrice, String discountPrice, 
-    		String toLevel, String toSite, String updater, String isUp, String remark) {
-    	if (isUp == "1") {
-    		XN601040Req req = new XN601040Req();
-    		req.setCode(code);
-    		req.setOriginalPrice(originalPrice);
-    		req.setDiscountPrice(discountPrice);
-    		req.setToLevel(toLevel);
-    		req.setToSite(toSite);
-    		req.setUpdater(updater);
-    		req.setRemark(remark);
-    		return BizConnecter.getBizData("601040", JsonUtils.object2Json(req),
-    	            Object.class);
-    	} else {
-    		XN601041Req req = new XN601041Req();
-    		req.setCode(code);
-    		req.setUpdater(updater);
-    		req.setRemark(remark);
-    		return BizConnecter.getBizData("601041", JsonUtils.object2Json(req),
-    	            Object.class);
-    	}
+    public Object updownModel(String code, String originalPrice,
+            String discountPrice, String toLevel, String toSite, String updater,
+            String isUp, String remark) {
+        if (isUp == "1") {
+            XN601040Req req = new XN601040Req();
+            req.setCode(code);
+            req.setOriginalPrice(originalPrice);
+            req.setDiscountPrice(discountPrice);
+            req.setToLevel(toLevel);
+            req.setToSite(toSite);
+            req.setUpdater(updater);
+            req.setRemark(remark);
+            return BizConnecter.getBizData("601040", JsonUtils.object2Json(req),
+                Object.class);
+        } else {
+            XN601041Req req = new XN601041Req();
+            req.setCode(code);
+            req.setUpdater(updater);
+            req.setRemark(remark);
+            return BizConnecter.getBizData("601041", JsonUtils.object2Json(req),
+                Object.class);
+        }
     }
 
     @Override

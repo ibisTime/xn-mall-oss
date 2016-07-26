@@ -9,7 +9,7 @@ $(function() {
 	
 	//页面赋值
 	var userId = getQueryString("userId");
-	var data = {"userId":userId};
+	var data = {"userId":userId,"currency":"XNB"};
 	var url = $("#basePath").val()+"/customer/own/account";
 	doGetAjax(url, data, doGetDetailBack);
 });
