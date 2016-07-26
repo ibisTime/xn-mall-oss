@@ -1,5 +1,4 @@
 $(function() {
-	
 	//获取菜单URL入参
 	var invoiceCode = getQueryString("invoiceCode");
 	//新增修改判断
@@ -13,7 +12,6 @@ $(function() {
 		doGetAjax(url, data, doSucBackGetDetail);
 	}
 	
-	
 	$('#cancelBtn').click(function() {
 		if(!$("#jsForm").valid()){
 			return false;
@@ -25,7 +23,6 @@ $(function() {
 		});
 		data["code"] = $("#code").html();
 		var url = $("#basePath").val()+"/model/order/cancel";
-		
 		doPostAjax(url, data, doSucBackSave);
 	});
 
@@ -43,6 +40,7 @@ $(function() {
 			}
 		}
 	});
+	
 	//返回
 	$('#backBtn').click(function() {
 		location.href = $("#basePath").val()+"/order/order_undo.htm";
@@ -56,7 +54,6 @@ $(function() {
 			alert(res.msg);
 		}
 	}
-	
 
 	//获取详情回调方法
 	function doSucBackGetDetail(res){
@@ -122,7 +119,8 @@ function initBusinessTable(){
 					valign : 'middle',
 					formatter:moneyFormatter,
 					sortable : false
-				}]
+				}
+		]
 	});
 }
 //格式化时间

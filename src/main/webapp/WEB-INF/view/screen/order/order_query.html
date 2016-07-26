@@ -23,8 +23,8 @@
     	 <form class="search-form">
         	<ul>
 	            <li><label>发货单编号</label><input type="text" id="code"></input></li>
-	            <li><label>下单用户</label><input type="text" id="loginName"></input></li>
-	            <li><label>发货单状态</label><select id="status"></select></li>
+	            <li><label>下单用户</label><input type="text" id="mobile"></input></li>
+	            <li><label>状态</label><select id="status"></select></li>
 	            <li><label>下单时间起</label><input id="deliveryDatetimeStart" class="lay-input" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/></li>
 	            <li><label>下单时间止</label><input id="deliveryDatetimeEnd" class="lay-input" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/></li>
 	            <li>
@@ -36,7 +36,10 @@
     	<!-- 操作按钮 -->
     	<div class="tools">
 		   <ul class="toolbar">
-		       <li id="detailBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>详情</li>
+		   	 <li id="cancelBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>取消</li>
+		     <li id="importBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>发货</li>
+		   	 <li id="siteImportBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>现场发货</li>
+		     <li id="detailBtn"><span><img src="${resourceUrl}/resources/common/images/t01.png"/></span>详情</li>
 		     <li id="exportBtn"><span><img src="${resourceUrl}/resources/common/images/export.png"/></span>导出</li>
 	       </ul>
 	    </div>
