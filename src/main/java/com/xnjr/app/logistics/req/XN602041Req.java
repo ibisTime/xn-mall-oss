@@ -4,6 +4,9 @@ public class XN602041Req {
 
     // 物流单号(选填)
     private String code;
+    
+    // 物流公司
+    private String company;
 
     // 发货单编号(选填)
     private String invoiceCode;
@@ -121,5 +124,13 @@ public class XN602041Req {
     public void setStatus(String status) {
         this.status = status;
     }
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
 
 }

@@ -19,9 +19,6 @@ public class XN602040Req {
     // 发货人(必填)
     private String deliverer;
 
-    // 货品信息(必填)
-    private List<GoodsReq> goodsList;
-
     // 更新人
     private String updater;
 
@@ -58,14 +55,6 @@ public class XN602040Req {
 
     public void setDeliverer(String deliverer) {
         this.deliverer = deliverer;
-    }
-
-    public List<GoodsReq> getGoodsList() {
-        return goodsList;
-    }
-
-    public void setGoodsList(List<GoodsReq> goodsList) {
-        this.goodsList = goodsList;
     }
 
     public String getCode() {

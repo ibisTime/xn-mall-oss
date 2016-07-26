@@ -24,13 +24,13 @@ $(function() {
 						title : '参数名',
 						align : 'left',
 						valign : 'middle',
-						sortable : false,
+						sortable : false
 					},{
 						field : 'dvalue',
 						title : '参数值',
 						align : 'left',
 						valign : 'middle',
-						sortable : false,
+						sortable : false
 					}]
 		});
 	}
@@ -67,7 +67,7 @@ $(function() {
 			$("#img2").attr('src',res.data.pic2);
 			$("#img3").attr('src',res.data.pic3);
 			$("#description").html(res.data.description);
-			$("#checkNote").html(res.data.remark);
+			$("#remark").html(res.data.remark);
 			$("#tableList").bootstrapTable("load", res.data.modelSpecsList);
 		}else{
 			alert(res.msg);

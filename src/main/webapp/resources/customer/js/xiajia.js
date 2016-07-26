@@ -73,7 +73,7 @@ $(function(){
 		$('#tableList').bootstrapTable({
 			method : "get",
 			url : $("#basePath").val()+"/customer/queryxiajiaPage",
-			height : $(window).height() - 180,
+			 
 			striped : true,
 			clickToSelect : true,
 			singleSelect : true,

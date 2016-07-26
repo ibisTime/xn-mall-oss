@@ -41,13 +41,14 @@ public class ModelController extends BaseController {
             @RequestParam("pic2") String pic2,
             @RequestParam("pic3") String pic3,
             @RequestParam("description") String description,
+            @RequestParam(value = "remark", required = false) String remark,
             @RequestParam(value = "specsTableJson", required = true) String specsTableJson) {
         Gson gson = new Gson();
         List<ModelSpecs> modelSpecsList = gson.fromJson(specsTableJson,
             new TypeToken<List<ModelSpecs>>() {
             }.getType());
         return modelAO.addModel(productCode, name, pic1, pic2, pic3,
-            description, modelSpecsList, this.getSessionUser().getUserName());
+            description, modelSpecsList, this.getSessionUser().getUserName(), remark);
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -59,13 +60,14 @@ public class ModelController extends BaseController {
             @RequestParam("pic2") String pic2,
             @RequestParam("pic3") String pic3,
             @RequestParam("description") String description,
+            @RequestParam(value = "remark", required = false) String remark,
             @RequestParam(value = "specsTableJson", required = true) String specsTableJson) {
         Gson gson = new Gson();
         List<ModelSpecs> modelSpecsList = gson.fromJson(specsTableJson,
             new TypeToken<List<ModelSpecs>>() {
             }.getType());
         return modelAO.editModel(code, productCode, name, pic1, pic2, pic3,
-            description, modelSpecsList, this.getSessionUser().getUserName());
+            description, modelSpecsList, this.getSessionUser().getUserName(), remark);
     }
 
     @RequestMapping(value = "/check", method = RequestMethod.POST)
@@ -81,13 +83,14 @@ public class ModelController extends BaseController {
     @RequestMapping(value = "/updown", method = RequestMethod.POST)
     @ResponseBody
     public Object updownModel(@RequestParam("code") String code,
+    		@RequestParam("modelCode") String modelCode,
             @RequestParam(value = "originalPrice", required = false) String originalPrice,
             @RequestParam(value = "discountPrice", required = false) String discountPrice,
             @RequestParam(value = "toLevel", required = false) String toLevel,
             @RequestParam(value = "toSite", required = false) String toSite,
             @RequestParam("isUp") String isUp,
             @RequestParam(value = "remark", required = false) String remark) {
-        return modelAO.updownModel(code, originalPrice, discountPrice, toLevel, toSite, 
+        return modelAO.updownModel(code, modelCode, originalPrice, discountPrice, toLevel, toSite, 
         		this.getSessionUser().getUserName(), isUp, remark);
     }
 

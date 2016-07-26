@@ -8,7 +8,7 @@ $(function() {
 	doGetAjaxIsAsync($("#basePath").val()+"/product/list", {status: 1}, false, function(res) {
 		var data = res.data || [], html = "<option value=''>请选择</option>";
 		for (var i = 0, len = data.length; i < len; i++) {
-			html += "<option value='"+data[i].code+"'>"+data[i].name+"</option>";
+			html += "<option value='"+data[i].name+"'>"+data[i].name+"</option>";
 			$("#productCode").html(html);
 		}
 	});
@@ -82,7 +82,7 @@ function queryTableData(){
 	$('#tableList').bootstrapTable({
 		method : "get",
 		url : $("#basePath").val()+"/model/page",
-		height : $(window).height() - 180,
+		 
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,

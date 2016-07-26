@@ -3,22 +3,15 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
+	$('#status').renderDropdown(Dict.getName('score_updown'));
+	
 	var code = getQueryString('code');
-	doGetAjaxIsAsync($("#basePath").val()+"/product/list", {}, false, function(res) {
+	doGetAjaxIsAsync($("#basePath").val()+"/product/list", {status: 1}, false, function(res) {
 		var data = res.data || [], html = "<option value=''>请选择</option>";
 		for (var i = 0, len = data.length; i < len; i++) {
-			html += "<option value='"+data[i].code+"'>"+data[i].name+"</option>";
-			$("#productCode").html(html);
+			html += "<option value='"+data[i].name+"'>"+data[i].name+"</option>";
+			$("#productName").html(html);
 		}
-	});
-	doGetAjaxIsAsync($("#dictUrl").val(), {"parentKey": 'product_status'}, false, function(res) {
-		var data = res.data || [], filterData = [];
-		for (var i = 0, len = data.length; i < len; i++) {
-			if(data[i].dkey == 1 || data[i].dkey == 3) {
-				filterData.push(data[i]);
-			}
-		}
-		$('#status').renderDropdown(filterData);
 	});
 	
 	//表格初始化
@@ -26,19 +19,19 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-	$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/page"});
+	$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/page"});
 	});
 	
 
 	//上架
 	$('#updownBtn').click(function() {
-//		var selRecords = $('#tableList').bootstrapTable('getSelections');
-//		if(selRecords.length <= 0){
-//			alert("请选择记录");
-//			return;
-//		}
+		var selRecords = $('#tableList').bootstrapTable('getSelections');
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
 		
-		window.location.href = $("#basePath").val()+"/product/model_updown.htm?code="+1;
+		window.location.href = $("#basePath").val()+"/product/model_updown.htm?code="+selRecords[0].code;
 
 	});
 });
@@ -54,28 +47,38 @@ function queryTableData(){
 		valign : 'middle',
 		checkbox : true
 	}, {
-		field : 'name',
-		title : '货品名称'
+		field : 'model',
+		title : '货品名称',
+		formatter: function(v) {
+			return v.name;
+		}
+	}, {
+		field : 'model',
+		title : '货品类型',
+		formatter: function(v) {
+			return v.productName;
+		}
 	}, {
 		field : 'name',
-		title : '货品类型'
+		title : '进货价（元）',
+		formatter: moneyFormat
 	}, {
-		field : 'name',
-		title : '进货价（元）'
-	}, {
-		field : 'name',
+		field : 'fromQuantity',
 		title : '仓库数量'
 	}, {
-		field : 'name',
-		title : '状态'
+		field : 'status',
+		title : '状态',
+		formatter: Dict.getNameForList('score_updown')
 	}, {
-		field : 'name',
-		title : '售价（积分）'
+		field : 'discountPrice',
+		title : '售价（积分）',
+		formatter: moneyFormat
 	}, {
-		field : 'name',
-		title : '位置'
+		field : 'toSite',
+		title : '位置',
+		formatter: Dict.getNameForList('model_pos')
 	}, {
-		field : 'name',
+		field : 'remark',
 		title : '备注'
 	}];
 	
@@ -84,7 +87,7 @@ function queryTableData(){
 	$('#tableList').bootstrapTable({
 		method : "get",
 		url : $("#basePath").val()+"/model/price/page",
-		height : $(window).height() - 180,
+		 
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
@@ -92,7 +95,7 @@ function queryTableData(){
 			return {
 				modelName : $("#modelName").val(),
 				productName : $("#productName").val(),
-				status : $("#status").val()||13,
+				status : $("#status").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit
 			};

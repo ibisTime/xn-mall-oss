@@ -63,7 +63,7 @@ function queryTableData(){
 		method : "get",
 //		url : $("#basePath").val()+"/json/data.json",
 		url : $("#basePath").val()+"/general/structure/page",
-		height : $(window).height() - 180,
+		 
 		striped : true,
 		singleSelect : true,
 		clickToSelect : true,

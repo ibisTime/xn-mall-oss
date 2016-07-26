@@ -17,7 +17,7 @@ function queryTableData(){
 	$('#tableList').bootstrapTable({
 		method : "get",
 		url : $("#basePath").val()+"/general/system/log/page",
-		height : $(window).height() - 180,
+		 
 		striped : true,
 		singleSelect : true,
 		clickToSelect : true,

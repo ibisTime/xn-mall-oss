@@ -8,6 +8,8 @@ package com.xnjr.app.product.req;
 public class XN601040Req {
 
     private String code;
+    
+    private String modelCode;
 
     private String originalPrice;
 
@@ -76,4 +78,12 @@ public class XN601040Req {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+	public String getModelCode() {
+		return modelCode;
+	}
+
+	public void setModelCode(String modelCode) {
+		this.modelCode = modelCode;
+	}
 }

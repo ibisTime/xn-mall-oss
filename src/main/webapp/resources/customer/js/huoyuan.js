@@ -63,7 +63,6 @@ $(function(){
 		$('#tableList').bootstrapTable({
 			method : "get",
 			url : $("#basePath").val()+"/customer/huoyuanPage",
-			height : $(window).height() - 180,
 			striped : true,
 			clickToSelect : true,
 			singleSelect : true,

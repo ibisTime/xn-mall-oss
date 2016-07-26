@@ -24,7 +24,7 @@ public class LogisticsAOImpl implements ILogisticsAO {
     @Override
     public Object addLogistics(String code, String invoiceCode, String company,
             String deliveryDatetime, String deliverer, String updater,
-            List<GoodsReq> goodsList) {
+            String remark) {
         XN602040Req req = new XN602040Req();
         req.setCode(code);
         req.setInvoiceCode(invoiceCode);
@@ -32,19 +32,19 @@ public class LogisticsAOImpl implements ILogisticsAO {
         req.setDeliveryDatetime(deliveryDatetime);
         req.setDeliverer(deliverer);
         req.setUpdater(updater);
-        req.setRemark("发货录入");
-        req.setGoodsList(goodsList);
+        req.setRemark(remark);
         return BizConnecter.getBizData("602040", JsonUtils.object2Json(req),
             Object.class);
     }
 
     @Override
-    public Object queryLogisticsPage(String code, String invoiceCode,
+    public Object queryLogisticsPage(String code, String company, String invoiceCode,
             String deliveryDatetimeStart, String deliveryDatetimeEnd,
             String deliverer, String userId, String status, String start,
             String limit, String orderColumn, String orderDir) {
         XN602041Req req = new XN602041Req();
         req.setCode(code);
+        req.setCompany(company);
         req.setInvoiceCode(invoiceCode);
         req.setDeliveryDatetimeStart(deliveryDatetimeStart);
         req.setDeliveryDatetimeEnd(deliveryDatetimeEnd);
@@ -69,24 +69,6 @@ public class LogisticsAOImpl implements ILogisticsAO {
     public Object queryStartCodeByModelCode(String modelCode) {
         return BizConnecter.getBizData("602060",
             JsonUtils.string2Json("modelCode", modelCode), Object.class);
-    }
-
-    @Override
-    public Object queryGoodsPage(String code, String modelCode,
-            String logisticsCode, String userId, String status, String start,
-            String limit, String orderColumn, String orderDir) {
-        XN602061Req req = new XN602061Req();
-        req.setCode(code);
-        req.setModelCode(modelCode);
-        req.setLogisticsCode(logisticsCode);
-        req.setUserId(userId);
-        req.setStatus(status);
-        req.setStart(start);
-        req.setLimit(limit);
-        req.setOrderColumn(orderColumn);
-        req.setOrderDir(orderDir);
-        return BizConnecter.getBizData("602061", JsonUtils.object2Json(req),
-            Object.class);
     }
 
     @Override

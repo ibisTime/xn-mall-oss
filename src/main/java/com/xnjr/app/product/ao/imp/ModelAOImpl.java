@@ -51,7 +51,7 @@ public class ModelAOImpl implements IModelAO {
     @Override
     public Object addModel(String productCode, String name, String pic1,
             String pic2, String pic3, String description,
-            List<ModelSpecs> modelSpecsList, String updater) {
+            List<ModelSpecs> modelSpecsList, String updater, String remark) {
         XN601020Req req = new XN601020Req();
         req.setProductCode(productCode);
         req.setName(name);
@@ -61,6 +61,7 @@ public class ModelAOImpl implements IModelAO {
         req.setDescription(description);
         req.setModelSpecsList(modelSpecsList);
         req.setUpdater(updater);
+        req.setRemark(remark);
         return BizConnecter.getBizData("601020", JsonUtils.object2Json(req),
             Object.class);
     }
@@ -68,7 +69,7 @@ public class ModelAOImpl implements IModelAO {
     @Override
     public Object editModel(String code, String productCode, String name,
             String pic1, String pic2, String pic3, String description,
-            List<ModelSpecs> modelSpecsList, String updater) {
+            List<ModelSpecs> modelSpecsList, String updater, String remark) {
         XN601021Req req = new XN601021Req();
         req.setCode(code);
         req.setProductCode(productCode);
@@ -79,6 +80,7 @@ public class ModelAOImpl implements IModelAO {
         req.setDescription(description);
         req.setModelSpecsList(modelSpecsList);
         req.setUpdater(updater);
+        req.setRemark(remark);
         return BizConnecter.getBizData("601021", JsonUtils.object2Json(req),
             Object.class);
     }
@@ -96,12 +98,13 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object updownModel(String code, String originalPrice,
+    public Object updownModel(String code, String modelCode, String originalPrice,
             String discountPrice, String toLevel, String toSite, String updater,
             String isUp, String remark) {
-        if (isUp == "1") {
+        if (isUp.equals("false")) {
             XN601040Req req = new XN601040Req();
             req.setCode(code);
+            req.setModelCode(modelCode);
             req.setOriginalPrice(originalPrice);
             req.setDiscountPrice(discountPrice);
             req.setToLevel(toLevel);
@@ -113,6 +116,7 @@ public class ModelAOImpl implements IModelAO {
         } else {
             XN601041Req req = new XN601041Req();
             req.setCode(code);
+            req.setModelCode(modelCode);
             req.setUpdater(updater);
             req.setRemark(remark);
             return BizConnecter.getBizData("601041", JsonUtils.object2Json(req),
