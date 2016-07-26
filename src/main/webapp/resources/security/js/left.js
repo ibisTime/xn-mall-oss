@@ -19,16 +19,21 @@ function doSuccessMenuBack(res) {
 	        	// 二级菜单
 				$.each(res.data, function(j, nextItem) {
 					if(item.code == nextItem.parentCode){
-		            	$("#"+item.code).append("<li id=\""+nextItem.code+"\"><cite></cite><a id=\"child_menu_"+i+"\" href=\""+$("#basePath").val()+nextItem.url + "\" target=\"rightFrame\">"+nextItem.name+"</a><i></i></li>");
+		            	$("#"+item.code).append("<li class='"+(nextItem.url.indexOf('*') > -1 && 'disabled')+"' id=\""+nextItem.code+"\"><cite></cite><a id=\"child_menu_"+i+"\" href=\""+$("#basePath").val()+nextItem.url + "\" target=\"rightFrame\">"+nextItem.name+"</a><i></i></li>");
 		            }
 		        });
 			}
         });
 		
 		//导航切换
-		$(".menuson li").click(function(){
-			$(".menuson li.active").removeClass("active")
+		$(".menuson li").click(function(e){
+			if ($(this).find('a').attr('href').indexOf('*') > -1) {
+				e.preventDefault();
+				return;
+			}
+			$(".menuson li.active").removeClass("active");
 			$(this).addClass("active");
+			
 		});
 		$('.title').click(function(){
 			var $ul = $(this).next('ul');

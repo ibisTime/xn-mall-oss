@@ -69,7 +69,7 @@ $(function(){
 		$('#tableList').bootstrapTable({
 			method : "get",
 			url : $("#basePath").val()+"/customer/jifenPage",
-			height : $(window).height() - 180,
+			 
 			striped : true,
 			clickToSelect : true,
 			singleSelect : true,

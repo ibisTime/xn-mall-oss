@@ -55,7 +55,7 @@ function queryTableData(){
 	$('#tableList').bootstrapTable({
 		method : "get",
 		url : $("#basePath").val()+"/general/dict/page",
-		height : $(window).height() - 180,
+		 
 		striped : true,
 		singleSelect : true,
 		clickToSelect : true,

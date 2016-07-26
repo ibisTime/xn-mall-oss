@@ -139,7 +139,7 @@ function queryTableData(){
 	$('#tableList').bootstrapTable({
 		method : "get",
 		url : $("#basePath").val()+"/product/goods/page",
-		height : $(window).height() - 180,
+		 
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,

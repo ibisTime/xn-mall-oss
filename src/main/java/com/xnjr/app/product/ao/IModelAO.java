@@ -28,7 +28,7 @@ public interface IModelAO {
      */
     public Object addModel(String productCode, String name, String pic1,
             String pic2, String pic3, String description,
-            List<ModelSpecs> modelSpecsList, String updater);
+            List<ModelSpecs> modelSpecsList, String updater, String remark);
 
     /**
      * 修改型号
@@ -47,7 +47,7 @@ public interface IModelAO {
      */
     public Object editModel(String code, String productCode, String name,
             String pic1, String pic2, String pic3, String description,
-            List<ModelSpecs> modelSpecsList, String updater);
+            List<ModelSpecs> modelSpecsList, String updater, String remark);
 
     /**
      * 审核型号
@@ -72,7 +72,7 @@ public interface IModelAO {
      * @create: 2016年5月23日 上午11:21:54 XIANDONG
      * @history:
      */
-    public Object updownModel(String code, String originalPrice, String discountPrice, 
+    public Object updownModel(String code, String modelCode, String originalPrice, String discountPrice, 
     		String toLevel, String toSite, String updater, String isUp, String remark);
 
     /**

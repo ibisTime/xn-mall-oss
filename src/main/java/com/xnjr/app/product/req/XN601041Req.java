@@ -9,6 +9,8 @@ public class XN601041Req {
 
     // 编号（必填）
     private String code;
+    
+    private String modelCode;
 
     // 更新人（必填）
     private String updater;
@@ -39,4 +41,12 @@ public class XN601041Req {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+	public String getModelCode() {
+		return modelCode;
+	}
+
+	public void setModelCode(String modelCode) {
+		this.modelCode = modelCode;
+	}
 }

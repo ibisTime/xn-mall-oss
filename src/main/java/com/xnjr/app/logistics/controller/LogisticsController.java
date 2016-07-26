@@ -31,14 +31,11 @@ public class LogisticsController extends BaseController {
             @RequestParam("company") String company,
             @RequestParam("deliveryDatetime") String deliveryDatetime,
             @RequestParam("deliverer") String deliverer,
-            @RequestParam(value = "goodsList", required = true) String goodsListJSON) {
-        Gson gson = new Gson();
-        List<GoodsReq> goodsList = gson.fromJson(goodsListJSON,
-            new TypeToken<List<GoodsReq>>() {
-            }.getType());
+            @RequestParam("updater") String updater,
+            @RequestParam(value = "remark", required = false) String remark) {
         return logisticsAO.addLogistics(code, invoiceCode, company,
             deliveryDatetime, deliverer, this.getSessionUser().getUserName(),
-            goodsList);
+            remark);
     }
 
     // 物流单分页查询
@@ -46,6 +43,7 @@ public class LogisticsController extends BaseController {
     @ResponseBody
     public Object queryLogisticsPage(
             @RequestParam(value = "code", required = false) String code,
+            @RequestParam(value = "company", required = false) String company,
             @RequestParam(value = "invoiceCode", required = false) String invoiceCode,
             @RequestParam(value = "deliveryDatetimeStart", required = false) String deliveryDatetimeStart,
             @RequestParam(value = "deliveryDatetimeEnd", required = false) String deliveryDatetimeEnd,
@@ -56,7 +54,7 @@ public class LogisticsController extends BaseController {
             @RequestParam(value = "limit", required = true) String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return logisticsAO.queryLogisticsPage(code, invoiceCode,
+        return logisticsAO.queryLogisticsPage(code, company, invoiceCode,
             deliveryDatetimeStart, deliveryDatetimeEnd, deliverer, userId,
             status, start, limit, orderColumn, orderDir);
     }
@@ -75,24 +73,8 @@ public class LogisticsController extends BaseController {
             @RequestParam("modelCode") String modelCode) {
         return logisticsAO.queryStartCodeByModelCode(modelCode);
     }
-
-    // 货分页查询
-    @RequestMapping(value = "/goods/page", method = RequestMethod.GET)
-    @ResponseBody
-    public Object queryGoodsPage(
-            @RequestParam(value = "code", required = false) String code,
-            @RequestParam(value = "modelCode", required = false) String modelCode,
-            @RequestParam(value = "logisticsCode", required = false) String logisticsCode,
-            @RequestParam(value = "userId", required = false) String userId,
-            @RequestParam(value = "status", required = false) String status,
-            @RequestParam(value = "start", required = true) String start,
-            @RequestParam(value = "limit", required = true) String limit,
-            @RequestParam(value = "orderColumn", required = false) String orderColumn,
-            @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return logisticsAO.queryGoodsPage(code, modelCode, logisticsCode,
-            userId, status, start, limit, orderColumn, orderDir);
-    }
-
+    
+    // 收货确认
     @RequestMapping(value = "/goods/sure", method = RequestMethod.POST)
     @ResponseBody
     public Object suregoods(@RequestParam("code") String code,

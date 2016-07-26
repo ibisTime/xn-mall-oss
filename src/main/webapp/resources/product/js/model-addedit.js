@@ -28,7 +28,8 @@ $(function() {
 				$("#img1").attr('src',res.data.pic1);
 				$("#img2").attr('src',res.data.pic2);
 				$("#img3").attr('src',res.data.pic3);
-				$("#status").val(Dict.getName('model_status', res.data.status));
+				$("#status").val(res.data.status);
+				$("#remark").val(res.data.remark);
 				description.ready(function() {
 					description.setContent(res.data.description);
 				});

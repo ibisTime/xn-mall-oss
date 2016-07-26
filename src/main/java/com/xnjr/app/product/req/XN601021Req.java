@@ -35,6 +35,8 @@ public class XN601021Req {
 
     // 更新人（必填）
     private String updater;
+    
+    private String remark;
 
     public String getCode() {
         return code;
@@ -107,4 +109,12 @@ public class XN601021Req {
     public void setUpdater(String updater) {
         this.updater = updater;
     }
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 }

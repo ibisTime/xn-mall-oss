@@ -202,3 +202,7 @@ td{ word-wrap:break-word}
 .flex-fw {
     flex-wrap: wrap;
 }
+
+.menuson .disabled a {
+	color: #ADADAD;
+}

@@ -72,7 +72,6 @@ $(function(){
 		$('#tableList').bootstrapTable({
 			method : "get",
 			url : $("#basePath").val()+"/account/inciseScore/page",
-			height : $(window).height() - 180,
 			striped : true,
 			clickToSelect : true,
 			singleSelect : true,

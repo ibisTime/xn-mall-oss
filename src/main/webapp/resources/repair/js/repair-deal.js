@@ -76,7 +76,7 @@ function queryTableData(){
 	$('#tableList').bootstrapTable({
 		method : "get",
 		url : $("#basePath").val()+"/repair/queryPage",
-		height : $(window).height() - 180,
+		 
 		striped : true,
 		clickToSelect : true,
 		singleSelect : true,
