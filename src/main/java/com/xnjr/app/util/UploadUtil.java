@@ -94,7 +94,19 @@ public class UploadUtil {
             try {
                 sftp.ls(dir);
             } catch (SftpException e) {
-                sftp.mkdir(dir);
+            	sftp.cd("/");
+            	String[] folders = dir.split("/");
+                for (String folder : folders) {
+                    if (folder.length() > 0) {
+                        try {
+                            sftp.cd(folder);
+                        }
+                        catch (SftpException e2) {
+                            sftp.mkdir(folder);
+                            sftp.cd(folder);
+                        }
+                    }
+                }
             }
             sftp.put(fis, dstString);
             path = urlPrefix + date + "/" + fileName;
@@ -185,8 +197,21 @@ public class UploadUtil {
             try {
                 sftp.ls(dir);
             } catch (SftpException e) {
-                sftp.mkdir(dir);
+            	sftp.cd("/");
+            	String[] folders = dir.split("/");
+                for (String folder : folders) {
+                    if (folder.length() > 0) {
+                        try {
+                            sftp.cd(folder);
+                        }
+                        catch (SftpException e2) {
+                            sftp.mkdir(folder);
+                            sftp.cd(folder);
+                        }
+                    }
+                }
             }
+            
             sftp.put(fis, dstString);
             path = urlPrefix + date + "/" + picName;
 
