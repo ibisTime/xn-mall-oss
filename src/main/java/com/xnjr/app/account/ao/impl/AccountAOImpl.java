@@ -110,7 +110,7 @@ public class AccountAOImpl implements IAccountAO {
             String channel, String refNo, String status, String approveUser,
             String dateStart, String dateEnd, String start, String limit) {
         XN802100Req req = new XN802100Req();
-        req.setFromAccountNumber(accountNumber);
+        req.setFromAccountNumber(fromAccountNumber);
         req.setAccountNumber(accountNumber);
         req.setCode(code);
         req.setFromType(fromType);
