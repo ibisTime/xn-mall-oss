@@ -20,7 +20,11 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		window.location.href = $("#basePath").val()+"/account/recharge.htm";
+		if(type == "01"){
+			location.href = $("#basePath").val()+"/account/applyshangjia.htm";
+		}else if(type == "03"){
+			location.href = $("#basePath").val()+"/account/recharge.htm"; 
+		}
 	});
 	
 	//入参合法性校验
@@ -80,14 +84,5 @@ function doSuccessBack(res) {
 		window.location.href = $("#basePath").val()+"/account/recharge.htm";
 	}else{
 		alert(res.msg);
-	}
-}
-
-//跳转链接
-function redirectUrl(){
-	if(rechargeType == "01"){
-		location.href = $("#basePath").val()+"/account/recharge.htm";
-	}else if(rechargeType == "13"){
-		location.href = $("#basePath").val()+"/account/recharge_epay.htm"; 
 	}
 }

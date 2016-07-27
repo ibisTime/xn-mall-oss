@@ -206,3 +206,7 @@ td{ word-wrap:break-word}
 .menuson .disabled a {
 	color: #ADADAD;
 }
+
+#uploadBtn1 {
+	margin-left: 0px;
+}
