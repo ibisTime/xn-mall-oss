@@ -30,9 +30,8 @@ $(function (){
 		var data = {"amount":moneyParse($("#amount").val())};
 		data['pdf'] = $("#url1").attr("href");
 		data['toUserId'] =$("#toUserId").val().split("|")[0];
-		data['price'] =$("#price").html();
+		data['price'] =moneyParse($("#price").html());
 		data['type'] ='1';
-		data['amount'] = moneyParse(data['amount'], 1);
 		var url = $("#basePath").val()+"/account/toRecharge";
 		doPostAjax(url, data, doSuccessBack);
 	});
