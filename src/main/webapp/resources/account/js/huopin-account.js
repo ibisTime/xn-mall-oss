@@ -27,7 +27,7 @@ function doSucBackAccountStatus(res){
 
 //跳转系统资金明细
 function redirectAmountJour(){
-	location.href = $("#basePath").val()+"/account/frozen_account_detail.htm?accountNumber="+$("#accountNumber").html();
+	location.href = $("#basePath").val()+"/account/account_jour.htm?accountNumber="+$("#accountNumber").html();
 }
 
 //跳转系统资金明细

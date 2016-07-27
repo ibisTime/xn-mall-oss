@@ -27,7 +27,7 @@ function queryJourTableData(){
 	// 绑定列表
 	$('#jourTableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/account/jourPage",
+		url : $("#basePath").val()+"/account/frozenAccountPag",
 		
 		striped : true,
 		clickToSelect : true,
