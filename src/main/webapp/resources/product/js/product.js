@@ -5,7 +5,7 @@ $(function() {
 	showPermissionControl();
 	
 	$('#type').renderDropdown(Dict.getName('pro_category'));
-	$('#status').renderDropdown(Dict.getName('product_status'));
+	$('#status').renderDropdown([{'dkey': '0', 'dvalue': '否'}, {'dkey': '1', 'dvalue': '是'}]);
 		
 	//表格初始化
 	queryTableData();
@@ -87,8 +87,10 @@ function queryTableData(){
 		title : 'UI次序'
 	}, {
 		field : 'status',
-		title : '状态',
-		formatter: Dict.getNameForList('product_status')
+		title : '启用',
+		formatter: function(v) {
+			return v == 1 ? '是' : '否'; 
+		}
 	}, {
 		field : 'remark',
 		title : '备注'

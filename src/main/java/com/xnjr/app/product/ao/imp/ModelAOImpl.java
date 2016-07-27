@@ -50,7 +50,7 @@ public class ModelAOImpl implements IModelAO {
 
     @Override
     public Object addModel(String productCode, String name, String pic1,
-            String pic2, String pic3, String description,
+            String pic2, String pic3, String status, String description,
             List<ModelSpecs> modelSpecsList, String updater, String remark) {
         XN601020Req req = new XN601020Req();
         req.setProductCode(productCode);
@@ -58,6 +58,7 @@ public class ModelAOImpl implements IModelAO {
         req.setPic1(UploadUtil.uploadPicture(pic1));
         req.setPic2(UploadUtil.uploadPicture(pic2));
         req.setPic3(UploadUtil.uploadPicture(pic3));
+        req.setStatus(status);
         req.setDescription(description);
         req.setModelSpecsList(modelSpecsList);
         req.setUpdater(updater);
@@ -68,7 +69,7 @@ public class ModelAOImpl implements IModelAO {
 
     @Override
     public Object editModel(String code, String productCode, String name,
-            String pic1, String pic2, String pic3, String description,
+            String pic1, String pic2, String pic3, String status, String description,
             List<ModelSpecs> modelSpecsList, String updater, String remark) {
         XN601021Req req = new XN601021Req();
         req.setCode(code);
@@ -77,6 +78,7 @@ public class ModelAOImpl implements IModelAO {
         req.setPic1(UploadUtil.editUploadPicture(pic1));
         req.setPic2(UploadUtil.editUploadPicture(pic2));
         req.setPic3(UploadUtil.editUploadPicture(pic3));
+        req.setStatus(status);
         req.setDescription(description);
         req.setModelSpecsList(modelSpecsList);
         req.setUpdater(updater);

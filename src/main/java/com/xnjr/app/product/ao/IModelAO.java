@@ -27,7 +27,7 @@ public interface IModelAO {
      * @history:
      */
     public Object addModel(String productCode, String name, String pic1,
-            String pic2, String pic3, String description,
+            String pic2, String pic3, String status, String description,
             List<ModelSpecs> modelSpecsList, String updater, String remark);
 
     /**
@@ -46,7 +46,7 @@ public interface IModelAO {
      * @history:
      */
     public Object editModel(String code, String productCode, String name,
-            String pic1, String pic2, String pic3, String description,
+            String pic1, String pic2, String pic3, String status, String description,
             List<ModelSpecs> modelSpecsList, String updater, String remark);
 
     /**

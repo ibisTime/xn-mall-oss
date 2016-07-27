@@ -23,7 +23,7 @@ function doSucBackGetDetail(res){
 		$("#advTitle").html(res.data.advTitle);
 		$("#remark").html(res.data.remark);
 		$("#order").html(res.data.orderNo);
-		$("#status").html(Dict.getName('product_status', res.data.status));
+		$("#status").html(res.data.status == 1 ? '是' : '否');
 		$("#updater").html(res.data.updater);
 		$("#updateDatetime").html(dateFormat(res.data.updateDatetime));
 		$("#img1").attr('src',res.data.advPic);

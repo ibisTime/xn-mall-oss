@@ -37,6 +37,8 @@ public class XN601021Req {
     private String updater;
     
     private String remark;
+    
+    private String status;
 
     public String getCode() {
         return code;
@@ -116,5 +118,13 @@ public class XN601021Req {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

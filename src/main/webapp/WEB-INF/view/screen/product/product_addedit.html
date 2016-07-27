@@ -31,7 +31,10 @@
  		    	<li><label><b>*</b>UI小类:</label><select id="type" name="type" class="control-def"></select></li>
  		    	<li><label><b>*</b>小类图片:</label><input type="file" id="typePic" name="typePic" onchange="selectImage(this,'img2');" /><img src="" id="img2" width="180" height="180"></img><b> 上传图片建议大小500*500</b></li>
  		    	<li><label><b>*</b>UI次序:</label><input type="text" id="orderNo" name="orderNo" class="control-def"/></li>
- 		    	<li><label><b>*</b>状态:</label><select id="status" name="status" class="control-def"></select></li>
+ 		    	<li><label><b>*</b>启用:</label>
+ 		    		<input type="radio" name="status" value="1" checked="checked" />是 
+					<input type="radio" name="status" value="0" />否
+				</li>
 			    <li><label>备注:</label><input type="text" id="remark" name="remark" class="control-def"/></li>
 			    <li>
 			    <input id="subBtn" type="button" class="btn margin-left-100" value="保存"/>

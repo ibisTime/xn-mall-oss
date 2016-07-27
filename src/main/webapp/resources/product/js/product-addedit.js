@@ -1,8 +1,31 @@
 $(function() {
 	
-	$('#category').renderDropdown(Dict.getName('pro_category'));
-	$('#type').renderDropdown(Dict.getName('product_type'));
 	$('#status').renderDropdown(Dict.getName('product_status'));
+	
+	doGetAjaxIsAsync($("#dictUrl").val(), {
+		parentKey: 'pro_category'
+	}, false, function(res) {
+		var data =res.data || [];
+		var html = "<option value=''>请选择</option>";
+		for(var i = 0;i < data.length;i++){
+			html += "<option value='"+data[i]['dkey']+"'>"+data[i]['dvalue']+"</option>";
+		}
+		$('#category').html(html);
+	});
+	
+	$('#category').on('change', function() {
+		var value = $(this).val();
+		doGetAjax($("#dictUrl").val(), {
+			parentKey: value
+		}, function(res) {
+			var data = res.data || [];
+			var html = "<option value=''>请选择</option>";
+			for(var i = 0;i < data.length;i++){
+				html += "<option value='"+data[i]['dkey']+"'>"+data[i]['dvalue']+"</option>";
+			}
+			$('#type').html(html);
+		});
+	});
 	
 	//获取菜单URL入参
 	var code = getQueryString("code");
@@ -88,12 +111,22 @@ $(function() {
 //获取详情回调方法
 function doSucBackGetDetail(res){
 	if (res.success) {
+		doGetAjaxIsAsync($("#dictUrl").val(), {
+			parentKey: res.data.category
+		}, false, function(res) {
+			var data = res.data || [];
+			var html = "<option value=''>请选择</option>";
+			for(var i = 0;i < data.length;i++){
+				html += "<option value='"+data[i]['dkey']+"'>"+data[i]['dvalue']+"</option>";
+			}
+			$('#type').html(html);
+		});
 		$("#code").val(res.data.code);
 		$("#category").val(res.data.category);
 		$("#type").val(res.data.type);
 		$("#name").val(res.data.name);
 		$("#orderNo").val(res.data.orderNo);
-		$("#status").val(res.data.status);
+		$("[name=status][value='"+res.data.status+"']")[0].checked = true;
 		$("#advTitle").val(res.data.advTitle);
 		$("#remark").val(res.data.remark);
 		$("#img1").attr('src',res.data.advPic);
