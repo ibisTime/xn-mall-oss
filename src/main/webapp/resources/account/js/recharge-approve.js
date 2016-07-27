@@ -3,8 +3,9 @@ var orderStatus = null;
 $(function() {
 	var code = getQueryString("code");
 	var accountNumber = getQueryString("accountNumber");
+	var type = getQueryString("rechargeType");
 	var data = {"code":code,"start":"1","limit":"10"};
-	var url = $("#basePath").val()+"/account/rechargeOrderPage";
+	var url = $("#basePath").val()+"/account/"+ (type == 1 ? "applyR" : "r") +"echargeOrderPage";
 	doGetAjax(url, data, doGetDetailBack);
 	
 	//提交
@@ -19,7 +20,11 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		window.location.href = $("#basePath").val()+"/account/recharge.htm";
+		if(type == "01"){
+			location.href = $("#basePath").val()+"/account/applyshangjia.htm";
+		}else if(type == "03"){
+			location.href = $("#basePath").val()+"/account/recharge.htm"; 
+		}
 	});
 	
 	//入参合法性校验
@@ -46,9 +51,10 @@ function doGetDetailBack(res){
 			$("#chargeNo").val(result.code);
 			$("#accountNumber").html(result.accountNumber);
 			$("#status").html(Dict.getName('withdraw_status',result.status));
-			$("#price").html(result.price);
+			$("#price").html(moneyFormat(result.price, 2));
 			$("#approveNote").html(result.approveNote);
 			$("#amount").html(moneyFormat(result.amount,2));
+			$("#applyUser").html(result.applyUser);
 			$("#bankCode").html(Dict.getName('charge_type',result.fromType));
 			$("#fromAccountNumber").html(result.fromAccountNumber);
 			$('#pdf').html(result.pdf.substring(result.pdf.lastIndexOf('/')+1));
@@ -78,14 +84,5 @@ function doSuccessBack(res) {
 		window.location.href = $("#basePath").val()+"/account/recharge.htm";
 	}else{
 		alert(res.msg);
-	}
-}
-
-//跳转链接
-function redirectUrl(){
-	if(rechargeType == "01"){
-		location.href = $("#basePath").val()+"/account/recharge.htm";
-	}else if(rechargeType == "13"){
-		location.href = $("#basePath").val()+"/account/recharge_epay.htm"; 
 	}
 }
