@@ -117,7 +117,7 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/logistics/logistics.htm";
+		location.href = $("#basePath").val()+"/order/order_query.htm";
 	});
 });
 
@@ -126,7 +126,7 @@ $(function() {
 function doSucBackSave(res) {
 	if (res.success == true) {
 		alert("操作成功");
-		window.location.href = $("#basePath").val()+"/logistics/logistics.htm";
+		window.location.href = $("#basePath").val()+"/order/order_query.htm";
 	}else{
 		alert(res.msg);
 	}
