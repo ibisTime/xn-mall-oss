@@ -11,7 +11,10 @@ $(function() {
 		var t = $('form').serializeArray();
 		$.each(t, function() {
 			data[this.name] = this.value;
+			
 		});
+		data['price'] = moneyParse($("#price").val());
+		data['quantity'] = moneyParse($("#quantity").val());
 		var url = $("#basePath").val()+"/account/incise/score";
 		doPostAjax(url, data, doSaveSuccessBack);
 	});
