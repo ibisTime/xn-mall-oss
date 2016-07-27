@@ -77,7 +77,7 @@ function queryTableData(){
 		valign : 'middle',
 		sortable : false,
 	}, {
-		field : 'loginName',
+		field : 'mobile',
 		title : '下单用户',
 		align : 'left',
 		valign : 'middle',

@@ -240,7 +240,7 @@ public class ModelAOImpl implements IModelAO {
             String toUser, String status, String start, String limit,
             String orderColumn, String orderDir) {
         XN602025Req req = new XN602025Req();
-        req.setApplyUser(applyUser);
+        req.setMobile(applyUser);
         req.setStatus(status);
         req.setToUser(toUser);
         req.setStart(start);

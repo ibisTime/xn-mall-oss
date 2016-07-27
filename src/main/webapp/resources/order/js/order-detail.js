@@ -113,7 +113,7 @@ $(function() {
 			$("#code").html(res.data.code);
 			$("#applyDatetime").html(dateFormatter(res.data.applyDatetime));
 			$("#applyNote").html(res.data.applyNote || '无');
-			$("#loginName").html(res.data.loginName);
+			$("#loginName").html(res.data.mobile);
 			$("#approveDatetime").html(res.data.approveDatetime);
 			$("#receiptTitle").html(res.data.receiptTitle|| '-');
 			$("#receiptType").html(Dict.getName('receipt_type',res.data.receiptType||'无'));
