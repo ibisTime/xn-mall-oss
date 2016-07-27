@@ -101,6 +101,9 @@ function queryTableData(){
 			sortable : false,
 			formatter : Dict.getNameForList('recharge_status')
 		},{
+			field: 'applyUser',
+			title: '申请人'
+		},{
 			field : 'createDatetime',
 			title : '申请时间',
 			align : 'left',

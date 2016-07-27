@@ -96,6 +96,9 @@ $(function() {
 			sortable : false,
 			formatter : Dict.getNameForList('recharge_status')
 		},{
+			field: 'applyUser',
+			title: '申请人'
+		},{
 			field : 'createDatetime',
 			title : '申请时间',
 			align : 'left',
@@ -146,7 +149,7 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		location.href = $("#basePath").val()+"/account/recharge_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01&rechargeStatus=normal";
+		location.href = $("#basePath").val()+"/account/recharge_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=03&rechargeStatus=normal";
 	});
 	
 	//导出
