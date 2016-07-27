@@ -60,6 +60,7 @@ function doGetDetailBack(res){
 			$("#status").html(Dict.getName('withdraw_status', result.status));
 			$("#amount").html(moneyFormat(result.amount,2));
 			$("#price").html(moneyFormat(result.price,2));
+			$("#applyUser").html(result.applyUser);
 			$("#createDatetime").html(dateFormat(result.createDatetime,'yyyy-MM-dd HH:mm:ss'));
 			$("#approveUser").html(result.approveUser);
 			$("#approveDatetime").html(dateFormat(result.approveDatetime,'yyyy-MM-dd HH:mm:ss'));

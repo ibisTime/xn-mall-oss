@@ -429,4 +429,37 @@ public class AccountController extends BaseController {
     public Object inciseScoreDetail(@RequestParam(value = "code") String code) {
         return accountAO.inciseScoreDetail(code);
     }
+    
+    @RequestMapping(value = "/duixian", method = RequestMethod.POST)
+    @ResponseBody
+    public Object duixian(
+            @RequestParam(value = "fromUserId") String fromUserId,
+            @RequestParam(value = "amount") String amount,
+            @RequestParam(value = "price") String price,
+            @RequestParam(value = "type") String type) {
+        return accountAO.duixian(fromUserId, this.getSessionUser().getUserId(),
+            amount, price, type, this.getSessionUser().getUserId());
+    }
+
+    @RequestMapping(value = "/duixian/check", method = RequestMethod.POST)
+    @ResponseBody
+    public Object checkduixian(
+            @RequestParam(value = "withdrawNo") String withdrawNo,
+            @RequestParam(value = "approveResult") String approveResult,
+            @RequestParam(value = "approveNote") String approveNote) {
+        return accountAO.checkduixian(withdrawNo, this.getSessionUser()
+            .getUserId(), approveResult, approveNote);
+    }
+
+    @RequestMapping(value = "/duixian/pay", method = RequestMethod.POST)
+    @ResponseBody
+    public Object payduixian(
+            @RequestParam(value = "withdrawNo") String withdrawNo,
+            @RequestParam(value = "payResult") String payResult,
+            @RequestParam(value = "payNote") String payNote,
+            @RequestParam(value = "refNo") String refNo,
+            @RequestParam(value = "fee") String fee) {
+        return accountAO.payduixian(withdrawNo, this.getSessionUser()
+            .getUserId(), payResult, payNote, refNo, fee);
+    }
 }

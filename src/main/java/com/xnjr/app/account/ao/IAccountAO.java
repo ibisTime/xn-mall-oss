@@ -475,48 +475,48 @@ public interface IAccountAO {
     // public Object shixiaoScore(String integralCode, String updater,
     // String remark);
     //
-    // /**
-    // * 代线下兑现
-    // * @param fromUserId
-    // * @param toUserId
-    // * @param amount
-    // * @param price
-    // * @param type
-    // * @param applyUser
-    // * @return
-    // * @create: 2016年7月24日 下午8:25:38 XIANDONG
-    // * @history:
-    // */
-    // public Object duixian(String fromUserId, String toUserId, String amount,
-    // String price, String type, String applyUser);
-    //
-    // /**
-    // * 审批兑现订单
-    // * @param withdrawNo
-    // * @param approveUser
-    // * @param approveResult
-    // * @param approveNote
-    // * @return
-    // * @create: 2016年7月24日 下午8:26:33 XIANDONG
-    // * @history:
-    // */
-    // public Object checkduixian(String withdrawNo, String approveUser,
-    // String approveResult, String approveNote);
-    //
-    // /**
-    // * 支付兑现订单
-    // * @param withdrawNo
-    // * @param payUser
-    // * @param payResult
-    // * @param payNote
-    // * @param refNo
-    // * @param fee
-    // * @return
-    // * @create: 2016年7月24日 下午8:28:28 XIANDONG
-    // * @history:
-    // */
-    // public Object payduixian(String withdrawNo, String payUser,
-    // String payResult, String payNote, String refNo, String fee);
+     /**
+     * 代线下兑现
+     * @param fromUserId
+     * @param toUserId
+     * @param amount
+     * @param price
+     * @param type
+     * @param applyUser
+     * @return
+     * @create: 2016年7月24日 下午8:25:38 XIANDONG
+     * @history:
+     */
+     public Object duixian(String fromUserId, String toUserId, String amount,
+     String price, String type, String applyUser);
+    
+     /**
+     * 审批兑现订单
+     * @param withdrawNo
+     * @param approveUser
+     * @param approveResult
+     * @param approveNote
+     * @return
+     * @create: 2016年7月24日 下午8:26:33 XIANDONG
+     * @history:
+     */
+     public Object checkduixian(String withdrawNo, String approveUser,
+     String approveResult, String approveNote);
+    
+     /**
+     * 支付兑现订单
+     * @param withdrawNo
+     * @param payUser
+     * @param payResult
+     * @param payNote
+     * @param refNo
+     * @param fee
+     * @return
+     * @create: 2016年7月24日 下午8:28:28 XIANDONG
+     * @history:
+     */
+     public Object payduixian(String withdrawNo, String payUser,
+     String payResult, String payNote, String refNo, String fee);
 
     // 删除积分
     public Object delScore(String code);

@@ -21,6 +21,8 @@ public class XN602025Req extends APageReq {
     private String toUser;
 
     private String code;
+    
+    private String mobile;
 
     // 状态（选填）
     private String status;
@@ -59,6 +61,14 @@ public class XN602025Req extends APageReq {
 
 	public void setToUser(String toUser) {
 		this.toUser = toUser;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 }

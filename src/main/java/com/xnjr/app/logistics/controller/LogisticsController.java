@@ -31,7 +31,6 @@ public class LogisticsController extends BaseController {
             @RequestParam("company") String company,
             @RequestParam("deliveryDatetime") String deliveryDatetime,
             @RequestParam("deliverer") String deliverer,
-            @RequestParam("updater") String updater,
             @RequestParam(value = "remark", required = false) String remark) {
         return logisticsAO.addLogistics(code, invoiceCode, company,
             deliveryDatetime, deliverer, this.getSessionUser().getUserName(),

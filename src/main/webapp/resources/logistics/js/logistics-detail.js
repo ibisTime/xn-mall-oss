@@ -2,7 +2,6 @@ $(function() {
 	
 	//获取菜单URL入参
 	var code = getQueryString("code");
-	initBusinessTable();
 	//新增修改判断
 	if(isBlank(code)){
 		$("#product").val("add");
@@ -11,54 +10,6 @@ $(function() {
 		var data = {"code":code};
 		var url = $("#basePath").val()+"/logistics/detail";
 		doGetAjax(url, data, doSucBackGetDetail);
-	}
-	
-	function initBusinessTable(){
-		//绑定列表
-		$('#tableList').bootstrapTable({
-			striped : true,
-			singleSelect : true,
-			clickToSelect : true,
-			columns : [{
-						field : 'modelName',
-						title : '所属型号',
-						align : 'left',
-						valign : 'middle',
-						sortable : false,
-					},{
-						field : 'codeStart',
-						title : '起始编号',
-						align : 'left',
-						valign : 'middle',
-						sortable : false,
-					},{
-						field : 'codeEnd',
-						title : '终止编号',
-						align : 'left',
-						valign : 'middle',
-						sortable : false,
-					},{
-						field : 'quantity',
-						title : '数量',
-						align : 'left',
-						valign : 'middle',
-						sortable : false,
-					},{
-						field : 'costPrice',
-						title : '成本价',
-						align : 'left',
-						valign : 'middle',
-						formatter:moneyFormatter,
-						sortable : false,
-					},{
-						field : 'salePrice',
-						title : '零售价',
-						align : 'left',
-						valign : 'middle',
-						formatter:moneyFormatter,
-						sortable : false,
-					}]
-		});
 	}
 	
 	//返回

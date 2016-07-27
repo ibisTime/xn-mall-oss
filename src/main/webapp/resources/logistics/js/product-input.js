@@ -8,33 +8,7 @@ $(function() {
 //			$("#productCode").html(html);
 //		}
 //	});
-	
-	function setStartCode(el) {
-		doGetAjaxIsAsync($("#basePath").val()+"/logistics/startcode", {
-			modelCode: el.val()
-		}, false, function(res) {
-			el.parent().next().html(res.data.code);
-		});
-	}
-	
-	function setEndCode(startCode, number, rowEl) {
-		if (startCode && number) {
-			var parts = startCode.split('-');
-			var endCode = parts[0] + '-' + (+parts[1] + (+number - 1));
-		} else {
-			rowEl.find('td').eq(2).html('');
-		}
-		rowEl.find('td').eq(2).html(endCode);
-	}
-	
-	$('#edittable').on('change', '.select1', function() {
-		setStartCode($(this));
-		setEndCode($(this).parent().next().html(), $(this).parent().next().next().next().find('input').val(), $(this).parent().parent());
-	});
-	
-	$('#edittable').on('keyup', '.number1', function() {
-		setEndCode($(this).parent().prev().prev().html(), $(this).val(), $(this).parent().parent());
-	});
+
 	
 	// qrcode
 	
@@ -63,135 +37,7 @@ $(function() {
 	});
 	
 	var modelData;
-	function initSpecsTable(modelData){
-		var html = '<select class="select1">';
-		modelData.forEach(function(item) {
-			html += '<option value="'+item.code+'">'+item.name+'</option>';
-		});
-		html += '</select>';
-	    mytable = $('#edittable').editTable({
-	    	 field_templates: {
-	 	    	'displaybox': {
-	 	    		html: '<span></span>',
-	 	    		getValue: function (input) {
-	 	                return $(input).html();
-	 	            },
-	 	            setValue: function (input, value) {
-	 	                return $(input).html(value);
-	 	            }
-	 	    	},
-	 	    	'number' : {
-	 	            html: '<input type="text" name="number" required maxlength="11" class="number1"/>',
-	 	            getValue: function (input) {
-	 	                return $(input).val();
-	 	            },
-	 	            setValue: function (input, value) {
-	 	            	return $(input).attr('value', value);
-	 	            }
-	 	        },
-	 	       'costpricebox' : {
-	 	            html: '<input type="text" name="costpricebox" required maxlength="13"/>',
-	 	            getValue: function (input) {
-	 	                return $(input).val();
-	 	            },
-	 	            setValue: function (input, value) {
-	 	            	return $(input).attr('value', value);
-	 	            }
-	 	        },
-	 	       'linshou' : {
-	 	            html: '<input type="text" name="linshou" required maxlength="13"/>',
-	 	            getValue: function (input) {
-	 	                return $(input).val();
-	 	            },
-	 	            setValue: function (input, value) {
-	 	            	return $(input).attr('value', value);
-	 	            }
-	 	        },
-	 	       'textair' : {
-	 	            html: '<input type="text" name="textair" required maxlength="5"/>',
-	 	            getValue: function (input) {
-	 	                return $(input).val();
-	 	            },
-	 	            setValue: function (input, value) {
-	 	            	return $(input).attr('value', value);
-	 	            }
-	 	        },
-	 	        'checkbox' : {
-	 	            html: '<input type="checkbox"/>',
-	 	            getValue: function (input) {
-	 	                return $(input).is(':checked');
-	 	            },
-	 	            setValue: function (input, value) {
-	 	                if ( value ){
-	 	                    return $(input).attr('checked', true);
-	 	                }
-	 	                return $(input).removeAttr('checked');
-	 	            }
-	 	        },
-	 	        'textarea' : {
-	 	            html: '<textarea/>',
-	 	            getValue: function (input) {
-	 	                return $(input).val();
-	 	            },
-	 	            setValue: function (input, value) {
-	 	                return $(input).text(value);
-	 	            }
-	 	        },
-	 	        'select' : {
-	 	            html: html,
-	 	            getValue: function (input) {
-	 	                return $(input).val();
-	 	            },
-	 	            setValue: function (input, value) {
-	 	                var select = $(input);
-	 	                select.find('option').filter(function() {
-	 	                    return $(this).val() == value; 
-	 	                }).attr('selected', true);
-	 	                return select;
-	 	            }
-	 	        }
-	 	    },
-	 	    maxRows: modelData.length,
-	 	    afterAdd: function(row) {
-	 	    	var select = row.find('.select1');
-	 	    	rerenderList(select);
-	 	    	select.val(select.find('option').val());
-	 	    	setStartCode(select);
-	 	    },
-		    row_template: ['select', 'displaybox','displaybox', 'number','costpricebox', 'linshou'],
-		    headerCols: ['所属型号','起始编号','终止编号','数量','成本价','零售价'],
-		    first_row: false,
-		    data: [
-		        ["","","","","",""]
-		    ]
-		});
-	    
-	    $('#edittable').on('mousedown', '.select1', function() {
-			rerenderList($(this));
-		});
-	    
-	    setStartCode($('.select1'));
-		
-		function rerenderList(el) {
-			var $el = el;
-			var allData = modelData;
-			var allDataKey = allData.map(function(item, index) {
-				return '' + item.code;
-			});
-			var fiterValue = $('.select1').not($el).map(function() {
-				return $(this).val();
-			}).get();
-			var showValue = Array.minus(allDataKey, fiterValue);
-			var selectValue = $el.val();
-			var optionTpl = '';
-			showValue.each(function(item) {
-				optionTpl += '<option value="'+item+'">'+Dict.findName(allData, item, 'code', 'name')+'</option>';
-			});
-			$el.empty().html(optionTpl);
-			$el.val(selectValue);
-			
-		}
-	}
+	
 	$("#company").renderDropdown(Dict.getName('kd_company'));
 	
 	//获取菜单URL入参
@@ -206,16 +52,6 @@ $(function() {
 		doGetAjax(url, data, function(res) {
 			if (res.success) {
 				$("#invoiceCode").html(res.data.code);
-				var modelList = res.data.invoiceModelList || [], res = [];
-				modelList.forEach(function(item) {
-					var list = [item.modelCode, '', '', item.quantity, '', moneyFormat(item.salePrice)];
-					res.push(list);
-				});
-				mytable.loadData(res);
-				setStartCode($('.select1'));
-				$('.select1').each(function(index, el) {
-					setEndCode($(el).parent().next().html(), $(el).parent().next().next().next().find('input').val(), $(el).parent().parent());
-				});
 			}else{
 				alert(res.msg);
 			}
@@ -228,25 +64,13 @@ $(function() {
 	    if(!$("#jsForm").valid()){
 			return false;
 		}
-	    tableLists = mytable.getData();
-		var specsTableList = new Array();
-		for(var i = 0;i < tableLists.length;i++){
-			var specsTable =new Object();
-			specsTable.modelCode=tableLists[i][0];
-			specsTable.codeStart=tableLists[i][1];
-			specsTable.codeEnd=tableLists[i][2];
-			specsTable.quantity=tableLists[i][3];
-			specsTable.costPrice=moneyParse(tableLists[i][4]);
-			specsTable.salePrice=moneyParse(tableLists[i][5]);
-		    specsTableList.push(specsTable);
-		}
+	   
 	    var data = {};
 		var t = $('form').serializeArray();
 		$.each(t, function() {
 			data[this.name] = this.value;
 		});
 		data['invoiceCode'] = $("#invoiceCode").html();
-		data['goodsList']=JSON.stringify(specsTableList);
 		data['deliveryDatetime'] = $("#deliveryDatetime").val();
 		var operator = $("#operate").val() != "edit"?"add":"edit";
 		
@@ -290,14 +114,10 @@ $(function() {
 			},
 		}
 	});
-	doGetAjaxIsAsync($("#basePath").val()+"/model/list", {}, false, function(res){
-		modelData = res.data || [];
-		initSpecsTable(modelData);
-	});
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/logistics/logistics.htm";
+		location.href = $("#basePath").val()+"/order/order_query.htm";
 	});
 });
 
@@ -306,7 +126,7 @@ $(function() {
 function doSucBackSave(res) {
 	if (res.success == true) {
 		alert("操作成功");
-		window.location.href = $("#basePath").val()+"/logistics/logistics.htm";
+		window.location.href = $("#basePath").val()+"/order/order_query.htm";
 	}else{
 		alert(res.msg);
 	}
