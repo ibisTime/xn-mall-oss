@@ -21,7 +21,7 @@ function savePic() {
 function doSuccessData(res){
 	if (res.success) {
 		var result = res.data;
-		$("#userId").val($('#qianduanBaseUrl').val() + '/m/home/index.htm?u'+result.userId);
+		$("#userId").val($('#qianduanBaseUrl').val() + '/m/user/register.html?u='+result.userId);
 		
 		
 		var qrcode = new QRCode('qrcode');

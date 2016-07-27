@@ -8,7 +8,7 @@ $(function() {
 			$("#productCode").html(html);
 		}
 	});
-	$('#status').renderDropdown(Dict.getName('model_status'));
+	$('#status').renderDropdown(Dict.getName('product_status'));
 	//获取菜单URL入参
 	var code = getQueryString("code");
 	//新增修改判断
