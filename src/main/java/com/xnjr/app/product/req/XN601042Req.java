@@ -16,6 +16,8 @@ public class XN601042Req extends APageReq {
 
     // 型号编号（选填）
     private String modelCode;
+    
+    private String fromUser;
 
     // 受众（选填）
     private String toLevel;
@@ -45,5 +47,13 @@ public class XN601042Req extends APageReq {
 
 	public void setToSite(String toSite) {
 		this.toSite = toSite;
+	}
+
+	public String getFromUser() {
+		return fromUser;
+	}
+
+	public void setFromUser(String fromUser) {
+		this.fromUser = fromUser;
 	}
 }

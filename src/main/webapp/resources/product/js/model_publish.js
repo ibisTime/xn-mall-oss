@@ -3,6 +3,13 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
+	var userId;
+	
+	doGetAjaxIsAsync($("#basePath").val()+"/user", {
+	}, false, function(res) {
+		userId = res.data.userId;
+	});
+	
 	$('#status').renderDropdown(Dict.getName('score_updown'));
 	
 	var code = getQueryString('code');
@@ -15,31 +22,6 @@ $(function() {
 	});
 	
 	//表格初始化
-	queryTableData();
-
-	//查询
-	$('#searchBtn').click(function() {
-	$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/page"});
-	});
-	
-
-	//上架
-	$('#updownBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections');
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		
-		window.location.href = $("#basePath").val()+"/product/model_updown.htm?code="+selRecords[0].code;
-
-	});
-});
-
-
-
-//表格初始化
-function queryTableData(){
 	var columns = [{
 		field : '',
 		title : '',
@@ -93,6 +75,7 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
+				fromUser: userId, 
 				modelName : $("#modelName").val(),
 				productName : $("#productName").val(),
 				status : $("#status").val(),
@@ -115,9 +98,25 @@ function queryTableData(){
 		pageList : [ 10, 20, 30, 40, 50 ],
 		columns : columns
 	});
-}
 
+	//查询
+	$('#searchBtn').click(function() {
+	$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/page"});
+	});
+	
 
+	//上架
+	$('#updownBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections');
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		
+		window.location.href = $("#basePath").val()+"/product/model_updown.htm?code="+selRecords[0].code;
+
+	});
+});
 
 //表格时间格式转化
 function dateFormatter(value, row){

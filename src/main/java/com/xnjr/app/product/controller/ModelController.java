@@ -159,13 +159,14 @@ public class ModelController extends BaseController {
     @ResponseBody
     public Object shopCarPage(
             @RequestParam(value = "modelCode", required = false) String modelCode,
+            @RequestParam(value = "fromUser", required = false) String fromUser,
             @RequestParam(value = "toLevel", required = false) String toLevel,
             @RequestParam(value = "toSite", required = false) String toSite,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return modelAO.shopCarPage(modelCode, toLevel, toSite, start, limit,
+        return modelAO.shopCarPage(modelCode, fromUser, toLevel, toSite, start, limit,
             orderColumn, orderDir);
     }
 
