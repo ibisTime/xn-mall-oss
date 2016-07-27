@@ -80,8 +80,8 @@ public class AccountController extends BaseController {
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
-        return accountAO.queryRechargeOrderPage(
-            this.getSessionUser().getUserId(), null, code, fromType, fromCode,
+        return accountAO.queryRechargeOrderPage(null,
+            this.getSessionUser().getUserId(), code, fromType, fromCode,
             channel, refNo, status, approveUser, dateStart, dateEnd, start,
             limit);
     }
@@ -100,8 +100,8 @@ public class AccountController extends BaseController {
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
-        return accountAO.queryRechargeOrderPage(null,
-            this.getSessionUser().getUserId(), code, fromType, fromCode,
+        return accountAO.queryRechargeOrderPage(
+            this.getSessionUser().getUserId(), null, code, fromType, fromCode,
             channel, refNo, status, approveUser, dateStart, dateEnd, start,
             limit);
     }
