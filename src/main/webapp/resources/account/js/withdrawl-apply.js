@@ -12,14 +12,14 @@ $(function (){
 		if(!$("#jsForm").valid()){
 			return false;
 		}
-		var data = {"fromUserId":$("#fromUserId").val().split("|")[0],"price":$("#price").val(),"price":$("#price").val(),"amount":moneyParse($("#amount").val()),"type":"1"};
+		var data = {"fromUserId":$("#fromUserId").val().split("|")[0],"price":moneyParse($("#price").val()),"amount":moneyParse($("#amount").val()),"type":"1"};
 		var url = $("#basePath").val()+"/account/duixian";
 		doPostAjax(url, data, doSuccessBack);
 	});
 	
 	//返回
 	$("#backBtn").click(function(){
-		location.href = $("#basePath").val()+"/account/withdraw.htm"
+		location.href = $("#basePath").val()+"/account/withdraw.htm";
 	});
 	
 	
