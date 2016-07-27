@@ -1,6 +1,5 @@
 package com.xnjr.app.account.req;
 
-
 /**
  * 分页查询充值订单列表
  * @author: wu 
@@ -8,6 +7,8 @@ package com.xnjr.app.account.req;
  * @history:
  */
 public class XN802100Req {
+    // 账号
+    private String fromAccountNumber;
 
     // 账号
     private String accountNumber;
@@ -139,6 +140,14 @@ public class XN802100Req {
 
     public void setLimit(String limit) {
         this.limit = limit;
+    }
+
+    public String getFromAccountNumber() {
+        return fromAccountNumber;
+    }
+
+    public void setFromAccountNumber(String fromAccountNumber) {
+        this.fromAccountNumber = fromAccountNumber;
     }
 
 }

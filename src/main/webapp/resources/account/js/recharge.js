@@ -16,63 +16,14 @@ $(function() {
 //		$('#status').renderDropdown(filterData);
 //	});
 	
+	var userId;
+	
+	doGetAjaxIsAsync($("#basePath").val()+"/user", {
+	}, false, function(res) {
+		userId = res.data.userId;
+	});
+	
 	// 表格初始化
-	queryTableData();
-	
-	// 查询事件绑定
-	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/rechargeOrderPage"});
-	});
-	
-	//申请事件绑定
-	$('#applyBtn').click(function(){
-		location.href = $("#basePath").val()+"/account/recharge_apply.htm";
-	});
-	
-	// 审核事件绑定
-	$('#approveBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections');
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		if(selRecords[0].status != "1"){
-			alert("该订单状态不是待审批状态");
-			return;
-		}
-		location.href = $("#basePath").val()+"/account/recharge_approve.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01";
-	});
-	
-//	// 详情事件绑定
-//	$('#detailBtn').click(function() {
-//		var selRecords = $('#tableList').bootstrapTable('getSelections');
-//		if(selRecords.length <= 0){
-//			alert("请选择记录");
-//			return;
-//		}
-//		location.href = $("#basePath").val()+"/account/recharge_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01";
-//	});
-	
-	// 查看详情
-	$('#detailBtn').click(function() {
-		var selRecords = $('#tableList').bootstrapTable('getSelections')
-		if(selRecords.length <= 0){
-			alert("请选择记录");
-			return;
-		}
-		location.href = $("#basePath").val()+"/account/recharge_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01&rechargeStatus=normal";
-	});
-	
-	//导出
-	$('#exportBtn').click(function() {
-		var url=$("#basePath").val()+"/account/recWith/list/export?cqNo="+$("#cqNoSearch").val()+"&mobile="+$("#mobileSearch").val()+"&realName="+$("#realNameSearch").val()+"&direction=1"+"&status=1"+"&channel=01"+"&dateStart="+$("#dateStartSearch").val()+"&dateEnd="+$("#dateEndSearch").val()+"&fileName=线下充值列表";
-		window.open(url);
-	});
-});
-
-//表格初始化
-function queryTableData(){
-	// 绑定列表
 	$('#tableList').bootstrapTable({
 		method : "get",
 		url : $("#basePath").val()+"/account/rechargeOrderPage",
@@ -87,7 +38,7 @@ function queryTableData(){
 				code : $("#code").val(),
 				//mobile : $("#mobileSearch").val(),
 				//realName : $("#realNameSearch").val(),
-				accountNumber : $("#accountNumberSearch").val(),
+				accountNumber : userId,
 				status : $("#status").val(),
 				channel : "01",//线下
 				dateStart : $("#dateStartSearch").val(),
@@ -153,7 +104,59 @@ function queryTableData(){
 			formatter : dateFormatter
 		}]
 	});
-}
+	
+	// 查询事件绑定
+	$('#searchBtn').click(function() {
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/rechargeOrderPage"});
+	});
+	
+	//申请事件绑定
+	$('#applyBtn').click(function(){
+		location.href = $("#basePath").val()+"/account/recharge_apply.htm";
+	});
+	
+	// 审核事件绑定
+	$('#approveBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections');
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		if(selRecords[0].status != "1"){
+			alert("该订单状态不是待审批状态");
+			return;
+		}
+		location.href = $("#basePath").val()+"/account/recharge_approve.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01";
+	});
+	
+//	// 详情事件绑定
+//	$('#detailBtn').click(function() {
+//		var selRecords = $('#tableList').bootstrapTable('getSelections');
+//		if(selRecords.length <= 0){
+//			alert("请选择记录");
+//			return;
+//		}
+//		location.href = $("#basePath").val()+"/account/recharge_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01";
+//	});
+	
+	// 查看详情
+	$('#detailBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		location.href = $("#basePath").val()+"/account/recharge_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=01&rechargeStatus=normal";
+	});
+	
+	//导出
+	$('#exportBtn').click(function() {
+		var url=$("#basePath").val()+"/account/recWith/list/export?cqNo="+$("#cqNoSearch").val()+"&mobile="+$("#mobileSearch").val()+"&realName="+$("#realNameSearch").val()+"&direction=1"+"&status=1"+"&channel=01"+"&dateStart="+$("#dateStartSearch").val()+"&dateEnd="+$("#dateEndSearch").val()+"&fileName=线下充值列表";
+		window.open(url);
+	});
+});
+
+
 
 //数据字典（对方系统）关联的回执方法
 function doSucBackStatus(res){

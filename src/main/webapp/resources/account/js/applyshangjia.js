@@ -12,7 +12,7 @@ $(function() {
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/rechargeOrderPage"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/applyRechargeOrderPage"});
 	});
 	
 	//申请事件绑定
@@ -36,7 +36,7 @@ function queryTableData(){
 	// 绑定列表
 	$('#tableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/account/rechargeOrderPage",
+		url : $("#basePath").val()+"/account/applyRechargeOrderPage",
 		
 		striped : true,
 		clickToSelect : true,

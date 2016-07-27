@@ -66,10 +66,9 @@ public class AccountController extends BaseController {
             bizType, refNo, dateStart, dateEnd, start, limit);
     }
 
-    @RequestMapping(value = "/rechargeOrderPage", method = RequestMethod.GET)
+    @RequestMapping(value = "/applyRechargeOrderPage", method = RequestMethod.GET)
     @ResponseBody
-    public Object queryRechargeOrderPage(
-            @RequestParam(value = "accountNumber", required = false) String accountNumber,
+    public Object queryApplyRechargeOrderPage(
             @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "fromType", required = false) String fromType,
             @RequestParam(value = "fromCode", required = false) String fromCode,
@@ -81,9 +80,30 @@ public class AccountController extends BaseController {
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
-        return accountAO.queryRechargeOrderPage(accountNumber, code, fromType,
-            fromCode, channel, refNo, status, approveUser, dateStart, dateEnd,
-            start, limit);
+        return accountAO.queryRechargeOrderPage(
+            this.getSessionUser().getUserId(), null, code, fromType, fromCode,
+            channel, refNo, status, approveUser, dateStart, dateEnd, start,
+            limit);
+    }
+
+    @RequestMapping(value = "/rechargeOrderPage", method = RequestMethod.GET)
+    @ResponseBody
+    public Object queryRechargeOrderPage(
+            @RequestParam(value = "code", required = false) String code,
+            @RequestParam(value = "fromType", required = false) String fromType,
+            @RequestParam(value = "fromCode", required = false) String fromCode,
+            @RequestParam(value = "channel", required = false) String channel,
+            @RequestParam(value = "refNo", required = false) String refNo,
+            @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "approveUser", required = false) String approveUser,
+            @RequestParam(value = "dateStart", required = false) String dateStart,
+            @RequestParam(value = "dateEnd", required = false) String dateEnd,
+            @RequestParam("start") String start,
+            @RequestParam("limit") String limit) {
+        return accountAO.queryRechargeOrderPage(null,
+            this.getSessionUser().getUserId(), code, fromType, fromCode,
+            channel, refNo, status, approveUser, dateStart, dateEnd, start,
+            limit);
     }
 
     @RequestMapping(value = "/fromRecharge", method = RequestMethod.POST)
