@@ -25,7 +25,6 @@ $(function() {
 						required: true
 					},
 					remark: {
-						required: true,
 						maxlength: 250
 					}
 				}

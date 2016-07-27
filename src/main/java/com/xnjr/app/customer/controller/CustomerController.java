@@ -1,5 +1,6 @@
 package com.xnjr.app.customer.controller;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -241,10 +242,12 @@ public class CustomerController extends BaseController {
     @RequestMapping(value = "/own/account", method = RequestMethod.GET)
     @ResponseBody
     public Object owner(
-            // @RequestParam(value = "userId") String userId,
+            @RequestParam(value = "userId", required = false) String userId,
             @RequestParam(value = "currency") String currency) {
-        return customerAO.detailaccount(this.getSessionUser().getUserId(),
-            currency);
+    	if (StringUtils.isBlank(userId)) {
+			userId = this.getSessionUser().getUserId();
+		}
+        return customerAO.detailaccount(userId, currency);
 
     }
 
