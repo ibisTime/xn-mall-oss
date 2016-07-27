@@ -66,7 +66,6 @@ $(function() {
 			$("#img1").attr('src',res.data.pic1);
 			$("#img2").attr('src',res.data.pic2);
 			$("#img3").attr('src',res.data.pic3);
-			$("#status").html(res.data.status == 1 ? '是' : '否');
 			$("#description").html(res.data.description);
 			$("#remark").html(res.data.remark);
 			$("#updater").html(res.data.updater);

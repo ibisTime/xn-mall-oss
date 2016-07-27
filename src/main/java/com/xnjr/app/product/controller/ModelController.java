@@ -40,7 +40,7 @@ public class ModelController extends BaseController {
             @RequestParam("pic1") String pic1,
             @RequestParam("pic2") String pic2,
             @RequestParam("pic3") String pic3,
-            @RequestParam("status") String status,
+            @RequestParam(value = "status", required = false) String status,
             @RequestParam("description") String description,
             @RequestParam(value = "remark", required = false) String remark,
             @RequestParam(value = "specsTableJson", required = true) String specsTableJson) {
@@ -60,7 +60,7 @@ public class ModelController extends BaseController {
             @RequestParam("pic1") String pic1,
             @RequestParam("pic2") String pic2,
             @RequestParam("pic3") String pic3,
-            @RequestParam("status") String status,
+            @RequestParam(value = "status", required = false) String status,
             @RequestParam("description") String description,
             @RequestParam(value = "remark", required = false) String remark,
             @RequestParam(value = "specsTableJson", required = true) String specsTableJson) {

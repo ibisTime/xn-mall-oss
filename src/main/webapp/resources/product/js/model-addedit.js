@@ -28,7 +28,6 @@ $(function() {
 				$("#img1").attr('src',res.data.pic1);
 				$("#img2").attr('src',res.data.pic2);
 				$("#img3").attr('src',res.data.pic3);
-				$("[name=status][value='"+res.data.status+"']")[0].checked = true;
 				$("#remark").val(res.data.remark);
 				description.ready(function() {
 					description.setContent(res.data.description);
