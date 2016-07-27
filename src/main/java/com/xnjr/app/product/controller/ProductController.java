@@ -174,15 +174,14 @@ public class ProductController extends BaseController {
     }
     
     // 货品商入驻
-    @RequestMapping(value = "/producer/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/producer/add", method = RequestMethod.POST)
     @ResponseBody
     public Object producerAdd(@RequestParam(value = "loginName") String loginName,
-    		@RequestParam(value = "mobile") String mobile,
-    		@RequestParam(value = "idKind") String idKind,
-    		@RequestParam(value = "idNo") String idNo,
-    		@RequestParam(value = "realName") String realName,
-    		@RequestParam(value = "userReferee") String userReferee,
-    		@RequestParam(value = "pdf") String pdf) {
-        return productAO.producerAdd(loginName, mobile, idKind, idNo, realName, userReferee, pdf);
+    		@RequestParam(value = "mobile", required = false) String mobile,
+    		@RequestParam(value = "idKind", required = false) String idKind,
+    		@RequestParam(value = "idNo", required = false) String idNo,
+    		@RequestParam(value = "realName", required = false) String realName,
+    		@RequestParam(value = "pdf", required = false) String pdf) {
+        return productAO.producerAdd(loginName, mobile, idKind, idNo, realName, this.getSessionUser().getUserName(), pdf);
     }
 }
