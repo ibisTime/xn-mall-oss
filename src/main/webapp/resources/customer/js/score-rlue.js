@@ -36,6 +36,22 @@ $(function(){
 		window.location.href = $("#basePath").val()+"/customer/erweimaSale.htm?code="+selRecords[0].code;
 	});
 	
+	$('#dropBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		
+		if(!confirm("确认删除二维码?")){
+//			["+selRecords[0].name+"]
+    		return false;
+    	}
+    	var url = $("#basePath").val()+"/account/score/drop";
+    	var data = {code:selRecords[0].code};
+		doPostAjax(url, data, doSuccessDelBack);
+	});
+	
 	//表格初始化
 	function queryTableData(){
 		var columns = [{
@@ -46,15 +62,17 @@ $(function(){
 				checkbox : true
 			},{
 				field : 'quantity',
-				title : '数量',
+				title : '积分数量',
 				align : 'left',
 				valign : 'middle',
+				formatter:moneyFormat,
 				sortable : false
 			},{
 				field : 'price',
 				title : '价格',
 				align : 'left',
 				valign : 'middle',
+				formatter:moneyFormat,
 				sortable : false
 		    },{
 				field : 'isApprove',
@@ -116,4 +134,11 @@ $(function(){
 function dateFormatter(value, row){
 	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
 }
-
+function doSuccessDelBack(res) {
+	if (res.success == true) {
+		alert("删除成功");
+		$('#tableList').bootstrapTable('refresh');
+	}else{
+		alert("删除失败");
+	}
+}
