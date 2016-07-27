@@ -13,7 +13,7 @@ $(function(){
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/customer/customer_detail.htm?userId="+selRecords[0].userId;
+		window.location.href = $("#basePath").val()+"/customer/xiajia_detail.htm?userId="+selRecords[0].userId;
 	});
 	
 	// 查询事件绑定
