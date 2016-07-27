@@ -27,6 +27,15 @@ $(function(){
 		window.location.href = $("#basePath").val()+"/customer/firsterwei_detail.htm?code="+selRecords[0].code;
 	});
 	
+	$('#erweiBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/customer/erweimaSale.htm?code="+selRecords[0].code;
+	});
+	
 	//表格初始化
 	function queryTableData(){
 		var columns = [{

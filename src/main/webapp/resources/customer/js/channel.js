@@ -53,7 +53,13 @@ $(function(){
 				align : 'left',
 				valign : 'middle',
 				sortable : false
-			}];
+			},{
+				field : 'remark',
+				title : '备注',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+		    }];
 		
 		$('#tableList').bootstrapTable({
 			method : "get",
