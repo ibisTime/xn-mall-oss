@@ -20,7 +20,7 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/logistics/goods_detail.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/logistics/goods_detail.htm?code="+encodeURIComponent(selRecords[0].code);
 	});
 	
 	//详情
@@ -30,7 +30,7 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/logistics/logistics_detail.htm?code="+selRecords[0].code;
+		window.location.href = $("#basePath").val()+"/logistics/logistics_detail.htm?code="+encodeURIComponent(selRecords[0].code);
 	});
 	
 });

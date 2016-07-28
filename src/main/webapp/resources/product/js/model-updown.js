@@ -21,28 +21,30 @@ $(function() {
 					align : 'center'
 				}]
 	});
+	$("#jsForm").validate({
+		rules: {
+			originalPrice:  {
+				number: true,
+				maxlength: 13
+			},
+			discountPrice:  {
+				number: true,
+				maxlength: 13
+			},
+			toSite: {
+			},
+			remark: {
+				maxlength: 250
+			}
+		}
+	});
 	$('#upDownBtn').click(function() {
 		if (!isUp) {
-			$("#jsForm").validate({
-				rules: {
-					originalPrice:  {
-						required: true,
-						number: true,
-						maxlength: 13
-					},
-					discountPrice:  {
-						required: true,
-						number: true,
-						maxlength: 13
-					},
-					toSite: {
-						required: true
-					},
-					remark: {
-						maxlength: 250
-					}
-				}
-			});
+			$('#originalPrice').rules('add', {required: true});
+			$('#discountPrice').rules('add', {required: true});
+			$('#toSite').rules('add', {required: true});
+		} else {
+			$('#remark').rules('add', {required: true});
 		}
 		if(!$("#jsForm").valid()){
 			return false;

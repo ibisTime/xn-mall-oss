@@ -87,6 +87,13 @@ $(function() {
 			valign : 'middle',
 			sortable : false
 		}, {
+			field : 'applyDatetime',
+			title : '申请时间',
+			align : 'left',
+			valign : 'middle',
+			sortable : false,
+			formatter: dateTimeFormat
+		}, {
 			field : 'applyNote',
 			title : '申请说明',
 			align : 'left',

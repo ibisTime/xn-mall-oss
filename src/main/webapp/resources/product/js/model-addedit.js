@@ -117,9 +117,11 @@ $(function() {
 			},
 			productCode: "required",
 			description: {
-				required: true,
-				maxlength: 250
+				required: true
 			},
+			remark: {
+				maxlength: 255
+			}
 		}
 	});
 	

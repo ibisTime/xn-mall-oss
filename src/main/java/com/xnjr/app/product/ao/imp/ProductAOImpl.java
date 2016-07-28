@@ -87,11 +87,11 @@ public class ProductAOImpl implements IProductAO {
     }
 
     @Override
-    public Object queryProductPage(String type, String name, String status,
+    public Object queryProductPage(String category, String name, String status,
             String updater, String start, String limit, String orderColumn,
             String orderDir) {
         XN601004Req req = new XN601004Req();
-        req.setType(type);
+        req.setCategory(category);
         req.setName(name);
         req.setStatus(status);
         req.setUpdater(updater);

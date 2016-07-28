@@ -21,8 +21,11 @@ public class XN601004Req extends APageReq {
      * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么) 
      */
     private static final long serialVersionUID = 7405232977567267123L;
-
+    
     // 产品大类
+    private String category;
+
+    // 产品小类
     private String type;
 
     // 产品名称
@@ -65,5 +68,13 @@ public class XN601004Req extends APageReq {
     public void setUpdater(String updater) {
         this.updater = updater;
     }
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 }
