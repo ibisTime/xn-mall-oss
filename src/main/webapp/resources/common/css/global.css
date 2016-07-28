@@ -210,3 +210,7 @@ td{ word-wrap:break-word}
 #uploadBtn1 {
 	margin-left: 0px;
 }
+
+#jsForm .form-body li .bootstrap-table {
+	    margin-left: 0px;
+}

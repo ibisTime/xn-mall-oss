@@ -7,6 +7,20 @@ $(function() {
 		code: code
 	}, doSucBackGetDetail);
 	var isUp = false;
+	$('#tableList').bootstrapTable({
+		striped : true,
+		singleSelect : true,
+		clickToSelect : true,
+		columns : [{
+					field : 'dkey',
+					title : '参数名',
+					align : 'center'
+				},{
+					field : 'dvalue',
+					title : '参数值',
+					align : 'center'
+				}]
+	});
 	$('#upDownBtn').click(function() {
 		if (!isUp) {
 			$("#jsForm").validate({
@@ -74,6 +88,7 @@ $(function() {
 			$("#productCode").html(data.model.productName);
 			$("#costPrice").html(moneyFormat(data.costPrice));
 			$("#fromQuantity").html(data.fromQuantity);
+			$("#tableList").bootstrapTable("load", res.data.modelSpecsList);
 			modelCode = data.model.code;
 			isUp = !!(data.status == 1);
 			isUp && $('#upDownBtn').val('下架');

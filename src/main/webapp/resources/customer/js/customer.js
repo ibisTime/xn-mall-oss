@@ -18,7 +18,7 @@ $(function(){
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/queryPage"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/zhongduanPage"});
 	});
 	
 	$('#replaceAddBtn').click(function() {

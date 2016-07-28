@@ -14,8 +14,8 @@ $(function() {
 function doSuccessData(res){
 	if (res.success) {
 		var result = res.data;
-		$("#quantity").html(result.quantity);
-		$("#price").html(result.price);
+		$("#quantity").html(moneyFormat(result.quantity));
+		$("#price").html(moneyFormat(result.price));
 		$("#isApprove").html(Dict.getName('isApprove', result.isApprove));
 		$("#remark").html(result.remark);
 	}else{
