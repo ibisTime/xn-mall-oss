@@ -45,6 +45,7 @@ $(function() {
 			$("#applyDatetime").html(dateFormatter(res.data.applyDatetime));
 			$("#applyNote").html(res.data.applyNote || '无');
 			$("#loginName").html(res.data.mobile);
+			$('#type').html(Dict.getName('invoice_type', res.data.type));
 			$("#approveDatetime").html(res.data.approveDatetime);
 			$("#receiptTitle").html(res.data.receiptTitle|| '-');
 			$("#receiptType").html(Dict.getName('receipt_type',res.data.receiptType||'无'));

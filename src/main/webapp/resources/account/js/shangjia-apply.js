@@ -51,13 +51,6 @@ $(function (){
 				isPositive: true,
 				maxlength: 13
 			}
-		},
-		messages:{
-			amount:{
-				required: "请输入申请积分数量",
-				number:"申请积分数量请输入数字",
-				maxlength: jQuery.format("申请积分数量不能大于{0}个字符")
-			}
 		}
 	})
 });

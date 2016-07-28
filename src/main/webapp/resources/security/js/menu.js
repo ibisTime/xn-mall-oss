@@ -101,13 +101,7 @@ function queryTableData(){
 			align : 'left',
 			valign : 'middle',
 			checkbox : true
-		}, {
-			field : 'code',
-			title : '菜单编号',
-			align : 'left',
-			valign : 'middle',
-			sortable : false
-		}, {
+		},{
 			field : 'name',
 			title : '菜单名称',
 			align : 'left',

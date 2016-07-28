@@ -77,6 +77,13 @@ function queryTableData(){
 		valign : 'middle',
 		sortable : false,
 	}, {
+		field : 'type',
+		title : '订单类型',
+		align : 'left',
+		valign : 'middle',
+		sortable : false,
+		formatter: Dict.getNameForList('invoice_type')
+	}, {
 		field : 'mobile',
 		title : '下单用户',
 		align : 'left',
