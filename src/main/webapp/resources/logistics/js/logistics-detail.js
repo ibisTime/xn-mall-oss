@@ -27,6 +27,27 @@ $(function() {
 		}
 	}
 	
+	$('#tableList').bootstrapTable({
+		striped : true,
+		clickToSelect : true,
+		singleSelect : true,
+		columns : [{
+			field : 'modelName',
+			title : '货品名称'
+		},
+		{
+			field : 'productName',
+			title : '品类'
+		}, {
+			field: 'quantity',
+			title: '数量'
+		}, {
+			field: 'salePrice',
+			title: '零售价',
+			formatter: moneyFormatter
+		}]
+	});
+	
 	
 	//获取详情回调方法
 	function doSucBackGetDetail(res){
@@ -36,7 +57,7 @@ $(function() {
 			$("#deliveryDatetime").html(dateFormat(res.data.deliveryDatetime));
 			$("#deliverer").html(res.data.deliverer);
 			$("#code").html(res.data.code);
-			$("#tableList").bootstrapTable("load", res.data.goodsList);
+			$("#tableList").bootstrapTable("load", res.data.invoice.invoiceModelList);
 		}else{
 			alert(res.msg);
 		}
