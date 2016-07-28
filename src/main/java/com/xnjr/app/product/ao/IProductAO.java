@@ -67,7 +67,7 @@ public interface IProductAO {
      * @create: 2016年5月17日 下午1:41:47 XIANDONG
      * @history:
      */
-    public Object queryProductPage(String type, String name, String status,
+    public Object queryProductPage(String category, String name, String status,
             String updater, String start, String limit, String orderColumn,
             String orderDir);
 

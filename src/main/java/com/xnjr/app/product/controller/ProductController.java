@@ -72,7 +72,7 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody
     public Object queryProductPage(
-            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "category", required = false) String category,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "updater", required = false) String updater,
@@ -80,7 +80,7 @@ public class ProductController extends BaseController {
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return productAO.queryProductPage(type, name, status, updater, start,
+        return productAO.queryProductPage(category, name, status, updater, start,
             limit, orderColumn, orderDir);
     }
 

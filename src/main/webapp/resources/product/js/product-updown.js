@@ -57,6 +57,22 @@ $(function() {
 			alert(res.msg);
 		}
 	}
+	
+	$('#tableList').bootstrapTable({
+		striped : true,
+		singleSelect : true,
+		clickToSelect : true,
+		columns : [{
+					field : 'dkey',
+					title : '参数名',
+					align : 'center'
+				},{
+					field : 'dvalue',
+					title : '参数值',
+					align : 'center'
+				}]
+	});
+	
 	//获取详情回调方法
 	function doSucBackGetDetail(res){
 		if (res.success) {
@@ -71,6 +87,7 @@ $(function() {
 			$("#img2").attr('src',res.data.majorPic);
 			$("#img3").attr('src',res.data.familyPic);
 			$("#img4").attr('src',res.data.highlightPic);
+			$("#tableList").bootstrapTable("load", res.data.modelSpecsList);
 		}else{
 			alert(res.msg);
 		}

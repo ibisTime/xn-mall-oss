@@ -18,7 +18,19 @@ $(function() {
 function doSucBackGetDetail(res){
 	if (res.success) {
 		$("#category").html(Dict.getName('pro_category', res.data.category));
-		$("#type").html(Dict.getName('product_type', res.data.type));
+		doGetAjaxIsAsync($("#dictUrl").val(), {
+			parentKey: res.data.category
+		}, false, function(res1) {
+			var data = res1.data || [], value = '';
+			for(var i = 0;i < data.length;i++){
+				if (data[i].dkey == res.data.type) {
+					value = data[i].dvalue;
+					break;
+				}
+			}
+			$("#type").html(value);
+		});
+		
 		$("#name").html(res.data.name);
 		$("#advTitle").html(res.data.advTitle);
 		$("#remark").html(res.data.remark);
