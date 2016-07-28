@@ -35,6 +35,7 @@ function doGetDetailBack(res){
 		if(res.data != null){
 			var result = res.data;
 			$("#status").html(Dict.getName('account_status',result.status));
+			$("#accountNumber").html(result.accountNumber);
 			$("#currency").html(result.currency);
 			$("#amount").html(moneyFormat(result.amount,2));
 			$("#frozenAmount").html(moneyFormat(result.frozenAmount,2));

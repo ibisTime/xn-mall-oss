@@ -58,15 +58,14 @@ function doGetDetailBack(res){
 		if(res.data.list.length > 0){
 			var result = res.data.list[0];
 			$("#withdrawNo").html(result.code);
-			$("#mobile").html(result.mobile);
-			$("#realName").html(result.realName);
-			$("#bankCode").html(Dict.getName('charge_type',result.toType));
-			$("#bankcardNo").html(result.toCode);
-			$("#toBelong").html(result.toBelong);
-			$("#accountNumber").html(result.accountNumber);
 			$("#status").html(Dict.getName('withdraw_status', result.status));
 			$("#amount").html(moneyFormat(result.amount,2));
+			$("#price").html(moneyFormat(result.price,2));
+			$("#applyUser").html(result.applyUser);
 			$("#createDatetime").html(dateFormat(result.createDatetime,'yyyy-MM-dd HH:mm:ss'));
+			$("#approveUser").html(result.approveUser);
+			$("#approveDatetime").html(dateFormat(result.approveDatetime,'yyyy-MM-dd HH:mm:ss'));
+			$("#refNo").html(result.refNo);
 		}else{
 			alert("根据订单编号获取详情为空");
 		}

@@ -106,7 +106,6 @@ $(function(){
 				return {
 					isApprove : $("#isApprove").val(),
 //					realName : $("#realName").val(),
-					quantity : $("#quantity").val(),
 					status : $("#status").val(),
 					start : params.offset / params.limit + 1,
 					limit : params.limit

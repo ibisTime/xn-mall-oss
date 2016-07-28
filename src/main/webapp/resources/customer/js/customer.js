@@ -51,8 +51,14 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 		    },{
+				field : 'idNo',
+				title : '证件号码',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+		    },{
 				field : 'userReferee',
-				title : '积分商',
+				title : '所属积分商',
 				align : 'left',
 				valign : 'middle',
 				sortable : false

@@ -1,6 +1,10 @@
 
 $(function() {
 	$('#isApprove').renderDropdown(Dict.getName("isApprove"));
+	var url = $("#basePath").val()+"/customer/own/account";
+	doGetAjax(url, {
+		currency: 'XNB'
+	}, doGetDetailBack);
 
 	//提交
 	$('#subBtn').click(function() {
@@ -69,5 +73,16 @@ function doSaveSuccessBack(res) {
 		window.location.href = $("#basePath").val()+"/customer/score_rlue.htm";
 	}else{
 		alert(res.msg);
+	}
+}
+
+function doGetDetailBack(res){
+	if (res.success == true) {
+		if(res.data != null){
+			var result = res.data;
+			$("#amount").html(moneyFormat(result.amount,2));
+		}else{
+			alert(res.msg);
+		}
 	}
 }

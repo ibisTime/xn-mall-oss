@@ -53,6 +53,12 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 			},{
+				field : 'idNo',
+				title : '证件号码',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+			},{
 				field : 'userReferee',
 				title : '上家编号',
 				align : 'left',

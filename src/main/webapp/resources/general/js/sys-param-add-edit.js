@@ -75,6 +75,7 @@ function doGetDetailBack(res){
 		$('#key').replaceWith($('<span>'+result.ckey+'</span>'));
 		$("#value").val(result.cvalue);
 		$("#note").val(result.note);
+		$("#remark").val(result.remark);
 	}else{
 		alert(res.msg);
 	}

@@ -49,7 +49,12 @@ $(function() {
 			userReferee: {
 				required: true,
 				maxlength: 32
+			},
+			remark: {
+				required: false,
+				maxlength: 32
 			}
+		}
 		}
 	});
 });

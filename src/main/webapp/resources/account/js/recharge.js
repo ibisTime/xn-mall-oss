@@ -6,10 +6,11 @@ $(function() {
 	
 	//页面数据字典初始化
 	$("#status").renderDropdown(Dict.getName('recharge_status'));
-//	doGetAjaxIsAsync($("#dictUrl").val(), {"parentKey": 'withdraw_status'}, false, function(res) {
+	$("#status option[value='1']").attr("selected","selected");
+//	doGetAjaxIsAsync($("#dictUrl").val(), {"parentKey": 'recharge_status'}, false, function(res) {
 //		var data = res.data || [], filterData = [];
 //		for (var i = 0, len = data.length; i < len; i++) {
-//			if(data[i].dkey == 1 || data[i].dkey == 2||data[i].dkey == 3 || data[i].dkey == 4) {
+//			if(data[i].dkey == 1 || data[i].dkey == 2||data[i].dkey == 3 ) {
 //				filterData.push(data[i]);
 //			}
 //		}
