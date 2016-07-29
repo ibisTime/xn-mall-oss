@@ -58,6 +58,7 @@ function doGetDetailBack(res){
 		if(res.data.list.length > 0){
 			var result = res.data.list[0];
 			$("#withdrawNo").html(result.code);
+			$('#fromAccountNumber').html(result.fromAccountNumber);
 			$("#status").html(Dict.getName('withdraw_status', result.status));
 			$("#amount").html(moneyFormat(result.amount,2));
 			$("#price").html(moneyFormat(result.price,2));
