@@ -16,8 +16,8 @@ $(function() {
 	doGetAjaxIsAsync($("#basePath").val()+"/product/list", {status: 1}, false, function(res) {
 		var data = res.data || [], html = "<option value=''>请选择</option>";
 		for (var i = 0, len = data.length; i < len; i++) {
-			html += "<option value='"+data[i].name+"'>"+data[i].name+"</option>";
-			$("#productName").html(html);
+			html += "<option value='"+data[i].code+"'>"+data[i].name+"</option>";
+			$("#productCode").html(html);
 		}
 	});
 	
@@ -77,7 +77,7 @@ $(function() {
 			return {
 				fromUser: userId, 
 				modelName : $("#modelName").val(),
-				productName : $("#productName").val(),
+				productCode : $("#productCode").val(),
 				status : $("#status").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit

@@ -160,7 +160,8 @@ public interface IModelAO {
      * @create: 2016年5月25日 上午11:40:46 wu
      * @history:
      */
-    public Object shopCarPage(String modelCode, String fromUser, String toLevel, String toSite,
+    public Object shopCarPage(String productCode, String modelName, String type, String status, 
+    		String modelCode, String fromUser, String toLevel, String toSite,
             String start, String limit, String orderColumn, String orderDir);
 
     /**

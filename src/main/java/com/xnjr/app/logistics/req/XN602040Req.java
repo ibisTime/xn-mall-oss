@@ -24,6 +24,8 @@ public class XN602040Req {
 
     // remark
     private String remark;
+    
+    private String pdf;
 
     public String getInvoiceCode() {
         return invoiceCode;
@@ -80,4 +82,12 @@ public class XN602040Req {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+	public String getPdf() {
+		return pdf;
+	}
+
+	public void setPdf(String pdf) {
+		this.pdf = pdf;
+	}
 }

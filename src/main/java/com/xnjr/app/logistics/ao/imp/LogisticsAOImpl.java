@@ -24,7 +24,7 @@ public class LogisticsAOImpl implements ILogisticsAO {
     @Override
     public Object addLogistics(String code, String invoiceCode, String company,
             String deliveryDatetime, String deliverer, String updater,
-            String remark) {
+            String remark, String pdf) {
         XN602040Req req = new XN602040Req();
         req.setCode(code);
         req.setInvoiceCode(invoiceCode);
@@ -33,6 +33,7 @@ public class LogisticsAOImpl implements ILogisticsAO {
         req.setDeliverer(deliverer);
         req.setUpdater(updater);
         req.setRemark(remark);
+        req.setPdf(pdf);
         return BizConnecter.getBizData("602040", JsonUtils.object2Json(req),
             Object.class);
     }

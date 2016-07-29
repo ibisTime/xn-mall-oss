@@ -26,15 +26,16 @@ public class LogisticsController extends BaseController {
     // 支付成功的发货单可以录入物流信息，录入物流信息后，发货单状态变为已发货
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object addLogistics(@RequestParam("code") String code,
+    public Object addLogistics(@RequestParam(value = "code", required = false) String code,
             @RequestParam("invoiceCode") String invoiceCode,
-            @RequestParam("company") String company,
-            @RequestParam("deliveryDatetime") String deliveryDatetime,
-            @RequestParam("deliverer") String deliverer,
-            @RequestParam(value = "remark", required = false) String remark) {
+            @RequestParam(value = "company", required = false) String company,
+            @RequestParam(value = "deliveryDatetime", required = false) String deliveryDatetime,
+            @RequestParam(value = "deliverer", required = false) String deliverer,
+            @RequestParam(value = "remark", required = false) String remark,
+            @RequestParam(value = "pdf", required = false) String pdf) {
         return logisticsAO.addLogistics(code, invoiceCode, company,
             deliveryDatetime, deliverer, this.getSessionUser().getUserName(),
-            remark);
+            remark, pdf);
     }
 
     // 物流单分页查询

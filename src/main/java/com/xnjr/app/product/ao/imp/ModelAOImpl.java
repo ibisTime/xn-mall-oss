@@ -178,9 +178,14 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object shopCarPage(String modelCode, String fromUser, String toLevel, String toSite,
+    public Object shopCarPage(String productCode, String modelName, String type, String status, 
+    		String modelCode, String fromUser, String toLevel, String toSite,
             String start, String limit, String orderColumn, String orderDir) {
         XN601042Req req = new XN601042Req();
+        req.setModelName(modelName);
+        req.setProductCode(productCode);
+        req.setType(type);
+        req.setStatus(status);
         req.setModelCode(modelCode);
         req.setFromUser(fromUser);
         req.setToLevel(toLevel);

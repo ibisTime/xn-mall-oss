@@ -24,6 +24,14 @@ public class XN601042Req extends APageReq {
     
     // 显示位置 （选填）
     private String toSite;
+    
+    private String modelName;
+    
+    private String type;
+    
+    private String status;
+    
+    private String productCode;
 
     public String getModelCode() {
         return modelCode;
@@ -55,5 +63,37 @@ public class XN601042Req extends APageReq {
 
 	public void setFromUser(String fromUser) {
 		this.fromUser = fromUser;
+	}
+
+	public String getModelName() {
+		return modelName;
+	}
+
+	public void setModelName(String modelName) {
+		this.modelName = modelName;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getProductCode() {
+		return productCode;
+	}
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
 	}
 }

@@ -57,6 +57,7 @@ $(function() {
 			$("#deliveryDatetime").html(dateFormat(res.data.deliveryDatetime));
 			$("#deliverer").html(res.data.deliverer);
 			$("#code").html(res.data.code);
+			$('#pdf').html(linkSrc(res.data.pdf));
 			$("#tableList").bootstrapTable("load", res.data.invoice.invoiceModelList);
 		}else{
 			alert(res.msg);
