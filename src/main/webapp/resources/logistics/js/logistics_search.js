@@ -100,6 +100,7 @@ function queryTableData(){
 				invoiceCode : $("#invoiceCode").val(),
 				userId : $("#userId").val(),
 				status : $("#status").val(),
+				deliverer : $("#deliverer").val(),
 				deliveryDatetimeStart : $("#deliveryDatetimeStart").val(),
 				deliveryDatetimeEnd : $("#deliveryDatetimeEnd").val(),
 				start : params.offset / params.limit + 1,
