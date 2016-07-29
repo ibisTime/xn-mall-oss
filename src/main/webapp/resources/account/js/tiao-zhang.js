@@ -85,7 +85,6 @@ $(function() {
 			title : '积分',
 			align : 'right',
 			valign : 'middle',
-			sortable : true,
 			formatter : moneyFormat
 		}, {
 			field : 'applyUser',

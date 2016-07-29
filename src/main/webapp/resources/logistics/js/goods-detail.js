@@ -64,9 +64,19 @@ $(function() {
 			field: 'quantity',
 			title: '数量'
 		}, {
+			field: 'costPrice',
+			title: '成本价',
+			formatter: moneyFormatter
+		}, {
 			field: 'salePrice',
 			title: '零售价',
 			formatter: moneyFormatter
+		}, {
+			field: '',
+			title: '利润',
+			formatter: function(v, r) {
+				return moneyFormat(r.salePrice - r.costPrice);
+			}
 		}]
 	});
 

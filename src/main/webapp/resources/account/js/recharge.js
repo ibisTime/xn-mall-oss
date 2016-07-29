@@ -88,7 +88,6 @@ $(function() {
 			title : '价格',
 			align : 'left',
 			valign : 'middle',
-			sortable : true,
 			formatter : moneyFormatter
 		},{
 			field : 'status',

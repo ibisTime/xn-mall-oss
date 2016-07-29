@@ -111,14 +111,12 @@ function queryTableData(){
 			title : '积分',
 			align : 'left',
 			valign : 'middle',
-			sortable : true,
 			formatter : moneyFormatter
 		},{
 			field : 'price',
 			title : '价格',
 			align : 'left',
 			valign : 'middle',
-			sortable : true,
 			formatter : moneyFormatter
 		},{
 			field : 'status',
@@ -132,7 +130,6 @@ function queryTableData(){
 			title : '申请时间',
 			align : 'left',
 			valign : 'middle',
-			sortable : true,
 			formatter : dateFormatter
 		}]
 	});
