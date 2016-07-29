@@ -132,7 +132,7 @@ public class AccountAOImpl implements IAccountAO {
 
     @Override
     public Object jfRecharge(String fromUserId, String toUserId, String amount,
-            String price, String type, String pdf, String applyUser) {
+            String price, String type, String pdf, String applyUser, String applyNote) {
         XN802120Req req = new XN802120Req();
         req.setFromUserId(fromUserId);
         req.setToUserId(toUserId);
@@ -141,6 +141,7 @@ public class AccountAOImpl implements IAccountAO {
         req.setType(type);
         req.setPdf(pdf);
         req.setApplyUser(applyUser);
+        req.setApplyNote(applyNote);
         return BizConnecter.getBizData("802120", JsonUtils.object2Json(req),
             Object.class);
     }

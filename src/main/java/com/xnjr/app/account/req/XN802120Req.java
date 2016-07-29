@@ -21,6 +21,8 @@ public class XN802120Req {
 
     // 申请人(选填)
     private String applyUser;
+    
+    private String applyNote;
 
     public String getFromUserId() {
         return fromUserId;
@@ -77,5 +79,13 @@ public class XN802120Req {
     public void setType(String type) {
         this.type = type;
     }
+
+	public String getApplyNote() {
+		return applyNote;
+	}
+
+	public void setApplyNote(String applyNote) {
+		this.applyNote = applyNote;
+	}
 
 }

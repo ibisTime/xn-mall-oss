@@ -98,7 +98,7 @@ public interface IAccountAO {
      * @history:
      */
     public Object jfRecharge(String fromUserId, String toUserId, String amount,
-            String price, String type, String pdf, String applyUser);
+            String price, String type, String pdf, String applyUser, String applyNote);
 
     /**
      * 审批充值订单

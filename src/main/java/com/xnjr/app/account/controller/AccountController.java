@@ -112,10 +112,11 @@ public class AccountController extends BaseController {
             @RequestParam("amount") String amount,
             @RequestParam("price") String price,
             @RequestParam("type") String type,
-            @RequestParam("pdf") String pdf) {
+            @RequestParam("pdf") String pdf,
+            @RequestParam(value = "applyNote", required = false) String applyNote) {
         return accountAO.jfRecharge(fromUserId,
             this.getSessionUser().getUserId(), amount, price, type, pdf,
-            this.getSessionUser().getUserId());
+            this.getSessionUser().getUserId(), applyNote);
     }
 
     @RequestMapping(value = "/toRecharge", method = RequestMethod.POST)
@@ -124,9 +125,10 @@ public class AccountController extends BaseController {
             @RequestParam("amount") String amount,
             @RequestParam("price") String price,
             @RequestParam("type") String type,
-            @RequestParam("pdf") String pdf) {
+            @RequestParam("pdf") String pdf,
+            @RequestParam(value = "applyNote", required = false) String applyNote) {
         return accountAO.jfRecharge(this.getSessionUser().getUserId(), toUserId,
-            amount, price, type, pdf, this.getSessionUser().getUserId());
+            amount, price, type, pdf, this.getSessionUser().getUserId(), applyNote);
     }
 
     @RequestMapping(value = "/approveRecharge", method = RequestMethod.POST)
