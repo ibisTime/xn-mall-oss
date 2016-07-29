@@ -7,6 +7,10 @@ $(function() {
 	var url = $("#basePath").val()+"/user";
 	doGetAjax(url,null,doSuccessData);
 	 // 记录查询
+	
+	$('#subBtn').on('click', function() {
+		window.print();
+	});
 
 });
 
