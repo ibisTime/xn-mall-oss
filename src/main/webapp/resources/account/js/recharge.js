@@ -6,7 +6,8 @@ $(function() {
 	
 	//页面数据字典初始化
 	$("#status").renderDropdown(Dict.getName('recharge_status'));
-	$("#status option[value='1']").attr("selected","selected");
+	//$("#status option[value='1']").attr("selected","selected");
+	$('#status').val('1');
 //	doGetAjaxIsAsync($("#dictUrl").val(), {"parentKey": 'recharge_status'}, false, function(res) {
 //		var data = res.data || [], filterData = [];
 //		for (var i = 0, len = data.length; i < len; i++) {

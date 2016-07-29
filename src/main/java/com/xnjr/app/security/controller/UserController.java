@@ -189,7 +189,7 @@ public class UserController extends BaseController {
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return userAO.queryUserPage(loginName, null,
+        return userAO.queryUserPage(loginName, EUserKind.Operator.getCode(),
             level, userReferee, mobile, idKind, idNo, realName, roleCode,
             status, updater, start, limit);
     }
