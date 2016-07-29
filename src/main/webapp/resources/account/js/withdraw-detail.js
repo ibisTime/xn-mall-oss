@@ -26,7 +26,9 @@ function doGetDetailBack(res){
 			$("#createDatetime").html(dateFormat(result.createDatetime,'yyyy-MM-dd HH:mm:ss'));
 			$("#approveUser").html(result.approveUser);
 			$("#approveDatetime").html(dateFormat(result.approveDatetime,'yyyy-MM-dd HH:mm:ss'));
+			$("#payDatetime").html(dateFormat(result.payDatetime,'yyyy-MM-dd HH:mm:ss'));
 			$("#refNo").html(result.refNo);
+			$("#payUser").html(result.payUser);
 			$("#payNote").html(result.payNote);
 		}else{
 			alert("根据订单编号获取详情为空");
