@@ -27,7 +27,7 @@ function doSucBackAccountStatus(res){
 
 //跳转系统资金明细
 function redirectAmountJour(){
-	location.href = $("#basePath").val()+"/account/sys_account_detail.htm?accountNumber="+$("#accountNumber").html();
+	location.href = $("#basePath").val()+"/account/sys_account_detail2.htm?accountNumber="+$("#accountNumber").html();
 }
 
 function doGetDetailBack(res){

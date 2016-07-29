@@ -43,7 +43,7 @@ $(function(){
 			return;
 		}
 		
-		if(!confirm("确认删除二维码?")){
+		if(!confirm("确认删除编号-"+selRecords[0].code+"")){
 //			["+selRecords[0].name+"]
     		return false;
     	}
@@ -61,6 +61,12 @@ $(function(){
 				valign : 'middle',
 				checkbox : true
 			},{
+				field : 'code',
+				title : '编号',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+		    },{
 				field : 'quantity',
 				title : '积分数量',
 				align : 'left',

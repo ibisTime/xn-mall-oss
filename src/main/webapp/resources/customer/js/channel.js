@@ -10,7 +10,7 @@ $(function(){
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/channelPage"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/zhongduanPage"});
 	});
 	
 	//代注册
@@ -42,14 +42,8 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 			},{
-				field : 'realName',
-				title : '真实姓名',
-				align : 'left',
-				valign : 'middle',
-				sortable : false
-		    },{
-				field : 'idNo',
-				title : '证件号码',
+				field : 'remark',
+				title : '备注',
 				align : 'left',
 				valign : 'middle',
 				sortable : false

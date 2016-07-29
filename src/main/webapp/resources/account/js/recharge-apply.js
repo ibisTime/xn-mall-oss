@@ -65,6 +65,9 @@ $(function (){
 				required: true,
 				maxlength: 32
 			},
+			toUserId:{
+				required: true,
+			},
 			fromType:{
 				required: true,
 				maxlength: 32
@@ -84,6 +87,9 @@ $(function (){
 			accountNumber:{
 				required: "请输入账户编号",
 				maxlength: jQuery.format("账户编号不能大于{0}个字符")
+			},
+			toUserId:{
+				required: "请选择下家",
 			},
 			fromType:{
 				required: "请选择充值账户类型",

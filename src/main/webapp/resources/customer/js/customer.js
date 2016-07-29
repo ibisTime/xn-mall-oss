@@ -45,18 +45,6 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 			},{
-				field : 'realName',
-				title : '真实姓名',
-				align : 'left',
-				valign : 'middle',
-				sortable : false
-		    },{
-				field : 'idNo',
-				title : '证件号码',
-				align : 'left',
-				valign : 'middle',
-				sortable : false
-		    },{
 				field : 'userReferee',
 				title : '所属积分商',
 				align : 'left',

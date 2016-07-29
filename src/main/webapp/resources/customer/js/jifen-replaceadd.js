@@ -55,7 +55,6 @@ $(function() {
 				maxlength: 32
 			}
 		}
-		}
 	});
 });
 
