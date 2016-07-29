@@ -43,13 +43,13 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/order/order_undo.htm";
+		location.href = $("#basePath").val()+"/order/order_query.htm";
 	});
 
 	function doSuccessBack(res) {
 		if (res.success == true) {
 			alert("操作成功");
-			window.location.href = $("#basePath").val()+"/order/order_undo.htm";
+			window.location.href = $("#basePath").val()+"/order/order_query.htm";
 		}else{
 			alert(res.msg);
 		}
@@ -82,7 +82,7 @@ $(function() {
 function doSucBackSave(res) {
 	if (res.success == true) {
 		alert("操作成功");
-		window.location.href = $("#basePath").val()+"/order/order_undo.htm";
+		window.location.href = $("#basePath").val()+"/order/order_query.htm";
 	}else{
 		alert(res.msg);
 	}

@@ -159,11 +159,12 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object queryWithdrawOrderPage(String accountNumber, String code,
+    public Object queryWithdrawOrderPage(String fromAccountNumber, String accountNumber, String code,
             String toType, String toCode, String channel, String refNo,
             String status, String approveUser, String payUser, String dateStart,
             String dateEnd, String start, String limit) {
         XN802200Req req = new XN802200Req();
+        req.setFromAccountNumber(fromAccountNumber);
         req.setAccountNumber(accountNumber);
         req.setCode(code);
         req.setToType(toType);

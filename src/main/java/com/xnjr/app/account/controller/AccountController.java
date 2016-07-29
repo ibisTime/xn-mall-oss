@@ -144,6 +144,7 @@ public class AccountController extends BaseController {
     @RequestMapping(value = "/withdrawOrderPage", method = RequestMethod.GET)
     @ResponseBody
     public Object queryWithdrawOrderPage(
+    		@RequestParam(value = "fromAccountNumber", required = false) String fromAccountNumber,
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
             @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "toType", required = false) String toType,
@@ -157,7 +158,7 @@ public class AccountController extends BaseController {
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
-        return accountAO.queryWithdrawOrderPage(accountNumber, code, toType,
+        return accountAO.queryWithdrawOrderPage(fromAccountNumber, this.getSessionUser().getUserId(), code, toType,
             toCode, channel, refNo, status, approveUser, payUser, dateStart,
             dateEnd, start, limit);
     }

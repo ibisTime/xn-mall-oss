@@ -7,6 +7,8 @@ package com.xnjr.app.account.req;
  * @history:
  */
 public class XN802200Req {
+	
+	private String fromAccountNumber;
 
     // 账号
     private String accountNumber;
@@ -150,5 +152,13 @@ public class XN802200Req {
     public void setLimit(String limit) {
         this.limit = limit;
     }
+
+	public String getFromAccountNumber() {
+		return fromAccountNumber;
+	}
+
+	public void setFromAccountNumber(String fromAccountNumber) {
+		this.fromAccountNumber = fromAccountNumber;
+	}
 
 }
