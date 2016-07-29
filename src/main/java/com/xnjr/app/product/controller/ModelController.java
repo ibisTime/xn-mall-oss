@@ -158,6 +158,10 @@ public class ModelController extends BaseController {
     @RequestMapping(value = "/price/page", method = RequestMethod.GET)
     @ResponseBody
     public Object shopCarPage(
+    		@RequestParam(value = "productCode", required = false) String productCode,
+    		@RequestParam(value = "modelName", required = false) String modelName,
+    		@RequestParam(value = "type", required = false) String type,
+    		@RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "modelCode", required = false) String modelCode,
             @RequestParam(value = "fromUser", required = false) String fromUser,
             @RequestParam(value = "toLevel", required = false) String toLevel,
@@ -166,7 +170,7 @@ public class ModelController extends BaseController {
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return modelAO.shopCarPage(modelCode, fromUser, toLevel, toSite, start, limit,
+        return modelAO.shopCarPage(productCode, modelName, type, status, modelCode, fromUser, toLevel, toSite, start, limit,
             orderColumn, orderDir);
     }
 

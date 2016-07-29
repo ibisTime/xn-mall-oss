@@ -104,7 +104,8 @@ function queryTableData(){
 			title : '订单类型',
 			align : 'left',
 			valign : 'middle',
-			sortable : false
+			sortable : false,
+			formatter: Dict.getNameForList('qx_type')
 		},{
 			field : 'amount',
 			title : '积分',

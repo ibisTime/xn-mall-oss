@@ -91,6 +91,10 @@ $(function() {
 			$("#costPrice").html(moneyFormat(data.costPrice));
 			$("#fromQuantity").html(data.fromQuantity);
 			$("#tableList").bootstrapTable("load", res.data.modelSpecsList);
+			$('#originalPrice').val(moneyFormat(res.data.originalPrice));
+			$('#discountPrice').val(moneyFormat(res.data.discountPrice));
+			$('#toSite').val(res.data.toSite || '');
+			$('#remark').val(res.data.remark || '');
 			modelCode = data.model.code;
 			isUp = !!(data.status == 1);
 			isUp && $('#upDownBtn').val('下架');

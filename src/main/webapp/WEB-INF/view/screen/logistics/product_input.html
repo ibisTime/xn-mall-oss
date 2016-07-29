@@ -7,6 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=8"/>
 <title>订单管理</title>
 <#include 'layout/resources.html'/>
+<script type="text/javascript" src="${resourceUrl}/resources/common/js/ajaxfileupload.js?version=${version}"></script>
 <link rel="stylesheet" href="${resourceUrl}/resources/common/css/jquery.edittable.min.css" />
 <script type="text/javascript" src="${resourceUrl}/resources/common/js/qrcode.js"></script>
 <script type="text/javascript" src="${resourceUrl}/resources/common/js/jquery.edittable.js"></script>
@@ -35,16 +36,18 @@
 		 		    	<li><label><b>*</b>物流单号:</label><input id="code" name="code" class="control-def"/></li>
 		 		    	<li><label><b>*</b>发货人:</label><input id="deliverer" name="deliverer" class="control-def"/></li>
 		 		    	<li><label><b>*</b>发货时间:</label><input id="deliveryDatetime" name="deliveryDatetime" class="lay-input" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/></li>
+		 		    	<li><label><b>*</b>物流单:</label><input type="file" id="pdf" name="file"/>
+ 		    	<input id="uploadBtn1" type="button" value="上传" class="btn"/><br/><a id="url1" href="" target="_blank" class="margin-left-100"></a></li>
+ 		    	<li>
+ 		    		<input id="subBtn" type="button" class="btn margin-left-60" value="提交"/>
+			        <input id="backBtn" type="button" class="btn margin-left-60" value="返回"/>
+ 		    	</li>
 			    	</ul>
 		    	</div>
 		    	<div class="col-md-2"><div></div>
  				</div>
  				<div class="col-md-4"><div>物流单专属二维码</div><div id="qrcode"></div>
  					<input style="display: none;" id="downloadBtn" type="button" class="btn margin-top-10" value="下载"/>
- 				</div>
-			   		 <input id="subBtn" type="button" class="btn margin-left-60" value="提交"/>
-			        <input id="backBtn" type="button" class="btn margin-left-60" value="返回"/>
-			    </div>
 			</div>
 	    </div>
     </form>

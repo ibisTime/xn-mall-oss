@@ -36,7 +36,19 @@ $(function() {
 			alert("请选择记录");
 			return;
 		}
-		window.location.href = $("#basePath").val()+"/logistics/product_input.htm?invoiceCode="+selRecords[0].code;
+		var r=confirm("确定执行该操作吗？");
+		if (r) {
+			doPostAjax($("#basePath").val()+"/logistics/add", {
+				invoiceCode: selRecords[0].code
+			}, function(res) {
+				if (res.success) {
+					alert('操作成功');
+					$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/order/Page"});
+				} else {
+					alert(res.msg);
+				}
+			});
+		}
 	});
 
 	//查询

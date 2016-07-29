@@ -473,3 +473,13 @@ $(document).on('click', '.toolbar li[id*=Btn]', function(e) {
 	var text = $(this).text();
 	localStorage.setItem('syj-btn', text);
 });
+
+//资源链接
+
+function linkSrc(value) {
+	if (!value) {
+		return '-';
+	}
+	var values = value.split('/');
+	return '<a target="_blank" href="'+value+'">'+values[values.length - 1]+'</a>'
+}
