@@ -51,17 +51,37 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 		    },{
+				field : 'status',
+				title : '状态',
+				align : 'left',
+				valign : 'middle',
+				sortable : false,
+				formatter: Dict.getUserStatusName
+		    },{
 				field : 'realName',
 				title : '真实姓名',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
 		    },{
-				field : 'userReferee',
-				title : '推荐人',
+				field : 'idNo',
+				title : '证件号',
 				align : 'left',
 				valign : 'middle',
 				sortable : false
+		    },{
+				field : 'userReferee',
+				title : '上家编号',
+				align : 'left',
+				valign : 'middle',
+				sortable : false
+			},{
+				field : 'updateDatetime',
+				title : '更新时间',
+				align : 'left',
+				valign : 'middle',
+				sortable : false,
+				formatter: dateFormatter
 			},{
 				field : 'remark',
 				title : '备注',

@@ -45,16 +45,11 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 			},{
-				field : 'realName',
-				title : '真实姓名',
+				field : 'status',
+				title : '状态',
 				align : 'left',
 				valign : 'middle',
-				sortable : false
-		    },{
-				field : 'idNo',
-				title : '证件号码',
-				align : 'left',
-				valign : 'middle',
+				formatter: Dict.getUserStatusName,
 				sortable : false
 		    },{
 				field : 'userReferee',
@@ -69,14 +64,10 @@ $(function(){
 				valign : 'middle',
 				formatter:dateFormatter,
 				sortable : false
-			},{
-				field : 'status',
-				title : '状态',
-				align : 'left',
-				valign : 'middle',
-				formatter: Dict.getUserStatusName,
-				sortable : false
-		    }];
+			}, {
+				field: 'remark',
+				title: '备注'
+			}];
 		
 		$('#tableList').bootstrapTable({
 			method : "get",

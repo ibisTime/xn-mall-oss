@@ -20,6 +20,7 @@ function doSuccessData(res){
 		var result = res.data;
 		$("#loginName").html(result.loginName);
 		$("#userId").html(result.userId);
+		$("#status").html(Dict.getUserStatusName(result.status));
 		$("#mobile").html(result.mobile);
 		$("#userReferee").html(result.userReferee);
 		$("#remark").html(result.remark||"-");
