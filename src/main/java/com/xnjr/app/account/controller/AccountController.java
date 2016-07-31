@@ -437,10 +437,11 @@ public class AccountController extends BaseController {
     @ResponseBody
     public Object duixian(
             @RequestParam(value = "fromUserId") String fromUserId,
+            @RequestParam(value = "toUserId", required = false) String toUserId,
             @RequestParam(value = "amount") String amount,
             @RequestParam(value = "price") String price,
             @RequestParam(value = "type") String type) {
-        return accountAO.duixian(fromUserId, this.getSessionUser().getUserId(),
+        return accountAO.duixian(fromUserId, toUserId,
             amount, price, type, this.getSessionUser().getUserId());
     }
 

@@ -279,4 +279,13 @@ public interface IModelAO {
     Object sureOrder(String code, String amount, String fromType,
             String fromCode, String pdf, String toCardNo, String approveUser,
             String approveNote);
+    
+    Object priceSurePage(String modelCode, String toLevel, String start, String limit, 
+    		String orderColumn, String orderDir, String updater);
+    
+    Object priceSureList(String modelCode, String toLevel, String updater);
+    
+    Object priceSureDetail(String code);
+    
+    Object priceSureEdit(String code, String quantity, String price, String updater, String remark);
 }

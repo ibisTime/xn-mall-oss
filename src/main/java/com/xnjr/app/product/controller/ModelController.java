@@ -267,5 +267,43 @@ public class ModelController extends BaseController {
         return modelAO.sureOrder(code, amount, fromType, fromCode, pdf,
             toCardNo, this.getSessionUser().getUserName(), approveNote);
     }
+    
+    // 分销商价格管理分页查询
+    @RequestMapping(value = "/price/sure/page", method = RequestMethod.GET)
+    @ResponseBody
+    public Object priceSurePage(@RequestParam(value = "modelName", required = false) String modelCode,
+            @RequestParam(value = "toLevel", required = false) String toLevel,
+            @RequestParam(value = "start", required = false) String start,
+            @RequestParam(value = "limit", required = false) String limit,
+            @RequestParam(value = "orderColumn", required = false) String orderColumn,
+            @RequestParam(value = "orderDir", required = false) String orderDir) {
+        return modelAO.priceSurePage(modelCode, toLevel, start, limit, orderColumn,
+        		orderDir, this.getSessionUser().getUserName());
+    }
+    
+    // 分销商价格管理列表查询
+    @RequestMapping(value = "/price/sure/list", method = RequestMethod.GET)
+    @ResponseBody
+    public Object priceSureList(@RequestParam(value = "modelCode", required = false) String modelCode,
+            @RequestParam(value = "toLevel", required = false) String toLevel) {
+        return modelAO.priceSureList(modelCode, toLevel, this.getSessionUser().getUserName());
+    }
+    
+    // 分销商价格管理详情查询
+    @RequestMapping(value = "/price/sure/detail", method = RequestMethod.GET)
+    @ResponseBody
+    public Object priceSureDetail(@RequestParam(value = "code") String code) {
+        return modelAO.priceSureDetail(code);
+    }
+    
+    // 分销商价格管理修改
+    @RequestMapping(value = "/price/sure/edit", method = RequestMethod.POST)
+    @ResponseBody
+    public Object priceSureEdit(@RequestParam(value = "code") String code,
+    		@RequestParam(value = "quantity") String quantity,
+    		@RequestParam(value = "price") String price,
+    		@RequestParam(value = "remark") String remark) {
+        return modelAO.priceSureEdit(code, quantity, price, this.getSessionUser().getUserName(), remark);
+    }
 
 }

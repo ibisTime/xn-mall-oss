@@ -39,6 +39,9 @@ function doGetDetailBack(res){
 			$("#accountNumber").html(result.accountNumber);
 			$("#amount").html(moneyFormat(result.amount,2));
 			$("#frozenAmount").html(moneyFormat(result.frozenAmount,2));
+			$('#changeBtn').on('click', function() {
+				window.location.href = $("#basePath").val()+"/account/withdrawl_apply.htm?userId=" + result.userId;
+			});
 		}else{
 			alert("系统账户获取详情失败");
 		}

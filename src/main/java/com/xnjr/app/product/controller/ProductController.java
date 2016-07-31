@@ -184,4 +184,5 @@ public class ProductController extends BaseController {
     		@RequestParam(value = "pdf", required = false) String pdf) {
         return productAO.producerAdd(loginName, mobile, idKind, idNo, realName, this.getSessionUser().getUserName(), pdf);
     }
+    
 }

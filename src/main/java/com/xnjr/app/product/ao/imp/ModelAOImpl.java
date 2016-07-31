@@ -37,6 +37,9 @@ import com.xnjr.app.product.req.XN602026Req;
 import com.xnjr.app.product.req.XN602027Req;
 import com.xnjr.app.product.req.XN602028Req;
 import com.xnjr.app.product.req.XN602029Req;
+import com.xnjr.app.product.req.XNlh5102Req;
+import com.xnjr.app.product.req.XNlh5103Req;
+import com.xnjr.app.product.req.XNlh5104Req;
 import com.xnjr.app.res.XN602026Res;
 import com.xnjr.app.res.XNlh5014Res;
 import com.xnjr.app.util.CalculationUtil;
@@ -328,5 +331,48 @@ public class ModelAOImpl implements IModelAO {
         return BizConnecter.getBizData("602029", JsonUtils.object2Json(req),
             Object.class);
     }
+
+	@Override
+	public Object priceSurePage(String modelCode, String toLevel, String start,
+			String limit, String orderColumn, String orderDir, String updater) {
+		XNlh5103Req req = new XNlh5103Req();
+        req.setModelName(modelCode);
+        req.setToLevel(toLevel);
+        req.setStart(start);
+        req.setLimit(limit);
+        req.setOrderColumn(orderColumn);
+        req.setOrderDir(orderDir);
+        req.setUpdater(updater);
+        return BizConnecter.getBizData("lh5103", JsonUtils.object2Json(req),
+            Object.class);
+	}
+
+	@Override
+	public Object priceSureList(String modelCode, String toLevel, String updater) {
+		XNlh5104Req req = new XNlh5104Req();
+        req.setModelName(modelCode);
+        req.setToLevel(toLevel);
+        return BizConnecter.getBizData("lh5104", JsonUtils.object2Json(req),
+            Object.class);
+	}
+
+	@Override
+	public Object priceSureDetail(String code) {
+		return BizConnecter.getBizData("lh5105", JsonUtils.string2Json("code", code),
+	            Object.class);
+	}
+
+	@Override
+	public Object priceSureEdit(String code, String quantity, String price,
+			String updater, String remark) {
+		XNlh5102Req req = new XNlh5102Req();
+        req.setCode(code);
+        req.setQuantity(quantity);
+        req.setPrice(price);
+        req.setUpdater(updater);
+        req.setRemark(remark);
+        return BizConnecter.getBizData("lh5102", JsonUtils.object2Json(req),
+            Object.class);
+	}
 
 }

@@ -483,3 +483,7 @@ function linkSrc(value) {
 	var values = value.split('/');
 	return '<a target="_blank" href="'+value+'">'+values[values.length - 1]+'</a>'
 }
+
+function getUserId() {
+	return $('#topUserId', window.parent.frames[0].document).val();
+}
