@@ -12,6 +12,9 @@ $(function() {
 	    alink.download = "二维码.jpg";
 	    alink.click();
 	}
+	$('#subBtn').on('click', function() {
+		window.print();
+	});
 	$("#userId").val($('#qianduanBaseUrl').val() + '/m/message/recharge_success.html?i='+code);
 	var qrcode = new QRCode('qrcode');
 		if ($('#userId').val()) {
