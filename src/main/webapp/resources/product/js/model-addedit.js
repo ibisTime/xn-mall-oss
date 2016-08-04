@@ -65,10 +65,12 @@ $(function() {
 	    tableLists = mytable.getData();
 		var specsTableList = new Array();
 		for(var i = 0;i < tableLists.length;i++){
-			var specsTable =new Object();
-			specsTable.dkey=tableLists[i][0];
-			specsTable.dvalue=tableLists[i][1];
-		    specsTableList.push(specsTable);
+			if (tableLists[i][0]) {
+				var specsTable =new Object();
+				specsTable.dkey=tableLists[i][0];
+				specsTable.dvalue=tableLists[i][1];
+			    specsTableList.push(specsTable);
+			}
 		}
 	    var data = {};
 		var t = $('form').serializeArray();
@@ -137,7 +139,7 @@ function initSpecsTable(){
     mytable = $('#edittable').editTable({
     	field_templates: {
     		'canshuzhi' : {
- 	            html: '<input type="text" required maxlength="32"/>',
+ 	            html: '<input type="text" maxlength="32"/>',
  	            getValue: function (input) {
  	                return $(input).val();
  	            },
@@ -146,7 +148,7 @@ function initSpecsTable(){
  	            }
  	        },
  	       'canshuming' : {
-	            html: '<input type="text" required maxlength="64"/>',
+	            html: '<input type="text" maxlength="64"/>',
 	            getValue: function (input) {
 	                return $(input).val();
 	            },
