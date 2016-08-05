@@ -17,7 +17,7 @@ $(function() {
 			data[this.name] = this.value;
 		});
 		data['pdf'] = $("#url1").attr("href");
-		var url = $("#basePath").val()+"/product/producer/add";
+		var url = $("#basePath").val()+"/product/jiameng/add";
 		doPostAjax(url, data, doSaveSuccessBack);
 	});
 	
@@ -28,7 +28,7 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/customer/score2.htm";
+		location.href = $("#basePath").val()+"/customer/score3.htm";
 	});
 	
 	//入参合法性校验
@@ -94,7 +94,7 @@ function ajaxFileUpload(postUrl,fileId,uploadControlId) {
 function doSaveSuccessBack(res) {
 	if (res.success == true) {
 		alert("操作成功");
-		window.location.href = $("#basePath").val()+"/customer/score2.htm";
+		window.location.href = $("#basePath").val()+"/customer/score3.htm";
 	}else{
 		alert(res.msg);
 	}

@@ -188,4 +188,7 @@ public interface IProductAO {
     
     public Object producerAdd(String loginName, String mobile, String idKind, 
     		String idNo, String realName, String userReferee, String pdf);
+    
+    public Object jiamengAdd(String loginName, String mobile, String idKind, 
+    		String idNo, String realName, String userReferee, String pdf);
 }

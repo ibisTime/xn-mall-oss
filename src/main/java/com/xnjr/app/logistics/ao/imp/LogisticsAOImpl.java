@@ -82,4 +82,10 @@ public class LogisticsAOImpl implements ILogisticsAO {
             Object.class);
     }
 
+	@Override
+	public Object xianChang(String code) {
+		return BizConnecter.getBizData("602030", JsonUtils.string2Json("code", code),
+	            Object.class);
+	}
+
 }

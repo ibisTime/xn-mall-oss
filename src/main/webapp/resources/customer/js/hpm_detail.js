@@ -21,7 +21,7 @@ function doSucBackGetDetail(res){
 		$("#realName").html(res.data.realName||'-');
 		$("#userReferee").html(res.data.userReferee||'-');
 		$("#remark").html(res.data.remark||'-');
-		$("#img").attr('src',res.data.pdf);
+		$("#pdf").html(linkSrc(res.data.pdf));
 	}else{
 		alert(res.msg);
 	}

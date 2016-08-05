@@ -145,6 +145,23 @@ public class CustomerController extends BaseController {
             this.getSessionUser().getUserId(), mobile, idKind, idNo, realName,
             null, status, null, start, limit);
     }
+    
+    @RequestMapping(value = "/jiaMengPage", method = RequestMethod.GET)
+    @ResponseBody
+    public Object jiaMengPage(
+            @RequestParam(value = "loginName", required = false) String loginName,
+            @RequestParam(value = "mobile", required = false) String mobile,
+            @RequestParam(value = "idKind", required = false) String idKind,
+            @RequestParam(value = "idNo", required = false) String idNo,
+            @RequestParam(value = "realName", required = false) String realName,
+            @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "level", required = false) String level,
+            @RequestParam(value = "start", required = false) String start,
+            @RequestParam(value = "limit", required = false) String limit) {
+        return userAO.queryUserPage(loginName, EUserKind.CaiGo.getCode(), level,
+            this.getSessionUser().getUserId(), mobile, idKind, idNo, realName,
+            null, status, null, start, limit);
+    }
 
     @RequestMapping(value = "/detailmoney", method = RequestMethod.GET)
     @ResponseBody

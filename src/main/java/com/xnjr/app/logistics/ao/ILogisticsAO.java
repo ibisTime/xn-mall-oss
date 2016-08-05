@@ -24,5 +24,7 @@ public interface ILogisticsAO {
     Object queryStartCodeByModelCode(String modelCode);
 
     Object suregoods(String code, String updater, String remark);
+    
+    Object xianChang(String code);
 
 }

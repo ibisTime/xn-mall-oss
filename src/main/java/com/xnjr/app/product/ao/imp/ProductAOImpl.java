@@ -26,6 +26,7 @@ import com.xnjr.app.product.req.XN602122Req;
 import com.xnjr.app.product.req.XN602123Req;
 import com.xnjr.app.product.req.XN602124Req;
 import com.xnjr.app.product.req.XN602200Req;
+import com.xnjr.app.product.req.XN602220Req;
 import com.xnjr.app.util.UploadUtil;
 
 @Service
@@ -220,5 +221,20 @@ public class ProductAOImpl implements IProductAO {
 		 req.setPdf(pdf);
         return BizConnecter.getBizData("602200", JsonUtils.object2Json(req),
             Object.class);
+	}
+
+	@Override
+	public Object jiamengAdd(String loginName, String mobile, String idKind,
+			String idNo, String realName, String userReferee, String pdf) {
+		XN602220Req req = new XN602220Req();
+		 req.setLoginName(loginName);
+		 req.setMobile(mobile);
+		 req.setIdKind(idKind);
+		 req.setIdNo(idNo);
+		 req.setRealName(realName);
+		 req.setUserReferee(userReferee);
+		 req.setPdf(pdf);
+       return BizConnecter.getBizData("602220", JsonUtils.object2Json(req),
+           Object.class);
 	}
 }

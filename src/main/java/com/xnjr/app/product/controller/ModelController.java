@@ -208,7 +208,7 @@ public class ModelController extends BaseController {
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return modelAO.queryOrderPage(applyUser, toUser, status,
+        return modelAO.queryOrderPage(applyUser, this.getSessionUser().getUserId(), status,
             start, limit, orderColumn, orderDir);
     }
 

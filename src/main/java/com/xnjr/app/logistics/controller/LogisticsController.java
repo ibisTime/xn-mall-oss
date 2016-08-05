@@ -37,6 +37,13 @@ public class LogisticsController extends BaseController {
             deliveryDatetime, deliverer, this.getSessionUser().getUserName(),
             remark, pdf);
     }
+    
+    // 现场发货
+    @RequestMapping(value = "/xianchang", method = RequestMethod.POST)
+    @ResponseBody
+    public Object xianChang(@RequestParam(value = "code", required = true) String code) {
+        return logisticsAO.xianChang(code);
+    }
 
     // 物流单分页查询
     @RequestMapping(value = "/page", method = RequestMethod.GET)

@@ -38,8 +38,8 @@ $(function() {
 		}
 		var r=confirm("确定执行该操作吗？");
 		if (r) {
-			doPostAjax($("#basePath").val()+"/logistics/add", {
-				invoiceCode: selRecords[0].code
+			doPostAjax($("#basePath").val()+"/logistics/xianchang", {
+				code: selRecords[0].code
 			}, function(res) {
 				if (res.success) {
 					alert('操作成功');
