@@ -167,7 +167,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/under/list", method = RequestMethod.GET)
     @ResponseBody
     public Object queryUnderUserList() {
-        return userAO.queryUserList(null, EUserKind.Integral.getCode(), null,
+        return userAO.queryUserList(null, EUserKind.XiaJia.getCode(), null,
             this.getSessionUser().getUserId(), null, null, null, null, null,
             null, null);
     }
