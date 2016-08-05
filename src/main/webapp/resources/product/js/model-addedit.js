@@ -37,6 +37,10 @@ $(function() {
 			    for(var i = 0;i < specsTable.length;i++){
 			    	specsTableList[i]=[specsTable[i].dkey,specsTable[i].dvalue];
 				}
+			    if (specsTable.length == 0) {
+			    	
+			    	specsTableList.push(['', '']);
+			    }
 			    mytable.loadData(specsTableList);
 			}else{
 				alert(res.msg);
