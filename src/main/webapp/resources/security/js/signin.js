@@ -63,32 +63,34 @@ $(function(){
 	}
 	
 	$('#smsBtn').on('click', function() {
-		if (!$('#mobile').val()) {
-			alert('请输入手机号码');
+		if (!$('#loginName1').val()) {
+			alert('请输入用户名');
 		} else {
 			$('#smsBtn').prop('disabled', true);
-			doPostAjax($("#basePath").val()+"/gene/findloginpwd/send", {
-				mobile: $('#mobile').val()
+			doPostAjax($("#basePath").val()+"/user/pwd/find/sms", {
+				loginName: $('#loginName1').val()
 			}, function(res) {
 				$('#smsBtn').prop('disabled', false);
 				if (res.success) {
 					count($('#smsBtn'), 60);
+				} else {
+					alert('该用户无手机号，请联系管理员。');
 				}
 			});
 		}
 	});
 	
 	$('#confirmBtn').on('click', function() {
-		if (!$('#mobile').val()) {
-			alert('请输入手机号码');
+		if (!$('#loginName1').val()) {
+			alert('请输入用户名');
 		} else if (!$('#smsCaptcha').val()) {
 			alert('请输入短信验证码');
 		} else if (!$('#newLoginPwd').val()) {
 			alert('请输入新密码');
 		} else {
 			$('#confirmBtn').prop('disabled', true);
-			doPostAjax($("#basePath").val()+"/user/pwd/reset", {
-				mobile: $('#mobile').val(),
+			doPostAjax($("#basePath").val()+"/user/pwd/find", {
+				loginName: $('#loginName1').val(),
 				smsCaptcha: $('#smsCaptcha').val(),
 				newLoginPwd: $('#newLoginPwd').val()
 			}, function(res) {

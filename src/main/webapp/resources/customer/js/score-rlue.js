@@ -5,7 +5,7 @@ $(function(){
 	showPermissionControl();
 	//表格初始化
 	queryTableData();
-	$('#isApprove').renderDropdown(Dict.getName("isApprove"));
+	$('#isApprove').renderDropdown(Dict.getName("score_sell_way"));
 	
 	$('#firsterweiBtn').click(function() {
 		window.location.href = $("#basePath").val()+"/customer/firsterwei.htm";
@@ -82,10 +82,10 @@ $(function(){
 				sortable : false
 		    },{
 				field : 'isApprove',
-				title : '是否审批',
+				title : '销售方式',
 				align : 'left',
 				valign : 'middle',
-				formatter:Dict.getNameForList('isApprove'),
+				formatter:Dict.getNameForList('score_sell_way'),
 				sortable : false
 		    },{
 				field : 'updateDatetime',

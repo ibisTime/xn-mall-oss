@@ -487,3 +487,32 @@ function linkSrc(value) {
 function getUserId() {
 	return $('#topUserId', window.parent.frames[0].document).val();
 }
+
+//下拉框
+setTimeout(function() {
+	$('select').chosen && $('select').not('.norender').chosen({search_contains: true});
+}, 100);
+var oriVal = $.fn.val;
+$.fn.val = function(value) {
+	var res = oriVal.apply($(this), arguments);
+	if ($(this).is('select')) {
+		$(this).trigger('chosen:updated');
+	}
+	return res;
+}
+
+// 压缩图片
+function zipImg(file, pos) {
+	if (file.type == 'image/gif') {
+		var reader = new FileReader();
+		reader.onload = function(evt){
+			var image = evt.target.result;
+			$(pos).attr("src",image);
+		}
+		reader.readAsDataURL(file);
+	} else {
+		var mpImg = new MegaPixImage(file);
+		mpImg.render(pos, {quality: 0.5});
+	}
+}
+

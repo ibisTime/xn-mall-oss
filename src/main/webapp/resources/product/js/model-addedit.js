@@ -185,13 +185,19 @@ function selectImage(file,name){
 	if(!file.files || !file.files[0]){
 		return;
 	}
-	var reader = new FileReader();
-	reader.onload = function(evt){
-		document.getElementById(name).src = evt.target.result;
-		var image = evt.target.result;
-		$(document.getElementById(name)).next().attr("src",image);
-	}
-	reader.readAsDataURL(file.files[0]);
+	
+	zipImg(file.files[0], $(document.getElementById(name)).next()[0]);
+	
+//	var reader = new FileReader();
+//	reader.onload = function(evt){
+//		document.getElementById(name).src = evt.target.result;
+//		var image = evt.target.result;
+//		$(document.getElementById(name)).next().attr("src",image);
+//	}
+//	reader.readAsDataURL(file.files[0]);
+	
+//	var mpImg = new MegaPixImage(file.files[0]);
+//	mpImg.render($(document.getElementById(name)).next()[0], {quality: 0.5});
 }
 
 

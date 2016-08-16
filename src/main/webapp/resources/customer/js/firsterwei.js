@@ -1,10 +1,21 @@
 
 $(function() {
-	$('#isApprove').renderDropdown(Dict.getName("isApprove"));
+	$('#isApprove').renderDropdown(Dict.getName("score_sell_way"));
 	var url = $("#basePath").val()+"/customer/own/account";
 	doGetAjax(url, {
 		currency: 'XNB'
 	}, doGetDetailBack);
+	
+	$('#isApprove').on('change', function() {
+		var value = $(this).val();
+		if (value == 0) {
+			$('#price').val('0');
+			$('#priceCtn').hide();
+		} else if (value == 1) {
+			$('#price').val('');
+			$('#priceCtn').show();
+		}
+	});
 
 	//提交
 	$('#subBtn').click(function() {
@@ -38,6 +49,7 @@ $(function() {
 			},
 			price: {
 				required: true,
+				number:true,
 				maxlength: 11
 			},
 			isApprove: {
@@ -58,7 +70,7 @@ $(function() {
 				maxlength: jQuery.format("人民币值不能大于{0}个字符")
 			},
 			isApprove: {
-				required: "请选择是否审批",
+				required: "请选择销售方式",
 			},
 			remark: {
 				maxlength: jQuery.format("备注不能大于{0}个字符"),

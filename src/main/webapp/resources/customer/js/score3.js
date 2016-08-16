@@ -36,7 +36,7 @@ $(function(){
 				checkbox : true
 			},{
 				field : 'loginName',
-				title : '登录名',
+				title : '账户名',
 				align : 'left',
 				valign : 'middle',
 				sortable : false

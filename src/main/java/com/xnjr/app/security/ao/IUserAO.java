@@ -203,5 +203,11 @@ public interface IUserAO {
      * @history:
      */
     public XN805043Res login(String loginName, String loginPwd);
+    
+    // 找回密码
+    public Object findPwd(String loginName, String smsCaptcha, String newLoginPwd);
+    
+    // 找回密码发短信
+    public Object findPwdSMS(String loginName);
 
 }

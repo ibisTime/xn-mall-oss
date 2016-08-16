@@ -110,7 +110,7 @@ function queryTableData(){
 			formatter : dateFormatter
 		},{
 			field : 'applyNote',
-			title : '备注',
+			title : '备注（菜狗联系人）',
 			align : 'left',
 			valign : 'middle',
 			sortable : false

@@ -46,7 +46,7 @@ function doSuccessMenuBack(res) {
 		});
 		if (sessionStorage.getItem('activeMenu')) {
 			var activeMenu = sessionStorage.getItem('activeMenu');
-			$("#child_menu_0[href*='"+activeMenu+"']")[0].click();
+			$("#child_menu_0")[0].click();
 			sessionStorage.setItem('activeMenu', '');
 		} else {
 			//获取第一个菜单链接，显示左边属性

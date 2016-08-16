@@ -215,4 +215,22 @@ public class UserController extends BaseController {
         return userAO.editMobile(this.getSessionUser().getUserId(), newMobile,
             smsCaptcha, tradePwd);
     }
+    
+    // 找回密码
+    @RequestMapping(value = "/pwd/find", method = RequestMethod.POST)
+    @ResponseBody
+    public Object findPwd(
+            @RequestParam(value = "loginName") String loginName,
+            @RequestParam(value = "smsCaptcha") String smsCaptcha,
+            @RequestParam(value = "newLoginPwd") String newLoginPwd) {
+        return userAO.findPwd(loginName, smsCaptcha, newLoginPwd);
+    }
+    
+    // 找回密码发短信
+    @RequestMapping(value = "/pwd/find/sms", method = RequestMethod.POST)
+    @ResponseBody
+    public Object findPwdSMS(
+            @RequestParam(value = "loginName") String loginName) {
+        return userAO.findPwdSMS(loginName);
+    }
 }

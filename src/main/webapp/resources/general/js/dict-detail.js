@@ -83,6 +83,7 @@ function doGetDetailBack(res){
 		$("#id").val(res.data.id);
 		$("#type").val(res.data.type);
 		$('#parentKey').replaceWith($('<span>'+(res.data.parentKey || '无')+'</span>'));
+		$('#parentKey_chosen').remove();
 		$('#dkey').replaceWith($('<span>'+res.data.dkey+'</span>'));
 		$("#dvalue").val(res.data.dvalue);
 		$("#remark").val(res.data.remark);

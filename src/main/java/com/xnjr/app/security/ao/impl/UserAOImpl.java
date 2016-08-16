@@ -23,6 +23,8 @@ import com.xnjr.app.security.req.XN805052Req;
 import com.xnjr.app.security.req.XN805053Req;
 import com.xnjr.app.security.req.XN805054Req;
 import com.xnjr.app.security.req.XN805055Req;
+import com.xnjr.app.security.req.XN805058Req;
+import com.xnjr.app.security.req.XN805059Req;
 import com.xnjr.app.security.res.XN805043Res;
 import com.xnjr.app.security.res.XN805055Res;
 import com.xnjr.app.security.res.XN805056Res;
@@ -226,4 +228,24 @@ public class UserAOImpl implements IUserAO {
         return BizConnecter.getBizData("805047", JsonUtils.object2Json(req),
             Object.class);
     }
+
+	@Override
+	public Object findPwd(String loginName, String smsCaptcha,
+			String newLoginPwd) {
+		XN805059Req req = new XN805059Req();
+        req.setLoginName(loginName);
+        req.setSmsCaptcha(smsCaptcha);
+        req.setNewLoginPwd(newLoginPwd);
+        req.setLoginPwdStrength(PwdUtil.calculateSecurityLevel(newLoginPwd));
+        return BizConnecter.getBizData("805059", JsonUtils.object2Json(req),
+            Object.class);
+	}
+
+	@Override
+	public Object findPwdSMS(String loginName) {
+		XN805058Req req = new XN805058Req();
+        req.setLoginName(loginName);
+        return BizConnecter.getBizData("805058", JsonUtils.object2Json(req),
+            Object.class);
+	}
 }

@@ -52,6 +52,7 @@ $(function (){
 				maxlength: 13
 			},
 			applyNote: {
+				required: true,
 				maxlength: 250
 			}
 		}
