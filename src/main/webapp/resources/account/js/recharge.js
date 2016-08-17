@@ -106,6 +106,9 @@ $(function() {
 			valign : 'middle',
 			sortable : false,
 			formatter : dateFormatter
+		}, {
+			field: 'applyNote',
+			title: '备注（菜狗联系人）'
 		}]
 	});
 	

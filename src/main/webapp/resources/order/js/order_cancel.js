@@ -95,32 +95,30 @@ function initBusinessTable(){
 		singleSelect : true,
 		clickToSelect : true,
 		columns : [{
-					field : 'productName',
-					title : '产品',
-					align : 'left',
-					valign : 'middle',
-					sortable : false,
-				},{
-					field : 'modelName',
-					title : '型号',
-					align : 'left',
-					valign : 'middle',
-					sortable : false,
-				},{
-					field : 'quantity',
-					title : '产品数量',
-					align : 'left',
-					valign : 'middle',
-					sortable : false
-				},{
-					field : 'salePrice',
-					title : '单价',
-					align : 'left',
-					valign : 'middle',
-					formatter:moneyFormatter,
-					sortable : false
-				}
-		]
+			field : 'modelName',
+			title : '货品名称'
+		},
+		{
+			field : 'productName',
+			title : '品类'
+		}, {
+			field: 'quantity',
+			title: '数量'
+		}, {
+			field: 'costPrice',
+			title: '成本价',
+			formatter: moneyFormatter
+		}, {
+			field: 'salePrice',
+			title: '零售价',
+			formatter: moneyFormatter
+		}, {
+			field: '',
+			title: '利润',
+			formatter: function(v, r) {
+				return moneyFormat(r.salePrice - r.costPrice);
+			}
+		}]
 	});
 }
 //格式化时间

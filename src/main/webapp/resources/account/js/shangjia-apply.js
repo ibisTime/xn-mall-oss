@@ -23,7 +23,7 @@ $(function (){
 			return false;
 		}
 		if(isBlank($("#url1").attr("href"))){
-			alert("请上传水单");
+			alert("请上传付款凭证");
 			return;
 		}
 		var data = {"applyNote": $("#applyNote").val(), "fromUserId":fromUserId,"type":"1","amount":moneyParse($("#amount").val()),"price":moneyParse($("#price").html())};
@@ -47,9 +47,8 @@ $(function (){
 		rules:{
 			amount:{
 				required: true,
-				number:true,
-				isPositive: true,
-				maxlength: 13
+				amount:true,
+				isPositive: true
 			},
 			applyNote: {
 				required: true,

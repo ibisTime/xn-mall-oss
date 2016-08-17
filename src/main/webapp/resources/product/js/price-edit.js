@@ -37,13 +37,12 @@ $(function() {
 		rules: {
 			price: {
 				required: true,
-				number: true,
-				maxlength: 13
+				amount: true
 			},
 			quantity: {
 				required: true,
 				number: true,
-				maxlength: 13
+				maxlength: 10
 			},
 			remark: {
 				maxlength: 255

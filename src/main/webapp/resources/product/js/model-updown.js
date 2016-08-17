@@ -24,12 +24,10 @@ $(function() {
 	$("#jsForm").validate({
 		rules: {
 			originalPrice:  {
-				number: true,
-				maxlength: 13
+				amount: true
 			},
 			discountPrice:  {
-				number: true,
-				maxlength: 13
+				amount: true
 			},
 			toSite: {
 			},

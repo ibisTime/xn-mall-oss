@@ -500,6 +500,14 @@ $.fn.val = function(value) {
 	}
 	return res;
 }
+var oriHtml = $.fn.html;
+$.fn.html = function(value) {
+	var res = oriHtml.apply($(this), arguments);
+	if ($(this).is('select')) {
+		$(this).trigger('chosen:updated');
+	}
+	return res;
+}
 
 // 压缩图片
 function zipImg(file, pos) {

@@ -24,7 +24,7 @@ $(function (){
 			return false;
 		}
 		if(isBlank($("#url1").attr("href"))){
-			alert("请上传水单");
+			alert("请上传付款凭证");
 			return;
 		}
 		var data = {"amount":moneyParse($("#amount").val())};
@@ -32,6 +32,7 @@ $(function (){
 		data['toUserId'] =$("#toUserId").val().split("|")[0];
 		data['price'] =moneyParse($("#price").html());
 		data['type'] ='1';
+		data['applyNote'] = $('#applyNote').val();
 		var url = $("#basePath").val()+"/account/toRecharge";
 		doPostAjax(url, data, doSuccessBack);
 	});
@@ -78,31 +79,12 @@ $(function (){
 			},
 			amount:{
 				required: true,
-				number:true,
-				isPositive: true,
-				maxlength: 13
-			}
-		},
-		messages:{
-			accountNumber:{
-				required: "请输入账户编号",
-				maxlength: jQuery.format("账户编号不能大于{0}个字符")
+				amount:true,
+				isPositive: true
 			},
-			toUserId:{
-				required: "请选择下家",
-			},
-			fromType:{
-				required: "请选择充值账户类型",
-				maxlength: jQuery.format("支付账号不能大于{0}个字符")
-			},
-			fromCode:{
-				required: "请输入充值账户",
-				maxlength: jQuery.format("支付账号不能大于{0}个字符")
-			},
-			amount:{
-				required: "请输入充值积分",
-				number:"充值积分请输入数字",
-				maxlength: jQuery.format("充值积分不能大于{0}个字符")
+			applyNote: {
+				required: true,
+				maxlength: 250
 			}
 		}
 	})

@@ -107,6 +107,11 @@ $.validator.addMethod("isPositive",function(value,element){
     return this.optional(element) || aint > 0;
 }, '请输入大于0的数字');
 
+$.validator.addMethod("amount",function(value,element){
+	var aint = '' + parseInt(value.replace(/[\,]/g, ''));
+    return /^\d+$/.test(aint) && aint.length <= 13;
+}, '金额必须>=0，且小于13位');
+
 //汉字
 jQuery.validator.addMethod("chinese", function (value, element) {
     var chinese = /^[\u4E00-\u9FFF]+$/;
