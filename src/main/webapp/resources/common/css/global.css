@@ -28,6 +28,10 @@ thead{margin:0; padding:0;}
 .margin-left-100{margin-left:135px;}
 .table-striped{width:100%!important;}
 
+.form-info .btn+.btn {
+	margin-left: 60px;
+}
+
 /*遮罩层*/
 .mask-pop{left:0; top:0; z-index:9999; display:none; position:fixed; width:100%; height:100%; background:rgba(0,0,0,.3) url(../images/loader.gif) center center no-repeat;}
 

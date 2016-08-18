@@ -52,7 +52,7 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		window.history.back();
+		goBack();
 	});
 });
 
@@ -60,7 +60,7 @@ $(function() {
 function doSucBackSave(res) {
 	if (res.success == true) {
 		alert("操作成功");
-		window.history.back();
+		goBack();
 	}else{
 		alert(res.msg);
 	}

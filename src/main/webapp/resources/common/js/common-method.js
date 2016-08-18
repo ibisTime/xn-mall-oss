@@ -500,6 +500,14 @@ $.fn.val = function(value) {
 	}
 	return res;
 }
+
+$(document).on('click', 'input[type=reset]', function() {
+	var me = this;
+	setTimeout(function() {
+		$(me).closest('.search-form').find('select').trigger('chosen:updated');
+	}, 100);
+});
+
 var oriHtml = $.fn.html;
 $.fn.html = function(value) {
 	var res = oriHtml.apply($(this), arguments);
@@ -524,3 +532,14 @@ function zipImg(file, pos) {
 	}
 }
 
+
+//后退
+function goBack() {
+ if ('referrer' in document) {
+     window.location = document.referrer;
+     /* OR */
+     //location.replace(document.referrer);
+ } else {
+     window.history.back();
+ }
+}
