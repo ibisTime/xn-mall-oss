@@ -25,6 +25,28 @@ function doPostAjax(url, data, successfn) {
     });
 };
 
+//function doPostAjax(url, data, successfn) {
+//	//请求前显示遮罩
+//	maskPop();
+//    $.ajax({
+//        type: "post",
+//        url: url,
+//        data: JSON.stringify(data),
+//        dataType: 'json',
+//        contentType: "application/json; charset=utf-8",
+//        success: function (data) {
+//        	//请求成功之后隐藏遮罩
+//        	unMaskPop();
+//        	successfn(data);
+//        },
+//        error: function () {
+//            jQuery.fn.mBox({
+//                message: '系统异常,请联系管理员'
+//            });
+//        }
+//    });
+//};
+
 /**
  * ajax 请求
  * @param url 请求地址

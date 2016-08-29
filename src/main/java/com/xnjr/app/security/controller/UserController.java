@@ -1,13 +1,18 @@
 package com.xnjr.app.security.controller;
 
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.JsonObject;
 import com.xnjr.app.controller.BaseController;
 import com.xnjr.app.enums.EUserKind;
 import com.xnjr.app.exception.BizException;
@@ -47,6 +52,17 @@ public class UserController extends BaseController {
             .setUserDetail(new SessionUser(res.getUserId(), loginName));
         return true;
     }
+    
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    @ResponseBody
+//    public Object doLogin(@RequestBody Map map) {
+//        // 校验用户名密码
+//        XN805043Res res = userAO.login((String)map.get("loginName"), (String)map.get("loginPwd"));
+//        // 创建session
+//        sessionProvider
+//            .setUserDetail(new SessionUser(res.getUserId(), (String)map.get("loginName")));
+//        return true;
+//    }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     @ResponseBody

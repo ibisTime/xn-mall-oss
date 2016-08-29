@@ -16,6 +16,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xnjr.app.controller.BaseController;
 import com.xnjr.app.exception.BizException;
+import com.xnjr.app.http.BizConnecter;
+import com.xnjr.app.http.JsonUtils;
 import com.xnjr.app.res.CheckedMenu;
 import com.xnjr.app.security.ao.IMenuAO;
 import com.xnjr.app.security.ao.IMenuRoleAO;
@@ -134,6 +137,13 @@ public class RoleController extends BaseController {
         return roleAO.editRole(code, kind, name, level, this.getSessionUser()
             .getUserName(), remark);
     }
+//    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+//    @ResponseBody
+//    public Object editRole(@RequestBody Map map) {
+//    	map.put("updater", this.getSessionUser().getUserName());
+//    	return BizConnecter.getBizData("805025", JsonUtils.mapToJson(map),
+//                Object.class);
+//    }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
@@ -156,6 +166,13 @@ public class RoleController extends BaseController {
             @RequestParam("limit") String limit) {
         return roleAO.queryRolePage(kind, name, level, updater, start, limit);
     }
+    
+//    @RequestMapping(value = "/page", method = RequestMethod.GET)
+//    @ResponseBody
+//    public Object queryRolePage(@RequestParam Map<String,String> allRequestParams) {
+//    	return BizConnecter.getBizData("805020", JsonUtils.mapToJson(allRequestParams),
+//                Object.class);
+//    }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @ResponseBody
