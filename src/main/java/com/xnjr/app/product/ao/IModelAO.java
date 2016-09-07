@@ -73,7 +73,7 @@ public interface IModelAO {
      * @history:
      */
     public Object updownModel(String code, String modelCode, String originalPrice, String discountPrice, 
-    		String toLevel, String toSite, String updater, String isUp, String remark);
+    		String cnyPrice, String toLevel, String toSite, String updater, String isUp, String remark);
 
     /**
      * 分页查询型号

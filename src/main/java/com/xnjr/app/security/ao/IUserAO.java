@@ -209,5 +209,9 @@ public interface IUserAO {
     
     // 找回密码发短信
     public Object findPwdSMS(String loginName);
+    
+    // 查询终端用户
+    public Object queryTerminalUserPage(String userReferee,
+            String start, String limit);
 
 }

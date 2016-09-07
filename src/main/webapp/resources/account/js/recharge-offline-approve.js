@@ -1,6 +1,8 @@
 $(function() {
-	var data = {"code":getQueryString("code"),"start":"1","limit":"10"};
-	var url = $("#basePath").val()+"/account/redBlueOrderPage";
+	var code = getQueryString("code");
+	var accountNumber = getQueryString("accountNumber");
+	var data = {"code":code,"start":"1","limit":"10"};
+	var url = $("#basePath").val()+"/account/recharge/rmb/list";
 	doGetAjax(url, data, doGetDetailBack);
 	
 	//提交
@@ -21,9 +23,9 @@ $(function() {
 	//入参合法性校验
 	$("#jsForm").validate({
 		rules: {
-			remark: {
+			approveNote: {
 				required: true,
-				maxlength: 64
+				maxlength: 30
 			}
 		}
 	});
@@ -35,31 +37,28 @@ function doGetDetailBack(res){
 			var result = res.data.list[0];
 			$("#code").html(result.code);
 			$("#accountNumber").html(result.accountNumber);
-			$("#type").html(Dict.getName('biz_type',result.bizType));
-			$("#status").html(Dict.getName('rb_order_status',result.status));
-			$("#direction").html(Dict.getName('account_direction',result.direction));
+			$("#status").html(Dict.getName('recharge_status',result.status));
 			$("#amount").html(moneyFormat(result.amount,2));
-			$("#applyUser").html(result.applyUser);
-			$("#applyNote").html(result.applyNote);
-			$("#applyDatetime").html(dateFormat(result.applyDatetime));
-			$("#remark").val(result.remark);
+			$("#createDatetime").html(dateFormat(result.createDatetime,'yyyy-MM-dd HH:mm:ss'));
+			$("#fromType").html(Dict.getName('charge_type',result.fromType));
+			$("#fromCode").html(result.fromCode);
+			$("#mobile").html(result.mobile);
 		}
 	}else{
 		alert(res.msg);
 	}
 }
 
-//审批
 function doApprove(approveResult){
 	if(!$("#jsForm").valid()){
 		return false;
 	}
-	var data = {"code":$("#code").html(),"approveResult":approveResult,"approveNote":$("#remark").val()};
-	var url = $("#basePath").val()+"/account/artificialApproveCheck";
+	var data = {"approveResult":approveResult,"approveNote":$("#approveNote").val()};
+	data['chargeNo']=$("#code").html();
+	var url = $("#basePath").val()+"/account/recharge/check";
 	doPostAjax(url, data, doSuccessBack);
 }
 	
-//回执方法
 function doSuccessBack(res) {
 	if (res.success == true) {
 		alert("操作成功");
@@ -68,4 +67,3 @@ function doSuccessBack(res) {
 		alert(res.msg);
 	}
 }
-

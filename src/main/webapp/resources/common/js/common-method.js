@@ -331,13 +331,13 @@ function doGetMenuCode(res){
 
 //控制按钮呈现方式回执方法
 function doSuccessBackPermission(res){
-	var data = res.data;
-	if(typeof(data) != "undefined"){//判断undifined
-		for(var i = 0;i < data.length;i++){
-			var menuUrl = data[i].url;
-			menuUrl = menuUrl.substr(menuUrl.lastIndexOf("/")+1)
-			$("#"+menuUrl+"Btn").show();
-		}
+	var data = res.data || [];
+	$('.tools .toolbar').empty();
+	for(var i = 0;i < data.length;i++){
+		var menuUrl = data[i].url;
+		menuUrl = menuUrl.substr(menuUrl.lastIndexOf("/")+1);
+		//$("#"+menuUrl+"Btn").show();
+		$('.tools .toolbar').append('<li style="display:block;" id="'+menuUrl+'Btn"><span><img src="'+$('#resourceUrl').val()+'/resources/common/images/t01.png"/></span>'+data[i].name+'</li>');
 	}
 }
 function myShowModalDialog(url, width, height, fn) {
@@ -392,7 +392,20 @@ $.fn.serializeObject = function() {
 };
 
 $.fn.renderDropdown = function(data, keyName, valueName, defaultOption) {
-	data = data || [];
+	var value, url;
+	if ($.isPlainObject(data)) {
+		value = data.value;
+		url = data.url;
+		param = data.param || {};
+		keyName = data.keyName;
+		valueName = data.valueName;
+	}
+	if(url) {
+		ajaxGet(url, param, false, true).then(function(res) {
+			data.data = res.data;
+		});
+	}
+	data = data.data || data || [];
 	keyName = keyName || 'dkey';
 	valueName = valueName || 'dvalue';
 	var html = "<option value=''>请选择</option>" + (defaultOption || '');
@@ -400,10 +413,22 @@ $.fn.renderDropdown = function(data, keyName, valueName, defaultOption) {
 		html += "<option value='"+data[i][keyName]+"'>"+data[i][valueName]+"</option>";
 	}
 	this.html(html);
+	if (value) {
+		this.val(value);
+	}
 };
 
 function renderLink(link, name) {
 	return '<a href="'+link+'" target="_blank">'+name+'</a>';
+}
+
+function renderA(el, link) {
+	if (!link) {
+		return;
+	}
+	var values = link.split('/');
+	el.attr('href', link);
+	el.html(values[values.length - 1]);
 }
 
 // array
@@ -481,7 +506,7 @@ function linkSrc(value) {
 		return '-';
 	}
 	var values = value.split('/');
-	return '<a target="_blank" href="'+value+'">'+values[values.length - 1]+'</a>'
+	return '<a target="_blank" href="'+value+'">'+values[values.length - 1]+'</a>';
 }
 
 function getUserId() {
@@ -542,4 +567,15 @@ function goBack() {
  } else {
      window.history.back();
  }
+}
+
+function getAccountId(userId, currency) {
+	var res1;
+	ajaxGet($('#basePath').val() + '/account/id', {
+		userId: userId,
+		currency: currency,
+	}, false, true).then(function(res) {
+		res1 = res.data.accountNumber
+	});
+	return res1;
 }

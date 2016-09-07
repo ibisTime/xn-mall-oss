@@ -1,5 +1,7 @@
 package com.xnjr.app.account.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xnjr.app.account.ao.IAccountAO;
 import com.xnjr.app.controller.BaseController;
+import com.xnjr.app.http.BizConnecter;
+import com.xnjr.app.http.JsonUtils;
 
 @Controller
 @RequestMapping(value = "/account")
@@ -69,6 +73,7 @@ public class AccountController extends BaseController {
     @RequestMapping(value = "/applyRechargeOrderPage", method = RequestMethod.GET)
     @ResponseBody
     public Object queryApplyRechargeOrderPage(
+    		@RequestParam(value = "currency", required = false) String currency,
             @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "fromType", required = false) String fromType,
             @RequestParam(value = "fromCode", required = false) String fromCode,
@@ -80,7 +85,11 @@ public class AccountController extends BaseController {
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
-        return accountAO.queryRechargeOrderPage(null,
+    	String cur = currency;
+    	if (currency == null) {
+    		cur = "XNB";
+    	}
+        return accountAO.queryRechargeOrderPage(cur, null,
             this.getSessionUser().getUserId(), code, fromType, fromCode,
             channel, refNo, status, approveUser, dateStart, dateEnd, start,
             limit);
@@ -89,6 +98,7 @@ public class AccountController extends BaseController {
     @RequestMapping(value = "/rechargeOrderPage", method = RequestMethod.GET)
     @ResponseBody
     public Object queryRechargeOrderPage(
+    		@RequestParam(value = "currency", required = false) String currency,
             @RequestParam(value = "code", required = false) String code,
             @RequestParam(value = "fromType", required = false) String fromType,
             @RequestParam(value = "fromCode", required = false) String fromCode,
@@ -100,8 +110,12 @@ public class AccountController extends BaseController {
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
+    	String cur = currency;
+    	if (currency == null) {
+    		cur = "XNB";
+    	}
         return accountAO.queryRechargeOrderPage(
-            this.getSessionUser().getUserId(), null, code, fromType, fromCode,
+        		cur, this.getSessionUser().getUserId(), null, code, fromType, fromCode,
             channel, refNo, status, approveUser, dateStart, dateEnd, start,
             limit);
     }
@@ -130,6 +144,15 @@ public class AccountController extends BaseController {
         return accountAO.jfRecharge(this.getSessionUser().getUserId(), toUserId,
             amount, price, type, pdf, this.getSessionUser().getUserId(), applyNote);
     }
+    
+    @RequestMapping(value = "/recharge/rmb", method = RequestMethod.POST)
+    @ResponseBody
+    public Object toRechargeRMB(@RequestParam("accountNumber") String accountNumber,
+            @RequestParam("amount") String amount,
+            @RequestParam("fromType") String fromType,
+            @RequestParam("fromCode") String fromCode) {
+        return accountAO.RMBRecharge(accountNumber, amount,fromType, fromCode);
+    }
 
     @RequestMapping(value = "/approveRecharge", method = RequestMethod.POST)
     @ResponseBody
@@ -144,6 +167,7 @@ public class AccountController extends BaseController {
     @RequestMapping(value = "/withdrawOrderPage", method = RequestMethod.GET)
     @ResponseBody
     public Object queryWithdrawOrderPage(
+    		@RequestParam(value = "currency", required = false) String currency,
     		@RequestParam(value = "fromAccountNumber", required = false) String fromAccountNumber,
             @RequestParam(value = "accountNumber", required = false) String accountNumber,
             @RequestParam(value = "code", required = false) String code,
@@ -158,7 +182,16 @@ public class AccountController extends BaseController {
             @RequestParam(value = "dateEnd", required = false) String dateEnd,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit) {
-        return accountAO.queryWithdrawOrderPage(fromAccountNumber, this.getSessionUser().getUserId(), code, toType,
+    	String cur = currency;
+    	String an = accountNumber;
+    	if (currency == null) {
+    		cur = "XNB";
+    	}
+    	if (accountNumber == null) {
+    		an = this.getSessionUser().getUserId();
+    	}
+        return accountAO.queryWithdrawOrderPage(cur, fromAccountNumber, 
+        		an, code, toType,
             toCode, channel, refNo, status, approveUser, payUser, dateStart,
             dateEnd, start, limit);
     }
@@ -465,5 +498,53 @@ public class AccountController extends BaseController {
             @RequestParam(value = "fee") String fee) {
         return accountAO.payduixian(withdrawNo, this.getSessionUser()
             .getUserId(), payResult, payNote, refNo, fee);
+    }
+    
+    // rmb充值记录列表查询
+    @RequestMapping(value = "recharge/rmb/list", method = RequestMethod.GET)
+    @ResponseBody
+    public Object rmbPage(
+    		@RequestParam(value = "accountNumber", required = false) String accountNumber,
+    		@RequestParam(value = "currency", required = false) String currency,
+            @RequestParam(value = "code", required = false) String code,
+            @RequestParam(value = "fromType", required = false) String fromType,
+            @RequestParam(value = "fromCode", required = false) String fromCode,
+            @RequestParam(value = "channel", required = false) String channel,
+            @RequestParam(value = "refNo", required = false) String refNo,
+            @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "approveUser", required = false) String approveUser,
+            @RequestParam(value = "dateStart", required = false) String dateStart,
+            @RequestParam(value = "dateEnd", required = false) String dateEnd,
+            @RequestParam("start") String start,
+            @RequestParam("limit") String limit) {
+        return accountAO.queryRechargeOrderPage("CNY", accountNumber,
+            null, code, fromType, fromCode,
+            channel, refNo, status, approveUser, dateStart, dateEnd, start,
+            limit);
+    }
+    
+    // 根据用户编号和币种查询单个账户信息
+    @RequestMapping(value = "/id", method = RequestMethod.GET)
+    @ResponseBody
+    public Object queryAccountID(@RequestParam Map<String,String> allRequestParams) {
+  	    return BizConnecter.getBizData("802013", JsonUtils.mapToJson(allRequestParams),
+              Object.class);
+    }
+    
+    // 审批充值订单
+    @RequestMapping(value = "/recharge/check", method = RequestMethod.POST)
+    @ResponseBody
+    public Object rechargeCheck(@RequestParam Map map) {
+    	map.put("approveUser", this.getSessionUser().getUserId());
+  		return BizConnecter.getBizData("802111", JsonUtils.mapToJson(map),
+              Object.class);
+    }
+    
+    // 划账
+    @RequestMapping(value = "/exchange", method = RequestMethod.POST)
+    @ResponseBody
+    public Object exchange(@RequestParam Map map) {
+  		return BizConnecter.getBizData("802312", JsonUtils.mapToJson(map),
+              Object.class);
     }
 }

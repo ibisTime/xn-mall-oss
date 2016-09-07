@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.xnjr.app.customer.req.XN805090Req;
 import com.xnjr.app.enums.EUserKind;
 import com.xnjr.app.enums.EUserStatus;
 import com.xnjr.app.http.BizConnecter;
@@ -45,7 +46,7 @@ public class UserAOImpl implements IUserAO {
             String userReferee, String mobile, String idKind, String idNo,
             String realName, String roleCode, String status, String updater,
             String start, String limit) {
-        XN805054Req req = new XN805054Req();
+    	XN805054Req req = new XN805054Req();
         req.setLoginName(loginName);
         req.setKind(kind);
         req.setLevel(level);
@@ -248,4 +249,14 @@ public class UserAOImpl implements IUserAO {
         return BizConnecter.getBizData("805058", JsonUtils.object2Json(req),
             Object.class);
 	}
+	
+	public Object queryTerminalUserPage(String userReferee,
+            String start, String limit) {
+        XN805090Req req = new XN805090Req();
+        req.setUserId(userReferee);
+        req.setStart(start);
+        req.setLimit(limit);
+        return BizConnecter.getBizData("805090", JsonUtils.object2Json(req),
+            Object.class);
+    }
 }

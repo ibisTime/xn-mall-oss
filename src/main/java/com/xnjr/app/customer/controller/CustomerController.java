@@ -1,8 +1,11 @@
 package com.xnjr.app.customer.controller;
 
+import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xnjr.app.controller.BaseController;
 import com.xnjr.app.customer.ao.ICustomerAO;
 import com.xnjr.app.enums.EUserKind;
+import com.xnjr.app.http.BizConnecter;
+import com.xnjr.app.http.JsonUtils;
 import com.xnjr.app.security.ao.IUserAO;
 
 @Controller
@@ -191,20 +196,10 @@ public class CustomerController extends BaseController {
     @RequestMapping(value = "/zhongduanPage", method = RequestMethod.GET)
     @ResponseBody
     public Object queryZhongduanPage(
-            @RequestParam(value = "loginName", required = false) String loginName,
-            @RequestParam(value = "mobile", required = false) String mobile,
-            // @RequestParam(value = "userReferee", required = false) String
-            // userReferee,
-            @RequestParam(value = "idKind", required = false) String idKind,
-            @RequestParam(value = "idNo", required = false) String idNo,
-            @RequestParam(value = "realName", required = false) String realName,
-            @RequestParam(value = "status", required = false) String status,
-            @RequestParam(value = "level", required = false) String level,
             @RequestParam(value = "start", required = false) String start,
             @RequestParam(value = "limit", required = false) String limit) {
-        return userAO.queryUserPage(loginName, EUserKind.F1.getCode(), level,
-            this.getSessionUser().getUserId(), mobile, idKind, idNo, realName,
-            null, status, null, start, limit);
+        return userAO.queryTerminalUserPage(
+            this.getSessionUser().getUserId(), start, limit);
     }
 
     @RequestMapping(value = "/queryList", method = RequestMethod.GET)
@@ -267,5 +262,22 @@ public class CustomerController extends BaseController {
         return customerAO.detailaccount(userId, currency);
 
     }
-
+    
+    // 完善用户信息
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	@ResponseBody
+	public Object editRole(@RequestBody Map map) {
+  		map.put("updater", this.getSessionUser().getUserId());
+  		return BizConnecter.getBizData("805072", JsonUtils.mapToJson(map),
+              Object.class);
+	}
+	
+	// 列表查询用户关系
+    @RequestMapping(value = "/rel/list", method = RequestMethod.GET)
+    @ResponseBody
+    public Object queryRolePage(@RequestParam Map<String,String> allRequestParams) {
+    	allRequestParams.put("userId", this.getSessionUser().getUserId());
+  	    return BizConnecter.getBizData("805091", JsonUtils.mapToJson(allRequestParams),
+              Object.class);
+    }
 }

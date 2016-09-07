@@ -30,6 +30,33 @@ $(function(){
 		window.location.href = $("#basePath").val()+"/account/jifendetail_account.htm?userId="+selRecords[0].userId;
 	});
 	
+	$('#realAccountBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/account/rmbdetail_account.htm?userId="+selRecords[0].userId;
+	});
+	
+	$('#editBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/customer/customer_edit.htm?userId="+selRecords[0].userId;
+	});
+	
+	$('#scoreBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/customer/score_op.htm?userId="+selRecords[0].userId;
+	});
+	
 	//表格初始化
 	function queryTableData(){
 		var columns = [{

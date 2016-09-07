@@ -79,7 +79,7 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午4:41:22 wu
      * @history:
      */
-    public Object queryRechargeOrderPage(String fromAccountNumber,
+    public Object queryRechargeOrderPage(String currency, String fromAccountNumber,
             String accountNumber, String code, String fromType, String fromCode,
             String channel, String refNo, String status, String approveUser,
             String dateStart, String dateEnd, String start, String limit);
@@ -131,7 +131,7 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午4:46:27 wu
      * @history:
      */
-    public Object queryWithdrawOrderPage(String fromAccountNumber, String accountNumber, String code,
+    public Object queryWithdrawOrderPage(String currency, String fromAccountNumber, String accountNumber, String code,
             String toType, String toCode, String channel, String refNo,
             String status, String approveUser, String payUser, String dateStart,
             String dateEnd, String start, String limit);
@@ -524,5 +524,9 @@ public interface IAccountAO {
     // 积分商入驻
     public Object scorerAdd(String loginName, String mobile, String idKind,
             String idNo, String realName, String userReferee, String pdf);
+    
+    // 线下充值
+    public Object RMBRecharge(String accountNumber, String amount, 
+    		String fromType, String fromCode);
 
 }

@@ -14,6 +14,8 @@ public class XN601040Req {
     private String originalPrice;
 
     private String discountPrice;
+    
+    private String cnyPrice;
 
     private String toLevel;
 
@@ -85,5 +87,13 @@ public class XN601040Req {
 
 	public void setModelCode(String modelCode) {
 		this.modelCode = modelCode;
+	}
+
+	public String getCnyPrice() {
+		return cnyPrice;
+	}
+
+	public void setCnyPrice(String cnyPrice) {
+		this.cnyPrice = cnyPrice;
 	}
 }

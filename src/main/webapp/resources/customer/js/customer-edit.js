@@ -1,25 +1,31 @@
 
 $(function() {
-
+	var userId = getQueryString('userId');
+	doGetAjax($("#basePath").val()+"/customer/detail", {
+		userId: userId
+	}, function(res) {
+		$("#mobile").html(res.data.mobile);
+		$("#remark").val(res.data.remark);
+		renderA($('#url1'), res.data.pdf);
+	});
 	//提交
 	$('#subBtn').click(function() {
-	    if(!$("#jsForm").valid()){
-			return false;
-		}
 		var data = {};
-		var t = $('form').serializeArray();
-		$.each(t, function() {
-			data[this.name] = this.value;
-		});
 		data['pdf'] = $("#url1").attr("href");
-		data['loginName']= $('#mobile').val();
-		var url = $("#basePath").val()+"/customer/zhongduan/add";
-		doPostAjax(url, data, doSaveSuccessBack);
+		data['userId']= userId;
+		data['remark'] = $('#remark').val();
+		var url = $("#basePath").val()+"/customer/edit";
+		ajaxPost(url, data).then(function(res) {
+			if (res.success) {
+				alert("操作成功");
+				goBack();
+			}
+		});
 	});
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/customer/channel.htm";
+		goBack();
 	});
 	
 	$("#uploadBtn1").click(function () {
@@ -27,31 +33,7 @@ $(function() {
         ajaxFileUpload(postUrl,"pdf","url1");
     });
 	
-	//入参合法性校验
-	$("#jsForm").validate({
-		rules: {
-			
-			mobile: {
-				required: true,
-				maxlength: 11
-			},
-			remark: {
-				maxlength: 200
-			}
-		}
-	});
 });
-
-
-
-function doSaveSuccessBack(res) {
-	if (res.success == true) {
-		alert("操作成功");
-		window.location.href = $("#basePath").val()+"/customer/channel.htm";
-	}else{
-		alert(res.msg);
-	}
-}
 
 function ajaxFileUpload(postUrl,fileId,uploadControlId) {
     $.ajaxFileUpload

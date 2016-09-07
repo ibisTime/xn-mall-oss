@@ -1,5 +1,9 @@
-$(function(){
-	$('#direction').renderDropdown(Dict.getName('account_direction'));
+var dhhlValue = null;
+$(function (){
+	$('#fromType').renderDropdown({
+		data: Dict.getName('charge_type'),
+		value: 'alipay'
+	});
 	
 	$('#accountNumber').renderDropdown({
 		url: $("#basePath").val() + '/customer/rel/list',
@@ -7,57 +11,57 @@ $(function(){
 		valueName: 'mobile'
 	});
 	
-	$('#saveBtn').click(function() {
+	//提交
+	$("#subBtn").click(function(){
 		if(!$("#jsForm").valid()){
 			return false;
 		}
-		var data = {"amount":moneyParse($("#amount").val()),"applyNote":$("#applyNote").val()};
+		var data = {
+				amount: moneyParse($('#amount').val()),
+				fromType: $('#fromType').val(),
+				fromCode: $('#fromCode').val()
+			};
 		ajaxGet($("#basePath").val() + '/account/id', {
 			userId: $('#accountNumber').val(),
 			currency: 'CNY'
 		}, false, true).then(function(res) {
 			data.accountNumber = res.data.accountNumber;
 		});
-		data["direction"]=$("#direction").val();
-		var url = $("#basePath").val()+"/account/artificialAccountApply";
+		
+		var url = $("#basePath").val()+"/account/recharge/rmb";
 		doPostAjax(url, data, doSuccessBack);
 	});
 	
 	//返回
-	$('#backBtn').click(function() {
+	$("#backBtn").click(function(){
 		goBack();
 	});
 	
-	//入参合法性校验
+	//入参合法校验
 	$("#jsForm").validate({
-		rules: {
-			
-			accountNumber: {
+		rules:{
+			accountNumber:{
 				required: true,
 				maxlength: 32
 			},
-			direction: {
+			fromType:{
 				required: true,
-				maxlength: 1
+				maxlength: 32
 			},
-			amount: {
+			fromCode:{
 				required: true,
-				number:true,
-				maxlength: 19,
-				min:0
+				maxlength: 32
 			},
-			applyUser: {
+			amount:{
 				required: true,
-				maxlength: 255,
-			},
-			applyNote: {
-				required: true,
-				maxlength: 255
+				amount:true,
+				isPositive: true
 			}
 		}
-	});
+	})
 });
 
+//线下充值申请成功的回执方法
 function doSuccessBack(res) {
 	if (res.success == true) {
 		alert("操作成功");

@@ -104,7 +104,7 @@ public class ModelAOImpl implements IModelAO {
 
     @Override
     public Object updownModel(String code, String modelCode, String originalPrice,
-            String discountPrice, String toLevel, String toSite, String updater,
+            String discountPrice, String cnyPrice, String toLevel, String toSite, String updater,
             String isUp, String remark) {
         if (isUp.equals("false")) {
             XN601040Req req = new XN601040Req();
@@ -112,6 +112,7 @@ public class ModelAOImpl implements IModelAO {
             req.setModelCode(modelCode);
             req.setOriginalPrice(originalPrice);
             req.setDiscountPrice(discountPrice);
+            req.setCnyPrice(cnyPrice);
             req.setToLevel(toLevel);
             req.setToSite(toSite);
             req.setUpdater(updater);

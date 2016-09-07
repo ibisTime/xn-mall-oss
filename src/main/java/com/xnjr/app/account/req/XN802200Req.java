@@ -48,6 +48,8 @@ public class XN802200Req {
 
     // 页面个数
     private String limit;
+    
+    private String currency;
 
     public String getAccountNumber() {
         return accountNumber;
@@ -159,6 +161,14 @@ public class XN802200Req {
 
 	public void setFromAccountNumber(String fromAccountNumber) {
 		this.fromAccountNumber = fromAccountNumber;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 
 }

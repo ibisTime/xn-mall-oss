@@ -24,6 +24,7 @@ import com.xnjr.app.account.req.XN802011Req;
 import com.xnjr.app.account.req.XN802020Req;
 import com.xnjr.app.account.req.XN802030Req;
 import com.xnjr.app.account.req.XN802100Req;
+import com.xnjr.app.account.req.XN802110Req;
 import com.xnjr.app.account.req.XN802120Req;
 import com.xnjr.app.account.req.XN802121Req;
 import com.xnjr.app.account.req.XN802200Req;
@@ -108,11 +109,12 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object queryRechargeOrderPage(String fromAccountNumber,
+    public Object queryRechargeOrderPage(String currency, String fromAccountNumber,
             String accountNumber, String code, String fromType, String fromCode,
             String channel, String refNo, String status, String approveUser,
             String dateStart, String dateEnd, String start, String limit) {
         XN802100Req req = new XN802100Req();
+        req.setCurrency(currency);
         req.setFromAccountNumber(fromAccountNumber);
         req.setAccountNumber(accountNumber);
         req.setCode(code);
@@ -159,11 +161,12 @@ public class AccountAOImpl implements IAccountAO {
     }
 
     @Override
-    public Object queryWithdrawOrderPage(String fromAccountNumber, String accountNumber, String code,
+    public Object queryWithdrawOrderPage(String currency, String fromAccountNumber, String accountNumber, String code,
             String toType, String toCode, String channel, String refNo,
             String status, String approveUser, String payUser, String dateStart,
             String dateEnd, String start, String limit) {
         XN802200Req req = new XN802200Req();
+        req.setCurrency(currency);
         req.setFromAccountNumber(fromAccountNumber);
         req.setAccountNumber(accountNumber);
         req.setCode(code);
@@ -559,4 +562,16 @@ public class AccountAOImpl implements IAccountAO {
         return BizConnecter.getBizData("602600", JsonUtils.object2Json(req),
             Object.class);
     }
+
+	@Override
+	public Object RMBRecharge(String accountNumber, String amount,
+			String fromType, String fromCode) {
+		XN802110Req req = new XN802110Req();
+		req.setAccountNumber(accountNumber);
+		req.setAmount(amount);
+		req.setFromCode(fromCode);
+		req.setFromType(fromType);
+		return BizConnecter.getBizData("802110", JsonUtils.object2Json(req),
+	            Object.class);
+	}
 }

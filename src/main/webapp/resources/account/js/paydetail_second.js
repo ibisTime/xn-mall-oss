@@ -87,32 +87,6 @@ $(function() {
 				required: true,
 				maxlength: 32
 			}
-		},
-		messages: {
-			amount: {
-				required: "请输入积分",
-				maxlength: jQuery.format("积分不能大于{0}个字符")
-			},
-			fromType: {
-				required: "请选择打款方式",
-				maxlength: jQuery.format("打款方式不能大于{0}个字符")
-			},
-			fromCode: {
-				required: "请输入打款账号",
-				maxlength: jQuery.format("打款账号不能大于{0}个字符")
-			},
-			toCardNo: {
-				required: "请输入受款账号",
-				maxlength: jQuery.format("受款账号不能大于{0}个字符")
-			},
-			pdf: {
-				required: "请上传水单",
-				maxlength: jQuery.format("水单链接不能大于{0}个字符")
-			},
-			approveNote: {
-				required: "请输入备注",
-				maxlength: jQuery.format("备注不能大于{0}个字符")
-			}
 		}
 	});
 	

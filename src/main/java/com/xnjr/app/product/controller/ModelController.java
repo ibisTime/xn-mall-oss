@@ -88,11 +88,12 @@ public class ModelController extends BaseController {
     		@RequestParam("modelCode") String modelCode,
             @RequestParam(value = "originalPrice", required = false) String originalPrice,
             @RequestParam(value = "discountPrice", required = false) String discountPrice,
+            @RequestParam(value = "cnyPrice", required = false) String cnyPrice,
             @RequestParam(value = "toLevel", required = false) String toLevel,
             @RequestParam(value = "toSite", required = false) String toSite,
             @RequestParam("isUp") String isUp,
             @RequestParam(value = "remark", required = false) String remark) {
-        return modelAO.updownModel(code, modelCode, originalPrice, discountPrice, toLevel, toSite, 
+        return modelAO.updownModel(code, modelCode, originalPrice, discountPrice, cnyPrice, toLevel, toSite, 
         		this.getSessionUser().getUserName(), isUp, remark);
     }
 

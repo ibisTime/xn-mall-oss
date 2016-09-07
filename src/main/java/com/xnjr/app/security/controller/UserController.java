@@ -209,6 +209,18 @@ public class UserController extends BaseController {
             level, userReferee, mobile, idKind, idNo, realName, roleCode,
             status, updater, start, limit);
     }
+    
+    // 查询终端用户
+    @RequestMapping(value = "/terminal/page", method = RequestMethod.GET)
+    @ResponseBody
+    public Object queryTerminalUserPage(
+            @RequestParam(value = "userReferee", required = false) String userReferee,
+            @RequestParam("start") String start,
+            @RequestParam("limit") String limit,
+            @RequestParam(value = "orderColumn", required = false) String orderColumn,
+            @RequestParam(value = "orderDir", required = false) String orderDir) {
+        return userAO.queryTerminalUserPage(userReferee, start, limit);
+    }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @ResponseBody
