@@ -129,7 +129,7 @@ public class CustomerController extends BaseController {
             @RequestParam(value = "level", required = false) String level,
             @RequestParam(value = "start", required = false) String start,
             @RequestParam(value = "limit", required = false) String limit) {
-        return userAO.queryUserPage(loginName, EUserKind.Integral.getCode(),
+        return userAO.queryUserPage(loginName, EUserKind.XiaJia.getCode(),
             level, this.getSessionUser().getUserId(), mobile, idKind, idNo,
             realName, null, status, null, start, limit);
     }
@@ -196,10 +196,11 @@ public class CustomerController extends BaseController {
     @RequestMapping(value = "/zhongduanPage", method = RequestMethod.GET)
     @ResponseBody
     public Object queryZhongduanPage(
+    		@RequestParam(value = "mobile", required = false) String mobile,
             @RequestParam(value = "start", required = false) String start,
             @RequestParam(value = "limit", required = false) String limit) {
         return userAO.queryTerminalUserPage(
-            this.getSessionUser().getUserId(), start, limit);
+            this.getSessionUser().getUserId(), mobile, start, limit);
     }
 
     @RequestMapping(value = "/queryList", method = RequestMethod.GET)

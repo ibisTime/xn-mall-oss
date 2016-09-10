@@ -11,7 +11,7 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/account/check.htm";
+		goBack();
 	});
 	
 	//入参合法性校验
@@ -78,7 +78,7 @@ function doApprove(approveResult){
 function doSuccessBack(res) {
 	if (res.success == true) {
 		alert("操作成功");
-		window.location.href = $("#basePath").val()+"/account/check.htm";
+		goBack();
 	}else{
 		alert(res.msg);
 	}

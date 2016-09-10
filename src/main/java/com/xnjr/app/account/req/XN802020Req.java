@@ -14,6 +14,10 @@ public class XN802020Req {
 
     // 明细编号
     private String ajNo;
+    
+    private String mobile;
+    
+    private String currency;
 
     // 状态
     private String status;
@@ -129,5 +133,21 @@ public class XN802020Req {
     public void setLimit(String limit) {
         this.limit = limit;
     }
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 
 }

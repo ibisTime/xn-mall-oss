@@ -103,21 +103,6 @@ $(function() {
 				required: true,
 				maxlength: 255
 			},
-		},
-		messages: {
-			code: {
-				required: "请输入物流单号",
-				maxlength: jQuery.format("物流单号不能大于{0}个字符")
-			},
-			deliverer: {
-				required: "请输入发货人",
-				maxlength: jQuery.format("发货人不能大于{0}个字符")
-			},
-			company: "请选择产品",
-			deliveryDatetime: {
-				required: "请输入发货时间",
-				maxlength: jQuery.format("发货时间不能大于{0}个字符")
-			},
 		}
 	});
 	

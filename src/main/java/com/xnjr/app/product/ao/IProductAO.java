@@ -190,5 +190,5 @@ public interface IProductAO {
     		String idNo, String realName, String userReferee, String pdf);
     
     public Object jiamengAdd(String loginName, String mobile, String idKind, 
-    		String idNo, String realName, String userReferee, String pdf);
+    		String idNo, String realName, String userReferee, String pdf, String remark);
 }

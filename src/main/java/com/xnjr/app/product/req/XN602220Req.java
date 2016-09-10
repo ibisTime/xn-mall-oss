@@ -17,6 +17,7 @@ public class XN602220Req {
 	private String realName;
 	private String userReferee;
 	private String pdf;
+	private String remark;
 	
 	public String getLoginName() {
 		return loginName;
@@ -59,6 +60,12 @@ public class XN602220Req {
 	}
 	public void setPdf(String pdf) {
 		this.pdf = pdf;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

@@ -215,11 +215,12 @@ public class UserController extends BaseController {
     @ResponseBody
     public Object queryTerminalUserPage(
             @RequestParam(value = "userReferee", required = false) String userReferee,
+            @RequestParam(value = "mobile", required = false) String mobile,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return userAO.queryTerminalUserPage(userReferee, start, limit);
+        return userAO.queryTerminalUserPage(userReferee, mobile, start, limit);
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)

@@ -225,7 +225,7 @@ public class ProductAOImpl implements IProductAO {
 
 	@Override
 	public Object jiamengAdd(String loginName, String mobile, String idKind,
-			String idNo, String realName, String userReferee, String pdf) {
+			String idNo, String realName, String userReferee, String pdf, String remark) {
 		XN602220Req req = new XN602220Req();
 		 req.setLoginName(loginName);
 		 req.setMobile(mobile);
@@ -234,6 +234,7 @@ public class ProductAOImpl implements IProductAO {
 		 req.setRealName(realName);
 		 req.setUserReferee(userReferee);
 		 req.setPdf(pdf);
+		 req.setRemark(remark);
        return BizConnecter.getBizData("602220", JsonUtils.object2Json(req),
            Object.class);
 	}

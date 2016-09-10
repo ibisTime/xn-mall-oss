@@ -250,10 +250,11 @@ public class UserAOImpl implements IUserAO {
             Object.class);
 	}
 	
-	public Object queryTerminalUserPage(String userReferee,
+	public Object queryTerminalUserPage(String userReferee, String mobile,
             String start, String limit) {
         XN805090Req req = new XN805090Req();
         req.setUserId(userReferee);
+        req.setMobile(mobile);
         req.setStart(start);
         req.setLimit(limit);
         return BizConnecter.getBizData("805090", JsonUtils.object2Json(req),

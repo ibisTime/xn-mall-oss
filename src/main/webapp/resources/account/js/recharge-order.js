@@ -14,7 +14,7 @@ $(function() {
 		queryParams : function(params) {
 			return {
 				mobile: $('#mobile').val(),
-				status: 1,
+				status: $('#status').val(),
 				dateStart: $('#startDate').val(),
 				dateEnd: $('#endDate').val(),
 				currency: 'CNY',
@@ -86,6 +86,15 @@ $(function() {
 			return;
 		}
 		location.href = $("#basePath").val()+"/account/recharge_offline_approve.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=03";
+	});
+	
+	$('#detailBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections');
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		location.href = $("#basePath").val()+"/account/recharge_offline_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber+"&rechargeType=03";
 	});
 });
 

@@ -30,6 +30,10 @@ function redirectAmountJour(){
 	location.href = $("#basePath").val()+"/account/sys_account_detail.htm?accountNumber="+$("#accountNumber").html();
 }
 
+function redirectFrozenAmountJour(){
+	location.href = $("#basePath").val()+"/account/sys_account_detail.htm?type=1&accountNumber="+$("#accountNumber").html();
+}
+
 function doGetDetailBack(res){
 	if (res.success == true) {
 		if(res.data != null){

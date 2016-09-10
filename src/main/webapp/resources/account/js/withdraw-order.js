@@ -2,8 +2,7 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	//页面数据字典初始化
-	var status_data = Dict.getName('withdraw_status');
-	$("#status").renderDropdown(objectArrayFilter(status_data, '1,3'));
+	$("#status").renderDropdown(Dict.getName('withdraw_status'));
 	
 	// 表格初始化
 	queryTableData();
@@ -38,6 +37,15 @@ $(function() {
 		}
 		location.href = $("#basePath").val()+"/account/withdraw_offline_pay.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber;
 	});
+	
+	$('#detailBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		location.href = $("#basePath").val()+"/account/withdraw_offline_detail.htm?code="+selRecords[0].code+"&accountNumber="+selRecords[0].accountNumber;
+	});
 });
 
 //表格初始化
@@ -54,7 +62,7 @@ function queryTableData(){
 			return {
 				currency: 'CNY',
 				accountNumber: '',
-				status : $("#status").val() || '13',
+				status : $("#status").val(),
 				mobile: $('#mobile').val(),
 				dateStart : $("#startDate").val(),
 				dateEnd : $("#startDate").val(),

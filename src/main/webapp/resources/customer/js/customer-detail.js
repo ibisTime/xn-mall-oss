@@ -21,6 +21,7 @@ function doSuccessData(res){
 	if (res.success) {
 		var result = res.data;
 		$("#userId").html(result.userId);
+		$('#pdf').html(linkSrc(result.pdf));
 		$("#mobile").html(result.mobile);
 		$("#userReferee").html(result.userReferee);
 		$("#remark").html(result.remark);

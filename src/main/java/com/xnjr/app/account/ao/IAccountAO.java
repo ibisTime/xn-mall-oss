@@ -37,7 +37,7 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午4:35:58 wu
      * @history:
      */
-    public Object queryAJourPage(String accountNumber, String ajNo,
+    public Object queryAJourPage(String mobile, String accountNumber, String ajNo, String currency, 
             String status, String bizType, String refNo, String workDate,
             String checkUser, String dateStart, String dateEnd, String start,
             String limit);
@@ -79,7 +79,7 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午4:41:22 wu
      * @history:
      */
-    public Object queryRechargeOrderPage(String currency, String fromAccountNumber,
+    public Object queryRechargeOrderPage(String mobile, String currency, String fromAccountNumber,
             String accountNumber, String code, String fromType, String fromCode,
             String channel, String refNo, String status, String approveUser,
             String dateStart, String dateEnd, String start, String limit);
@@ -131,7 +131,7 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午4:46:27 wu
      * @history:
      */
-    public Object queryWithdrawOrderPage(String currency, String fromAccountNumber, String accountNumber, String code,
+    public Object queryWithdrawOrderPage(String mobile, String currency, String fromAccountNumber, String accountNumber, String code,
             String toType, String toCode, String channel, String refNo,
             String status, String approveUser, String payUser, String dateStart,
             String dateEnd, String start, String limit);
@@ -224,7 +224,7 @@ public interface IAccountAO {
      * @create: 2016年5月27日 下午5:03:30 wu
      * @history:
      */
-    public Object queryRedBlueOrderPage(String code, String direction,
+    public Object queryRedBlueOrderPage(String code, String mobile, String direction,
             String status, String applyUser, String approveUser,
             String accountNumber, String dateStart, String dateEnd,
             String start, String limit);

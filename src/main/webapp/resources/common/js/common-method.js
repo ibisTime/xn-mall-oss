@@ -579,3 +579,14 @@ function getAccountId(userId, currency) {
 	});
 	return res1;
 }
+
+function objectArrayFilter(arr, keys) {
+	keys = keys.split(',');
+	var newArr = [];
+	arr.forEach(function(item) {
+		if (keys.indexOf(item.dkey) > -1) {
+			newArr.push(item);
+		}
+	});
+	return newArr;
+}

@@ -193,8 +193,9 @@ public class ProductController extends BaseController {
     		@RequestParam(value = "idKind", required = false) String idKind,
     		@RequestParam(value = "idNo", required = false) String idNo,
     		@RequestParam(value = "realName", required = false) String realName,
-    		@RequestParam(value = "pdf", required = false) String pdf) {
-        return productAO.jiamengAdd(loginName, mobile, idKind, idNo, realName, this.getSessionUser().getUserId(), pdf);
+    		@RequestParam(value = "pdf", required = false) String pdf,
+    		@RequestParam(value = "remark", required = false) String remark) {
+        return productAO.jiamengAdd(loginName, mobile, idKind, idNo, realName, this.getSessionUser().getUserId(), pdf, remark);
     }
     
 }

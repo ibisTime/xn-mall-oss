@@ -19,10 +19,12 @@
 	    <div class="form-title"><span>账户信息</span></div>
 	    <ul class="form-info">
 		    <li><label>账户编号:</label><span id="accountNumber"></span></li>
-		    <li><a id="blue" class="margin-left-100" href="javascript:void(0);" onclick="redirectAmountJour() " style="color:#00F;">查看流水</a></li>
+		    <li><a id="blue" class="margin-left-100" href="javascript:void(0);" onclick="redirectAmountJour() " style="color:#00F;">查看资金明细</a>
+		    <a id="blue" class="margin-left-100" href="javascript:void(0);" onclick="redirectFrozenAmountJour() " style="color:#00F;">查看冻结明细</a></li>
 		    <li><label>状态:</label><span id="status"></span></li>
 		    <li><label>币种:</label><span id="currency"></span></li>
-		    <li><label>账户积分:</label><span id="amount"></span></li>
+		    <li><label>余额:</label><span id="amount"></span></li>
+		    <li><label>冻结金额:</label><span id="frozenAmount"></span></li>
 		</ul>
     </div>
 </body>

@@ -10,17 +10,20 @@ $(function() {
 	});
 	//提交
 	$('#subBtn').click(function() {
-		var data = {};
-		data['pdf'] = $("#url1").attr("href");
-		data['userId']= userId;
-		data['remark'] = $('#remark').val();
-		var url = $("#basePath").val()+"/customer/edit";
-		ajaxPost(url, data).then(function(res) {
-			if (res.success) {
-				alert("操作成功");
-				goBack();
-			}
-		});
+		if ($('#jsForm').valid()) {
+			var data = {};
+			data['pdf'] = $("#url1").attr("href");
+			data['userId']= userId;
+			data['remark'] = $('#remark').val();
+			var url = $("#basePath").val()+"/customer/edit";
+			ajaxPost(url, data).then(function(res) {
+				if (res.success) {
+					alert("操作成功");
+					goBack();
+				}
+			});
+		}
+		
 	});
 	
 	//返回
@@ -32,6 +35,15 @@ $(function() {
 		var postUrl = $("#basePath").val()+"/upload/file";
         ajaxFileUpload(postUrl,"pdf","url1");
     });
+	
+	
+	$("#jsForm").validate({
+		rules: {
+			remark: {
+				maxlength: 200
+			}
+		}
+	});
 	
 });
 

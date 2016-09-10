@@ -14,15 +14,15 @@ $(function() {
 	$('#subBtn').click(function() {
 		if ($("#jsForm").valid()) {
 			var data = {};
-			data.direction = 0;
+			
 			data.amount = moneyParse($('#amount').val());
 			data.remark = $('#remark').val();
+			data.fromAccountNumber = getAccountId(getUserId(), 'XNB');
+			data.accountNumber = getAccountId(userId, 'XNB');
 			if ($('#type').val() == 2) {
-				data.fromAccountNumber = getAccountId(getUserId(), 'XNB');
-				data.accountNumber = getAccountId(userId, 'XNB');
+				data.direction = 0;
 			} else {
-				data.accountNumber = getAccountId(getUserId(), 'XNB');
-				data.fromAccountNumber = getAccountId(userId, 'XNB');
+				data.direction = 1;
 			}
 			var url = $("#basePath").val()+"/account/exchange";
 			doPostAjax(url, data, doSuccessBack);

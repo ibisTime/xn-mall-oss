@@ -11,6 +11,8 @@ public class XN802700Req {
 
     // 充值订单编号
     private String code;
+    
+    private String mobile;
 
     // 方向
     private String direction;
@@ -118,5 +120,13 @@ public class XN802700Req {
     public void setLimit(String limit) {
         this.limit = limit;
     }
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 
 }

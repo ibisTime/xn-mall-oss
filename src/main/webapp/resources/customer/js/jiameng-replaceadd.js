@@ -49,6 +49,9 @@ $(function() {
 			realName: {
 				required: true,
 				maxlength: 16
+			},
+			remark: {
+				maxlength: 200
 			}
 		}
 	});

@@ -211,7 +211,7 @@ public interface IUserAO {
     public Object findPwdSMS(String loginName);
     
     // 查询终端用户
-    public Object queryTerminalUserPage(String userReferee,
+    public Object queryTerminalUserPage(String userReferee, String mobile,
             String start, String limit);
 
 }

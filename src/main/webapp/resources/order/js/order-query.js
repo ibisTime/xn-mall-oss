@@ -96,17 +96,23 @@ function queryTableData(){
 		sortable : false,
 		formatter: Dict.getNameForList('invoice_type')
 	}, {
-		field : 'mobile',
+		field : 'applyUser',
 		title : '下单用户',
 		align : 'left',
 		valign : 'middle',
 		sortable : false
 	},{
 		field : 'totalAmount',
-		title : '总积分',
+		title : '总售价（积分+人民币）',
 		align : 'left',
 		valign : 'middle',
-		formatter:moneyFormatter,
+		formatter: function(v, r) {
+			if (r.totalCnyAmount) {
+				return moneyFormat(v) + ' + ' + moneyFormat(r.totalCnyAmount);
+			} else {
+				return moneyFormat(v);
+			}
+		},
 		sortable : false
 	},{
 		field : 'status',

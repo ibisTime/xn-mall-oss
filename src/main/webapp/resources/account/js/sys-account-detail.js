@@ -2,32 +2,17 @@
 var bizType =null;
 //账户状态
 var orderStatus=null;
+
 $(function() {
 	//页面数据字典初始化
 //	initData();
-	
+	var requestUrl = getQueryString("type") ? ($("#basePath").val()+"/account/frozenAccountPag") : ($("#basePath").val()+"/account/jourPage");
 	$("#accountNumberSearch").val(getQueryString("accountNumber"));
 	$('#bizTypeSearch').renderDropdown(Dict.getName('biz_type'));
 	// 资金明细查询
-	queryJourTableData();
-	
-	// 查询事件绑定
-	$('#searchBtn').click(function() {
-		if(!isBlank($("#ajNoSearch").val())){
-			if(!checkNum($("#ajNoSearch").val(),"资金流水编号")){
-				return;
-			}
-		}
-		$('#jourTableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/account/jourPage"});
-	});
-});
-
-//表格初始化
-function queryJourTableData(){
-	// 绑定列表
 	$('#jourTableList').bootstrapTable({
 		method : "get",
-		url : $("#basePath").val()+"/account/jourPage",
+		url : requestUrl,
 		
 		striped : true,
 		clickToSelect : true,
@@ -61,7 +46,10 @@ function queryJourTableData(){
 			title : '明细编号',
 			align : 'middle',
 			valign : 'middle',
-			sortable : false
+			sortable : false,
+			formatter: function(v, r) {
+				return v ? v : r.afjNo;
+			}
 		},{
 			field : 'bizType',
 			title : '业务类型',
@@ -77,21 +65,21 @@ function queryJourTableData(){
 			sortable : false
 		},{
 			field : 'transAmount',
-			title : '变动积分',
+			title : '变动数值',
 			align : 'middle',
 			valign : 'middle',
 			sortable : false,
 			formatter : moneyFormatter
 		}, {
 			field : 'preAmount',
-			title : '变动前积分',
+			title : '变动前数值',
 			align : 'middle',
 			valign : 'middle',
 			sortable : false,
 			formatter : moneyFormatter
 		}, {
 			field : 'postAmount',
-			title : '变动后积分',
+			title : '变动后数值',
 			align : 'middle',
 			valign : 'middle',
 			sortable : false,
@@ -117,41 +105,42 @@ function queryJourTableData(){
 			sortable : false
 		}]
 	});
-}
-//function initData(){
-//	//账户状态
-//	var data= {"key":"order_status"};
-//	doGetAjaxIsAsync($("#dictUrl").val(), data, false, doSucBackOrderStatus);
-////	//账户状态
-////	var data= {"key":"sys_biz_type"};
-////	doGetAjaxIsAsync($("#dictUrl").val(), data, false, doSucBackBizType);
-//}
-
-
-//状态转化
-function statusFormatter(value, row) {
-	for(var i = 0;i < orderStatus.length;i++){
-		if(orderStatus[i].value == value){
-			return orderStatus[i].remark;
+	
+	// 查询事件绑定
+	$('#searchBtn').click(function() {
+		if(!isBlank($("#ajNoSearch").val())){
+			if(!checkNum($("#ajNoSearch").val(),"资金流水编号")){
+				return;
+			}
+		}
+		$('#jourTableList').bootstrapTable('refresh',{url: requestUrl});
+	});
+	
+	//状态转化
+	function statusFormatter(value, row) {
+		for(var i = 0;i < orderStatus.length;i++){
+			if(orderStatus[i].value == value){
+				return orderStatus[i].remark;
+			}
 		}
 	}
-}
 
-//业务类型转化
-function bizTypeFormatter(value, row) {
-	for(var i = 0;i < bizType.length;i++){
-		if(bizType[i].value == value){
-			return bizType[i].remark;
+	//业务类型转化
+	function bizTypeFormatter(value, row) {
+		for(var i = 0;i < bizType.length;i++){
+			if(bizType[i].value == value){
+				return bizType[i].remark;
+			}
 		}
 	}
-}
 
-//格式化金额
-function moneyFormatter(value, row){
-	return moneyFormat(value, 2);
-}
+	//格式化金额
+	function moneyFormatter(value, row){
+		return moneyFormat(value, 2);
+	}
 
-// 格式化时间
-function dateFormatter(value, row){
-	return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
-}
+	// 格式化时间
+	function dateFormatter(value, row){
+		return dateFormat(value,'yyyy-MM-dd HH:mm:ss');
+	}
+});

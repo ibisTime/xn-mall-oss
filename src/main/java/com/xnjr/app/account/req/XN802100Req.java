@@ -15,6 +15,8 @@ public class XN802100Req {
 
     // 充值订单编号
     private String code;
+    
+    private String mobile;
 
     // 来方类型
     private String fromType;
@@ -158,6 +160,14 @@ public class XN802100Req {
 
 	public void setCurrency(String currency) {
 		this.currency = currency;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 }

@@ -44,13 +44,15 @@ $(function() {
 			$("#code").html(res.data.code);
 			$("#applyDatetime").html(dateFormatter(res.data.applyDatetime));
 			$("#applyNote").html(res.data.applyNote || '无');
-			$("#loginName").html(res.data.mobile);
+			$("#loginName").html(res.data.applyUser);
 			$('#type').html(Dict.getName('invoice_type', res.data.type));
 			$("#approveDatetime").html(res.data.approveDatetime);
 			$("#receiptTitle").html(res.data.receiptTitle|| '-');
 			$("#receiptType").html(Dict.getName('receipt_type',res.data.receiptType||'无'));
 			$("#status").html(Dict.getName('order_status',res.data.status));
 			$("#totalAmount").html(moneyFormatter(res.data.totalAmount));
+			$("#payCnyAmount").html(moneyFormatter(res.data.payCnyAmount));
+			$("#totalCnyAmount").html(moneyFormatter(res.data.totalCnyAmount));
 			$("#payAmount").html(moneyFormatter(res.data.payAmount));
 			$("#mobile").html(res.data.address?res.data.address.mobile:'-');
 			$("#name").html(res.data.address?res.data.address.addressee:'-');
@@ -82,17 +84,27 @@ function initBusinessTable(){
 			title: '数量'
 		}, {
 			field: 'costPrice',
-			title: '成本价',
+			title: '成本价（积分）',
 			formatter: moneyFormatter
 		}, {
 			field: 'salePrice',
-			title: '零售价',
-			formatter: moneyFormatter
+			title: '零售价（积分+人民币）',
+			formatter: function(v, r) {
+				if (r.saleCnyPrice) {
+					return moneyFormat(r.salePrice) + ' + ' + moneyFormat(r.saleCnyPrice);
+				} else {
+					return moneyFormat(r.salePrice);
+				}
+			}
 		}, {
 			field: '',
-			title: '利润',
+			title: '利润（积分+人民币）',
 			formatter: function(v, r) {
-				return moneyFormat(r.salePrice - r.costPrice);
+				if (r.saleCnyPrice) {
+					return moneyFormat(r.salePrice - (r.costPrice || 0)) + ' + ' + moneyFormat(r.saleCnyPrice);
+				} else {
+					return moneyFormat(r.salePrice - (r.costPrice  || 0));
+				}
 			}
 		}]
 	});

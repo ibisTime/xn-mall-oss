@@ -23,6 +23,7 @@ $(function() {
 				direction : $("#directionSearch").val(),
 				dateStart : $("#dateStartSearch").val(),
 				dateEnd : $("#dateEndSearch").val(),
+				mobile: $('#mobile').val(),
 				type:2,
 				start : params.offset / params.limit + 1,
 				limit : params.limit

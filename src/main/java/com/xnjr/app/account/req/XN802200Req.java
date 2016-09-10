@@ -15,6 +15,8 @@ public class XN802200Req {
 
     // 取现订单号
     private String code;
+    
+    private String mobile;
 
     // 去方类型
     private String toType;
@@ -169,6 +171,14 @@ public class XN802200Req {
 
 	public void setCurrency(String currency) {
 		this.currency = currency;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 }
