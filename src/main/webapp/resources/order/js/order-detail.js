@@ -13,7 +13,15 @@ $(function() {
 		doGetAjax(url, data, doSucBackGetDetail);
 	}
 	
-
+	$('#printBtn').click(function() {
+		$('.place').hide();
+		$('#printBtn').hide();
+		$('#backBtn').hide();
+		print();
+		$('.place').show();
+		$('#printBtn').show();
+		$('#backBtn').show();
+	});
 	
 	//返回
 	$('#backBtn').click(function() {

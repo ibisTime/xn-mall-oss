@@ -18,7 +18,7 @@ required:必选项
 
 		// 默认值
 		settings=$.extend({
-			url:"../../resources/common/js/city.min.js",
+			url:$('#basePath').val() + "/resources/common/js/city.min.js",
 			prov:null,
 			city:null,
 			dist:null,
@@ -42,17 +42,17 @@ required:必选项
 			if(!settings.required){
 				prov_id--;
 			};
-			city_obj.empty().attr("disabled",true);
-			dist_obj.empty().attr("disabled",true);
+			city_obj.empty();
+			dist_obj.empty();
 
 			if(prov_id<0||typeof(city_json.citylist[prov_id].c)=="undefined"){
-				if(settings.nodata=="none"){
-					city_obj.css("display","none");
-					dist_obj.css("display","none");
-				}else if(settings.nodata=="hidden"){
-					city_obj.css("visibility","hidden");
-					dist_obj.css("visibility","hidden");
-				};
+				city_obj.css("display","none");
+				
+				dist_obj.css("display","none");
+				city_obj.prev().filter('.chosen-container').css("display","none");
+				dist_obj.prev().filter('.chosen-container').css("display","none");
+				
+				city_obj.valid();
 				return;
 			};
 			
@@ -61,7 +61,10 @@ required:必选项
 			$.each(city_json.citylist[prov_id].c,function(i,city){
 				temp_html+="<option value='"+city.n+"'>"+city.n+"</option>";
 			});
-			city_obj.html(temp_html).attr("disabled",false).css({"display":"","visibility":""});
+			dist_obj.html(select_prehtml);
+			city_obj.html(temp_html);
+			city_obj.css("display","inline-block");
+			city_obj.prev().filter('.chosen-container').css({"display": "", "visibility": ""});
 			distStart();
 		};
 
@@ -73,14 +76,13 @@ required:必选项
 				prov_id--;
 				city_id--;
 			};
-			dist_obj.empty().attr("disabled",true);
+			dist_obj.empty();
 
 			if(prov_id<0||city_id<0||typeof(city_json.citylist[prov_id].c[city_id].a)=="undefined"){
-				if(settings.nodata=="none"){
-					dist_obj.css("display","none");
-				}else if(settings.nodata=="hidden"){
-					dist_obj.css("visibility","hidden");
-				};
+				dist_obj.css("display","none");
+				dist_obj.prev().filter('.chosen-container').css("display","none");
+				
+				dist_obj.valid();
 				return;
 			};
 			
@@ -89,7 +91,9 @@ required:必选项
 			$.each(city_json.citylist[prov_id].c[city_id].a,function(i,dist){
 				temp_html+="<option value='"+dist.s+"'>"+dist.s+"</option>";
 			});
-			dist_obj.html(temp_html).attr("disabled",false).css({"display":"","visibility":""});
+			dist_obj.html(temp_html);
+			dist_obj.css("display","inline-block");
+			dist_obj.prev().filter('.chosen-container').css({"display": "", "visibility": ""});
 		};
 
 		var init=function(){

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<title>客户信息</title>
+<#include 'layout/resources.html'/>
+<script type="text/javascript" src="${resourceUrl}/resources/vendor/js/vendor-detail.js?version=${version}"></script>
+</head>
+<body>
+    <#include 'layout/hidden_ares.html'/>
+	<div class="place">
+    	<span>位置：</span>
+	    <ul>
+   		</ul>
+    </div>
+    <div class="form-body">
+		<div id ="customer" class="tabson">
+			<div class="form-title"><span>基本信息</span></div>
+	   		<ul class="form-info">
+	   			<li style="display: none;"><label>登录名:</label><span id="code"></span></li>
+			    <li><label>登录名:</label><span id="loginName"></span></li>
+			    <li><label>状态:</label><span id="status"></span></li>
+			    <li><label>分类:</label><span id="type"></span></li>
+			    <li><label>商家名称:</label><span id="name"></span></li>
+			    <li><label>活动宣传语:</label><span id="advert"></span></li>
+			    <li><label>商家图片:</label><img id="pic1" /></li>
+			    <li><label>地址:</label><span id="address"></span></li>
+			    <li><label>联系电话:</label><span id="bookMobile"></span></li>
+			    <li><label>短信通知手机号:</label><span id="smsMobile"></span></li>
+			    <li><label>备注:</label><span id="remark"></span></li>
+			    <li><label>附件:</label><span id="pdf"></span></li>
+			    <li><label>商家详情描述:</label><span id="description"></span></li>
+		    </ul>
+	    </div>
+	</div>
+	<br/>
+	<input id="updownBtn" type="button" class="btn margin-left-20" value="上线"/>
+	<input id="backBtn" type="button" class="btn margin-left-20" value="返回"/>
+</body>
+</html>

@@ -180,6 +180,10 @@
 		    <mvc:mapping path="/plat/**"/>
 		    <!-- 平台相关end -->
 		    
+		    <!-- 商家相关start -->
+		    <mvc:mapping path="/vendor/**"/>
+		    <!-- 商家相关end -->
+		    
 		    <!-- 合同相关start -->
 		    <mvc:mapping path="/contract/**"/>
 		    <!-- 合同相关end -->

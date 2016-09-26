@@ -546,6 +546,10 @@ $.extend($.validator, {
 			var dependencyMismatch = false;
 			var val = this.elementValue(element);
 			var result;
+			
+			if (element.style.display == 'none') {
+				return true;
+			}
 
 			for (var method in rules ) {
 				var rule = { method: method, parameters: rules[method] };

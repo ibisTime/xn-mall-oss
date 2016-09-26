@@ -616,6 +616,9 @@
         'style': "width: " + (this.container_width()) + ";",
         'title': this.form_field.title
       };
+      if (this.form_field.style.display == 'none') {
+    	  container_props.style = container_props.style + 'display: none;';
+      }
       if (this.form_field.id.length) {
         container_props.id = this.form_field.id.replace(/[^\w]/g, '_') + "_chosen";
       }
