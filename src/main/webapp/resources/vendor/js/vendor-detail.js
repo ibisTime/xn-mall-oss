@@ -47,7 +47,7 @@ function doSuccessData(res){
 		$("#name").html(result.name);
 		$('#advert').html(result.advert);
 		$('#pic1').attr('src', result.pic1);
-		$('#address').html(result.province + ' ' + result.city + ' ' + result.area + ' ' + result.address);
+		$('#address').html(result.province + ' ' + (result.city == 0 ? '' : result.city) + ' ' + (result.area == 0 ? '' : result.area) + ' ' + result.address);
 		$('#bookMobile').html(result.bookMobile);
 		$('#smsMobile').html(result.smsMobile);
 		$('#description').html(result.description);

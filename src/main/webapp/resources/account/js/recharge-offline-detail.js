@@ -4,6 +4,9 @@ $(function() {
 	var data = {"code":code,"start":"1","limit":"10"};
 	var url = $("#basePath").val()+"/account/recharge/rmb/list";
 	doGetAjax(url, data, doGetDetailBack);
+	$('#backBtn').click(function() {
+		goBack();
+	});
 });
 
 function doGetDetailBack(res){

@@ -18,6 +18,10 @@ $(function(){
 			alert("请选择记录");
 			return;
 		}
+		if (selRecords[0].status == 1) {
+			alert("已上线不可修改，请先下线");
+			return;
+		}
 		window.location.href = $("#basePath").val()+"/vendor/vendor_addedit.htm?code="+selRecords[0].code;
 	});
 	
@@ -65,7 +69,8 @@ $(function(){
 				title : '累计点赞数量'
 			}, {
 				field : 'totalJfNum',
-				title : '累计消费积分'
+				title : '累计消费积分',
+				formatter: moneyFormat
 			}, {
 				field : 'status',
 				title : '状态',

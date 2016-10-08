@@ -118,9 +118,6 @@ $(function() {
 			smsMobile: {
 				required: true,
 				maxlength: 30
-			},
-			description: {
-				required: true
 			}
 		}
 	});

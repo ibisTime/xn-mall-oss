@@ -38,6 +38,7 @@ public class VendorController extends BaseController {
     @ResponseBody
     public Object vendorEdit(@RequestBody Map map) {
   		map.put("updater", this.getSessionUser().getUserId());
+  		map.put("pic1", UploadUtil.uploadPicture((String) map.get("pic1")));
   		return BizConnecter.getBizData("602901", JsonUtils.mapToJson(map),
               Object.class);
 	}
@@ -76,4 +77,14 @@ public class VendorController extends BaseController {
   	    return BizConnecter.getBizData("602922", JsonUtils.mapToJson(allRequestParams),
               Object.class);
     }
+    
+    // 分页消费记录查询
+    @RequestMapping(value = "/record/page", method = RequestMethod.GET)
+    @ResponseBody
+    public Object VendorRecordPage(@RequestParam Map<String,String> allRequestParams) {
+    	//allRequestParams.put("userId", this.getSessionUser().getUserId());
+  	    return BizConnecter.getBizData("602923", JsonUtils.mapToJson(allRequestParams),
+              Object.class);
+    }
+    
 }

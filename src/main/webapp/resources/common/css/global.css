@@ -222,3 +222,8 @@ td{ word-wrap:break-word}
 a:hover {
 	cursor: pointer;
 }
+
+.fwb span {
+	line-height: auto;
+	display: initial;
+}

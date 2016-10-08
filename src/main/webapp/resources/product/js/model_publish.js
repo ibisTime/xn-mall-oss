@@ -107,7 +107,7 @@ $(function() {
 
 	//查询
 	$('#searchBtn').click(function() {
-	$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/page"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/model/price/page"});
 	});
 	
 

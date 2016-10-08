@@ -42,6 +42,7 @@ function doGetDetailBack(res){
 			$("#createDatetime").html(dateFormat(result.createDatetime,'yyyy-MM-dd HH:mm:ss'));
 			$("#toType").html(Dict.getName('charge_type',result.toType));
 			$("#toCode").html(result.toCode);
+			$("#fromCode").html(result.toBelong);
 			$("#mobile").html(result.mobile);
 			$("#approveUser").html(result.approveUser);
 			$("#approveDatetime").html(dateFormat(result.approveDatetime,'yyyy-MM-dd HH:mm:ss'));

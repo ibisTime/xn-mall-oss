@@ -4,6 +4,9 @@ $(function() {
 	var data = {"code":code,"start":"1","limit":"10", "accountNumber": '',"currency": 'CNY'};
 	var url = $("#basePath").val()+"/account/withdrawOrderPage";
 	doGetAjax(url, data, doGetDetailBack);
+	$('#backBtn').click(function() {
+		goBack();
+	});
 });
 
 function doGetDetailBack(res){

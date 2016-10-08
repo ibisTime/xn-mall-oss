@@ -179,24 +179,6 @@ function ajaxPost(url, param) {
 	return promise;
 }
 
-function ajaxPost(url, param) {
-	var promise = $.ajax({
-		url: url,
-		type: 'POST',
-		contentType: "application/json",  
-	    dataType: "json",  
-		data: JSON.stringify(param)
-	});
-	promise.then(function(res) {
-		if (!res.success) {
-			alert(res.msg);
-		}
-	}, function() {
-		alert(res.msg);
-	});
-	return promise;
-}
-
 function ajaxGet(url, param, reload, sync) {
 	if (typeof param == 'boolean' || typeof param == 'undefined') {
 		reload = param;

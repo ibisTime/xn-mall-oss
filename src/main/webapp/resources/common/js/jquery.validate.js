@@ -547,7 +547,7 @@ $.extend($.validator, {
 			var val = this.elementValue(element);
 			var result;
 			
-			if (element.style.display == 'none') {
+			if (element.nodeName != 'TEXTAREA' && element.style.display == 'none') {
 				return true;
 			}
 
