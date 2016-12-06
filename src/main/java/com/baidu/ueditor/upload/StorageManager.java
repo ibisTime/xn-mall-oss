@@ -35,6 +35,7 @@ public class StorageManager {
 			bos.write(data);
 			bos.flush();
 			bos.close();
+			UploadUtil.uploadFile(path);
 		} catch (IOException ioe) {
 			return new BaseState(false, AppInfo.IO_ERROR);
 		}

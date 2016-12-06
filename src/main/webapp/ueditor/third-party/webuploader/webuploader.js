@@ -3660,7 +3660,7 @@
                 });
     
                 // 上传成功
-                tr.on( 'load', function() {
+                tr.on( 'load', function(res) {
                     var reason;
     
                     // 如果非预期，转向上传出错。
@@ -3671,7 +3671,7 @@
     
                     // 全部上传完成。
                     if ( file.remaning === 1 ) {
-                        me._finishFile( file, ret );
+                        me._finishFile( file, res );
                     } else {
                         tr.destroy();
                     }
@@ -6173,62 +6173,109 @@
                 this._status = 0;
                 this._response = null;
             },
-    
+            
             send: function() {
-                var owner = this.owner,
-                    opts = this.options,
-                    xhr = this._initAjax(),
-                    blob = owner._blob,
-                    server = opts.server,
-                    formData, binary, fr;
-    
-                if ( opts.sendAsBinary ) {
-                    server += (/\?/.test( server ) ? '&' : '?') +
-                            $.param( owner._formData );
-    
-                    binary = blob.getSource();
-                } else {
-                    formData = new FormData();
-                    $.each( owner._formData, function( k, v ) {
-                        formData.append( k, v );
-                    });
-    
-                    formData.append( opts.fileVal, blob.getSource(),
-                            opts.filename || owner._formData.name || '' );
+            	function convertImageToCanvas(image) {
+                	var canvas = document.createElement("canvas");
+                	canvas.width = image.naturalWidth || image.width;
+                	canvas.height = image.naturalHeight || image.height;
+                	canvas.getContext("2d").drawImage(image, 0, 0);
+
+                	return canvas;
                 }
-    
-                if ( opts.withCredentials && 'withCredentials' in xhr ) {
-                    xhr.open( opts.method, server, true );
-                    xhr.withCredentials = true;
-                } else {
-                    xhr.open( opts.method, server );
-                }
-    
-                this._setRequestHeader( xhr, opts.headers );
-    
-                if ( binary ) {
-                    xhr.overrideMimeType('application/octet-stream');
-    
-                    // android直接发送blob会导致服务端接收到的是空文件。
-                    // bug详情。
-                    // https://code.google.com/p/android/issues/detail?id=39882
-                    // 所以先用fileReader读取出来再通过arraybuffer的方式发送。
-                    if ( Base.os.android ) {
-                        fr = new FileReader();
-    
-                        fr.onload = function() {
-                            xhr.send( this.result );
-                            fr = fr.onload = null;
-                        };
-    
-                        fr.readAsArrayBuffer( binary );
-                    } else {
-                        xhr.send( binary );
-                    }
-                } else {
-                    xhr.send( formData );
-                }
+                var me = this;
+            	var blob = this.owner._blob;
+                var imgType = blob.type;
+                var opts = this.options;
+                var reader = new FileReader();
+        		reader.onload = function(evt){
+        			var image = evt.target.result;
+        			var img = document.createElement("img");
+        			img.src = image;
+        			var canvas = convertImageToCanvas(img);
+        			var options = {
+    	                timeout:100000,
+    	                onsuccess:function (xhr) {
+    	                	var responseObj;
+	                        responseObj = eval("(" + xhr.responseText + ")");
+	                        if (responseObj.state == "SUCCESS") {
+	                        	me.trigger('load', responseObj);
+	                        } else {
+	                        	me.trigger( 'error', 'server' );
+	                        }
+    	                },
+    	                onerror:function () {
+    	                	me.trigger( 'error', 'server' );
+    	                }
+    	            };
+        			if (imgType != 'image/jpeg') {
+        				options[opts.fileVal] = image.substring(imgType.length + 13);
+        			} else {
+        				options[opts.fileVal] = canvas.toDataURL("image/jpeg", 0.5).substring('23');
+        			}
+    	            
+
+    	            var url = opts.server;
+    	            UE.ajax.request(url, options);
+        		}
+        		reader.readAsDataURL(blob.source);
             },
+    
+//            send: function() {
+//                var owner = this.owner,
+//                    opts = this.options,
+//                    xhr = this._initAjax(),
+//                    blob = owner._blob,
+//                    server = opts.server,
+//                    formData, binary, fr;
+//    
+//                if ( opts.sendAsBinary ) {
+//                    server += (/\?/.test( server ) ? '&' : '?') +
+//                            $.param( owner._formData );
+//    
+//                    binary = blob.getSource();
+//                } else {
+//                    formData = new FormData();
+//                    $.each( owner._formData, function( k, v ) {
+//                        formData.append( k, v );
+//                    });
+//    
+//                    formData.append( opts.fileVal, blob.getSource(),
+//                            opts.filename || owner._formData.name || '' );
+//                }
+//    
+//                if ( opts.withCredentials && 'withCredentials' in xhr ) {
+//                    xhr.open( opts.method, server, true );
+//                    xhr.withCredentials = true;
+//                } else {
+//                    xhr.open( opts.method, server );
+//                }
+//    
+//                this._setRequestHeader( xhr, opts.headers );
+//    
+//                if ( binary ) {
+//                    xhr.overrideMimeType('application/octet-stream');
+//    
+//                    // android直接发送blob会导致服务端接收到的是空文件。
+//                    // bug详情。
+//                    // https://code.google.com/p/android/issues/detail?id=39882
+//                    // 所以先用fileReader读取出来再通过arraybuffer的方式发送。
+//                    if ( Base.os.android ) {
+//                        fr = new FileReader();
+//    
+//                        fr.onload = function() {
+//                            xhr.send( this.result );
+//                            fr = fr.onload = null;
+//                        };
+//    
+//                        fr.readAsArrayBuffer( binary );
+//                    } else {
+//                        xhr.send( binary );
+//                    }
+//                } else {
+//                    xhr.send( formData );
+//                }
+//            },
     
             getResponse: function() {
                 return this._response;

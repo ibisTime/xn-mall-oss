@@ -378,7 +378,7 @@
                     width: imageCompressBorder,
                     height: imageCompressBorder,
                     // 图片质量，只有type为`image/jpeg`的时候才有效。
-                    quality: 90,
+                    quality: 50,
                     // 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
                     allowMagnify: false,
                     // 是否允许裁剪。
@@ -715,9 +715,9 @@
             uploader.on('uploadSuccess', function (file, ret) {
                 var $file = $('#' + file.id);
                 try {
-                    var responseText = (ret._raw || ret),
-                        json = utils.str2json(responseText);
+                    var json = ret;
                     if (json.state == 'SUCCESS') {
+                    	json.index = file.id.split('').pop();
                         _this.imageList.push(json);
                         $file.append('<span class="success"></span>');
                     } else {
@@ -770,6 +770,7 @@
             var i, data, list = [],
                 align = getAlign(),
                 prefix = editor.getOpt('imageUrlPrefix');
+            this.imageList.sort(function(a, b) {return a.index > b.index;});
             for (i = 0; i < this.imageList.length; i++) {
                 data = this.imageList[i];
                 list.push({

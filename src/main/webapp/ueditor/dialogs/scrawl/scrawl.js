@@ -392,7 +392,7 @@ var scrawl = function (options) {
                 context.fillRect(0, 0, canvas.width, canvas.height);
             }
             try {
-                return canvas.toDataURL("image/png").substring(22);
+                return canvas.toDataURL("image/jpeg", 0.5).substring(23);
             } catch (e) {
                 return "";
             }
@@ -639,7 +639,7 @@ function exec(scrawlObj) {
                         responseObj = eval("(" + xhr.responseText + ")");
                         if (responseObj.state == "SUCCESS") {
                             var imgObj = {},
-                                url = editor.options.scrawlUrlPrefix + responseObj.url;
+                                url = editor.options.imageUrlPrefix + responseObj.url;
                             imgObj.src = url;
                             imgObj._src = url;
                             imgObj.alt = responseObj.original || '';

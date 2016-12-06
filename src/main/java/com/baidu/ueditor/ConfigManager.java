@@ -97,6 +97,7 @@ public final class ConfigManager {
 				break;
 				
 			case ActionMap.UPLOAD_IMAGE:
+				//conf.put( "isBase64", "false" );
 				conf.put( "isBase64", "false" );
 				conf.put( "maxSize", this.jsonConfig.getLong( "imageMaxSize" ) );
 				conf.put( "allowFiles", this.getArray( "imageAllowFiles" ) );
@@ -113,10 +114,10 @@ public final class ConfigManager {
 				
 			case ActionMap.UPLOAD_SCRAWL:
 				conf.put( "filename", ConfigManager.SCRAWL_FILE_NAME );
-				conf.put( "maxSize", this.jsonConfig.getLong( "scrawlMaxSize" ) );
+				conf.put( "maxSize", this.jsonConfig.getLong( "imageMaxSize" ) );
 				conf.put( "fieldName", this.jsonConfig.getString( "scrawlFieldName" ) );
 				conf.put( "isBase64", "true" );
-				savePath = this.jsonConfig.getString( "scrawlPathFormat" );
+				savePath = this.jsonConfig.getString( "imagePathFormat" );
 				break;
 				
 			case ActionMap.CATCH_IMAGE:
@@ -125,7 +126,7 @@ public final class ConfigManager {
 				conf.put( "maxSize", this.jsonConfig.getLong( "catcherMaxSize" ) );
 				conf.put( "allowFiles", this.getArray( "catcherAllowFiles" ) );
 				conf.put( "fieldName", this.jsonConfig.getString( "catcherFieldName" ) + "[]" );
-				savePath = this.jsonConfig.getString( "catcherPathFormat" );
+				savePath = this.jsonConfig.getString( "imagePathFormat" );
 				break;
 				
 			case ActionMap.LIST_IMAGE:

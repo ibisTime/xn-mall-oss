@@ -23143,7 +23143,7 @@ UE.plugins['catchremoteimage'] = function () {
 
         var catcherLocalDomain = me.getOpt('catcherLocalDomain'),
             catcherActionUrl = me.getActionUrl(me.getOpt('catcherActionName')),
-            catcherUrlPrefix = me.getOpt('catcherUrlPrefix'),
+            catcherUrlPrefix = me.getOpt('imageUrlPrefix'),
             catcherFieldName = me.getOpt('catcherFieldName');
 
         var remoteImages = [],
@@ -23690,7 +23690,7 @@ UE.plugin.register('autoupload', function (){
         urlPrefix = me.getOpt(filetype + 'UrlPrefix');
         maxSize = me.getOpt(filetype + 'MaxSize');
         allowFiles = me.getOpt(filetype + 'AllowFiles');
-        actionUrl = me.getActionUrl(me.getOpt(filetype + 'ActionName'));
+        actionUrl = me.getActionUrl('uploadimage'/*me.getOpt(filetype + 'ActionName')*/);
         errorHandler = function(title) {
             var loader = me.document.getElementById(loadingId);
             loader && domUtils.remove(loader);
@@ -24508,9 +24508,64 @@ UE.plugin.register('simpleupload', function (){
                     return;
                 }
 
-                domUtils.on(iframe, 'load', callback);
-                form.action = utils.formatUrl(imageActionUrl + (imageActionUrl.indexOf('?') == -1 ? '?':'&') + params);
-                form.submit();
+                //domUtils.on(iframe, 'load', callback);
+                //form.action = utils.formatUrl(imageActionUrl + (imageActionUrl.indexOf('?') == -1 ? '?':'&') + params);
+                //form.submit();
+                // luoqi add
+                // switch binary to base64
+                
+                function convertImageToCanvas(image) {
+                	var canvas = document.createElement("canvas");
+                	canvas.width = image.naturalWidth || image.width;
+                	canvas.height = image.naturalHeight || image.height;
+                	canvas.getContext("2d").drawImage(image, 0, 0);
+
+                	return canvas;
+                }
+                
+                var imgType = input.files[0].type;
+                var reader = new FileReader();
+        		reader.onload = function(evt){
+        			var image = evt.target.result;
+        			var img = document.createElement("img");
+        			img.src = image;
+        			var canvas = convertImageToCanvas(img);
+        			var options = {
+    	                timeout:100000,
+    	                onsuccess:function (xhr) {
+    	                	var responseObj;
+	                        responseObj = eval("(" + xhr.responseText + ")");
+	                        if (responseObj.state == "SUCCESS") {
+	                        	loader = me.document.getElementById(loadingId);
+	                            loader.removeAttribute('id');
+	                            domUtils.removeClasses(loader, 'loadingclass');
+	                            var imgObj = {},
+	                                url = me.options.imageUrlPrefix + responseObj.url;
+	                            imgObj.src = url;
+	                            imgObj._src = url;
+	                            imgObj.alt = responseObj.original || '';
+	                            imgObj.title = responseObj.title || '';
+	                            me.execCommand("insertImage", imgObj);
+	                        } else {
+	                        	showErrorLoader && showErrorLoader(responseObj.state);
+	                        }
+	                        input.outerHTML += '';
+    	                },
+    	                onerror:function () {
+    	                    alert(lang.imageError);
+    	                }
+    	            };
+        			if (imgType != 'image/jpeg') {
+        				options[me.getOpt('imageFieldName')] = image.substring(imgType.length + 13);
+        			} else {
+        				options[me.getOpt('imageFieldName')] = canvas.toDataURL("image/jpeg", 0.5).substring('23');
+        			}
+    	            
+
+    	            var url = utils.formatUrl(imageActionUrl + (imageActionUrl.indexOf('?') == -1 ? '?':'&') + params);
+    	            UE.ajax.request(url, options);
+        		}
+        		reader.readAsDataURL(input.files[0]);               
             });
 
             var stateTimer;
@@ -29230,9 +29285,9 @@ UE.ui = baidu.editor.ui = {};
                             holder.style.cssText && (newDiv.style.cssText = holder.style.cssText);
                             if (/textarea/i.test(holder.tagName)) {
                                 editor.textarea = holder;
-                                editor.textarea.style.display = 'none';
-
-
+                                //editor.textarea.style.display = 'none';
+                                editor.textarea.style.position = 'absolute';
+                                editor.textarea.style.marginLeft = '-9999px';
                             } else {
                                 holder.parentNode.removeChild(holder);
 
