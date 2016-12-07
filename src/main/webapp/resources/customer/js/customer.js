@@ -85,6 +85,12 @@ $(function(){
 				valign : 'middle',
 				sortable : false
 		    },{
+		    	field: '',
+		    	title: '剩余积分',
+		    	align: 'left',
+		    	valign: 'middle',
+		    	sortable: false
+		    },{
 				field : 'updateDatetime',
 				title : '更新时间',
 				align : 'left',
