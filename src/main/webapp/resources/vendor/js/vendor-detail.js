@@ -41,7 +41,17 @@ function doSuccessData(res){
 		$("#code").html(result.code);
 		$("#loginName").html(result.loginName);
 		$('#pdf').html(linkSrc(result.pdf));
-		$("#type").html(Dict.getName('vendor_type', result.type));
+		ajaxGet($('#basePath').val() + '/vendor/kind/list', {}, false, true).then(function(res) {
+			if (res.success) {
+				var kindList = [], kindDict = {};
+				kindList = kindList.concat(res.data);
+				$('#type').renderDropdown(kindList, 'code', 'name');
+				kindList.forEach(function(i) {
+					kindDict[i.code] = i.name;
+				});
+				$("#type").html(kindDict[result.type]);
+			}
+		});
 		$("#status").html(Dict.getName('vendor_updown', result.status));
 		$('#updownBtn').val(result.status == 1 ? '下线' : '上线');
 		$("#name").html(result.name);

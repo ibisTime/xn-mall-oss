@@ -23,7 +23,21 @@ function doSuccessData(res){
 		$("#userId").html(result.userId);
 		$('#pdf').html(linkSrc(result.pdf));
 		$("#mobile").html(result.mobile);
-		$("#userReferee").html(result.userReferee);
+		var scoreList = [{
+			userId: 'U201600000000000001',
+			loginName: '菜狗平台'
+		}];
+		var scoreDict = {};
+		
+		ajaxGet($('#basePath').val() + '/user/score/list', {}, false, true).then(function(res) {
+			if (res.success) {
+				scoreList = scoreList.concat(res.data);
+				scoreList.forEach(function(i) {
+					scoreDict[i.userId] = i.loginName;
+				});
+			}
+		});
+		$("#userReferee").html(scoreDict[result.userReferee]);
 		$("#remark").html(result.remark);
 		$("#status").html(Dict.getUserStatusName(result.status));
 		$("#updateDatetime").html(dateTimeFormat(result.updateDatetime));

@@ -65,7 +65,7 @@ public class BizConnecter {
         if (code.startsWith("lh") || code.startsWith("601")
                 || code.startsWith("602")) {
             postUrl = MALL_URL;
-        } else if (code.startsWith("805")) {
+        } else if (code.startsWith("805") || code.startsWith("806")) {
             postUrl = USER_URL;
         } else if (code.startsWith("802")) {
             postUrl = ACCOUNT_URL;

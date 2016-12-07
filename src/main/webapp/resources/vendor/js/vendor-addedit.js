@@ -3,7 +3,11 @@ $(function() {
 	$("#city-group").citySelect({
 		required:false
 	}); 
-	$('#type').renderDropdown(Dict.getName('vendor_type'));
+	$("#type").renderDropdown({
+		url: $("#basePath").val()+"/vendor/kind/list",
+		keyName: 'code',
+		valueName: 'name'
+	});
 	var description = UE.getEditor('description');
 	var edit = getQueryString('edit');
 	var code = getQueryString('code');

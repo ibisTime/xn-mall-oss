@@ -87,4 +87,74 @@ public class VendorController extends BaseController {
               Object.class);
     }
     
+    // 分类新增
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value = "/kind/add", method = RequestMethod.POST)
+    @ResponseBody
+    public Object viewAdd(@RequestBody Map map) {
+    	map.put("type", "3");
+    	map.put("status", "1");
+    	map.put("location", "1");
+    	map.put("belong", "1");
+    	map.put("parentCode", "0");
+    	map.put("companyCode", "0");
+  		map.put("userId", this.getSessionUser().getUserId());
+  		map.put("pic", UploadUtil.uploadPicture((String) map.get("pic")));
+  		return BizConnecter.getBizData("806040", JsonUtils.mapToJson(map),
+              Object.class);
+	}
+    
+    // 分类修改
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value = "/kind/edit", method = RequestMethod.POST)
+    @ResponseBody
+    public Object viewEdit(@RequestBody Map map) {
+    	map.put("type", "3");
+    	map.put("status", "1");
+    	map.put("location", "1");
+    	map.put("belong", "1");
+    	map.put("parentCode", "0");
+    	map.put("isCompanyEdit", "0");
+    	map.put("companyCode", "0");
+  		map.put("pic", UploadUtil.uploadPicture((String) map.get("pic")));
+  		return BizConnecter.getBizData("806042", JsonUtils.mapToJson(map),
+              Object.class);
+	}
+    
+    // 分类删除
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value = "/kind/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public Object viewDelete(@RequestBody Map map) {
+  		return BizConnecter.getBizData("806041", JsonUtils.mapToJson(map),
+              Object.class);
+	}
+	
+	// 分页分类
+    @RequestMapping(value = "/kind/page", method = RequestMethod.GET)
+    @ResponseBody
+    public Object viewPage(@RequestParam Map<String,String> allRequestParams) {
+    	//allRequestParams.put("userId", this.getSessionUser().getUserId());
+  	    return BizConnecter.getBizData("806050", JsonUtils.mapToJson(allRequestParams),
+              Object.class);
+    }
+    
+    // 列表分类
+    @RequestMapping(value = "/kind/list", method = RequestMethod.GET)
+    @ResponseBody
+    public Object viewList(@RequestParam Map<String,String> allRequestParams) {
+    	//allRequestParams.put("userId", this.getSessionUser().getUserId());
+  	    return BizConnecter.getBizData("806052", JsonUtils.mapToJson(allRequestParams),
+              Object.class);
+    }
+    
+    // 详情分类
+    @RequestMapping(value = "/kind/detail", method = RequestMethod.GET)
+    @ResponseBody
+    public Object viewDetail(@RequestParam Map<String,String> allRequestParams) {
+    	//allRequestParams.put("userId", this.getSessionUser().getUserId());
+  	    return BizConnecter.getBizData("806053", JsonUtils.mapToJson(allRequestParams),
+              Object.class);
+    }
+    
 }

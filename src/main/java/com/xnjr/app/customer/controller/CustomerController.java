@@ -196,11 +196,12 @@ public class CustomerController extends BaseController {
     @RequestMapping(value = "/zhongduanPage", method = RequestMethod.GET)
     @ResponseBody
     public Object queryZhongduanPage(
+    		@RequestParam(value = "userId", required = false) String userId,
     		@RequestParam(value = "mobile", required = false) String mobile,
             @RequestParam(value = "start", required = false) String start,
             @RequestParam(value = "limit", required = false) String limit) {
-        return userAO.queryTerminalUserPage(
-            this.getSessionUser().getUserId(), mobile, start, limit);
+
+        return userAO.queryTerminalUserPage(userId, mobile, start, limit);
     }
 
     @RequestMapping(value = "/queryList", method = RequestMethod.GET)
