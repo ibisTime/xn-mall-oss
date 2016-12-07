@@ -405,7 +405,7 @@ $.fn.renderDropdown = function(data, keyName, valueName, defaultOption) {
 			data.data = res.data;
 		});
 	}
-	data = data.data || data || [];
+	data = data.data && data.data.list || data.data || data || [];
 	keyName = keyName || 'dkey';
 	valueName = valueName || 'dvalue';
 	var html = "<option value=''>请选择</option>" + (defaultOption || '');

@@ -5,7 +5,18 @@ $(function(){
 	//表格初始化
 	queryTableData();
 	
-	$('#type').renderDropdown(Dict.getName('vendor_type'));
+	var kindList = [];
+	var kindDict = {};
+	
+	ajaxGet($('#basePath').val() + '/vendor/kind/list', {}, false, true).then(function(res) {
+		if (res.success) {
+			kindList = kindList.concat(res.data);
+			$('#type').renderDropdown(kindList, 'code', 'name');
+			kindList.forEach(function(i) {
+				kindDict[i.code] = i.name;
+			});
+		}
+	});
 	$('#status').renderDropdown(Dict.getName('vendor_updown'));
 	
 	$('#addBtn').click(function() {
@@ -34,6 +45,15 @@ $(function(){
 		window.location.href = $("#basePath").val()+"/vendor/vendor_detail.htm?type=1&code="+selRecords[0].code;
 	});
 	
+	$('#recordBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections')
+		if(selRecords.length <= 0){
+			alert("请选择记录");
+			return;
+		}
+		window.location.href = $("#basePath").val()+"/vendor/record.htm?code="+selRecords[0].code;
+	});
+	
 	//详情绑定事件
 	$('#detailBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
@@ -60,7 +80,9 @@ $(function(){
 			},{
 				field : 'type',
 				title : '分类',
-				formatter: Dict.getNameForList('vendor_type')
+				formatter: function(v) {
+					return kindDict[v];
+				}
 		    },{
 		    	field : 'name',
 				title : '商家名称'

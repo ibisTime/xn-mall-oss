@@ -221,9 +221,9 @@ public interface IModelAO {
      * @create: 2016年5月23日 上午11:38:30 XIANDONG
      * @history:
      */
-    public Object queryOrderPage(String applyUser,
+    public Object queryOrderPage(String mobile, String applyUser,
             String toUser, String status, String start, String limit,
-            String orderColumn, String orderDir);
+            String orderColumn, String orderDir, String dateStart, String dateEnd);
 
     /**
      * 订单列表查询

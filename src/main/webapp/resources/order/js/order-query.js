@@ -96,8 +96,8 @@ function queryTableData(){
 		sortable : false,
 		formatter: Dict.getNameForList('invoice_type')
 	}, {
-		field : 'applyUser',
-		title : '下单用户',
+		field : 'mobile',
+		title : '手机号',
 		align : 'left',
 		valign : 'middle',
 		sortable : false

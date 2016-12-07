@@ -25,7 +25,7 @@ $(function() {
 	
 	//返回
 	$('#backBtn').click(function() {
-		location.href = $("#basePath").val()+"/order/order_query.htm";
+		goBack();
 	});
 
 	function doSuccessBack(res) {
@@ -62,7 +62,7 @@ $(function() {
 			$("#payCnyAmount").html(moneyFormatter(res.data.payCnyAmount));
 			$("#totalCnyAmount").html(moneyFormatter(res.data.totalCnyAmount));
 			$("#payAmount").html(moneyFormatter(res.data.payAmount));
-			$("#mobile").html(res.data.address?res.data.address.mobile:'-');
+			$("#mobile").html(res.data.mobile?res.data.mobile:'-');
 			$("#name").html(res.data.address?res.data.address.addressee:'-');
 			$("#address").html(res.data.address?res.data.address.province+res.data.address.city+res.data.address.district+res.data.address.detailAddress:'-');
 			$("#tableList").bootstrapTable("load", res.data.invoiceModelList);

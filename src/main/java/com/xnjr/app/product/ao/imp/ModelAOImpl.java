@@ -245,17 +245,20 @@ public class ModelAOImpl implements IModelAO {
     }
 
     @Override
-    public Object queryOrderPage(String applyUser,
+    public Object queryOrderPage(String mobile, String applyUser,
             String toUser, String status, String start, String limit,
-            String orderColumn, String orderDir) {
+            String orderColumn, String orderDir, String dateStart, String dateEnd) {
         XN602025Req req = new XN602025Req();
         req.setApplyUser(applyUser);
         req.setStatus(status);
         req.setToUser(toUser);
+        req.setMobile(mobile);
         req.setStart(start);
         req.setLimit(limit);
         req.setOrderColumn(orderColumn);
         req.setOrderDir(orderDir);
+        req.setDateStart(dateStart);
+        req.setDateEnd(dateEnd);
         return BizConnecter.getBizData("602025", JsonUtils.object2Json(req),
             Object.class);
     }

@@ -187,6 +187,22 @@ public class UserController extends BaseController {
             this.getSessionUser().getUserId(), null, null, null, null, null,
             null, null);
     }
+    
+    @RequestMapping(value = "/join/list", method = RequestMethod.GET)
+    @ResponseBody
+    public Object queryJoinUserList() {
+        return userAO.queryUserList(null, EUserKind.CaiGo.getCode(), null,
+            null, null, null, null, null, null,
+            null, null);
+    }
+    
+    @RequestMapping(value = "/score/list", method = RequestMethod.GET)
+    @ResponseBody
+    public Object queryScoreUserList() {
+        return userAO.queryUserList(null, EUserKind.Integral.getCode(), null,
+            null, null, null, null, null, null,
+            null, null);
+    }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ResponseBody

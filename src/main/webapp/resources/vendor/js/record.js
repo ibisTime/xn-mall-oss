@@ -5,6 +5,8 @@ $(function(){
 	//表格初始化
 	queryTableData();
 	
+	$('.tools').remove();
+	
 	$('#searchBtn').click(function() {
 		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/vendor/record/page"});
 	});
@@ -17,7 +19,7 @@ $(function(){
 				checkbox : true
 			},{
 				field : 'loginName',
-				title : '登录名'
+				title : '手机号'
 			},{
 				field : 'quantity',
 				title : '消费积分',
@@ -43,6 +45,7 @@ $(function(){
 			singleSelect : true,
 			queryParams : function(params) {
 				return {
+					merchantCode: getQueryString('code'),
 					loginName : $("#loginName").val(),
 					dateStart : $("#dateStart").val(),
 					dateEnd : $("#dateEnd").val(),

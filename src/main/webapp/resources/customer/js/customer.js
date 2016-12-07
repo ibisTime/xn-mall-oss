@@ -6,6 +6,29 @@ $(function(){
 	//表格初始化
 	queryTableData();
 	
+	var userId = getUserId();
+	if (userId == 'U201600000000000001') {
+		userId = '';
+	} else {
+		$('#userReferee').parent().hide();
+	}
+	
+	var scoreList = [{
+		userId: 'U201600000000000001',
+		loginName: '菜狗平台'
+	}];
+	var scoreDict = {};
+	
+	ajaxGet($('#basePath').val() + '/user/score/list', {}, false, true).then(function(res) {
+		if (res.success) {
+			scoreList = scoreList.concat(res.data);
+			$('#userReferee').renderDropdown(scoreList, 'userId', 'loginName');
+			scoreList.forEach(function(i) {
+				scoreDict[i.userId] = i.loginName;
+			});
+		}
+	});
+	
 	//详情绑定事件
 	$('#detailBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections')
@@ -83,8 +106,18 @@ $(function(){
 				title : '所属积分商',
 				align : 'left',
 				valign : 'middle',
+				sortable : false,
+				formatter: function(v) {
+					return scoreDict[v];
+				}
+		    }, {
+		    	field : 'leftScore',
+				title : '剩余积分',
+				align : 'left',
+				valign : 'middle',
+				formatter:moneyFormat,
 				sortable : false
-		    },{
+		    }, {
 				field : 'updateDatetime',
 				title : '更新时间',
 				align : 'left',
@@ -106,7 +139,7 @@ $(function(){
 				return {
 					mobile : $("#mobile").val(),
 //					realName : $("#realName").val(),
-					userReferee : $("#userReferee").val(),
+					userId : userId || $("#userReferee").val(),
 					status : $("#status").val(),
 					start : params.offset / params.limit + 1,
 					limit : params.limit

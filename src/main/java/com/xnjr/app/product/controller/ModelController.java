@@ -200,6 +200,7 @@ public class ModelController extends BaseController {
     @RequestMapping(value = "/order/Page", method = RequestMethod.GET)
     @ResponseBody
     public Object queryOrderPage(
+    		@RequestParam(value = "mobile", required = false) String mobile,
             @RequestParam(value = "applyUser", required = false) String applyUser,
             @RequestParam(value = "toUser", required = false) String toUser,
             @RequestParam(value = "status", required = false) String status,
@@ -209,9 +210,27 @@ public class ModelController extends BaseController {
             @RequestParam("limit") String limit,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return modelAO.queryOrderPage(applyUser, this.getSessionUser().getUserId(), status,
-            start, limit, orderColumn, orderDir);
+        return modelAO.queryOrderPage(mobile, applyUser, this.getSessionUser().getUserId(), status,
+            start, limit, orderColumn, orderDir, dateStart, dateEnd);
     }
+    
+    @RequestMapping(value = "/allorder/Page", method = RequestMethod.GET)
+    @ResponseBody
+    public Object queryAllOrderPage(
+    		@RequestParam(value = "mobile", required = false) String mobile,
+            @RequestParam(value = "applyUser", required = false) String applyUser,
+            @RequestParam(value = "toUser", required = false) String toUser,
+            @RequestParam(value = "status", required = false) String status,
+            @RequestParam(value = "dateStart", required = false) String dateStart,
+            @RequestParam(value = "dateEnd", required = false) String dateEnd,
+            @RequestParam("start") String start,
+            @RequestParam("limit") String limit,
+            @RequestParam(value = "orderColumn", required = false) String orderColumn,
+            @RequestParam(value = "orderDir", required = false) String orderDir) {
+        return modelAO.queryOrderPage(mobile, applyUser, toUser, status,
+            start, limit, orderColumn, orderDir, dateStart, dateEnd);
+    }
+
 
     @RequestMapping(value = "/order/List", method = RequestMethod.GET)
     @ResponseBody
