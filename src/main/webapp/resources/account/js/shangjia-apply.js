@@ -83,10 +83,7 @@ function doSuccessUserBack(res){
 				$('#fromUser').parent().show();
 				ajaxGet($('#basePath').val() + '/user/join/list', {}, false, true).then(function(res) {
 					if (res.success) {
-						var joinUsers = [{
-							userId: 'U201600000000000001',
-							loginName: '菜狗平台'
-						}];
+						var joinUsers = [];
 						joinUsers = joinUsers.concat(res.data);
 						$('#fromUser').renderDropdown(joinUsers, 'userId', 'loginName');
 					}
