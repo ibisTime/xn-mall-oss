@@ -108,11 +108,12 @@ public class CustomerController extends BaseController {
             @RequestParam(value = "realName", required = false) String realName,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "level", required = false) String level,
+            @RequestParam(value = "isGetAmount", required = false) String isGetAmount,
             @RequestParam(value = "start", required = false) String start,
             @RequestParam(value = "limit", required = false) String limit) {
         return userAO.queryUserPage(loginName, EUserKind.F1.getCode(), level,
             userReferee, mobile, idKind, idNo, realName, null, status, null,
-            start, limit);
+            start, limit, isGetAmount);
     }
 
     @RequestMapping(value = "/queryxiajiaPage", method = RequestMethod.GET)
@@ -127,11 +128,12 @@ public class CustomerController extends BaseController {
             @RequestParam(value = "realName", required = false) String realName,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "level", required = false) String level,
+            @RequestParam(value = "isGetAmount", required = false) String isGetAmount,
             @RequestParam(value = "start", required = false) String start,
             @RequestParam(value = "limit", required = false) String limit) {
         return userAO.queryUserPage(loginName, EUserKind.XiaJia.getCode(),
             level, this.getSessionUser().getUserId(), mobile, idKind, idNo,
-            realName, null, status, null, start, limit);
+            realName, null, status, null, start, limit, isGetAmount);
     }
 
     @RequestMapping(value = "/huoyuanPage", method = RequestMethod.GET)
@@ -144,11 +146,12 @@ public class CustomerController extends BaseController {
             @RequestParam(value = "realName", required = false) String realName,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "level", required = false) String level,
+            @RequestParam(value = "isGetAmount", required = false) String isGetAmount,
             @RequestParam(value = "start", required = false) String start,
             @RequestParam(value = "limit", required = false) String limit) {
         return userAO.queryUserPage(loginName, EUserKind.Goods.getCode(), level,
             this.getSessionUser().getUserId(), mobile, idKind, idNo, realName,
-            null, status, null, start, limit);
+            null, status, null, start, limit, isGetAmount);
     }
     
     @RequestMapping(value = "/jiaMengPage", method = RequestMethod.GET)
@@ -161,11 +164,12 @@ public class CustomerController extends BaseController {
             @RequestParam(value = "realName", required = false) String realName,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "level", required = false) String level,
+            @RequestParam(value = "isGetAmount", required = false) String isGetAmount,
             @RequestParam(value = "start", required = false) String start,
             @RequestParam(value = "limit", required = false) String limit) {
         return userAO.queryUserPage(loginName, EUserKind.CaiGo.getCode(), level,
             this.getSessionUser().getUserId(), mobile, idKind, idNo, realName,
-            null, status, null, start, limit);
+            null, status, null, start, limit, isGetAmount);
     }
 
     @RequestMapping(value = "/detailmoney", method = RequestMethod.GET)
@@ -186,11 +190,12 @@ public class CustomerController extends BaseController {
             @RequestParam(value = "realName", required = false) String realName,
             @RequestParam(value = "status", required = false) String status,
             @RequestParam(value = "level", required = false) String level,
+            @RequestParam(value = "isGetAmount", required = false) String isGetAmount,
             @RequestParam(value = "start", required = false) String start,
             @RequestParam(value = "limit", required = false) String limit) {
         return userAO.queryUserPage(loginName, EUserKind.Integral.getCode(),
             level, this.getSessionUser().getUserId(), mobile, idKind, idNo,
-            realName, null, status, null, start, limit);
+            realName, null, status, null, start, limit, isGetAmount);
     }
 
     @RequestMapping(value = "/zhongduanPage", method = RequestMethod.GET)
@@ -199,9 +204,10 @@ public class CustomerController extends BaseController {
     		@RequestParam(value = "userId", required = false) String userId,
     		@RequestParam(value = "mobile", required = false) String mobile,
             @RequestParam(value = "start", required = false) String start,
-            @RequestParam(value = "limit", required = false) String limit) {
+            @RequestParam(value = "limit", required = false) String limit,
+            @RequestParam(value = "isGetAmount", required = false) String isGetAmount) {
 
-        return userAO.queryTerminalUserPage(userId, mobile, start, limit);
+        return userAO.queryTerminalUserPage(userId, mobile, start, limit, isGetAmount);
     }
 
     @RequestMapping(value = "/queryList", method = RequestMethod.GET)

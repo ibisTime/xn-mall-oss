@@ -122,7 +122,7 @@ public class UserController extends BaseController {
             @RequestParam(value = "parentCode", required = true) String parentCode,
             @RequestParam(value = "type", required = true) String type,
             @RequestParam(value = "isGetChild", required = true) boolean isGetChild) {
-        XN805056Res user = userAO.getUser(this.getSessionUser().getUserId());
+        XN805056Res user = userAO.getUser(this.getSessionUser().getRealUserId());
         String roleCode = user.getRoleCode();
         if (StringUtils.isBlank(roleCode)) {
             throw new BizException("XN700001", "该用户角色为空");
@@ -219,11 +219,12 @@ public class UserController extends BaseController {
             @RequestParam(value = "updater", required = false) String updater,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit,
+            @RequestParam(value = "isGetAmount", required = false) String isGetAmount,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
         return userAO.queryUserPage(loginName, EUserKind.Operator.getCode(),
             level, userReferee, mobile, idKind, idNo, realName, roleCode,
-            status, updater, start, limit);
+            status, updater, start, limit, isGetAmount);
     }
     
     // 查询终端用户
@@ -234,9 +235,10 @@ public class UserController extends BaseController {
             @RequestParam(value = "mobile", required = false) String mobile,
             @RequestParam("start") String start,
             @RequestParam("limit") String limit,
+            @RequestParam(value = "isGetAmount", required = false) String isGetAmount,
             @RequestParam(value = "orderColumn", required = false) String orderColumn,
             @RequestParam(value = "orderDir", required = false) String orderDir) {
-        return userAO.queryTerminalUserPage(userReferee, mobile, start, limit);
+        return userAO.queryTerminalUserPage(userReferee, mobile, start, limit, isGetAmount);
     }
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)

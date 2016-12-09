@@ -14,6 +14,11 @@ package com.xnjr.app.session;
  * @history:
  */
 public class SessionUser extends AUserDetail {
+	
+	private String realUserId;
+	
+	private String realUserName;
+	
     private String userId;
 
     private String userName;
@@ -40,5 +45,23 @@ public class SessionUser extends AUserDetail {
     public SessionUser(String userId, String userName) {
         this.userId = userId;
         this.userName = userName;
+        this.realUserId = userId;
+        this.realUserName = userName;
     }
+
+	public String getRealUserId() {
+		return realUserId;
+	}
+
+	public void setRealUserId(String realUserId) {
+		this.realUserId = realUserId;
+	}
+
+	public String getRealUserName() {
+		return realUserName;
+	}
+
+	public void setRealUserName(String realUserName) {
+		this.realUserName = realUserName;
+	}
 }

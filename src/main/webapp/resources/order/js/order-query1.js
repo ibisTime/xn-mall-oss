@@ -4,10 +4,7 @@ $(function() {
 	//按钮权限判断
 	showPermissionControl();
 	
-	var joinUsers = [{
-		userId: 'U201600000000000001',
-		loginName: '菜狗平台'
-	}];
+	var joinUsers = [];
 	var joinUsersDict = {};
 	
 	$('#status').renderDropdown(Dict.getName('order_status'));

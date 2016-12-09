@@ -43,7 +43,7 @@ public interface IUserAO {
     public Object queryUserPage(String loginName, String kind, String level,
             String userReferee, String mobile, String idKind, String idNo,
             String realName, String roleCode, String status, String updater,
-            String start, String limit);
+            String start, String limit, String IsGetAmount);
 
     /**
      * 查询用户列表
@@ -212,6 +212,6 @@ public interface IUserAO {
     
     // 查询终端用户
     public Object queryTerminalUserPage(String userReferee, String mobile,
-            String start, String limit);
+            String start, String limit, String isGetAmount);
 
 }

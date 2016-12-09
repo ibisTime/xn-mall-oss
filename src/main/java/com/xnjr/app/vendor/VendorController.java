@@ -157,4 +157,13 @@ public class VendorController extends BaseController {
               Object.class);
     }
     
+    // 商家统计
+    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
+    @ResponseBody
+    public Object viewStats(@RequestParam Map<String,String> allRequestParams) {
+    	//allRequestParams.put("userId", this.getSessionUser().getUserId());
+  	    return BizConnecter.getBizData("602907", JsonUtils.mapToJson(allRequestParams),
+              Object.class);
+    }
+    
 }

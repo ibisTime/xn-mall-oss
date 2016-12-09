@@ -16,7 +16,7 @@ $(function() {
 				var data = {};
 				
 				data.amount = moneyParse($('#amount').val());
-				data.remark = $('#remark').val();
+				data.remark = '积分送给' + $("#mobile").find("option:selected").text();
 				data.fromAccountNumber = getAccountId(getUserId(), 'XNB');
 				data.accountNumber = getAccountId($("#mobile").val(), 'XNB');
 				if ($('#type').val() == 2) {

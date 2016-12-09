@@ -14,6 +14,8 @@ public class XN805090Req {
     private String toUser;
 
     private String start;
+    
+    private String isGetAmount;
 
     public String getUserId() {
 		return userId;
@@ -53,6 +55,14 @@ public class XN805090Req {
 
 	public void setLimit(String limit) {
 		this.limit = limit;
+	}
+
+	public String getIsGetAmount() {
+		return isGetAmount;
+	}
+
+	public void setIsGetAmount(String isGetAmount) {
+		this.isGetAmount = isGetAmount;
 	}
 
 	private String limit;

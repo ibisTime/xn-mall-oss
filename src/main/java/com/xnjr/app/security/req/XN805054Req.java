@@ -40,6 +40,8 @@ public class XN805054Req extends APageReq {
 
     // 修改人
     private String updater;
+    
+    private String isGetAmount;
 
     public String getLoginName() {
         return loginName;
@@ -128,5 +130,13 @@ public class XN805054Req extends APageReq {
     public void setUpdater(String updater) {
         this.updater = updater;
     }
+
+	public String getIsGetAmount() {
+		return isGetAmount;
+	}
+
+	public void setIsGetAmount(String isGetAmount) {
+		this.isGetAmount = isGetAmount;
+	}
 
 }

@@ -480,20 +480,6 @@ Array.union = function(a, b){
     return a.concat(b).uniquelize();  
 };  
 
-//面包屑
-setTimeout(function() {
-	var topTitle = $('.nav .selected h2', window.parent.frames[0].document).text();
-	var leftFirstTitle = $('.left-menu .active', window.parent.frames[1].document).parent().parent().find('.title').text();
-	var leftSecondTitle = $('.left-menu .active', window.parent.frames[1].document).text();
-	var html = '<li>'+topTitle+'</li><li>'+leftFirstTitle+'</li><li>'+leftSecondTitle+'</li>';
-	var BtnTitle = localStorage.getItem('syj-btn');
-	localStorage.setItem('syj-btn', '');
-	if (BtnTitle) {
-		html += '<li>'+BtnTitle+'</li>';
-	}
-	$('.place ul').html(html);
-}, 1);
-
 $(document).on('click', '.toolbar li[id*=Btn]', function(e) {
 	var text = $(this).text();
 	localStorage.setItem('syj-btn', text);
@@ -510,13 +496,33 @@ function linkSrc(value) {
 }
 
 function getUserId() {
-	return $('#topUserId', window.parent.frames[0].document).val();
+	var userId = $('#topUserId', window.parent.frames[0].document).val();
+	if (userId.indexOf('U201600000000000001-') > -1) {
+		userId = 'U201600000000000001';
+	}
+	return userId;
 }
+$(function() {
+	//下拉框
+	setTimeout(function() {
+		$('select').chosen && $('select').not('.norender').chosen({search_contains: true});
+	}, 1);
+	
+	//面包屑
+	setTimeout(function() {
+		var topTitle = $('.nav .selected h2', window.parent.frames[0].document).text();
+		var leftFirstTitle = $('.left-menu .active', window.parent.frames[1].document).parent().parent().find('.title').text();
+		var leftSecondTitle = $('.left-menu .active', window.parent.frames[1].document).text();
+		var html = '<li>'+topTitle+'</li><li>'+leftFirstTitle+'</li><li>'+leftSecondTitle+'</li>';
+		var BtnTitle = localStorage.getItem('syj-btn');
+		localStorage.setItem('syj-btn', '');
+		if (BtnTitle) {
+			html += '<li>'+BtnTitle+'</li>';
+		}
+		$('.place ul').html(html);
+	}, 1);
+});
 
-//下拉框
-setTimeout(function() {
-	$('select').chosen && $('select').not('.norender').chosen({search_contains: true});
-}, 100);
 var oriVal = $.fn.val;
 $.fn.val = function(value) {
 	var res = oriVal.apply($(this), arguments);
@@ -590,3 +596,10 @@ function objectArrayFilter(arr, keys) {
 	});
 	return newArr;
 }
+
+$(document).ajaxStart(function() {
+	$.blockUI && $.blockUI({
+		overlayCSS: {backgroundColor: '#fff', opacity: 0.5},
+		message: null
+	});
+}).ajaxStop($.unblockUI);

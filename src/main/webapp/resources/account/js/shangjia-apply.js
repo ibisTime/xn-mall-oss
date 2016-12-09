@@ -26,7 +26,7 @@ $(function (){
 			alert("请上传付款凭证");
 			return;
 		}
-		var data = {"applyNote": $("#applyNote").val(), "fromUserId":fromUserId,"type":"1","amount":moneyParse($("#amount").val()),"price":moneyParse($("#price").html())};
+		var data = {"applyNote": $("#applyNote").val(), "fromUserId":fromUserId || $('#fromUser').val(),"type":"1","amount":moneyParse($("#amount").val()),"price":moneyParse($("#price").html())};
 		data['pdf'] = $("#url1").attr("href");
 		var url = $("#basePath").val()+"/account/fromRecharge";
 		doPostAjax(url, data, doSuccessBack);
@@ -79,7 +79,22 @@ function doSuccessUserBack(res){
 	if (res.success) {
 		if(res.data != null){
 			level = res.data.level;
-			fromUserId = res.data.userReferee;
+			if (res.data.roleCode == 'SR201600000000000006') { // 商家
+				$('#fromUser').parent().show();
+				ajaxGet($('#basePath').val() + '/user/join/list', {}, false, true).then(function(res) {
+					if (res.success) {
+						var joinUsers = [{
+							userId: 'U201600000000000001',
+							loginName: '菜狗平台'
+						}];
+						joinUsers = joinUsers.concat(res.data);
+						$('#fromUser').renderDropdown(joinUsers, 'userId', 'loginName');
+					}
+				});
+			} else {
+				fromUserId = res.data.userReferee;
+			}
+			
 		}
 	}else{
 		alert(res.msg);

@@ -45,7 +45,7 @@ public class UserAOImpl implements IUserAO {
     public Object queryUserPage(String loginName, String kind, String level,
             String userReferee, String mobile, String idKind, String idNo,
             String realName, String roleCode, String status, String updater,
-            String start, String limit) {
+            String start, String limit, String isGetAmount) {
     	XN805054Req req = new XN805054Req();
         req.setLoginName(loginName);
         req.setKind(kind);
@@ -60,8 +60,10 @@ public class UserAOImpl implements IUserAO {
         req.setUpdater(updater);
         req.setStart(start);
         req.setLimit(limit);
+        req.setIsGetAmount(isGetAmount);
         return BizConnecter.getBizData("805054", JsonUtils.object2Json(req),
-            Object.class);
+                Object.class);
+     
     }
 
     @Override
@@ -251,12 +253,13 @@ public class UserAOImpl implements IUserAO {
 	}
 	
 	public Object queryTerminalUserPage(String userReferee, String mobile,
-            String start, String limit) {
+            String start, String limit, String isGetAmount) {
         XN805090Req req = new XN805090Req();
         req.setUserId(userReferee);
         req.setMobile(mobile);
         req.setStart(start);
         req.setLimit(limit);
+        req.setIsGetAmount(isGetAmount);
         return BizConnecter.getBizData("805090", JsonUtils.object2Json(req),
             Object.class);
     }

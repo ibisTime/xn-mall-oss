@@ -3,12 +3,11 @@ var dictLevel=null;
 $(function(){
 	//按钮权限判断
 	showPermissionControl();
-	//表格初始化
-	queryTableData();
 	
+	var searchUrl = $("#basePath").val()+"/customer/zhongduanPage";
 	var userId = getUserId();
 	if (userId == 'U201600000000000001') {
-		userId = '';
+		searchUrl = $("#basePath").val()+"/customer/queryPage";
 	} else {
 		$('#userReferee').parent().hide();
 	}
@@ -28,6 +27,8 @@ $(function(){
 			});
 		}
 	});
+	//表格初始化
+	queryTableData();
 	
 	//详情绑定事件
 	$('#detailBtn').click(function() {
@@ -41,7 +42,11 @@ $(function(){
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/zhongduanPage"});
+		var url = $("#basePath").val()+"/customer/zhongduanPage";
+		if (userId == 'U201600000000000001' && !$('#userReferee').val()) {
+			url = $("#basePath").val()+"/customer/queryPage";
+		}
+		$('#tableList').bootstrapTable('refresh',{url: url});
 	});
 	
 	$('#replaceAddBtn').click(function() {
@@ -111,7 +116,7 @@ $(function(){
 					return scoreDict[v];
 				}
 		    }, {
-		    	field : 'leftScore',
+		    	field : 'amount',
 				title : '剩余积分',
 				align : 'left',
 				valign : 'middle',
@@ -131,7 +136,7 @@ $(function(){
 		
 		$('#tableList').bootstrapTable({
 			method : "get",
-			url : $("#basePath").val()+"/customer/zhongduanPage",
+			url : searchUrl,
 			striped : true,
 			clickToSelect : true,
 			singleSelect : true,
@@ -139,10 +144,11 @@ $(function(){
 				return {
 					mobile : $("#mobile").val(),
 //					realName : $("#realName").val(),
-					userId : userId || $("#userReferee").val(),
+					userId : (userId == 'U201600000000000001') ? $("#userReferee").val() : userId,
 					status : $("#status").val(),
 					start : params.offset / params.limit + 1,
-					limit : params.limit
+					limit : params.limit,
+					isGetAmount: 1
 				};
 			},
 			queryParamsType : 'limit',
