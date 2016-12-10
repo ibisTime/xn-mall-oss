@@ -2,6 +2,9 @@
 $(function(){
 	//按钮权限判断
 	showPermissionControl();
+	var userId = getUserId();
+	var merchantCode = getQueryString('code') || "";
+	var merUserId = merchantCode?"":userId;
 	//表格初始化
 	queryTableData();
 	
@@ -45,8 +48,9 @@ $(function(){
 			singleSelect : true,
 			queryParams : function(params) {
 				return {
-					merchantCode: getQueryString('code'),
+					merchantCode: merchantCode,
 					loginName : $("#loginName").val(),
+					merUserId: merUserId,
 					dateStart : $("#dateStart").val(),
 					dateEnd : $("#dateEnd").val(),
 					start : params.offset / params.limit + 1,

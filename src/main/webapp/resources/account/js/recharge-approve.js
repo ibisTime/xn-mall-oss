@@ -54,7 +54,7 @@ function doGetDetailBack(res){
 			$("#price").html(moneyFormat(result.price, 2));
 			$("#approveNote").html(result.approveNote);
 			$("#amount").html(moneyFormat(result.amount,2));
-			$("#applyUser").html(result.applyUser);
+			$("#applyUser").html(result.loginName);
 			$("#applyNote").html(result.applyNote);
 			$("#bankCode").html(Dict.getName('charge_type',result.fromType));
 			$("#fromAccountNumber").html(result.fromAccountNumber);

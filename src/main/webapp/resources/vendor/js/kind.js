@@ -24,7 +24,9 @@ $(function(){
 			alert("请选择记录");
 			return;
 		}
-		
+		if(!confirm("确认删除编号-"+selRecords[0].code+"")){
+			return false;
+		}
     	var url = $("#basePath").val()+"/vendor/kind/delete";
     	var data = {code:selRecords[0].code};
 		ajaxPost(url, data).then(function(res) {

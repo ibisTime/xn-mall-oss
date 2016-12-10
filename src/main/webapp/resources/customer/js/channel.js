@@ -3,14 +3,22 @@ var dictLevel=null;
 $(function(){
 	//按钮权限判断
 	showPermissionControl();
+	//获取用户类型
+    url = $("#basePath").val() + "/user";
+    var queryUrl = "";
+	//doGetAjaxIsAsync(url, data, false, doSuccessUserBack);
+	var userId = getUserId();
+	if(userId == "U201600000000000001"){
+		queryUrl = "/customer/queryPage";
+	}else{
+		queryUrl = "/customer/zhongduanPage";
+	}
 	//表格初始化
 	queryTableData();
 	
-	
-	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val()+"/customer/zhongduanPage"});
+		$('#tableList').bootstrapTable('refresh',{url: $("#basePath").val() + queryUrl});
 	});
 	
 	//代注册
@@ -51,7 +59,7 @@ $(function(){
 		
 		$('#tableList').bootstrapTable({
 			method : "get",
-			url : $("#basePath").val()+"/customer/zhongduanPage",
+			url : $("#basePath").val()+queryUrl,
 			striped : true,
 			clickToSelect : true,
 			singleSelect : true,

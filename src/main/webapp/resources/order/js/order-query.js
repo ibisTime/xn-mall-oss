@@ -97,7 +97,7 @@ function queryTableData(){
 		formatter: Dict.getNameForList('invoice_type')
 	}, {
 		field : 'mobile',
-		title : '手机号',
+		title : '下单用户',
 		align : 'left',
 		valign : 'middle',
 		sortable : false
@@ -139,7 +139,7 @@ function queryTableData(){
 		singleSelect : true,
 		queryParams : function(params) {
 			return {
-				applyUser : $("#applyUser").val(),
+				mobile : $("#mobile").val(),
 				status : $("#status").val(),
 				start : params.offset / params.limit + 1,
 				limit : params.limit

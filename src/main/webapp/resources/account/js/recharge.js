@@ -97,7 +97,7 @@ $(function() {
 			sortable : false,
 			formatter : Dict.getNameForList('recharge_status')
 		},{
-			field: 'applyUser',
+			field: 'loginName',
 			title: '申请人'
 		},{
 			field : 'createDatetime',

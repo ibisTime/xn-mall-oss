@@ -12,10 +12,7 @@ $(function(){
 		$('#userReferee').parent().hide();
 	}
 	
-	var scoreList = [{
-		userId: 'U201600000000000001',
-		loginName: '菜狗平台'
-	}];
+	var scoreList = [];
 	var scoreDict = {};
 	
 	ajaxGet($('#basePath').val() + '/user/score/list', {}, false, true).then(function(res) {
@@ -42,11 +39,17 @@ $(function(){
 	
 	// 查询事件绑定
 	$('#searchBtn').click(function() {
-		var url = $("#basePath").val()+"/customer/zhongduanPage";
-		if (userId == 'U201600000000000001' && !$('#userReferee').val()) {
+		var url = $("#basePath").val()+"/customer/zhongduanPage",
+			config = {};
+		if (userId == 'U201600000000000001') {
 			url = $("#basePath").val()+"/customer/queryPage";
+			var userReferee = "";
+			if(userReferee = $('#userReferee').val()){
+				config.userReferee = userReferee;
+			}
 		}
-		$('#tableList').bootstrapTable('refresh',{url: url});
+		config.url = url;
+		$('#tableList').bootstrapTable('refresh',config);
 	});
 	
 	$('#replaceAddBtn').click(function() {
@@ -108,7 +111,7 @@ $(function(){
 				sortable : false
 		    },{
 				field : 'userReferee',
-				title : '所属积分商',
+				title : '推荐人',
 				align : 'left',
 				valign : 'middle',
 				sortable : false,
@@ -144,8 +147,9 @@ $(function(){
 				return {
 					mobile : $("#mobile").val(),
 //					realName : $("#realName").val(),
-					userId : (userId == 'U201600000000000001') ? $("#userReferee").val() : userId,
+					userId : userId,
 					status : $("#status").val(),
+					userReferee: (userId == 'U201600000000000001') ? $("#userReferee").val():"",
 					start : params.offset / params.limit + 1,
 					limit : params.limit,
 					isGetAmount: 1

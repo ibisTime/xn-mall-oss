@@ -62,7 +62,8 @@ $(function() {
 			$("#payCnyAmount").html(moneyFormatter(res.data.payCnyAmount));
 			$("#totalCnyAmount").html(moneyFormatter(res.data.totalCnyAmount));
 			$("#payAmount").html(moneyFormatter(res.data.payAmount));
-			$("#mobile").html(res.data.mobile?res.data.mobile:'-');
+			$("#mobile").html(res.data.mobile?res.data.mobile:"-");
+			$("#mobile1").html(res.data.address?res.data.address.mobile:'-');
 			$("#name").html(res.data.address?res.data.address.addressee:'-');
 			$("#address").html(res.data.address?res.data.address.province+res.data.address.city+res.data.address.district+res.data.address.detailAddress:'-');
 			$("#tableList").bootstrapTable("load", res.data.invoiceModelList);
