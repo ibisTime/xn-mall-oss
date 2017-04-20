@@ -11,8 +11,8 @@ $(function () {
 		field : 'mobile',
 		title : '手机号'
 	}, {
-		field : 'userReferee',
-		title : '推荐人'
+		title : '分成比例',
+    	field : 'divRate',
 	}, {
 		field : 'status',
 		title : '状态',
@@ -44,9 +44,13 @@ $(function () {
     });
     
     
-    $('#registerBtn').click(function() {
-
-        window.location.href = "AllianceBusines_register.html";
+    $('#editBtn').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        window.location.href = "AllianceBusiness_addedit.html?userId="+selRecords[0].userId;
     });
     
 });

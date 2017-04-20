@@ -46,18 +46,20 @@ $(function() {
 	});
 	
 	$("#subBtn").off("click").click(function() {
-		confirm("确认上架？").then(function() {
-			var data = $('#jsForm').serializeObject();
-			data.code = code;
-			data.price1="0";
-			
-        	reqApi({
-                code: '808013',
-                json:  data
-            }).then(function() {
-               sucDetail();
-            });
-            
-		});
+		if($('#jsForm').valid()){
+			confirm("确认上架？").then(function() {
+				var data = $('#jsForm').serializeObject();
+				data.code = code;
+				data.price1="0";
+				
+		    	reqApi({
+		            code: '808013',
+		            json:  data
+		        }).then(function() {
+		           sucDetail();
+		        });
+		        
+			});
+		}
     });
 });

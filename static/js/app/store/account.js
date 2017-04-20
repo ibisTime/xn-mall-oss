@@ -1,15 +1,45 @@
 $(function () {
 	var view = 1;
+	var rateCGB = 1;
+	var rateJF = 1;
     
     reqApi({
 		code: '802503',
 		json: {
 			userId: getUserId()
-		}
+		},
+        sync: true
 	}).done(function(data) {
-		$("#amount-CNY").text("￥"+data[0].amount/1000)
-		$("#amount-CGB").text(data[2].amount/1000+"菜狗币")
-		$("#amount-JF").text(data[1].amount/1000+"积分")
+		data.forEach(function(v, i){
+			if(v.currency == "CGB"){
+				$("#amount-CGB").text(data[2].amount/1000+"菜狗币")
+			}else if(v.currency == "CGJF"){
+				$("#amount-JF").text(data[1].amount/1000+"积分")
+			}
+		})
+		
+	});
+	
+	reqApi({
+		code: '002051',
+		json: {
+			fromCurrency:'CNY',
+			toCurrency: 'CGB'
+		},
+        sync: true
+	}).done(function(data) {
+		rateCGB = data.rate
+	});
+	
+	reqApi({
+		code: '002051',
+		json: {
+			fromCurrency:'CGB',
+			toCurrency: 'CGJF'
+		},
+        sync: true
+	}).done(function(data) {
+		rateJF = data.rate
 	});
     
     $('#saleBtn').click(function() {
@@ -24,22 +54,22 @@ $(function () {
 		buildDetail({
 			fields: [{
 				field: 'toUserId',
-				title: '售卖用户',
+				title: '售卖商家',
 				required: true,
 				type: 'select',
 				pageCode: 805054,
-				upd: false,
 				params: {
 					userReferee: getUserId(),
 					updater:''
 				},
 				keyName: 'userId',
-				valueName: '{{realName.DATA}} - {{mobile.DATA}}',
+				valueName: 'mobile',
 				searchName: 'mobile',
-				
 			},{
 				title: '数量',
 				field: 'amount',
+				amount: true,
+				"Z+": true,
 				formatter:moneyFormat,
 				required: true
 			}],
@@ -55,15 +85,17 @@ $(function () {
 					}else if ($('#popForm').valid()) {
 						
 						var data = $('#popForm').serializeObject();
-						data.storeOwner = getUserId();
-						data.mobile = $("#toUserId").val();
+						data.fromUserId = getUserId();
 						data.currency = "CGB";
 						reqApi({
-							code: '808800',
+							code: '802401',
 							json: data
 						}).done(function(data) {
-							sucList();
-							dw.close().remove();
+            				toastr.success("操作成功");
+            				setTimeout(function(){
+								location.reload();
+								dw.close().remove();
+            				},2000)
 						});
 					}
 				}
@@ -88,20 +120,23 @@ $(function () {
 		dw.showModal();
 		buildDetail({
 			fields: [{
-				title: '发放用户',
+				title: '发放商家',
 				field: 'toUserId',
 				type:'select',
-				listCode:"805055",
-				params:{
+				pageCode: 805054,
+				params: {
 					userReferee: getUserId(),
-					kind:"f1"
+					updater:''
 				},
 				keyName: 'userId',
-				valueName: 'nickname',
+				valueName: 'mobile',
+				searchName: 'mobile',
 				required: true
 			},{
 				title: '数量',
 				field: 'amount',
+				amount: true,
+				"Z+":true,
 				formatter:moneyFormat,
 				required: true
 			}],
@@ -113,13 +148,17 @@ $(function () {
 						
 						var data = $('#popForm').serializeObject();
 						data.fromUserId = getUserId();
-						data.currency = "JF";
+						data.currency = "CGJF";
 						reqApi({
-							code: '808801',
+							code: '802401',
 							json: data
 						}).done(function(data) {
-							sucList();
-							dw.close().remove();
+            				
+            				toastr.success("操作成功");
+            				setTimeout(function(){
+								location.reload();
+								dw.close().remove();
+            				},2000)
 						});
 					}
 				}
@@ -149,12 +188,15 @@ $(function () {
 				field: 'amount',
 				formatter:moneyFormat,
 				required: true,
+				"Z+": true,
+				min: 100,
 				onKeyup: function(v){
-					$("#price").html(v*1);
+					$("#price").html(moneyFormatdecimal(v/rateCGB));
 				}
 			},{
 				title: '金额',
 				field: 'price',
+				amount: true,
 				formatter:moneyFormat,
         		readonly: view
 			}],
@@ -170,9 +212,9 @@ $(function () {
 				            toastr.info("请选择记录");
 				            return;
 				        }
-						
 						data.fromUserId = getUserId();
 						data.toUserId = OSS.SYS_USER;
+						data.amount = moneyFormatByEnLarge($("#price").html());
 						data.currency = "CGB";
 						reqApi({
 							code: '802530',
@@ -193,18 +235,8 @@ $(function () {
 							var qrcode = new QRCode('qrcode',data);
 						 	qrcode.makeCode(data);
 						
-					});
+						});
 					
-//						var data = $('#popForm').serializeObject();
-//						data.fromUserId = getUserId();
-//						data.currency = "JF";
-//						reqApi({
-//							code: '808801',
-//							json: data
-//						}).done(function(data) {
-//							sucList();
-//							dw.close().remove();
-//						});
 					}
 				}
 			}, {
@@ -215,7 +247,78 @@ $(function () {
 			}]
 		});
 		dw.__center();
-		h ="<br/><p class='huilv'>当前汇率1</p>";
+		h ="<br/><p class='huilv'>当前汇率"+rateCGB+",最少购买100个</p>";
+					$(h).insertAfter("#amount");
+	});
+	
+	$('#purchaseBtn-JF').click(function() {
+		var selRecords = $('#tableList').bootstrapTable('getSelections');
+		var dw = dialog({
+			content: '<form class="pop-form" id="popForm" novalidate="novalidate">' +
+			'<ul class="form-info" id="formContainer"></ul>'+
+			'</form>'
+		});
+		
+		dw.showModal();
+		buildDetail({
+			fields: [{
+				title: '购买数量',
+				field: 'amount',
+				"Z+": true,
+				min: 100,
+				formatter:moneyFormat,
+				required: true,
+				onKeyup: function(v){
+					$("#price").html(moneyFormatdecimal(v/rateJF));
+				}
+			},{
+				title: '金额',
+				field: 'price',
+				amount: true,
+				formatter:moneyFormat,
+        		readonly: view
+			}],
+			container: $('#formContainer'),
+			buttons: [{
+				title: '购买',
+				handler: function() {
+					if ($('#popForm').valid()) {
+						
+						var data = $('#popForm').serializeObject();
+						
+						if (data.length <= 0) {
+				            toastr.info("请选择记录");
+				            return;
+				        }
+						
+						data.userId = getUserId();
+					    data.fromAmount = $("#price").html()*1000;
+					    data.fromCurrency = "CGB";
+					    data.toCurrency = "CGJF";
+						reqApi({
+							code: '802412',
+							json: data
+						}).done(function(data) {
+							
+            				toastr.success("操作成功");
+            				setTimeout(function(){
+								location.reload();
+								dw.close().remove();
+            				},2000)
+						
+						});
+					
+					}
+				}
+			}, {
+				title: '取消',
+				handler: function() {
+					dw.close().remove();
+				}
+			}]
+		});
+		dw.__center();
+		h ="<br/><p class='huilv'>当前汇率"+rateJF+",最少购买100个</p>";
 					$(h).insertAfter("#amount");
 	});
 	

@@ -13,11 +13,11 @@ $(function () {
         title: '兑换用户',
         search: true
     }, {
-        field: '',
+        field: 'fromAmount',
         title: '兑换嗨币',
         formatter: moneyFormat
     }, {
-        field: '',
+        field: 'toAmount',
         title: '获得菜狗币',
         formatter: moneyFormat
     }, {

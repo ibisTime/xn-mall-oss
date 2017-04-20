@@ -12,7 +12,7 @@ $(function() {
 			data[this.name] = this.value;
 		});
 		data["userId"] = $("#userId").html();
-		data['adminUserId'] = 'U201600000000000000';
+		data['adminUserId'] = 'CCG201600000000000001';
 
 		reqApi({
 			code: '805078',

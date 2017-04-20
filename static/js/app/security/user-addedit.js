@@ -36,22 +36,18 @@ $(function() {
 	        type: 'select',
 	        key: 'id_kind',
 	        keyCode: "807706",
-			required: true
 	    }, {
 	        title: '证件号',
 	        field: 'idNo',
 	        idCard: true,
-			required: true
 	    }, {
 	        title: '真实姓名',
 	        field: 'realName',
 	        chinese: true,
-			required: true
 	    }, {
 	        title: '手机号',
 	        field: 'mobile',
 	        tm: true,
-			required: true
 	    }, 	{
 			title: '备注',
 			field: 'remark',

@@ -1,6 +1,6 @@
 $(function() {
 	
-	var code = getQueryString('code');
+	var userId = getQueryString('userId');
 	
 	var fields = [{
 		field: 'kind',
@@ -31,6 +31,13 @@ $(function() {
         title: '证件号',
         field: 'idNo',
         idCard: true
+    },{
+		title : '分成比例',
+    	field : 'divRate',
+    	number:true,
+    	max: 1,
+    	min: 0,
+		required: true
     }, {
 		title: '备注',
 		field: 'remark',
@@ -39,18 +46,25 @@ $(function() {
 	
 	buildDetail({
 		fields: fields,
+		code:{
+			userId: userId
+		},
+		detailCode: '805056',
+		addCode: '805042',
+		editCode: '805182',
+		beforeSubmit: function(data){
+			if(userId){
+				console.log(userId)
+				data.userId = userId;
+			}
+			data.userReferee = getUserId();
+			data.kind = '05';
+			
+			return data;
+		}
 	});
 	
-	$("#subBtn").off("click").click(function(){
-		var data = $('#jsForm').serializeObject();
-		data.userReferee = getUserId();
-		data.kind = '05';
-		reqApi({
-            code: '805042',
-            json: data
-        }).then(function() {
-            sucDetail();
-        });
-	})
+	var h ="<br/><p class='huilv' style='padding: 5px 0 0 194px;display: block;color:red;'>初始密码为 888888</p>";
+	$(h).insertAfter("#loginName");
 	
 });

@@ -5,7 +5,6 @@ $(function() {
     var fields = [{
             title: '入金金额',
             field: 'amount',
-            formatter: moneyFormat,
             required: true
         },
         {
@@ -28,7 +27,7 @@ $(function() {
             if ($('#jsForm').valid()) {
                 var data = {};
                 data['code'] = code;
-                data['amount'] = $("#amount").val();
+                data['amount'] = $("#amount").val()*1000;
                 data['addUser'] = sessionStorage.getItem('userName');
                 data["remark"] = $("#remark").val();
                 reqApi({

@@ -1,6 +1,69 @@
 $(function() {
 	var code = getQueryString('code');
 	var view= !!getQueryString('v');
+	var isDetail = !!getQueryString('detail');
+	
+	var approveNoteField = {
+		title: '意见说明',
+		field: 'rollbackNote',
+		maxlength: 250,
+		required: true,
+		readonly: false
+	};
+	
+	
+	var buttons = [{
+		title: '通过',
+		handler: function() {
+			if ($('#jsForm').valid()) {
+				var data = $('#jsForm').serializeObject();
+				data.rollbackResult = '1';
+				data.rollbackUser = getUserName();
+				data.codeList = [data.code];
+				reqApi({
+					code: '802511',
+					json: data
+				}).done(function(data) {
+					sucDetail();
+				});
+			}
+		}
+	}, {
+		title: '不通过',
+		handler: function() {
+			if ($('#jsForm').valid()) {
+				var data = $('#jsForm').serializeObject();
+				data.rollbackResult = '0';
+				data.rollbackUser = getUserName();
+				data.codeList = [data.code];
+				reqApi({
+					code: '802511',
+					json: data
+				}).done(function(data) {
+					sucDetail();
+				});
+			}
+		}
+	}, {
+		title: '返回',
+		handler: function() {
+			goBack();
+		}
+	}];
+	
+	if(isDetail){
+		approveNoteField = {
+			title: '意见说明',
+			field: 'rollbackNote',
+			maxlength: 250
+		};
+		buttons = [{
+			title: '返回',
+			handler: function() {
+				goBack();
+			}
+		}];
+	}
 
 	var fields = [{
 		title: '户名',
@@ -65,59 +128,16 @@ $(function() {
 		title: '备注',
 		field: 'remark',
 		maxlength: 250
-	}, {
-		title: '意见说明',
-		field: 'rollbackNote',
-		maxlength: 250,
-		required: true,
-		readonly: false
-	}];
+	}, approveNoteField];
 
 	var options = {
 		fields: fields,
 		code: code,
 		detailCode: '802522',
-		view: true
+		view: true,
+		buttons: buttons
 	};
 
-	options.buttons = [{
-		title: '通过',
-		handler: function() {
-			if ($('#jsForm').valid()) {
-				var data = $('#jsForm').serializeObject();
-				data.rollbackResult = '1';
-				data.rollbackUser = getUserName();
-				data.codeList = [data.code];
-				reqApi({
-					code: '802511',
-					json: data
-				}).done(function(data) {
-					sucDetail();
-				});
-			}
-		}
-	}, {
-		title: '不通过',
-		handler: function() {
-			if ($('#jsForm').valid()) {
-				var data = $('#jsForm').serializeObject();
-				data.rollbackResult = '0';
-				data.rollbackUser = getUserName();
-				data.codeList = [data.code];
-				reqApi({
-					code: '802511',
-					json: data
-				}).done(function(data) {
-					sucDetail();
-				});
-			}
-		}
-	}, {
-		title: '返回',
-		handler: function() {
-			goBack();
-		}
-	}];
 
 	buildDetail(options);
 });

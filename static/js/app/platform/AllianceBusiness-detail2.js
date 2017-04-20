@@ -33,6 +33,10 @@ $(function() {
         field: 'idNo',
         idCard: true
     }, {
+		title : '分成比例',
+    	field : 'divRate',
+		required: true,
+	},{
 		title: '备注',
 		field: 'remark',
 		maxlength: 250

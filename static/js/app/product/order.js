@@ -37,7 +37,7 @@ $(function () {
         	return data.user.mobile;
         }
         
-    },{
+    }, {
         field: 'applyDatetime',
         title: '下单时间',
         type: "datetime",
@@ -103,21 +103,21 @@ $(function () {
             toastr.info("请选择记录");
             return;
         }
-
-        if (selRecords[0].status == 1 || selRecords[0].status == 2) {
-            confirm("确认取消订单？").then(function() {
-                reqApi({
-                    code: '808056',
-                    json: { "codeList": [selRecords[0].code] }
-                }).then(function() {
-                    toastr.info("操作成功");
-                    $('#tableList').bootstrapTable('refresh', { url: $('#tableList').bootstrapTable('getOptions').url });
-                });
-            }, function() {});
-        } else {
-            toastr.info("当前订单状态,不能取消订单!");
+        
+        if (selRecords[0].status != 2 && selRecords[0].status != 3 ) {
+            toastr.info("当前订单状态不能取消订单!");
             return;
         }
+        
+        confirm("确认取消订单？").then(function() {
+            reqApi({
+                code: '808056',
+                json: { "codeList": [selRecords[0].code] }
+            }).then(function() {
+                toastr.info("操作成功");
+                $('#tableList').bootstrapTable('refresh', { url: $('#tableList').bootstrapTable('getOptions').url });
+            });
+        },function(){});
 
     });
     

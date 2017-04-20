@@ -4,7 +4,7 @@ $(function () {
         title: '',
         checkbox: true
     }, {
-        field: 'hzbCode',
+        field: 'code',
         title: '编号',
     }, {
         field: 'owner',

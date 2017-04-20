@@ -28,6 +28,7 @@ $(function() {
 		title: '图片',
 		field: 'pic',
 		type: 'img',
+		single: true,
 		required: true,
 	}, {
         field: 'orderNo',

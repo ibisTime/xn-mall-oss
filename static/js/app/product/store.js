@@ -28,7 +28,7 @@ $(function () {
         field: 'smsMobile',
         title: '短信手机号',
     }, {
-        field: 'userReferee',
+        field: 'refereeMobile',
         title: '店铺推荐人',
     }, {
         field: 'status',

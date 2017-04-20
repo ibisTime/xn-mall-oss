@@ -12,7 +12,7 @@ $(function () {
 		$("#amount-JF").text(data[1].amount/1000+"积分")
 	});
     
-    $('#accoutSaleBtn').click(function() {
+     $('#accoutSaleBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
 		var dw = dialog({
 			content: '<form class="pop-form" id="popForm" novalidate="novalidate">' +
@@ -23,61 +23,45 @@ $(function () {
 		dw.showModal();
 		buildDetail({
 			fields: [{
-				title: '菜狗币',
-				field: 'rollbackNote',
-				readonly: view
+				field: 'toUserId',
+				title: '售卖加盟商',
+				required: true,
+				type: 'select',
+				pageCode: 805054,
+				params: {
+					kind: '05',
+					updater:''
+				},
+				keyName: 'userId',
+				valueName: 'mobile',
+				searchName: 'mobile',
 			},{
-				title: '商家',
-				field: 'mobile',
-				required: true
-			},{
-				title: '额度',
+				title: '数量',
 				field: 'amount',
+				amount: true,
+				"Z+": true,
+				formatter:moneyFormat,
 				required: true
 			}],
 			container: $('#formContainer'),
 			buttons: [{
-				title: '通过',
+				title: '售卖',
 				handler: function() {
-					if ($('#popForm').valid()) {
-						var selRecords = $('#tableList').bootstrapTable('getSelections');
-						var code = [];
-						selRecords.forEach(function(i) {
-							code.push(i.code);
-						});
+					
+					if($('#toUserId').val()==""){
+						toastr.error("售卖用户不能为空");
+					}else if($('#amount').val()==""){
+						toastr.error("数量不能为空");
+					}else if ($('#popForm').valid()) {
+						
 						var data = $('#popForm').serializeObject();
-						data.codeList = code;
-						data.rollbackResult = '1';
-						data.rollbackUser = getUserName();
-						data.order = data.code;
+						data.fromUserId = getUserId();
+						data.currency = "CGB";
 						reqApi({
-							code: '802511',
+							code: '802401',
 							json: data
 						}).done(function(data) {
-							sucList();
-							dw.close().remove();
-						});
-					}
-				}
-			}, {
-				title: '不通过',
-				handler: function() {
-					if ($('#popForm').valid()) {
-						var selRecords = $('#tableList').bootstrapTable('getSelections');
-						var code = [];
-						selRecords.forEach(function(i) {
-							code.push(i.code);
-						});
-						var data = $('#popForm').serializeObject();
-						data.codeList = code;
-						data.rollbackResult = '0';
-						data.rollbackUser = getUserName();
-						data.order = data.code;
-						reqApi({
-							code: '802511',
-							json: data
-						}).done(function(data) {
-							sucList();
+							location.reload();
 							dw.close().remove();
 						});
 					}
@@ -103,61 +87,40 @@ $(function () {
 		dw.showModal();
 		buildDetail({
 			fields: [{
-				title: '积分',
-				field: 'rollbackNote',
-				readonly: view
-			},{
-				title: '商家',
-				field: 'mobile',
+				title: '发放加盟商',
+				field: 'toUserId',
+				type:'select',
+				pageCode: 805054,
+				params: {
+					kind: '05',
+					updater:''
+				},
+				keyName: 'userId',
+				valueName: 'mobile',
+				searchName: 'mobile',
 				required: true
 			},{
-				title: '额度',
+				title: '数量',
 				field: 'amount',
+				amount: true,
+				"Z+": true,
+				formatter:moneyFormat,
 				required: true
 			}],
 			container: $('#formContainer'),
 			buttons: [{
-				title: '通过',
+				title: '发放',
 				handler: function() {
 					if ($('#popForm').valid()) {
-						var selRecords = $('#tableList').bootstrapTable('getSelections');
-						var code = [];
-						selRecords.forEach(function(i) {
-							code.push(i.code);
-						});
+						
 						var data = $('#popForm').serializeObject();
-						data.codeList = code;
-						data.rollbackResult = '1';
-						data.rollbackUser = getUserName();
-						data.order = data.code;
+						data.fromUserId = getUserId();
+						data.currency = "CGJF";
 						reqApi({
-							code: '802511',
+							code: '802401',
 							json: data
 						}).done(function(data) {
-							sucList();
-							dw.close().remove();
-						});
-					}
-				}
-			}, {
-				title: '不通过',
-				handler: function() {
-					if ($('#popForm').valid()) {
-						var selRecords = $('#tableList').bootstrapTable('getSelections');
-						var code = [];
-						selRecords.forEach(function(i) {
-							code.push(i.code);
-						});
-						var data = $('#popForm').serializeObject();
-						data.codeList = code;
-						data.rollbackResult = '0';
-						data.rollbackUser = getUserName();
-						data.order = data.code;
-						reqApi({
-							code: '802511',
-							json: data
-						}).done(function(data) {
-							sucList();
+							location.reload();
 							dw.close().remove();
 						});
 					}

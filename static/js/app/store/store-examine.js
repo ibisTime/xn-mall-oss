@@ -21,17 +21,11 @@ $(function() {
 		keyName: 'code',
 		valueName: 'name',
     }, {
-        field: 'legalPersonName',
-        title: '法人姓名',
+        field: 'mobile',
+        title: '登录名(店家手机号)',
+        mobile: true,
         readonly: view,
-        required: true,
-        maxlength: 32
-    }, {
-        field: 'owner',
-        title: '店铺主人',
-        readonly: view,
-        required: true,
-        maxlength: 32
+        required: true
     }, {
         field: 'bookMobile',
         title: '联系电话',
@@ -144,7 +138,9 @@ $(function() {
     
     function setExamine(a){
     	var data = $('#jsForm').serializeObject();
-			data.code = code;
+    	var sCodeList = [];
+    		sCodeList.push(data.code);
+			data.storeCodeList = sCodeList;
     		data.approveResult = a;
     		data.approver = getUserId();
     		
@@ -152,8 +148,7 @@ $(function() {
             code: '808202',
             json: data
         }).then(function() {
-            toastr.info("操作成功");
-            goBack();
+            sucDetail();
         });
     }
 	

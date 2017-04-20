@@ -21,7 +21,8 @@ $(function() {
         title: '状态',
         type: 'select',
         key: 'jewel_record_status',
-        formatter: Dict.getNameForList("jewel_record_status"),
+        keyCode:'615907',
+        formatter: Dict.getNameForList("jewel_record_status",'615907'),
         search: true
     }];
 
@@ -29,7 +30,7 @@ $(function() {
         columns: columns,
         pageCode: '615025',
 		searchParams:{
-			code: jewelCode,
+			jewelCode: jewelCode,
 			companyCode: OSS.company
 		}
     });

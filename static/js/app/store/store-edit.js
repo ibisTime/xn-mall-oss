@@ -1,7 +1,7 @@
 $(function() {
 	
 	var code = getQueryString('code');
-	var view = 1;
+	var view = !!getQueryString('v');
 	var userId = getUserId();
 	
 	var fields = [{
@@ -14,12 +14,16 @@ $(function() {
         readonly: view,
         required: true,
         maxlength: 32
-    }, {
+    },{
         field: 'type',
         title: '分类',
 		type: 'select',
-		required: true,
 		listCode: '808007',
+        readonly: view,
+		params: {
+			type:2,
+            parentCode: 0
+		},
 		keyName: 'code',
 		valueName: 'name',
     }, {
@@ -28,19 +32,11 @@ $(function() {
         mobile: true,
         readonly: view,
         required: true
-    },
-        //  {
-        //     field: 'owner',
-        //     title: '店铺主人',
-        //     readonly: view,
-        //     required: true,
-        //     maxlength: 32
-        // }, 
-        {
-            field: 'bookMobile',
-            title: '联系电话',
-            mobile: true,
-            required: true,
+    }, {
+        field: 'bookMobile',
+        title: '联系电话',
+        tm: true,
+        required: true,
         readonly: view,
     }, {
         field: 'smsMobile',
@@ -68,13 +64,24 @@ $(function() {
         field: 'longitude',
         west: true,
         readonly: view,
-        hidden: true
+        hidden: !view
     }, {
         title: "纬度",
         field: 'latitude',
         north: true,
         readonly: view,
-        hidden: true
+        hidden: !view
+    }, {
+        field: 'rate2',
+        title: '使用积分比例',
+        min: 0,
+        required: true,
+        readonly: view
+    }, {
+        field: 'rate3',
+        title: '返点比例',
+        min: 0,
+        required: true,
     }, {
         field: 'slogan',
         title: '广告语',
@@ -96,57 +103,22 @@ $(function() {
     }, {
         field: 'description',
         title: '商家描述',
-        type: 'textarea',
         required: true,
         minlength: 20,
         readonly: view
-    },{
-        field: 'uiLocation',
-        title: '位置',
-        type:'select',
-        key:"product_location",
-        keyCode:'808907',
-        required: true,
     }, {
-        field: 'uiOrder',
-        title: '序号',
-        required: true,
-    }, {
-        field: 'isDefault',
-        title: '是否默认',
-        type:'select',
-        data:{
-                "1": "是",
-                "0": "否",
-        },
-        required: true,
-    }, {
-        field: 'rate2',
-        title: '使用积分比例',
-            formatter: function(v, data) {
-                return (v * 100) + "%"
-            },
-
-        }, {
-            field: 'rate3',
-            title: '返点比例',
-            formatter: function(v, data) {
-                return (v * 100) + "%"
-            },
-        }, {
-            field: 'remark',
-            title: '备注',
-            readonly: view
-        }
-    ];
-
-
-    var options = {
+        field: 'remark',
+        title: '备注',
+        readonly: view
+    }];
+	
+	
+	var options = {
         fields: fields,
 		view: view,
 		code: code,
 		detailCode: '808216',
-		addCode: '808200',
+		editCode: '808208',
     };
 
     buildDetail(options);
@@ -197,10 +169,12 @@ $(function() {
             myGeo.getPoint(addr, function(point) {
                 if (point) {
                     data.userReferee = userId;
+                    data.storeCode = data.code;
                     data.rate1 = "0";
                     data.level = "1";
                     data.longitude = point.lng;
                     data.latitude = point.lat;
+                    
                     reqApi({
                         code: code ? options.editCode : options.addCode,
                         json: data

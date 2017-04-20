@@ -36,9 +36,20 @@ $(function () {
         formatter: function(v, data){
         	return data.user.mobile;
         },
+        search: true,
+        type: 'select',
+		pageCode1: '805054',
+		params: {
+			kind: 'f1',
+			updater:''
+		},
+		keyName: 'userId',
+		valueName: 'mobile',
+		searchName: 'mobile',
     },{
         field: 'applyDatetime',
         title: '下单时间',
+        search: true,
         type: "datetime",
         formatter: dateTimeFormat
     }, {
@@ -103,7 +114,7 @@ $(function () {
             return;
         }
         
-        if (selRecords[0].status != 2 || selRecords[0].status != 3 ) {
+        if (selRecords[0].status != 2 && selRecords[0].status != 3 ) {
             toastr.info("当前订单状态不能取消订单!");
             return;
         }

@@ -98,13 +98,13 @@ $(function() {
 	        field: 'price2',
 	        title: '菜狗币价格',
 	        formatter: function(v, data){
-	        	return data.price2
+	        	return moneyFormat(data.price2)
 	        }
 	    }, {
-	        field: 'price2',
+	        field: 'price3',
 	        title: '积分价格',
 	        formatter: function(v, data){
-	        	return data.price2
+	        	return moneyFormat(data.price3)
 	        }
 	    }]
     }, {

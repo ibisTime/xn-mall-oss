@@ -25,10 +25,6 @@ $(function() {
         type: 'select',
         key: 'user_status'
     }, {
-        field: 'userReferee',
-        title: '推荐人',
-        search: true
-    }, {
         field: 'idKind',
         title: '证件类型',
         formatter: Dict.getNameForList('id_kind',"807706"),

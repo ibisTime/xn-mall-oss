@@ -193,6 +193,16 @@ function RateFormatByLargeHundred(rate) {
 }
 
 /**
+ * 保留金额小数后2位,0.111 = 0.12
+ */
+//num是要处理的数字  v为要保留的小数位数
+function moneyFormatdecimal(num){
+	var vv = Math.pow(10,2);
+	return Math.ceil(num*vv)/vv;
+}
+
+
+/**
  * 显示遮罩
  */
 function maskPop() {
@@ -221,7 +231,7 @@ function getQueryString(name) {
     if (r != null) {
         return decodeURIComponent(r[2]);
     }
-    return null;
+    return '';
 }
 
 /**
@@ -1784,12 +1794,8 @@ function buildDetail(options) {
                             }
                         });
                         $('#' + item.field).html(imgsHtml);
-			item.single && setImgDisabled($('#' + item.field));
-			$('#' + item.field).find('.zmdi-close-circle-o').on('click', function(e) {
-//                            $(this).parents("[data-src]").remove();
-				var el = $(this).parent().parent();
-				$(this).parent().remove();
-				el[0].cfg.single && setImgDisabled(el);
+                        $('#' + item.field).find('.zmdi-close-circle-o').on('click', function(e) {
+                            $(this).parents("[data-src]").remove();
                         });
                         $('#' + item.field).find('.zmdi-download').on('click', function(e) {
                             var dSrc = OSS.picBaseUrl + '/' + $(this).parents("[data-src]").attr('data-src');

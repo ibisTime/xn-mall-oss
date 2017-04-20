@@ -15,53 +15,18 @@ $(function() {
         required: true,
         maxlength: 32
     },{
-        field: 'category',
+        field: 'type',
         title: '分类',
 		type: 'select',
 		listCode: '808007',
         readonly: view,
 		params: {
 			type:2,
+			status: "1",
             parentCode: 0
 		},
 		keyName: 'code',
 		valueName: 'name',
-		hidden: view,
-		onChange:function(v,data){
-			reqApi({
-                code: '808007',
-                json: {
-                	parentCode: v
-                }
-            }).done(function(d) {
-            	var data1 = {};
-            	if(d.length && v){
-            		
-            		d.forEach(function(v,i){
-            			data1[v.code] = v.name;
-            		})
-					$("#type").parent().show();
-            	}else{
-            		
-					$("#type").parent().hide();
-            	}
-            	$("#type").renderDropdown2(data1);
-            });
-		}
-    }, {
-        field: 'type',
-        title: '',
-		type: 'select',
-		required: true,
-		hidden: true,
-//		afterSet: function(v){
-//		}
-    }, {
-        field: 'legalPersonName',
-        title: '法人姓名',
-        readonly: view,
-        required: true,
-        maxlength: 32
     }, {
         field: 'mobile',
         title: '登录名(店家手机号)',
@@ -110,14 +75,12 @@ $(function() {
     }, {
         field: 'rate2',
         title: '使用积分比例',
-        max: 1,
         min: 0,
         required: true,
         readonly: view
     }, {
         field: 'rate3',
         title: '返点比例',
-        max: 1,
         min: 0,
         required: true,
     }, {
@@ -211,10 +174,6 @@ $(function() {
                     data.level = "1";
                     data.longitude = point.lng;
                     data.latitude = point.lat;
-                    
-                    if(!data.type){
-                    	data.type = $("#category").val();
-                    }
                     
                     reqApi({
                         code: code ? options.editCode : options.addCode,

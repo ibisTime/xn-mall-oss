@@ -1,10 +1,18 @@
+function getQueryString(name) {
+	var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+	var r = window.location.search.substr(1).match(reg);
+	if (r != null) {
+		return decodeURIComponent(r[2]);
+	}
+	return '';
+}
+sessionStorage.setItem('loginKind', getQueryString('kind') || '01');
 $(function(){
 	window.sessionStorage.setItem('systemCode', OSS.system);
     // frameset框架嵌套，跳转到最外层
 	if (top.location != self.location){
 		top.location=self.location;
 	}
-	
 	
 	function login() {
 		if (!$('#loginName').val()) {

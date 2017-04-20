@@ -113,7 +113,7 @@ $.validator.addMethod("isPositive", function(value, element) {
 
 $.validator.addMethod("Z+", function(value, element) {
     return this.optional(element) || /^[1-9]\d*$/.test(value);
-}, '请输入正整数');
+}, '请输入整数');
 
 $.validator.addMethod("amount", function(value, element) {
     var aint = '' + parseInt(value.replace(/[\,]/g, ''));

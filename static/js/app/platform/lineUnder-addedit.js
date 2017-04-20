@@ -48,13 +48,15 @@ $(function() {
 	buildDetail(options);
 
 	$("#subBtn").off("click").on("click", function () {
-		var data = $('#jsForm').serializeObject();
-		data.transAmount = -data.transAmount;
-		reqApi({
-			code: "802510",
-			json: data
-		}).done(function(data) {
-			sucDetail();
-		});
+		if($('#jsForm').valid()){
+			var data = $('#jsForm').serializeObject();
+			data.transAmount = -data.transAmount;
+			reqApi({
+				code: "802510",
+				json: data
+			}).done(function(data) {
+				sucDetail();
+			});
+		}
 	})
 });
