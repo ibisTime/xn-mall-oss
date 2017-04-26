@@ -46,10 +46,10 @@ $(function() {
     }, {
         title: '人次单价',
         field: 'fromAmount',
-		number: true,
+		minAmount: true,
         required: true,
         readonly: view,
-        amount:true,
+        amount: true,
         formatter:moneyFormat
     }, {
         title: '宣传文字',

@@ -26,6 +26,18 @@ $(function () {
 		keyCode: "808907",
         formatter: Dict.getNameForList("store_pay_type",'808907'),
     }, {
+        field: 'payAmount1',
+        title: '支付人民币',
+		formatter: moneyFormat
+    },  {
+        field: 'payAmount2',
+        title: '支付菜狗币',
+		formatter: moneyFormat
+    },  {
+        field: 'payAmount3',
+        title: '支付积分',
+		formatter: moneyFormat
+    },  {
         field: 'status',
         title: '状态',
         type: 'select',

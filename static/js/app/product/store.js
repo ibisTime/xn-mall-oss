@@ -134,4 +134,34 @@ $(function () {
 		window.location.href = "store_detail.html?Code=" + selRecords[0].code;
     });
     
+    $('#yyBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        
+		window.location.href = "yyLedger.html?Code=" + selRecords[0].code;
+    });
+    
+    $('#daixiaoBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        
+		window.location.href = "daixiaoLedger.html?Code=" + selRecords[0].code+"&owner="+selRecords[0].owner+"&c=CGB";
+    });
+    
+    $('#jifenBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        
+		window.location.href = "daixiaoLedger.html?Code=" + selRecords[0].code+"&owner="+selRecords[0].owner+"&c=CGJF";
+    });
+    
 });

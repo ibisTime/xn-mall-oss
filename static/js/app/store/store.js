@@ -170,7 +170,7 @@ $(function () {
             return;
         }
         
-		window.location.href = "daixiaoLedger.html?Code=" + selRecords[0].code+"&owner="+selRecords[0].owner+"&c=JF";
+		window.location.href = "daixiaoLedger.html?Code=" + selRecords[0].code+"&owner="+selRecords[0].owner+"&c=CGJF";
     });
     
     

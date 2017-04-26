@@ -13,6 +13,8 @@ $(function () {
 		data.forEach(function(v, i){
 			if(v.currency == "CGB"){
 				$("#amount-CGB").text(data[2].amount/1000+"菜狗币")
+			}else if(v.currency == "CNY"){
+				$("#amount-CNY").text(data[0].amount/1000+"元")
 			}else if(v.currency == "CGJF"){
 				$("#amount-JF").text(data[1].amount/1000+"积分")
 			}
@@ -41,6 +43,16 @@ $(function () {
 	}).done(function(data) {
 		rateJF = data.rate
 	});
+	
+	$("#CNYls-Btn").click(function(){
+		location.href="ledger.html?currency=CNY";
+	})
+	$("#CGBls-Btn").click(function(){
+		location.href="ledger.html?currency=CGB";
+	})
+	$("#CGJFls-Btn").click(function(){
+		location.href="ledger.html?currency=CGJF";
+	})
     
     $('#saleBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
@@ -215,9 +227,11 @@ $(function () {
 						data.fromUserId = getUserId();
 						data.toUserId = OSS.SYS_USER;
 						data.amount = moneyFormatByEnLarge($("#price").html());
+//						data.amount = 100;
 						data.currency = "CGB";
+						data.payType = "6";
 						reqApi({
-							code: '802530',
+							code: '802420',
 							json: data
 						}).done(function(data) {
 							sucList();

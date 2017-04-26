@@ -8,65 +8,37 @@ $(function () {
         title: '',
         checkbox: true
     }, {
-		field : 'realName',
-		title : '户名',
-		search: true
+		field : 'mobile',
+		title : '发放用户',
+		formatter: function(v, data){
+			return data.toUser.mobile;
+		}
 	},{
-		field: 'accountNumber',
-		title: '账号'
-	},{
-		field: 'currency',
+    	field: 'toAmount',
+    	title: '发放金额',
+    	formatter: moneyFormat
+    },{
+		field: 'toCurrency',
 		title: '币种',
 		type: 'select',
 		key: 'currency',
 		keyCode: "802006",
         formatter: Dict.getNameForList("currency",'802006'),
-		search: true
 	},{
-		field: 'channelType',
-		title: '渠道',
-		type: 'select',
-		key: 'channel_type',
-		keyCode:'802006',
-		formatter: Dict.getNameForList('channel_type','802006'),
-		search: true
-	},{
-		field : 'bizType',
-		title : '业务类型',
-		type: 'select',
-		key: 'biz_type',
-		keyCode:'802006',
-		formatter: Dict.getNameForList('biz_type','802006'),
-		search: true
-	},{
-    	field : 'transAmount',
-		title : '变动金额',
-		formatter: moneyFormat
-    },{
-    	field: 'preAmount',
-    	title: '变动前金额',
-    	formatter: moneyFormat
-    },{
-    	field: 'postAmount',
-    	title: '变动后金额',
-    	formatter: moneyFormat
-    },{
-		field : 'status',
-		title : '状态',
-		type: 'select',
-		key: 'jour_status',
-		keyCode:'802006',
-		formatter: Dict.getNameForList('jour_status','802006'),
-		search: true
+		field : 'createDatetime',
+		title : '发放时间',
+		formatter: dateTimeFormat,
 	},];
 
     buildList({
         columns: columns,
-        pageCode: '802520',
+        pageCode: '802415',
         searchParams:{
-        	userId: owner,
-        	currency: c,
-			companyCode: OSS.company
+        	fromUserId: owner,
+        	fromCurrency: c,
+        	toCurrency: c,
+        	status: 1,
+        	companyCode: OSS.company
 		}
     });
     

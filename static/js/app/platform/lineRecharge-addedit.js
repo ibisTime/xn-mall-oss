@@ -24,12 +24,14 @@ $(function() {
 		type: 'select',
 		multiple: true,
 		pageCode: userId ? '802503' : '802500',
+		keyCode1:'802006',
+		dict: [['currency', 'currency'], ['type', 'account_type']],
 		params: {
-			currency: 'CNY',
+			currency: '',
 			userId: userId
 		},
 		keyName: 'accountNumber',
-		valueName: '{{realName.DATA}}',
+		valueName: '{{realName.DATA}} - {{currencyName.DATA}} - {{typeName.DATA}}',
 		searchName: 'realName',
 		help: '支持户名查询'
 	},{

@@ -515,7 +515,12 @@
                     if (el.pageOptions.dict) {
                       var dict = el.pageOptions.dict;
                       dict.forEach(function(item) {
-                        var dictData = Dict.getName(item[1]);
+                      	
+                      	if(el.pageOptions.keyCode1){
+														var dictData = Dict.getName2(item[1],el.pageOptions.keyCode1);
+													}else{
+														var dictData = Dict.getName(item[1]);
+													}
                         data.forEach(function(i) {
                           i[item[0] + 'Name'] = Dict.findName(dictData, i[item[0]]);
                         });
@@ -764,7 +769,11 @@
                 if (el.pageOptions.dict) {
                   var dict = el.pageOptions.dict;
                   dict.forEach(function(item) {
-                    var dictData = Dict.getName(item[1]);
+                    if(el.pageOptions.keyCode1){
+											var dictData = Dict.getName2(item[1],el.pageOptions.keyCode1);
+										}else{
+											var dictData = Dict.getName(item[1]);
+										}
                     data.forEach(function(i) {
                       i[item[0] + 'Name'] = Dict.findName(dictData, i[item[0]]);
                     });

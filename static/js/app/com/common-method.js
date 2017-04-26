@@ -1091,6 +1091,10 @@ function buildDetail(options) {
         if (item['amount']) {
             rules[item.field]['amount'] = item['amount'];
         }
+        
+        if (item['minAmount']) {
+            rules[item.field]['minAmount'] = item['minAmount'];
+        }
 
         if (item['tm']) {
             rules[item.field]['tm'] = item['tm'];

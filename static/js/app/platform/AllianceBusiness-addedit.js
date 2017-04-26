@@ -54,7 +54,6 @@ $(function() {
 		editCode: '805182',
 		beforeSubmit: function(data){
 			if(userId){
-				console.log(userId)
 				data.userId = userId;
 			}
 			data.userReferee = getUserId();

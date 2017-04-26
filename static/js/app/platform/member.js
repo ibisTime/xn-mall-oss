@@ -11,9 +11,6 @@ $(function () {
 		field : 'loginName',
 		title : '登录名',
 	}, {
-		field : 'idNo',
-		title : '身份证'
-	}, {
 		field : 'status',
 		title : '状态',
         type: 'select',

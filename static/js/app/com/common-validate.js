@@ -166,6 +166,15 @@ jQuery.validator.addMethod("north", function(value, element) {
     return this.optional(element) || (north.test(value));
 }, "请输入正确的纬度格式");
 
+//小数后1位
+$.validator.addMethod("minAmount", function(value, element) {
+    return this.optional(element) || /^\d+(\.\d{1})?$/.test(value);
+}, '金额必须>0，且小数点后最多1位');
+
+//jQuery.validator.addMethod("minAmount", function(value, element) {
+//  var minNum = /^[01]$|^0.\d{1}/;
+//  return this.optional(element) || (minNum.test(value));
+//}, "最小只能输入小数点后1位");
 
 
 //ie6兼容after

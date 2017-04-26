@@ -12,6 +12,16 @@ $(function () {
 		$("#amount-JF").text(data[1].amount/1000+"积分")
 	});
     
+    $("#CNYls-Btn").click(function(){
+		location.href="../store/ledger.html?currency=CNY";
+	})
+	$("#CGBls-Btn").click(function(){
+		location.href="../store/ledger.html?currency=CGB";
+	})
+	$("#CGJFls-Btn").click(function(){
+		location.href="../store/ledger.html?currency=CGJF";
+	})
+    
      $('#accoutSaleBtn').click(function() {
 		var selRecords = $('#tableList').bootstrapTable('getSelections');
 		var dw = dialog({

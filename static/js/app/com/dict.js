@@ -65,7 +65,7 @@ Dict.getName2 = function(type, code, key) {
 		cache: true,
 		sync: true,
 		json: {
-			parentKey: type
+			parentKey: type,
 		}
 	}).then(function(data) {
 		res = key ? (Dict.findName(data, key) || '-') : data;
@@ -94,6 +94,34 @@ Dict.getNameForList = function(type,code) {
 		}
 	});
 	return res;
+//	if (!SYJDictCache[type]) {
+//		doGetAjaxIsAsync($("#dictUrl").val(), {"parentKey": type}, false, function(res) {
+//			SYJDictCache[type] = res.data;
+//		});
+//	}
+//	return function(key) {
+//		return key ? Dict.findName(SYJDictCache[type], key) : '-';
+//	}
+}
+Dict.getNameForList1 = function(type,code,key1) {
+	var k;
+	reqApi({
+		code: code ||'807706',
+		cache: true,
+		sync: true,
+		json: {
+			parentKey: type
+		}
+	}).then(function(data) {
+		if(key1 != undefined){
+			k = Dict.findName(data, key1);
+			return k;
+		}else{
+			k = '-';
+			return k;
+		}
+	});
+	return k;
 //	if (!SYJDictCache[type]) {
 //		doGetAjaxIsAsync($("#dictUrl").val(), {"parentKey": type}, false, function(res) {
 //			SYJDictCache[type] = res.data;

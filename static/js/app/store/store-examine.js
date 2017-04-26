@@ -21,7 +21,13 @@ $(function() {
 		keyName: 'code',
 		valueName: 'name',
     }, {
-        field: 'mobile',
+        field: 'legalPersonName',
+        title: '法人姓名',
+        readonly: view,
+        required: true,
+        maxlength: 32
+    }, {
+    	field: 'mobile',
         title: '登录名(店家手机号)',
         mobile: true,
         readonly: view,
