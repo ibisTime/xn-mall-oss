@@ -8,8 +8,10 @@ $(function() {
 		value: '1'
 	}, {
         field: 'orderCode',
-        title: '发货单号',
+        title: '订单号',
 		required: true,
+        readonly: true,
+        value: code
     }, {
 		title: '物流公司',
 		field: 'logisticsCompany',
@@ -34,8 +36,7 @@ $(function() {
 	},{
 		field: 'pdf',
 		title: '物流单',
-		type:'img',
-		
+        type : 'img',
 	}, {
         field: 'remark',
         title: '备注',
@@ -44,19 +45,12 @@ $(function() {
 	
 	buildDetail({
 		fields: fields,
-	});
-	
-	$("#subBtn").off("click").click(function(){
-		if ($('#jsForm').valid()) {
-			var data = $('#jsForm').serializeObject();
+		addCode: '808054',
+		editCode: '808054',
+		beforeSubmit: function(data){
 			data.code = code;
-	    	reqApi({
-	            code: '808054',
-	            json:  data
-	        }).then(function() {
-	           sucDetail();
-	        });
-       }
-	})
+			return data;
+		}
+	});
 	
 });

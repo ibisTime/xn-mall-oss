@@ -3,6 +3,10 @@ $(function() {
 	var view = 1;
 	
 	var columns = [{
+        field: '',
+        title: '',
+        checkbox: true
+    }, {
 		field : 'accountNumber',
 		title : '账户编号',
 	}, {
@@ -27,10 +31,19 @@ $(function() {
 		}
     });
     
-    $('#goBackBtn').click(function() {
-        goBack();
-    });
-    
-	$('#accountQueryBtn').hide();
-	$('#detail2Btn').hide();
+	$('.tools .toolbar').html('<li style="display:block;" id="minxiBtn"><span><img src="/static/images/t01.png"></span>查看明细</li><li style="display:block;" id="backBtn"><span><img src="/static/images/t01.png"></span>返回</li>');
+	$('#backBtn').on('click', function() {
+		goBack();
+	});    
+	
+	//查看明细
+	$('#minxiBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        
+        window.location.href = "../store/ledger.html?accountNumber=" + selRecords[0].accountNumber;
+    }); 
 });

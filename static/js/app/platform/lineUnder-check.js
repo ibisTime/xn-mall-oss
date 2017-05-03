@@ -103,6 +103,10 @@ $(function() {
 		title: '变动金额',
 		formatter: moneyFormat
 	}, {
+		field : 'fee',
+		title : '手续费',
+		formatter: moneyFormat
+	},{
 		field: 'preAmount',
 		title: '变动前金额',
 		formatter: moneyFormat

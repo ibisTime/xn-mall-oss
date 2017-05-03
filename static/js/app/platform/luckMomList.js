@@ -27,6 +27,9 @@ $(function () {
     },{
         field: 'receiver',
         title: '领取人',
+        formatter: function(v,data){
+        	return data.receiverUser ? data.receiverUser.mobile : "-";
+        }
     },  {
         field: 'receiveAmount',
         title: '红包领取金额',
@@ -45,7 +48,8 @@ $(function () {
         title: '状态',
         type: 'select',
         key: "hzb_mgift_status",
-        formatter: Dict.getNameForList("hzb_mgift_status"),
+        keyCode:'615907',
+        formatter: Dict.getNameForList("hzb_mgift_status",'615907'),
         search: true
     }];
 

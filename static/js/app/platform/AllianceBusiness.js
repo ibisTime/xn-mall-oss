@@ -30,7 +30,7 @@ $(function () {
         pageCode: '805054',
 		searchParams:{
 			kind: '05'
-		}
+		},
     });
     
     $('#detail2Btn').click(function() {
@@ -51,6 +51,39 @@ $(function () {
             return;
         }
         window.location.href = "AllianceBusiness_addedit.html?userId="+selRecords[0].userId;
+    });
+    
+    //发货
+    $('#fahuoBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        
+        window.location.href = "AllianceBusiness_fahuo.html?userId=" + selRecords[0].userId;
+    });
+    
+    //代销
+    $('#daixiaoBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        
+		window.location.href = "../store/daixiaoLedger.html?Code=" + selRecords[0].code+"&owner="+selRecords[0].userId+"&c=CGB";
+    });
+    
+    //积分
+    $('#jifenBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        
+		window.location.href = "../store/daixiaoLedger.html?Code=" + selRecords[0].code+"&owner="+selRecords[0].userId+"&c=CGJF";
     });
     
 });

@@ -74,16 +74,6 @@ $(function() {
         readonly: view,
         hidden: true
     }, {
-        field: 'rate2',
-        title: '使用积分比例',
-        required: true,
-        readonly: view,
-        
-    }, {
-        field: 'rate3',
-        title: '返点比例',
-        readonly: view
-    }, {
         field: 'slogan',
         title: '广告语',
         required: true,
@@ -131,12 +121,21 @@ $(function() {
     }, {
         field: 'rate2',
         title: '使用积分比例',
-        required: true,
+//      formatter: function(v, data) {
+//          return (v * 100) + "%"
+//      },
+
     }, {
         field: 'rate3',
         title: '返点比例',
-        required: true,
+//      formatter: function(v, data) {
+//          return (v * 100) + "%"
+//      },
     }, {
+        field: 'remark',
+        title: '备注',
+        readonly: view
+    },{
         field: 'remark',
         title: '备注',
         readonly: view

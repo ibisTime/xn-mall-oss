@@ -12,11 +12,6 @@ $(function() {
 		type: 'hidden',
 		value: '线下取现'
 	},{
-		field : 'bankcardNumber',
-		title : '取现银行卡卡号',
-		required: true,
-		maxlength: 60
-	},{
 		field: 'accountNumberList',
 		title: '用户账户',
 		required: true,
@@ -25,12 +20,20 @@ $(function() {
 		pageCode: '802500',
 		params: {
 			currency: 'CNY',
-			userId: userId
+			userId: userId,
+			type:"NOT_P"
 		},
+		keyCode1:'802006',
+		dict: [['currency', 'currency'], ['type', 'account_type']],
 		keyName: 'accountNumber',
-		valueName: '{{realName.DATA}}',
+		valueName: '{{realName.DATA}} - {{currencyName.DATA}} - {{typeName.DATA}}',
 		searchName: 'realName',
 		help: '支持户名查询'
+	},{
+		field : 'bankcardNumber',
+		title : '取现银行卡卡号',
+		required: true,
+		maxlength: 60
 	},{
 		field : 'transAmount',
 		title : '取现金额',

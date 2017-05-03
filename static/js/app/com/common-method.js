@@ -35,27 +35,28 @@ function dateTimeFormat(date) {
     if (date == '' || typeof(date) == 'undefined') {
         return '-';
     }
-    var format = "yyyy-MM-dd HH:mm:ss";
-    date = date.replace(/(12:\d\d:\d\d\s)AM$/, "$1PM");
+    var format = "yyyy-MM-dd hh:mm:ss";
     date = new Date(date);
+    
     var o = {
-        'M+': date.getMonth() + 1, //month
-        'd+': date.getDate(), //day
-        'H+': date.getHours(), //hour
-        'm+': date.getMinutes(), //minute
-        's+': date.getSeconds(), //second
-        'q+': Math.floor((date.getMonth() + 3) / 3), //quarter
-        'S': date.getMilliseconds() //millisecond
-    };
-    if (/(y+)/.test(format)) {
-        format = format.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
-    }
-    for (var k in o) {
-        if (new RegExp('(' + k + ')').test(format)) {
-            format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length));
-        }
-    }
-    return format;
+	    "M+": date.getMonth() + 1, //month
+	    "d+": date.getDate(), //day
+	    "h+": date.getHours(), //hour
+	    "m+": date.getMinutes(), //minute
+	    "s+": date.getSeconds(), //second
+	    "q+": Math.floor((date.getMonth() + 3) / 3), //quarter
+	    "S": date.getMilliseconds() //millisecond
+	};
+	if (/(y+)/.test(format)) {
+	    format = format.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+	}
+	
+	for (var k in o) {
+	    if (new RegExp("(" + k + ")").test(format)) {
+	        format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+	    }
+	}
+	return format;
 }
 
 /**
@@ -1527,7 +1528,8 @@ function buildDetail(options) {
                         if (item.pageCode) {
                             $('#' + item.field).html('<table id="' + item.field + 'List"></table>');
                             var searchParams = {};
-                            searchParams[item['key']] = item.o2mvalue || $('#code').val();
+//                          searchParams[item['key']] = item.o2mvalue || $('#code').val();
+                            searchParams = item.o2mvalue || $('#code').val();
                             item.searchParams1 && $.extend(searchParams, item.searchParams1);
                             var options1 = {
                                 columns: item.columns,
@@ -2635,6 +2637,7 @@ function buildDetail1(options) {
         laydate({
             elem: '#' + item.field + "-model",
             min: item.minDate ? item.minDate : '',
+            istoday: true,
             istime: item.type == 'datetime',
             format: item.type == 'datetime' ? 'YYYY-MM-DD hh:mm:ss' : 'YYYY-MM-DD'
         });

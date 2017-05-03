@@ -12,11 +12,11 @@ $(function () {
 	}).done(function(data) {
 		data.forEach(function(v, i){
 			if(v.currency == "CGB"){
-				$("#amount-CGB").text(data[2].amount/1000+"菜狗币")
+				$("#amount-CGB").text(moneyFormat(data[2].amount)+"菜狗币")
 			}else if(v.currency == "CNY"){
-				$("#amount-CNY").text(data[0].amount/1000+"元")
+				$("#amount-CNY").text(moneyFormat(data[0].amount)+"元")
 			}else if(v.currency == "CGJF"){
-				$("#amount-JF").text(data[1].amount/1000+"积分")
+				$("#amount-JF").text(moneyFormat(data[1].amount)+"积分")
 			}
 		})
 		
@@ -200,6 +200,7 @@ $(function () {
 				field: 'amount',
 				formatter:moneyFormat,
 				required: true,
+				amount: true,
 				"Z+": true,
 				min: 100,
 				onKeyup: function(v){
@@ -226,7 +227,7 @@ $(function () {
 				        }
 						data.fromUserId = getUserId();
 						data.toUserId = OSS.SYS_USER;
-						data.amount = moneyFormatByEnLarge($("#price").html());
+//						data.amount = moneyFormatByEnLarge($("#price").html());
 //						data.amount = 100;
 						data.currency = "CGB";
 						data.payType = "6";

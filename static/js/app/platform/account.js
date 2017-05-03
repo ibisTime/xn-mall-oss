@@ -7,9 +7,9 @@ $(function () {
 			userId: getUserId()
 		}
 	}).done(function(data) {
-		$("#amount-CNY").text("￥"+data[0].amount/1000)
-		$("#amount-CGB").text(data[2].amount/1000+"菜狗币")
-		$("#amount-JF").text(data[1].amount/1000+"积分")
+		$("#amount-CNY").text(moneyFormat(data[0].amount)+"元")
+		$("#amount-CGB").text(moneyFormat(data[2].amount)+"菜狗币")
+		$("#amount-JF").text(moneyFormat(data[1].amount)+"积分")
 	});
     
     $("#CNYls-Btn").click(function(){

@@ -12,8 +12,8 @@ $(function() {
 
     var options = {
         fields: fields,
-        //code: code,
-        //detailCode: '808516'
+          code: code,
+          detailCode: '808516'
     };
 
     options.buttons = [{

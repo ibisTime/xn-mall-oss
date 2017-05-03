@@ -12,12 +12,6 @@ $(function() {
 		type: 'hidden',
 		value: '线下充值'
 	},{
-		field : 'bankcardNumber',
-		title : '充值说明',
-		// title : '充值银行卡卡号',
-		required: true,
-		maxlength: 60
-	},{
 		field: 'accountNumberList',
 		title: '用户账户',
 		required: true,
@@ -28,7 +22,8 @@ $(function() {
 		dict: [['currency', 'currency'], ['type', 'account_type']],
 		params: {
 			currency: '',
-			userId: userId
+			userId: userId,
+			type:"NOT_P"
 		},
 		keyName: 'accountNumber',
 		valueName: '{{realName.DATA}} - {{currencyName.DATA}} - {{typeName.DATA}}',
@@ -39,7 +34,13 @@ $(function() {
 		title : '充值金额',
 		required: true,
 		amount: true
-	}];
+	},{
+		field : 'bankcardNumber',
+		title : '充值说明',
+		// title : '充值银行卡卡号',
+		required: true,
+		maxlength: 60
+	},];
 	
 	var options = {
 		fields: fields,

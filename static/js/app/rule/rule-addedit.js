@@ -9,26 +9,16 @@ $(function() {
             type: "hidden",
             required: true
         }, {
-            title: '名称',
-            field: 'type',
+            title: '参数键',
+            field: 'ckey',
             required: true,
-            type: 'select',
-            key: 'rule_type',
-            readonly: view,
+            readonly: true,
         }, {
-            title: '积分',
-            field: 'value',
+            title: '参数值',
+            field: 'cvalue',
             required: true,
             maxlength: 30,
-            amount: true,
             readonly: view,
-        },
-        {
-            field: 'level',
-            title: '作用等级',
-            type: 'hidden',
-            value: "0",
-            required: true
         },
         {
             title: '备注',
@@ -42,7 +32,8 @@ $(function() {
         fields: fields,
         code: code,
         view: view,
-        detailCode: '807727',
-        editCode: '807720'
+        detailCode: '807716',
+        editCode: '807711',
+       
     });
 });

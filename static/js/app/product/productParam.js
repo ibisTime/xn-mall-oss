@@ -2,6 +2,7 @@ $(function() {
 	var code = getQueryString('code');
 	var pName = getQueryString('pName');
 	
+	
 	var columns = [{
 		field : '',
 		title : '',
@@ -9,6 +10,14 @@ $(function() {
 	}, {
 		field : 'dkey',
 		title : '参数名',
+		type: 'select',
+		listCode: '808037',
+		params: {
+			productCode:code,
+			dkey: 0
+		},
+		keyName: 'code',
+		valueName: 'dvalue',
 	}, {
     	field : 'dvalue',
 		title : '参数值'
@@ -41,12 +50,12 @@ $(function() {
             return;
         }
         
-        window.location.href = "productParam_addedit.html?Code=" + selRecords[0].code;
+        window.location.href = "productParam_addedit.html?Code=" + selRecords[0].code+"&pc="+ code;
     });
     
     $('#addBtn').click(function() {
         
-        window.location.href = "productParam_addedit.html?pCode=" + code;
+        window.location.href = "productParam_addedit.html?pCode=" + code+"&pc="+ code;
     });
     
     

@@ -47,6 +47,13 @@ $(function () {
         	0: "否",
         },
         required: true,
+    },{
+        field: 'rate2',
+        title: '使用积分比例',
+    }, {
+        field: 'rate3',
+        title: '返点比例',
+        required: true,
     }, {
         field: 'updateDatetime',
         title: '入驻时间',

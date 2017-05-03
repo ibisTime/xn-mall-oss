@@ -11,6 +11,9 @@ $(function () {
 		field : 'loginName',
 		title : '登录名',
 	}, {
+        field: 'remark',
+        title: '车牌号'
+    }, {
 		field : 'status',
 		title : '状态',
         type: 'select',
@@ -20,10 +23,7 @@ $(function () {
 		field : 'updateDatetime',
 		title : '注册时间',
 		formatter: dateTimeFormat
-	}, {
-        field: 'remark',
-        title: '备注'
-    },];
+	}];
 
     buildList({
         columns: columns,
@@ -55,5 +55,14 @@ $(function () {
         window.location.href = "member_detail2.html?userId=" + selRecords[0].userId;
     });
     
-    $('#goBackBtn').hide();
+    $('#infoBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        
+        window.location.href = "member_info.html?userId=" + selRecords[0].userId+"&mobile=" + selRecords[0].mobile;
+    });
+    
 });

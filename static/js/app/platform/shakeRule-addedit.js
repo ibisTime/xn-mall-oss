@@ -10,6 +10,7 @@ $(function() {
 		title : '名称',
 		field : 'ckey',
 		required: true,
+		readonly: true,
 		maxlength: 20
 	},{
         title: '数值',

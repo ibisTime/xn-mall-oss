@@ -5,21 +5,12 @@ $(function() {
             title: '',
             checkbox: true
         }, {
-            title: '名称',
-            field: 'type',
-            type: 'select',
-            formatter: Dict.getNameForList('rule_type'),
-            key: 'rule_type',
+            title: '参数名',
+            field: 'ckey',
             search: true
         }, {
-            field: 'value',
-            title: '积分',
-            formatter: moneyFormat
-        },
-
-        {
-            field: 'updater',
-            title: '最近修改人'
+            field: 'cvalue',
+            title: '参数值',
         }, {
             field: 'updateDatetime',
             title: '最近修改时间',
@@ -32,9 +23,9 @@ $(function() {
     buildList({
         router: "rule",
         columns: columns,
-        pageCode: "807725",
+        pageCode: "807715",
         searchParams: {
-            kind: "1"
+            type: "1"
         }
     });
 });

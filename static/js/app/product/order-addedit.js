@@ -114,7 +114,6 @@ $(function() {
     }, {
         field: 'deliveryDatetime',
         title: '发货时间',
-        type: "datetime",
         formatter: dateTimeFormat,
     }, {
         field: 'pdf',
