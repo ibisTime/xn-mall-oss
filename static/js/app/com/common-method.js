@@ -1768,8 +1768,13 @@ function buildDetail(options) {
                         sp.length && sp.forEach(function(item) {
                             var suffix = item.slice(item.lastIndexOf('.') + 1);
                             var src = (item.indexOf('http://') > -1 ? item : (OSS.picBaseUrl + '/' + item));
-                            var src1 = (item.indexOf('http://') > -1 ? item.substring(item.lastIndexOf("/") + 1) : item);
-                            var name = src1.substring(0, src1.lastIndexOf("_")) + "." + suffix;
+//                          var src1 = (item.indexOf('http://') > -1 ? item.substring(item.lastIndexOf("/") + 1) : item);
+                            var src1 = item;
+                            if(item.indexOf('http://') > -1){
+                            	var name = src.substring(src.lastIndexOf("/")+1);
+                            }else{
+                            	var name = src1.substring(0, src1.lastIndexOf("_")) + "." + suffix;
+                            }
                             if (isDocOrAviOrZip(suffix)) {
                                 imgsHtml += '<div class="img-ctn" data-src="' + src1 + '" style="display: inline-block;position: relative;">' +
                                     '<div class="center-img-wrap">' +

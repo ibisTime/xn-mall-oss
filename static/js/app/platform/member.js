@@ -11,8 +11,8 @@ $(function () {
 		field : 'loginName',
 		title : '登录名',
 	}, {
-        field: 'remark',
-        title: '车牌号'
+        field: 'userRefereeName',
+        title: '推荐人'
     }, {
 		field : 'status',
 		title : '状态',
@@ -23,7 +23,10 @@ $(function () {
 		field : 'updateDatetime',
 		title : '注册时间',
 		formatter: dateTimeFormat
-	}];
+	}, {
+        field: 'remark',
+        title: '车牌号'
+    }];
 
     buildList({
         columns: columns,

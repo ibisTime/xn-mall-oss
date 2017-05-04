@@ -49,6 +49,12 @@ $(function () {
     },{
         field: 'applyDatetime',
         title: '下单时间',
+        field1: 'dateStart',
+        title1: '下单时间起',
+        type1: "date",
+        field2: 'dateEnd',
+        title2: '下单时间止',
+        type2: "date",
         search: true,
         type: "datetime",
         formatter: dateTimeFormat

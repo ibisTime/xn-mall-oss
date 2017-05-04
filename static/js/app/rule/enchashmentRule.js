@@ -24,7 +24,7 @@ $(function() {
         columns: columns,
         pageCode: "802025",
         searchParams: {
-            type: "2",
+            type: "2,3",
             companyCode:OSS.company 
         }
     });

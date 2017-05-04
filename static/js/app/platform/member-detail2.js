@@ -54,7 +54,11 @@ $(function() {
         	formatter: dateTimeFormat
         }]
     }, {
-		title: '备注',
+		title: '用户资料',
+		field: 'pdf',
+		type: "img",
+	}, {
+		title: '车牌号',
 		field: 'remark',
 	}];
 	

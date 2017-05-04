@@ -30,23 +30,15 @@ $(function() {
         maxlength: 32
     }, {
         field: 'mobile',
-        title: '登录名(店家手机号)',
+        title: '登录名(店铺主人)',
         mobile: true,
         readonly: view,
         required: true
-    },
-        //  {
-        //     field: 'owner',
-        //     title: '店铺主人',
-        //     readonly: view,
-        //     required: true,
-        //     maxlength: 32
-        // }, 
-        {
-            field: 'bookMobile',
-            title: '联系电话',
-            mobile: true,
-            required: true,
+    }, {
+        field: 'bookMobile',
+        title: '联系电话',
+        mobile: true,
+        required: true,
         readonly: view,
     }, {
         field: 'smsMobile',

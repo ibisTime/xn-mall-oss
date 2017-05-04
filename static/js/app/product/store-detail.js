@@ -29,11 +29,11 @@ $(function() {
         required: true,
         maxlength: 32
     }, {
-        field: 'owner',
-        title: '店铺主人',
+        field: 'mobile',
+        title: '登录名(店铺主人)',
+        mobile: true,
         readonly: view,
-        required: true,
-        maxlength: 32
+        required: true
     }, {
         field: 'bookMobile',
         title: '联系电话',
@@ -132,10 +132,6 @@ $(function() {
 //          return (v * 100) + "%"
 //      },
     }, {
-        field: 'remark',
-        title: '备注',
-        readonly: view
-    },{
         field: 'remark',
         title: '备注',
         readonly: view
