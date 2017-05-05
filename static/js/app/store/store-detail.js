@@ -127,7 +127,13 @@ $(function() {
 
     }, {
         field: 'rate3',
-        title: '返点比例',
+        title: '返点人民币比例',
+//      formatter: function(v, data) {
+//          return (v * 100) + "%"
+//      },
+    }, {
+        field: 'rate1',
+        title: '返点菜狗币比例',
 //      formatter: function(v, data) {
 //          return (v * 100) + "%"
 //      },

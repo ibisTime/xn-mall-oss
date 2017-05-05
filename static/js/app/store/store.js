@@ -38,13 +38,19 @@ $(function () {
         	0: "否",
         },
         required: true,
+    },{
+        field: 'rate2',
+        title: '使用积分比例',
+    }, {
+        field: 'rate3',
+        title: '返点人民币比例',
+    }, {
+        field: 'rate1',
+        title: '返点菜狗币比例',
     }, {
         field: 'updateDatetime',
         title: '入驻时间',
         formatter: dateTimeFormat,
-    }, {
-        field: 'remark',
-        title: '备注'
     }];
 
     buildList({

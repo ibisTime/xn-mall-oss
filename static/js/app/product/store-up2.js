@@ -29,13 +29,16 @@ $(function() {
     }, {
         field: 'rate2',
         title: '使用积分比例',
-        max: 1,
         min: 0,
         required: true,
     }, {
         field: 'rate3',
-        title: '返点比例',
-        max: 1,
+        title: '返点人民币比例',
+        min: 0,
+        required: true,
+    },{
+        field: 'rate1',
+        title: '返点菜狗币比例',
         min: 0,
         required: true,
     }];
@@ -54,7 +57,6 @@ $(function() {
 	$("#btn-0").off("click").click(function() {
 		var data = $('#jsForm').serializeObject();
 		data.code = code;
-		data.rate1="0";
 		
     	reqApi({
             code: '808204',

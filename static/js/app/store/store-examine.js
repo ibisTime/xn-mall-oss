@@ -72,15 +72,6 @@ $(function() {
         readonly: view,
         hidden: !view
     }, {
-        field: 'rate2',
-        title: '不使用券的折扣',
-        required: true,
-        readonly: view
-    }, {
-        field: 'rate3',
-        title: '返点比例',
-        readonly: view
-    }, {
         field: 'slogan',
         title: '广告语',
         required: true,
@@ -104,7 +95,22 @@ $(function() {
         type: 'textarea',
         required: true,
         readonly: view
-    }, {
+    },{
+        field: 'rate2',
+        title: '使用积分比例',
+        required: true,
+        readonly: view
+    },{
+        field: 'rate3',
+        title: '返点人民币比例',
+        min: 0,
+        required: true,
+    },{
+        field: 'rate1',
+        title: '返点菜狗币比例',
+        min: 0,
+        required: true,
+    },{
         field: 'remark',
         title: '备注',
         readonly: view

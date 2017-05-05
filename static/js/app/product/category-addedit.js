@@ -1,7 +1,7 @@
 $(function() {
 	
 	var code = getQueryString('code');
-//	var pCode = getQueryString('pCode')
+	
 	
 	var fields = [{
 		field: 'kind',

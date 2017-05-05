@@ -124,16 +124,58 @@ $(function () {
             toastr.info("当前订单状态不能取消订单!");
             return;
         }
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+		var dw = dialog({
+			content: '<form class="pop-form" id="popForm" novalidate="novalidate">' +
+			'<ul class="form-info" id="formContainer"></ul>'+
+			'</form>'
+		});
+		
+		dw.showModal();
+		buildDetail({
+			fields: [{
+				field: 'remark',
+				title: '取消原因',
+			}],
+			container: $('#formContainer'),
+			buttons: [{
+				title: '关闭',
+				handler: function() {
+					dw.close().remove();
+				}
+			}, {
+				title: '取消订单',
+				handler: function() {
+					
+					if ($('#popForm').valid()) {
+						
+						var data = $('#popForm').serializeObject();
+						data.codeList =  [selRecords[0].code];
+						reqApi({
+							code: '808056',
+							json: data
+						}).done(function(data) {
+            				toastr.success("操作成功");
+            				setTimeout(function(){
+								location.reload();
+								dw.close().remove();
+            				},2000)
+						});
+					}
+				}
+			}]
+		});
+		dw.__center();
         
-        confirm("确认取消订单？").then(function() {
-            reqApi({
-                code: '808056',
-                json: { "codeList": [selRecords[0].code] }
-            }).then(function() {
-                toastr.info("操作成功");
-                $('#tableList').bootstrapTable('refresh', { url: $('#tableList').bootstrapTable('getOptions').url });
-            });
-        },function(){});
+//      confirm("确认取消订单？").then(function() {
+//          reqApi({
+//              code: '808056',
+//              json: { "codeList": [selRecords[0].code] }
+//          }).then(function() {
+//              toastr.info("操作成功");
+//              $('#tableList').bootstrapTable('refresh', { url: $('#tableList').bootstrapTable('getOptions').url });
+//          });
+//      },function(){});
 
     });
     

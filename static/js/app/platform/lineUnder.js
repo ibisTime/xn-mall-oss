@@ -9,9 +9,6 @@ $(function() {
 		title : '户名',
 		search: true
 	},{
-		field: 'accountNumber',
-		title: '账号'
-	},{
 		field: 'channelType',
 		title: '渠道',
 		type: 'select',
@@ -27,13 +24,21 @@ $(function() {
 		keyCode:'802006',
 		formatter: Dict.getNameForList('biz_type','802006')
 	},{
-		field : 'transAmount',
-		title : '变动金额',
-		formatter: moneyFormat
+		field : 'qxAmount',
+		title : '取现金额',
+		formatter: function(v, data){
+			return moneyFormat(Math.abs(data.transAmount+data.fee))
+		}
 	},{
 		field : 'fee',
 		title : '手续费',
 		formatter: moneyFormat
+	},{
+		field : 'transAmount',
+		title : '变动金额',
+		formatter: function(v, data){
+			return moneyFormat(Math.abs(data.transAmount));
+		}
 	},{
 		field: 'preAmount',
 		title: '变动前金额',

@@ -95,6 +95,11 @@ $(function() {
 		key: 'biz_type',
 		keyCode:'802006',
 		formatter: Dict.getNameForList('biz_type','802006')
+	},{
+		field: 'currency',
+		title: '充值币种',
+        key: 'currency',
+        formatter: Dict.getNameForList("currency","802006"),
 	}, {
 		field: 'transAmount',
 		title: '变动金额',

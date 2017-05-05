@@ -9,8 +9,10 @@ $(function() {
 		title : '户名',
 		search: true
 	},{
-		field: 'accountNumber',
-		title: '账号'
+		field: 'currency',
+		title: '充值币种',
+        key: 'currency',
+        formatter: Dict.getNameForList("currency","802006"),
 	},{
 		field: 'channelType',
 		title: '渠道',

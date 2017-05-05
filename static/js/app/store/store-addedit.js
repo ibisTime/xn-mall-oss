@@ -79,17 +79,6 @@ $(function() {
         readonly: view,
         hidden: !view
     }, {
-        field: 'rate2',
-        title: '使用积分比例',
-        min: 0,
-        required: true,
-        readonly: view
-    }, {
-        field: 'rate3',
-        title: '返点比例',
-        min: 0,
-        required: true,
-    }, {
         field: 'slogan',
         title: '广告语',
         required: true,
@@ -113,6 +102,22 @@ $(function() {
         required: true,
         minlength: 20,
         readonly: view
+    },{
+        field: 'rate2',
+        title: '使用积分比例',
+        min: 0,
+        required: true,
+        readonly: view
+    }, {
+        field: 'rate3',
+        title: '返点人民币比例',
+        min: 0,
+        required: true,
+    }, {
+        field: 'rate1',
+        title: '返点菜狗币比例',
+        min: 0,
+        required: true,
     }, {
         field: 'remark',
         title: '备注',
@@ -176,7 +181,6 @@ $(function() {
             myGeo.getPoint(addr, function(point) {
                 if (point) {
                     data.userReferee = userId;
-                    data.rate1 = "0";
                     data.level = "1";
                     data.longitude = point.lng;
                     data.latitude = point.lat;

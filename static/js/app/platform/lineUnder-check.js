@@ -1,7 +1,7 @@
 $(function() {
 	var code = getQueryString('code');
 	var view= !!getQueryString('v');
-	var isDetail = !!getQueryString('detail');
+	var isDetail = getQueryString('detail')||"";
 	
 	var approveNoteField = {
 		title: '意见说明',
@@ -10,7 +10,6 @@ $(function() {
 		required: true,
 		readonly: false
 	};
-	
 	
 	var buttons = [{
 		title: '通过',
@@ -54,7 +53,7 @@ $(function() {
 	if(isDetail){
 		approveNoteField = {
 			title: '意见说明',
-			field: 'rollbackNote',
+			field: 'remark',
 			maxlength: 250
 		};
 		buttons = [{
@@ -74,7 +73,7 @@ $(function() {
 		title: '账号',
 		field: 'accountNumber',
 		required: true
-	},{
+	}, {
 		title: '流水编号',
 		field: 'code1',
 		'[value]': 'code'
@@ -99,13 +98,21 @@ $(function() {
 		field: 'bizNote',
 		title: '业务说明'
 	}, {
-		field: 'transAmount',
-		title: '变动金额',
-		formatter: moneyFormat
-	}, {
+		field : 'qxAmount',
+		title : '取现金额',
+		formatter: function(v, data){
+			return moneyFormat(Math.abs(data.transAmount+data.fee))
+		}
+	},{
 		field : 'fee',
 		title : '手续费',
 		formatter: moneyFormat
+	},{
+		field : 'transAmount',
+		title : '变动金额',
+		formatter: function(v, data){
+			return moneyFormat(Math.abs(data.transAmount));
+		}
 	},{
 		field: 'preAmount',
 		title: '变动前金额',
@@ -128,10 +135,6 @@ $(function() {
 	}, {
 		field: 'workDate',
 		title: '拟对账时间'
-	},{
-		title: '备注',
-		field: 'remark',
-		maxlength: 250
 	}, approveNoteField];
 
 	var options = {

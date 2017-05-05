@@ -52,15 +52,14 @@ $(function () {
         title: '使用积分比例',
     }, {
         field: 'rate3',
-        title: '返点比例',
-        required: true,
+        title: '返点人民币比例',
+    }, {
+        field: 'rate1',
+        title: '返点菜狗币比例',
     }, {
         field: 'updateDatetime',
         title: '入驻时间',
         formatter: dateTimeFormat,
-    }, {
-        field: 'remark',
-        title: '备注'
     }];
 
     buildList({
@@ -84,7 +83,7 @@ $(function () {
             return;
         }
 		
-		window.location.href = "store_examine.html?Code=" + selRecords[0].code;
+		window.location.href = "../store/store_examine.html?Code=" + selRecords[0].code;
     });
     
     //上架
