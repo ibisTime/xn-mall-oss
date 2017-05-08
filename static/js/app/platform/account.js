@@ -7,9 +7,16 @@ $(function () {
 			userId: getUserId()
 		}
 	}).done(function(data) {
-		$("#amount-CNY").text(moneyFormat(data[0].amount)+"元")
-		$("#amount-CGB").text(moneyFormat(data[2].amount)+"菜狗币")
-		$("#amount-JF").text(moneyFormat(data[1].amount)+"积分")
+		data.forEach(function(v, i){
+			if(v.currency=="CNY"){
+				$("#amount-CNY").text(moneyFormat(v.amount)+"元")
+			}else if(v.currency=="CGB"){
+				$("#amount-CGB").text(moneyFormat(v.amount)+"菜狗币")
+			}else if(v.currency=="CGJF"){
+				$("#amount-JF").text(moneyFormat(v.amount)+"积分")
+			}
+		})
+		
 	});
     
     $("#CNYls-Btn").click(function(){
