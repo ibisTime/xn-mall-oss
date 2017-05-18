@@ -44,7 +44,7 @@ $(function () {
             return;
         }
         
-        window.location.href = "member_account.html?userId=" + selRecords[0].userId;
+        window.location.href = "member_account.html?userId=" + selRecords[0].userId+"&member=1";
     });
     
     

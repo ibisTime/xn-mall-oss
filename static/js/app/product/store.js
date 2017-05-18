@@ -170,4 +170,15 @@ $(function () {
 		window.location.href = "daixiaoLedger.html?Code=" + selRecords[0].code+"&owner="+selRecords[0].owner+"&c=CGJF";
     });
     
+    //账户查询
+    $('#accountQueryBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        
+        window.location.href = "../platform/member_account.html?userId=" + selRecords[0].owner+"&store=1";
+    });
+    
 });

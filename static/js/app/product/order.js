@@ -58,7 +58,7 @@ $(function () {
         columns: columns,
         pageCode: '808065',
 		searchParams:{
-			toUser: getUserId(),
+			toUser: OSS.SYS_USER,
 			companyCode: OSS.company
 		}
     });
@@ -75,7 +75,13 @@ $(function () {
             return;
         }
         
-        window.location.href = "order-sendOutGood.html?Code=" + selRecords[0].code;
+        
+        if(selRecords[0].reMobile){//如果有收货人手机号才能物流发货
+        	window.location.href = "order-sendOutGood.html?Code=" + selRecords[0].code;
+        }else{
+            toastr.info("当前订单不是物流发货的订单!");
+            return;
+        }
 
     });
     
@@ -91,15 +97,20 @@ $(function () {
             return;
         }
         
-        confirm("确认已现场发货？").then(function() {
-            reqApi({
-                code: '808055',
-                json: { "code": selRecords[0].code}
-            }).then(function() {
-                toastr.info("操作成功");
-                $('#tableList').bootstrapTable('refresh', { url: $('#tableList').bootstrapTable('getOptions').url });
-            });
-        },function(){});
+        if(selRecords[0].reMobile){//如果有收货人手机号不能现场发货
+            toastr.info("当前订单不是现场发货的订单!");
+        }else{
+        	confirm("确认已现场发货？").then(function() {
+	            reqApi({
+	                code: '808055',
+	                json: { "code": selRecords[0].code}
+	            }).then(function() {
+	                toastr.info("操作成功");
+	                $('#tableList').bootstrapTable('refresh', { url: $('#tableList').bootstrapTable('getOptions').url });
+	            });
+	        },function(){});
+        }
+        
 
     });
     

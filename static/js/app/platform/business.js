@@ -77,4 +77,15 @@ $(function () {
 	    
     });
     
+    //账户查询
+    $('#accountQueryBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        
+        window.location.href = "member_account.html?userId=" + selRecords[0].userId+"&business=1";
+    });
+    
 });
