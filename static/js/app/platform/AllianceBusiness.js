@@ -50,7 +50,7 @@ $(function () {
             toastr.info("请选择记录");
             return;
         }
-        window.location.href = "AllianceBusiness_addedit.html?userId="+selRecords[0].userId;
+        window.location.href = "AllianceBusiness_addedit.html?userId="+selRecords[0].userId+"&v=1";
     });
     
     //发货
@@ -75,7 +75,7 @@ $(function () {
 		window.location.href = "../store/daixiaoLedger.html?Code=" + selRecords[0].code+"&owner="+selRecords[0].userId+"&c=CGB";
     });
     
-    //积分
+    //抵金券
     $('#jifenBtn').click(function() {
         var selRecords = $('#tableList').bootstrapTable('getSelections');
         if (selRecords.length <= 0) {
@@ -86,4 +86,14 @@ $(function () {
 		window.location.href = "../store/daixiaoLedger.html?Code=" + selRecords[0].code+"&owner="+selRecords[0].userId+"&c=CGJF";
     });
     
+    //账户查询
+    $('#accountQueryBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        
+        window.location.href = "member_account.html?userId=" + selRecords[0].userId+"&business=1";
+    });
 });

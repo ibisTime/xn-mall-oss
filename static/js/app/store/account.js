@@ -16,7 +16,7 @@ $(function () {
 			}else if(v.currency == "CNY"){
 				$("#amount-CNY").text(moneyFormat(v.amount)+"元")
 			}else if(v.currency == "CGJF"){
-				$("#amount-JF").text(moneyFormat(v.amount)+"积分")
+				$("#amount-JF").text(moneyFormat(v.amount)+"抵金券")
 			}
 		})
 		
@@ -84,6 +84,9 @@ $(function () {
 				"Z+": true,
 				formatter:moneyFormat,
 				required: true
+			},{
+				title: '备注',
+				field: 'remark'
 			}],
 			container: $('#formContainer'),
 			buttons: [{
@@ -151,6 +154,9 @@ $(function () {
 				"Z+":true,
 				formatter:moneyFormat,
 				required: true
+			},{
+				title: '备注',
+				field: 'remark'
 			}],
 			container: $('#formContainer'),
 			buttons: [{
@@ -166,11 +172,11 @@ $(function () {
 							json: data
 						}).done(function(data) {
             				
+							dw.close().remove();
             				toastr.success("操作成功");
             				setTimeout(function(){
 								location.reload();
-								dw.close().remove();
-            				},2000)
+            				},1000)
 						});
 					}
 				}

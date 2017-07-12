@@ -3391,7 +3391,7 @@ function getDocOrAviOrZipIcon(suffix) {
 
 function isAcceptImg(suffix) {
     if (suffix == 'jpg' || suffix == 'gif' ||
-        suffix == 'png' || suffix == 'bmp') {
+        suffix == 'png' || suffix == 'bmp' || suffix == 'jpeg') {
         return true;
     }
     return false;

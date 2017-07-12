@@ -28,7 +28,7 @@ $(function () {
 		field : 'createDatetime',
 		title : '发放时间',
 		formatter: dateTimeFormat,
-	},];
+	}];
 
     buildList({
         columns: columns,

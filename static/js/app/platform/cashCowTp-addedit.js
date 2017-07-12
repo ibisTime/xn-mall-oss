@@ -66,7 +66,7 @@ $(function() {
         amount:true,
         formatter:moneyFormat
     }, {
-        title: '可摇总积分',
+        title: '可摇总抵金券',
         field: 'backAmount3',
         number: true,
         readonly: view,

@@ -52,7 +52,7 @@ $(function() {
         formatter: moneyFormat,
         readonly: view,
     }, {
-        title: '积分总额',
+        title: '抵金券总额',
         field: 'amount3',
         formatter: moneyFormat,
         readonly: view,
@@ -62,7 +62,7 @@ $(function() {
         formatter: moneyFormat,
         readonly: view,
     }, {
-        title: '已支付积分总额',
+        title: '已支付抵金券总额',
         field: 'payAmount3',
         formatter: moneyFormat,
         readonly: view,
@@ -102,7 +102,7 @@ $(function() {
 	        }
 	    }, {
 	        field: 'price3',
-	        title: '积分价格',
+	        title: '抵金券价格',
 	        formatter: function(v, data){
 	        	return moneyFormat(data.price3)
 	        }

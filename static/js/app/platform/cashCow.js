@@ -35,7 +35,7 @@ $(function () {
         formatter: moneyFormat
     }, {
         field: 'backAmount3',
-        title: '已得积分',
+        title: '已得抵金券',
         formatter: moneyFormat
     }];
 

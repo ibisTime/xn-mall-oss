@@ -120,7 +120,7 @@ $(function() {
         required: true,
     }, {
         field: 'rate2',
-        title: '使用积分比例',
+        title: '使用抵金券比例',
 //      formatter: function(v, data) {
 //          return (v * 100) + "%"
 //      },
@@ -137,6 +137,24 @@ $(function() {
 //      formatter: function(v, data) {
 //          return (v * 100) + "%"
 //      },
+    }, {
+        field: 'rate4',
+        title: '返点抵金券比例',
+//      formatter: function(v, data) {
+//          return (v * 100) + "%"
+//      },
+
+    },{
+        field: 'createDatetime',
+        title: '入驻时间',
+        formatter: dateTimeFormat,
+    }, {
+        field: 'creator',
+        title: '更新人',
+    }, {
+        field: 'updateDatetime',
+        title: '更新时间',
+        formatter: dateTimeFormat,
     }, {
         field: 'remark',
         title: '备注',

@@ -20,7 +20,7 @@ $(function() {
         required: true,
     }, {
         field: 'price3',
-        title: '积分价',
+        title: '抵金券价',
         amount: true,
         formatter: moneyFormat,
         required: true,

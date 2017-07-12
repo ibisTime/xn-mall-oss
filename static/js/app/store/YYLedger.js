@@ -35,7 +35,7 @@ $(function () {
 		formatter: moneyFormat
     },  {
         field: 'payAmount3',
-        title: '支付积分',
+        title: '支付抵金券',
 		formatter: moneyFormat
     },  {
         field: 'status',

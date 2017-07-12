@@ -29,7 +29,7 @@ $(function () {
         formatter:moneyFormat
     }, {
         field: 'backAmount3',
-        title: '可摇积分',
+        title: '可摇抵金券',
         formatter:moneyFormat
     }];
 

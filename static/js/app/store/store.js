@@ -40,7 +40,7 @@ $(function () {
         required: true,
     },{
         field: 'rate2',
-        title: '使用积分比例',
+        title: '使用抵金券比例',
     }, {
         field: 'rate3',
         title: '返点人民币比例',
@@ -48,8 +48,15 @@ $(function () {
         field: 'rate1',
         title: '返点菜狗币比例',
     }, {
-        field: 'updateDatetime',
+        field: 'rate4',
+        title: '返点抵金券比例',
+    }, {
+        field: 'createDatetime',
         title: '入驻时间',
+        formatter: dateTimeFormat,
+    }, {
+        field: 'updateDatetime',
+        title: '更新时间',
         formatter: dateTimeFormat,
     }];
 
@@ -179,6 +186,16 @@ $(function () {
 		window.location.href = "daixiaoLedger.html?Code=" + selRecords[0].code+"&owner="+selRecords[0].owner+"&c=CGJF";
     });
     
+    //账户查询
+    $('#accountQueryBtn').click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length <= 0) {
+            toastr.info("请选择记录");
+            return;
+        }
+        
+        window.location.href = "../platform/member_account.html?userId=" + selRecords[0].owner+"&business=1";
+    });
     
     $('#goBackBtn').hide();
     

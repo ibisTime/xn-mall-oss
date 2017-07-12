@@ -45,7 +45,7 @@ $(function () {
         formatter: moneyFormat,
     }, {
         field: 'price3',
-        title: '积分价',
+        title: '抵金券价',
         formatter: moneyFormat,
     }, {
         field: 'location',

@@ -1,6 +1,7 @@
 $(function() {
 	
 	var userId = getQueryString('userId');
+	var view = !!getQueryString('v');
 	
 	var fields = [{
 		field: 'kind',
@@ -10,11 +11,13 @@ $(function() {
 		title : '登录名',
 		field : 'loginName',
 		required: true,
+		readonly: view,
 		maxlength: 20
 	},{
 		title : '手机号',
     	field : 'mobile',
     	mobile:true,
+		readonly: view,
 		required: true
     }, {
         title: '真实姓名',

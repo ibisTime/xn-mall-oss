@@ -28,7 +28,7 @@ $(function() {
         required: true,
     }, {
         field: 'rate2',
-        title: '使用积分比例',
+        title: '使用抵金券比例',
         min: 0,
         required: true,
     }, {
@@ -39,6 +39,11 @@ $(function() {
     },{
         field: 'rate1',
         title: '返点菜狗币比例',
+        min: 0,
+        required: true,
+    },{
+        field: 'rate4',
+        title: '返点抵金券比例',
         min: 0,
         required: true,
     }];

@@ -22,7 +22,7 @@ $(function () {
         formatter: moneyFormat,
     }, {
         field: 'amount3',
-        title: '积分总额',
+        title: '抵金券总额',
         formatter: moneyFormat,
     }, {
         field: 'payAmount2',
@@ -30,7 +30,7 @@ $(function () {
         formatter: moneyFormat,
     }, {
         field: 'payAmount3',
-        title: '已支付积分总额',
+        title: '已支付抵金券总额',
         formatter: moneyFormat,
     },{
         field: 'applyUser',

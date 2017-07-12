@@ -5,11 +5,8 @@ $(function () {
         title: '',
         checkbox: true
     }, {
-		field : 'loginName',
-		title : '商家名称',
-	}, {
 		field : 'mobile',
-		title : '联系方式',
+		title : '手机号',
 		search: true
 	}, {
 		field : 'userRefereeName',

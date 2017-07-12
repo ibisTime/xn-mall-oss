@@ -13,7 +13,7 @@ $(function () {
 			}else if(v.currency=="CGB"){
 				$("#amount-CGB").text(moneyFormat(v.amount)+"菜狗币")
 			}else if(v.currency=="CGJF"){
-				$("#amount-JF").text(moneyFormat(v.amount)+"积分")
+				$("#amount-JF").text(moneyFormat(v.amount)+"抵金券")
 			}
 		})
 		
@@ -50,7 +50,7 @@ $(function () {
 					updater:''
 				},
 				keyName: 'userId',
-				valueName: 'mobile',
+				valueName: '{{loginName.DATA}}-{{mobile.DATA}}',
 				searchName: 'mobile',
 			},{
 				title: '数量',
@@ -59,6 +59,9 @@ $(function () {
 				"Z+": true,
 				formatter:moneyFormat,
 				required: true
+			},{
+				title: '备注',
+				field: 'remark'
 			}],
 			container: $('#formContainer'),
 			buttons: [{
@@ -75,11 +78,15 @@ $(function () {
 						data.fromUserId = getUserId();
 						data.currency = "CGB";
 						reqApi({
-							code: '802401',
+							code: '802402',
 							json: data
 						}).done(function(data) {
-							location.reload();
+							
 							dw.close().remove();
+            				toastr.success("操作成功");
+            				setTimeout(function(){
+								location.reload();
+            				},1000)
 						});
 					}
 				}
@@ -113,7 +120,7 @@ $(function () {
 					updater:''
 				},
 				keyName: 'userId',
-				valueName: 'mobile',
+				valueName: '{{loginName.DATA}}-{{mobile.DATA}}',
 				searchName: 'mobile',
 				required: true
 			},{
@@ -123,6 +130,9 @@ $(function () {
 				"Z+": true,
 				formatter:moneyFormat,
 				required: true
+			},{
+				title: '备注',
+				field: 'remark'
 			}],
 			container: $('#formContainer'),
 			buttons: [{
@@ -134,11 +144,15 @@ $(function () {
 						data.fromUserId = getUserId();
 						data.currency = "CGJF";
 						reqApi({
-							code: '802401',
+							code: '802402',
 							json: data
 						}).done(function(data) {
-							location.reload();
+							
 							dw.close().remove();
+            				toastr.success("操作成功");
+            				setTimeout(function(){
+								location.reload();
+            				},1000)
 						});
 					}
 				}

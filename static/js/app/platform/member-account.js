@@ -21,10 +21,7 @@ $(function() {
 		field : 'amount',
 		title : '账户余额',
         formatter:moneyFormat
-	},{ 
-		field: 'remark',
-        title: '备注'
-    }];
+	}];
 
     buildList({
         columns: columns,
