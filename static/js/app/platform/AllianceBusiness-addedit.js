@@ -17,7 +17,6 @@ $(function() {
 		title : '手机号',
     	field : 'mobile',
     	mobile:true,
-		readonly: view,
 		required: true
     }, {
         title: '真实姓名',

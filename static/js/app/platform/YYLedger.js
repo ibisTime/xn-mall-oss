@@ -21,6 +21,10 @@ $(function () {
 		keyCode: "802006",
         formatter: Dict.getNameForList("currency",'802006'),
     }, {
+        field: 'backJfAmount',
+        title: '返现抵金券',
+		formatter: moneyFormat
+    }, {
         field: 'payType',
         title: '买单方式',
 		key: 'store_pay_type',
