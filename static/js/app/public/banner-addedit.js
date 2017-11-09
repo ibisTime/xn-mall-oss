@@ -48,9 +48,10 @@ $(function() {
         field: 'location',
         type: "select",
         data: {
-            "index_banner": "首页"
+            "index_banner": "首页",
+            "4": "活动推广页"
         },
-        value: "index_banner",
+        // value: "index_banner",
         required: true,
         readonly: view
     }, {
@@ -64,7 +65,7 @@ $(function() {
         title: "banner图片",
         field: "pic",
         type: "img",
-		single: true,
+        single: true,
         required: true,
         readonly: view
     }, {

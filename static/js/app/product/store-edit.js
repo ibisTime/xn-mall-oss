@@ -2,7 +2,7 @@ $(function() {
 
     var code = getQueryString('code');
     var view = !!getQueryString('v');
-    var userId = getUserId();
+    // var userId = getUserId();
 
     var fields = [{
         field: 'kind',
@@ -22,7 +22,6 @@ $(function() {
         readonly: view,
         params: {
             type: 2,
-            status: "1",
             parentCode: 0
         },
         keyName: 'code',
@@ -37,7 +36,7 @@ $(function() {
         field: 'mobile',
         title: '登录名(店家手机号)',
         mobile: true,
-        readonly: view,
+        readonly: true,
         required: true
     }, {
         field: 'bookMobile',
@@ -101,7 +100,7 @@ $(function() {
         title: '商家描述',
         type: "textarea",
         required: true,
-        // minlength: 20,
+        minlength: 20,
         readonly: view
     }, {
         field: 'rate2',
@@ -128,6 +127,11 @@ $(function() {
         field: 'remark',
         title: '备注',
         readonly: view
+    }, {
+        field: "userReferee",
+        title: "推荐人",
+        required: true,
+        type: "hidden"
     }];
 
 
@@ -136,7 +140,7 @@ $(function() {
         view: view,
         code: code,
         detailCode: '808216',
-        addCode: '808200',
+        editCode: '808208',
     };
 
     buildDetail(options);
@@ -186,7 +190,8 @@ $(function() {
             var myGeo = new BMap.Geocoder();
             myGeo.getPoint(addr, function(point) {
                 if (point) {
-                    data.userReferee = userId;
+                    // data.userReferee = userId;
+                    data.storeCode = data.code;
                     data.level = "1";
                     data.longitude = point.lng;
                     data.latitude = point.lat;
