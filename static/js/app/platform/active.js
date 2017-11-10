@@ -5,6 +5,9 @@ $(function() {
         title: '',
         checkbox: true
     }, {
+        field: "title",
+        title: '活动标题',
+    }, {
         title: "赠送币种",
         field: "currency",
         type: "select",
@@ -33,6 +36,9 @@ $(function() {
         type: "datetime",
         formatter: dateTimeFormat,
         search: true
+    }, {
+        title: "浏览人数",
+        field: "count",
     }, {
         type: "select",
         field: "status",

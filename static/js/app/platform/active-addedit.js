@@ -37,6 +37,12 @@ $(function() {
         required: true,
         value: "6"
     }, {
+        field: "title",
+        title: '活动标题',
+        maxlength: 255,
+        required: true,
+        readonly: view
+    }, {
         field: 'advPic',
         title: "广告图",
         type: "img",
@@ -108,12 +114,17 @@ $(function() {
             "2": "已下架"
         },
         readonly: view
+    }, {
+        title: "浏览人数",
+        field: "count",
+        readonly: view,
+        formatter: function(v, data) {
+            return data.count;
+        }
     }];
     if (view) {
         fields = fields.concat(viewList);
     };
-
-
     buildDetail({
         fields: fields,
         code: code,
