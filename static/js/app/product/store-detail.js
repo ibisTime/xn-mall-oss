@@ -106,10 +106,6 @@ $(function() {
         keyCode: '808907',
         required: true,
     }, {
-        field: 'uiOrder',
-        title: '序号',
-        required: true,
-    }, {
         field: 'isDefault',
         title: '是否默认',
         type: 'select',
@@ -120,29 +116,16 @@ $(function() {
         required: true,
     }, {
         field: 'rate2',
-        title: '使用抵金券比例',
-        //      formatter: function(v, data) {
-        //          return (v * 100) + "%"
-        //      },
-
+        title: '使用抵金券比例'
     }, {
         field: 'rate3',
-        title: '返点人民币比例',
-        //      formatter: function(v, data) {
-        //          return (v * 100) + "%"
-        //      },
+        title: '返点人民币比例'
     }, {
         field: 'rate1',
-        title: '返点菜狗币比例',
-        //      formatter: function(v, data) {
-        //          return (v * 100) + "%"
-        //      },
+        title: '返点菜狗币比例'
     }, {
         field: 'rate4',
-        title: '返点抵金券比例',
-        //      formatter: function(v, data) {
-        //          return (v * 100) + "%"
-        //      },
+        title: '返点抵金券比例'
 
     }, {
         field: 'createDatetime',
@@ -150,7 +133,7 @@ $(function() {
         formatter: dateTimeFormat,
     }, {
         field: 'creator',
-        title: '更新人',
+        title: '创建人',
     }, {
         field: 'updateDatetime',
         title: '更新时间',
@@ -167,74 +150,6 @@ $(function() {
         view: view,
         code: code,
         detailCode: '808216',
-        editCode: '808208',
-        addCode: '808200',
     };
-
     buildDetail(options);
-
-    $('#subBtn').off("click").click(function() {
-        if ($('#jsForm').valid()) {
-            var data = $('#jsForm').serializeObject();
-            $('#jsForm').find('.btn-file [type=file]').parent().next().each(function(i, el) {
-                var values = [];
-                var imgs = $(el).find('.img-ctn');
-                imgs.each(function(index, img) {
-                    values.push($(img).attr('data-src') || $(img).find('img').attr('src'));
-                });
-                data[el.id] = values.join('||');
-            });
-            if ($('#jsForm').find('#province')[0]) {
-                var province = $('#province').val();
-                var city = $('#city').val();
-                var area = $('#area').val();
-                if (!city) {
-                    data['city'] = province;
-                    data['area'] = province;
-                } else if (!area) {
-                    data['city'] = province;
-                    data['area'] = city;
-                }
-            }
-            for (var i = 0, len = fields.length; i < len; i++) {
-                var item = fields[i];
-                if (item.equal && (!$('#' + item.field).is(':hidden') || !$('#' + item.field + 'Img').is(':hidden'))) {
-                    data[item.equal] = $('#' + item.field).val() || $('#' + item.field).attr('src');
-                } else if (item.emptyValue && !data[item.field]) {
-                    data[item.field] = item.emptyValue;
-                } else if (item.readonly && item.pass) {
-                    data[item.field] = $('#' + item.field).attr('data-value') || $('#' + item.field).html();
-                }
-                if (item.type == 'select' && item.passValue) {
-                    data[item.field] = $('#' + item.field).find('option:selected').html();
-                }
-                if (item.type == "checkbox") {
-                    data[item.field] = $.isArray(data[item.field]) ? data[item.field].join(",") : data[item.field];
-                }
-            }
-            data['id'] = data['code'];
-
-            var addr = data.province + data.city + data.area + data.detail;
-            var myGeo = new BMap.Geocoder();
-            myGeo.getPoint(addr, function(point) {
-                if (point) {
-                    data.userReferee = userId;
-                    data.rate1 = "0";
-                    data.level = "1";
-                    data.longitude = point.lng;
-                    data.latitude = point.lat;
-                    reqApi({
-                        code: code ? options.editCode : options.addCode,
-                        json: data
-                    }).done(function(data) {
-                        sucDetail();
-                    });
-                } else {
-                    alert("无法解析当前地址的经纬度!");
-                }
-            });
-
-        }
-    });
-
 });

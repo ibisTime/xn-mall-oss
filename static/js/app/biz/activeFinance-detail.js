@@ -4,17 +4,7 @@ $(function() {
 
     var fields = [{
         title: '活动',
-        field: 'activityCode',
-        required: true,
-        type: "select",
-        pageCode: "801052",
-        params: {
-            type: "6",
-            status: "0"
-        },
-        keyName: "code",
-        valueName: "title",
-        searchName: "title",
+        field: 'title',
         readonly: view,
     }, {
         title: '活动资金',

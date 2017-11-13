@@ -8,10 +8,6 @@ $(function() {
         title: '店铺名称',
         search: true
     }, {
-        field: 'bookMobile',
-        title: '联系电话',
-        search: true
-    }, {
         field: 'type',
         title: '分类',
         type: 'select',
@@ -26,8 +22,13 @@ $(function() {
         field: 'legalPersonName',
         title: '法人姓名',
     }, {
+        field: 'bookMobile',
+        title: '联系电话',
+        search: true
+    }, {
         field: 'smsMobile',
         title: '短信手机号',
+        search: true
     }, {
         field: 'refereeMobile',
         title: '店铺推荐人',

@@ -21,6 +21,20 @@ $(function() {
         title: '活动资金',
         formatter: moneyFormat
     }, {
+        title: "已使用资金",
+        field: 'usedAmount',
+        formatter: moneyFormat
+    }, {
+        title: "剩余资金",
+        field: 'syAmount',
+        formatter: function(v, data) {
+            return moneyFormat(data.amount - data.usedAmount);
+        }
+    }, {
+        title: '最近修改时间',
+        field: "addDatetime",
+        formatter: dateTimeFormat
+    }, {
         field: 'remark',
         title: '备注'
     }];
@@ -33,5 +47,13 @@ $(function() {
         beforeDetail: function(data) {
             window.location.href = "./activeFinance_detail.html?v=1&code=" + data.code;
         }
+    });
+    $("#ledgerBtn").click(function() {
+        var selRecords = $('#tableList').bootstrapTable('getSelections');
+        if (selRecords.length < 1) {
+            toastr.error("请选择一条记录");
+            return;
+        };
+        window.location.href = "./activeFinanceLedger.html?code=" + selRecords[0].code;
     });
 });

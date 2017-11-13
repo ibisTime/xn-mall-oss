@@ -631,6 +631,7 @@ function buildList(options) {
     var urlParamsStr = '';
     var columns = options.columns;
     var dateTimeList = [];
+    var dateTimeList1 = [];
     if (urlParams) {
         for (var i in urlParams) {
             urlParamsStr += '&' + i + '=' + urlParams[i];
@@ -644,9 +645,13 @@ function buildList(options) {
         if (item.search) {
             if (item.key || item.type == 'select') {
                 html += '<li><label>' + item.title + '</label><select ' + (item.multiple ? 'multiple' : '') + ' id="' + item.field + '" name="' + item.field + '"></select></li>';
-            } else if (item.type1 == 'date' || item.type1 == "datetime") {
+            } else if (item.twoDate) {
                 dateTimeList.push(item);
-                html += '<li style="width: 50%;"><label>' + item.title1 + '</label><input id="' + item.field1 + '" name="' + item.field1 + '" class="lay-input"/><label style="float:none;padding-left: 10px;">至</label><input id="' + item.field2 + '" name="' + item.field2 + '" class="lay-input"/></li>';
+                html += '<li  class="search-form-li search-form-li-date" style="width: 50%;"><label>' + item.title1 + '</label><input id="' + item.field1 + '" name="' + item.field1 + '" class="lay-input lay-input1"/><label style="float:none;padding-left: 10px;">~</label><input id="' + item.field2 + '" name="' + item.field2 + '" class="lay-input lay-input1"/></li>';
+                // 单个日期搜索框
+            } else if (item.type == 'date' || item.type == "datetime") {
+                dateTimeList1.push(item);
+                html += '<li  class="search-form-li" style="width: 25%;"><label>' + item.title + '</label><input id="' + item.field + '" name="' + item.field + '" class="lay-input lay-input1"/></li>';
             } else if (item.type == "citySelect") {
                 html += '<li class="clearfix" style="width:56%;"><label>' + item.title + '</label><div id="city-group"><select id="province" name="province" class="control-def prov"></select>' +
                     '<select id="city" name="city" class="control-def city"></select>' +
@@ -665,21 +670,45 @@ function buildList(options) {
     html += '<li><input id="searchBtn" type="button" class="btn" value="查询" /><input type="reset" class="btn" value="重置" /></li></ul>';
     $('.search-form').append(html);
 
+    // 两个日期搜索框
     for (var i = 0, len = dateTimeList.length; i < len; i++) {
-        var item = dateTimeList[i];
-        laydate({
-            elem: '#' + item.field1,
-            min: item.minDate ? item.minDate : '',
-            istime: item.type1 == 'datetime',
-            format: item.type1 == 'datetime' ? 'YYYY-MM-DD hh:mm:ss' : 'YYYY-MM-DD'
-        });
-        laydate({
-            elem: '#' + item.field2,
-            min: item.minDate ? item.minDate : '',
-            istime: item.type1 == 'datetime',
-            format: item.type1 == 'datetime' ? 'YYYY-MM-DD hh:mm:ss' : 'YYYY-MM-DD'
-        });
+        (function(i) {
+            var item = dateTimeList[i];
+            $('#' + item.field1).click(function() {
+                var end = $('#' + item.field2).val();
+                var obj = {
+                    elem: '#' + item.field1,
+                    istime: item.type == 'datetime',
+                    format: item.type == 'datetime' ? 'YYYY-MM-DD hh:mm:ss' : 'YYYY-MM-DD',
+                };
+                end && (obj.max = end);
+                laydate(obj);
+            });
+            $('#' + item.field2).click(function() {
+                var start = $('#' + item.field1).val();
+                var obj = {
+                    elem: '#' + item.field2,
+                    istime: item.type == 'datetime',
+                    format: item.type == 'datetime' ? 'YYYY-MM-DD hh:mm:ss' : 'YYYY-MM-DD',
+                };
+                start && (obj.min = start);
+                laydate(obj);
+            });
+        })(i);
     }
+    // 单个日期搜索框
+    for (var i = 0, len = dateTimeList1.length; i < len; i++) {
+        (function(i) {
+            var item = dateTimeList1[i];
+            laydate({
+                elem: '#' + item.field,
+                min: item.minDate ? item.minDate : '',
+                istime: item.type == 'datetime',
+                format: item.type == 'datetime' ? 'YYYY-MM-DD hh:mm:ss' : 'YYYY-MM-DD'
+            });
+        })(i);
+    }
+
 
 
     for (var i = 0, len = dropDownList.length; i < len; i++) {
