@@ -25,6 +25,9 @@ $(function() {
         title: '创建时间',
         field: 'createDatetime',
         formatter: dateTimeFormat
+    }, {
+        title: "备注",
+        field: "remark"
     }];
 
     var options = {

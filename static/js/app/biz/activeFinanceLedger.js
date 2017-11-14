@@ -31,6 +31,9 @@ $(function() {
         title: '创建时间',
         field: 'createDatetime',
         formatter: dateTimeFormat
+    }, {
+        title: "备注",
+        field: "remark"
     }];
 
     buildList({
@@ -50,7 +53,7 @@ $(function() {
 
     $('.tools .toolbar').append('<li style="display:block;" id="backBtn"><span><img src="/static/images/t01.png"></span>返回</li>');
     $('#backBtn').on('click', function() {
-        goBack();
+        window.location.href = "./activeFinance.html"
     });
 
 
