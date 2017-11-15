@@ -8,11 +8,7 @@ $(function() {
     }, {
         title: '流水编号',
         field: 'id',
-    }, {
-        title: "剩余资金",
-        field: "remainAmount",
-        formatter: moneyFormat
-    }, {
+    },  {
         title: '赠送人',
         field: 'loginName',
     }, {
@@ -26,6 +22,10 @@ $(function() {
     }, {
         field: 'toAmount',
         title: '赠送金额',
+        formatter: moneyFormat
+    },{
+        title: "剩余资金",
+        field: "remainAmount",
         formatter: moneyFormat
     }, {
         title: '创建时间',

@@ -46,7 +46,7 @@ $(function() {
         field: 'advPic',
         title: "广告图",
         type: "img",
-        singele: true,
+        single: true,
         required: true,
         readonly: view
     }, {

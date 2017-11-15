@@ -5353,8 +5353,8 @@ _e(function (E, $) {
         var $linkInput = $('<input type="text" class="block" placeholder=\'格式如：<iframe src="..." frameborder=0 allowfullscreen></iframe>\'/>');
         $linkInputContainer.append($linkInput);
         var $sizeContainer = $('<div style="margin:20px 10px;"></div>');
-        var $widthInput = $('<input type="text" value="640" style="width:50px;text-align:center;"/>');
-        var $heightInput = $('<input type="text" value="498" style="width:50px;text-align:center;"/>');
+        var $widthInput = $('<input type="text" value="375" style="width:50px;text-align:center;"/>');
+        var $heightInput = $('<input type="text" value="190" style="width:50px;text-align:center;"/>');
         $sizeContainer.append('<span> ' + lang.width + ' </span>')
                       .append($widthInput)
                       .append('<span> px &nbsp;&nbsp;&nbsp;</span>')

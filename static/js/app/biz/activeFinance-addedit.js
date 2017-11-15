@@ -30,18 +30,27 @@ $(function() {
         valueName: "title",
         searchName: "title",
         readonly: view,
+    },{
+        title:"购买金额",
+        field:"czAmount",
+        amount:true,
+        required: true,
+        formattter:moneyFormat,
+        help:"客户用于购买活动的真实人民币金额数"
     }, code ? {
         title: '新增金额',
         field: 'amount',
         amount: true,
         required: true,
-        readonly: view
+        readonly: view,
+        help:"是客户购买的虚拟的活动资金数"
     } : {
         title: '活动资金',
         field: 'amount',
         amount: true,
         required: true,
-        readonly: view
+        readonly: view,
+        help:"是客户购买的虚拟的活动资金数"
     }, {
         title: '备注',
         field: 'remark',

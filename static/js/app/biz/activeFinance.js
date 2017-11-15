@@ -16,6 +16,11 @@ $(function() {
         valueName: "title",
         searchName: "title",
         search: true
+    },{
+        title:"购买金额",
+        field:"czAmount",
+        amount:true,
+        formattter:moneyFormat
     }, {
         field: 'amount',
         title: '活动资金',
