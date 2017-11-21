@@ -37,6 +37,12 @@ $(function() {
         formatter: dateTimeFormat,
         search: true
     }, {
+        title: "阅读时长(秒)",
+        field: "readTimes",
+    }, {
+        title: "UI次序",
+        field: "orderNo"
+    }, {
         title: "浏览人数",
         field: "count",
     }, {
@@ -88,21 +94,8 @@ $(function() {
             toastr.warning("该记录不是可上架的状态");
             return;
         }
+        window.location.href = "./active_up.html?code=" + selRecords[0].code;
 
-        confirm("确认上架？").then(function() {
-            reqApi({
-                code: '801043',
-                json: {
-                    "code": selRecords[0].code,
-                    remark: "上架",
-                    "location": "0",
-                    "orderNo": "0",
-                }
-            }).then(function() {
-                toastr.info("操作成功");
-                $('#tableList').bootstrapTable('refresh', { url: $('#tableList').bootstrapTable('getOptions').url });
-            });
-        }, function() {});
     });
     //下架
     $('#downBtn').click(function() {
@@ -132,4 +125,5 @@ $(function() {
         }, function() {});
 
     });
+
 });

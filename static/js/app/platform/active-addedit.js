@@ -105,6 +105,18 @@ $(function() {
         readonly: view
     }];
     var viewList = [{
+        title: "阅读时长(秒)",
+        field: "readTimes",
+        formatter: function(v, data) {
+            return data.readTimes;
+        }
+    }, {
+        title: "UI次序",
+        field: "orderNo",
+        formatter: function(v, data) {
+            return data.orderNo;
+        }
+    }, {
         title: "状态",
         field: "status",
         type: "select",
